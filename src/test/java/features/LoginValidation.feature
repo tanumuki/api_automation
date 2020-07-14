@@ -2,13 +2,13 @@ Feature: Validating user login APIs
 
 Scenario Outline: Verify if user is able to login
 
-		Given Add login payload with context "<ctx>" and user calls "<endPoint>" with get http request with username as "<username>" and password as "<password>"
-		When User calls "GET" https request 
+		Given Add payload with login endpoint "<endPoint>" 
+		When User calls "GET" https request with username "<username>" and password "<password>"
 		Then The API returns success with status code "200"
 		And "status" in response body is "OK"
 		
 Examples: 
-			|ctx|endPoint|username|password|
-			|android|UserLoginAPI|tanu@saavn.com|Tanu1234|
+			|endPoint|username|password|
+			|UserLoginAPI|tanu@saavn.com|Tanu1234|
 
 
