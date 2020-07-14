@@ -1,7 +1,0 @@
--------------------------------------------------------------------------------
-Test set: cucumber.Options.TestRunner
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 1, Skipped: 6, Time elapsed: 1.066 s <<< FAILURE! - in cucumber.Options.TestRunner
-Verify if user is able to login(Validating user login APIs)  Time elapsed: 0.683 s  <<< ERROR!
-java.lang.RuntimeException: Configuration.properties not found at resources//global.properties
-
