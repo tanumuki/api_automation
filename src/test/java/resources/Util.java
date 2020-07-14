@@ -43,14 +43,7 @@ public class Util {
 		 return request;
 		
 	}
-	
-	public static void getOpsWithQueryParams(String url, Map <String, String> queryParam) {
-		
-		//request.q
-		
-		
-	}
-	
+
 	
 	public RequestSpecification  requestSpecificationWithHeaders(String ctx, String endPoint, String username, String password, String cookie) throws FileNotFoundException {
 		
@@ -92,14 +85,10 @@ public class Util {
 	}
 	
 	
-//	public static objectMapper() {
-//		
-//		
-//		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-//		UserLogin login= objectMapper.readValue(resp.asString(), UserLogin.class);
-//		
-//		
-//	}
-//	
+	public static void parseJson() {
+		
+	}
+	
+	
 
 }
