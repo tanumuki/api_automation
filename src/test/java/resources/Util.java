@@ -7,10 +7,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Map;
 import java.util.Properties;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
