@@ -1,9 +1,9 @@
 package stepDefinitions;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
@@ -25,6 +25,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import login_pojos.UserLogin;
+import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
 import validators.UserLoginValidator;
@@ -81,7 +82,7 @@ public class User extends Util {
 	public void user_calls_https_request_with_username_and_password(String method, String username, String password) {
  resspec =new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
 		 
-		 if(method.equalsIgnoreCase("GET")) {
+		 if(method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 			 System.out.println("tan3 "+resspec);
 			res.queryParam("username", username);
 			res.queryParam("password", password);
