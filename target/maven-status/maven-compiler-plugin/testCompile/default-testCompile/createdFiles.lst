@@ -1,8 +1,0 @@
-resources/ConfigReader.class
-stepDefinitions/Radio.class
-cucumber/Options/TestRunner.class
-stepDefinitions/Playlist.class
-stepDefinitions/User.class
-resources/Util.class
-testcases/AppTest.class
-testcases/BaseTest.class

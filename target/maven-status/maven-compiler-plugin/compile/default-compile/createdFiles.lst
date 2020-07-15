@@ -1,7 +1,0 @@
-login_pojos/SlotsUsed.class
-validators/PlaylistValidator.class
-login_pojos/UserLogin.class
-validators/UserLoginValidator.class
-login_pojos/LoginData.class
-login_pojos/LoginProstatus.class
-endPoints/APIResources.class
