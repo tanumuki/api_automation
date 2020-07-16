@@ -30,7 +30,6 @@ import resources.ConfigReader;
 import resources.Util;
 import validators.UserLoginValidator;
 
-
 public class User extends Util {
 
 	RequestSpecification res;
@@ -48,15 +47,13 @@ public class User extends Util {
 //
 //	}
 //	
-	
-	
-	
+
 	@Given("Add payload with login endpoint {string}")
 	public void add_payload_with_login_endpoint(String endPoint) throws IOException {
-		APIResources resourceAPI  = APIResources.valueOf(endPoint); 
-		 String resource = resourceAPI.getResource();
-		 System.out.println("respurce api "+resourceAPI.getResource());
-		 res = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(),resource));		    
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		String resource = resourceAPI.getResource();
+		System.out.println("respurce api " + resourceAPI.getResource());
+		res = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
 	}
 
 //
@@ -76,24 +73,23 @@ public class User extends Util {
 //		}
 //
 //	}
-	
-	
+
 	@When("User calls {string} https request with username {string} and password {string}")
 	public void user_calls_https_request_with_username_and_password(String method, String username, String password) {
- resspec =new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-		 
-		 if(method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			 System.out.println("tan3 "+resspec);
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
+
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			System.out.println("tan3 " + resspec);
 			res.queryParam("username", username);
 			res.queryParam("password", password);
-	  		 resp= res.when().get("/api.php").then().log().all().spec(resspec).extract().response(); 
-	  		 
-		 }
-		 if(method.equalsIgnoreCase("POST")) {
-			 
-			 
-		 }
-		 }
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+
+		}
+		if (method.equalsIgnoreCase("POST")) {
+
+		}
+	}
 
 	@Then("The API returns success with status code {string}")
 	public void the_API_returns_success_with_status_code(String string)
@@ -103,22 +99,21 @@ public class User extends Util {
 
 		assertEquals(resp.getStatusCode(), 200);
 
-		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
 
 		new UserLoginValidator().validate(login, sa);
 		sa.assertAll();
 	}
-	
+
 	@Then("I should see the response with json validation")
 	public void i_should_see_the_response_with_json_validation() {
-	
-		String response= resp.getBody().asString();
-		assertThat(response, matchesJsonSchemaInClasspath("userLogin.json"));
-		
-		
-	}
 
+		String response = resp.getBody().asString();
+		assertThat(response, matchesJsonSchemaInClasspath("userLogin.json"));
+
+	}
 
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is(String key, String Expectedvalue) {
