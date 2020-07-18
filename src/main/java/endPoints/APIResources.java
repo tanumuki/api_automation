@@ -4,7 +4,8 @@ public enum APIResources {
 	
 	
 	UserLoginAPI ("user.login"),
-	UserCreateAPI ("user.createV2");
+	UserCreateAPI ("user.createV2"),
+	LibraryGetAllAPI ("library.getAll");
 	
 	private String resource;
 	

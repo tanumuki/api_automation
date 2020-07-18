@@ -39,9 +39,14 @@ public class Util {
 		 return request;
 		
 	}
+	
+	
+	/*
+	 * Sending a cookie in the form of Hashmap
+	 */
 
 	
-	public RequestSpecification  requestSpecificationWithHeaders(String ctx, String endPoint, String username, String password, String cookie) throws FileNotFoundException {
+	public RequestSpecification  requestSpecificationWithHeaders(String ctx, String endPoint, String cookie) throws FileNotFoundException {
 		
 		if(request==null) {
 			PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
@@ -49,9 +54,8 @@ public class Util {
 			 request	=new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
 				.addFilter(RequestLoggingFilter.logRequestTo(log))
 				.addFilter(ResponseLoggingFilter.logResponseTo(log))
+				.addCookie(cookie)
 				.addQueryParam("__call", endPoint)
-				.addQueryParam("username", username)
-				.addQueryParam("password", password)
 				.addQueryParam("api_version", "4")
 				.addQueryParam("_format", "json")
 				.addQueryParam("_marker", "0")
@@ -81,9 +85,6 @@ public class Util {
 	}
 	
 	
-	public static void parseJson() {
-		
-	}
 	
 	
 

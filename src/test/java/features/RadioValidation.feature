@@ -2,8 +2,8 @@ Feature: Validating user Radio APIs
 
 Scenario Outline: Verify if user is able to play artist radio
 
-		Given Add radio payload with context "<ctx>" and user calls "<endPoint>" with get http request with username as "<username>" and password as "<password>"
-		When User calls "GET" https request 
+		Given Add radio payload with context "<ctx>" and user calls "<endPoint>" with get http request
+		When User calls "GET" https request with language cookie
 		Then The API returns success with status code "200"
 		And "status" in response body is "OK"
 		
