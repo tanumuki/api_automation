@@ -59,8 +59,8 @@ public class Util {
 				.addQueryParam("api_version", "4")
 				.addQueryParam("_format", "json")
 				.addQueryParam("_marker", "0")
-				.addQueryParam("app_version", "6.1")
-				.addQueryParam("v", "211.0")
+				.addQueryParam("app_version", ConfigReader.getInstance().getAppVersion())
+				.addQueryParam("v", ConfigReader.getInstance().getVersion())
 				.addQueryParam("ctx", ctx).setContentType(ContentType.JSON).build();
 		}
 		 return request;

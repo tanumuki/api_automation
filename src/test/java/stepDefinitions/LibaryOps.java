@@ -28,16 +28,7 @@ public class LibaryOps extends Util {
 	RequestSpecification res;
 	ResponseSpecification resspec;
 	Response resp;
-//	
-//
-//    @Given("Add payload with get library endpoint {string}")
-//    public void add_payload_with_get_library_endpoint_something(String endPoint) throws Throwable {
-//    	APIResources resourceAPI = APIResources.valueOf(endPoint);
-//		String resource = resourceAPI.getResource();
-//		System.out.println("respurce api " + resourceAPI.getResource());
-//		res = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
-//	    }
-//    
+
 
 	@Given("Add payload with get library endpoint {string} and account credentials for cookie")
 	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint) throws IOException {
@@ -46,10 +37,8 @@ public class LibaryOps extends Util {
 		String resource = resourceAPI.getResource();
 		System.out.println("respurce api " + resourceAPI.getResource());
 		String cookie = GetCookies.initCookies(ConfigReader.getInstance().getUsername(), ConfigReader.getInstance().getPassword());
-		System.out.println("COOOOOOOKIEEEE "+cookie);
-		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
-		
-		
+		System.out.println("Cookie "+cookie);
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));	
 
 	}
 
