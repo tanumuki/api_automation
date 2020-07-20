@@ -12,7 +12,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Builder
 @Data
 @Getter
 @Setter

@@ -24,7 +24,6 @@ import lombok.ToString;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Builder
 @Getter
 @Setter
 @ToString
@@ -88,6 +87,10 @@ public class MoreInfo {
 	
 	@JsonProperty("lastname")
 	private String lastname;
+	
+
+	@JsonProperty("year")
+	private String year;
 
 	
 }

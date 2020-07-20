@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-@Builder
+
 @ToString
 @Data
 public class SearchResultEntity {
