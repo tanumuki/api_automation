@@ -10,11 +10,18 @@ import lombok.Data;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "data", "prostatus" })
 
 @Data
-@Builder
 public class UserLogin {
+	
+	
+	
+	
+	
+	public UserLogin() {
+		super();
+	}
+	
 	
 	@JsonProperty("data")
 	private LoginData data;

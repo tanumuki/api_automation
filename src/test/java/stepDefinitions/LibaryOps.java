@@ -74,8 +74,8 @@ public class LibaryOps extends Util {
 		}
 	}
 
-	@Then("The API returns success with status code {string}")
-	public void the_API_returns_success_with_status_code( String statusCode) throws Throwable {
+	@Then("The Library API returns success with status code {string}")
+	public void the_Library_API_returns_success_with_status_code( String statusCode) throws Throwable {
 
 
 		StatusCode code = StatusCode.valueOf(statusCode);

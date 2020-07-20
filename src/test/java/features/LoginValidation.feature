@@ -6,7 +6,7 @@ Scenario: Verify if user is able to login
 		When User calls with method with below params
 		|method|endPoint|username|password|
 		|GET|UserLoginAPI|tanu@saavn.com|Tanu1234|		
-		Then The API returns success with status code "OK"
+		Then The Login API returns success with status code "OK"
 	
 		
 			
