@@ -1,12 +1,16 @@
 package resources;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
+
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -14,7 +18,6 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import login_pojos.UserLogin;
 
 public class Util {
 	
@@ -83,6 +86,16 @@ public class Util {
 	
 	public static void parseJson() {
 		
+	}
+	
+	public static List<String> readFileInToList(String filePath) throws FileNotFoundException{
+		List<String> fileContents = new ArrayList<>();
+		Scanner s = new Scanner(new File(filePath));
+		while(s.hasNextLine()) {
+			fileContents.add(s.nextLine());
+		}
+		s.close();
+		return fileContents;
 	}
 	
 	
