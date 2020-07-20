@@ -20,18 +20,25 @@ public class SearchResponse {
 
 	@JsonProperty("albums")
 	private SearchResultEntity albums;
+	
 	@JsonProperty("songs")
 	private SearchResultEntity songs;
+	
 	@JsonProperty("radios")
 	private SearchResultEntity radios;
+	
 	@JsonProperty("playlists")
 	private SearchResultEntity playlists;
+	
 	@JsonProperty("artists")
 	private SearchResultEntity artists;
+	
 	@JsonProperty("topquery")
 	private SearchResultEntity topquery;
+	
 	@JsonProperty("shows")
 	private SearchResultEntity shows;
+	
 	@JsonProperty("episodes")
 	private SearchResultEntity episodes;
 

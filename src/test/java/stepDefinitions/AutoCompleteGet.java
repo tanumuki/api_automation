@@ -70,7 +70,8 @@ public class AutoCompleteGet extends Util {
 	@Then("I should see response with JSON validation")
 	public void i_should_see_response_with_JSON_validation() throws JsonMappingException, JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-		SearchResponse response =  mapper.readValue(resp.toString(), SearchResponse.class);
+		SearchResponse response =  mapper.readValue(resp.asString(), SearchResponse.class);
+		System.out.println("OBJECT IN STRING: " + mapper.writeValueAsString(response));
 		SoftAssert sa = new SoftAssert();
 		new SearchResponseValidator().validate(response, sa);
 

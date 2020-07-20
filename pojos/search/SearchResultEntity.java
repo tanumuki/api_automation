@@ -17,14 +17,13 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @Builder
-@Getter
-@Setter
 @ToString
 @Data
 public class SearchResultEntity {
 
 	@JsonProperty("data")
 	private List<DataMini> data = null;
+	
 	@JsonProperty("position")
 	private Integer position;
 

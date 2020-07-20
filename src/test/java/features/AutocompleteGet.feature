@@ -10,8 +10,8 @@ Scenario Outline: Search for album and verify the results
 Examples: 
   | query |
   | Tum Hi Ho |
-  | No filter Neha |
-  | Arijit Singh |
-  | Kabir Singh |
-  | Hariharan Hits|
+  #| No filter Neha |
+  #| Arijit Singh |
+  #| Kabir Singh |
+  #| Hariharan Hits|
     
