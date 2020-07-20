@@ -81,8 +81,8 @@ public class Login extends Util {
 		}
 	}
 
-	@Then("The API returns success with status code {string}")
-	public void the_API_returns_success_with_status_code(String statusCode)throws JsonMappingException, JsonProcessingException {
+	@Then("The Login API returns success with status code {string}")
+	public void the_Login_API_returns_success_with_status_code(String statusCode)throws JsonMappingException, JsonProcessingException {
 		SoftAssert sa = new SoftAssert();
 		
 		StatusCode code = StatusCode.valueOf(statusCode);
