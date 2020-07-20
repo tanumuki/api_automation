@@ -7,7 +7,10 @@ import org.testng.asserts.SoftAssert;
 import login_pojos.LoginProstatus;
 import login_pojos.SlotsUsed;
 import login_pojos.UserLogin;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 public class UserLoginValidator {
 
 	String className = getClass().getName();
@@ -16,12 +19,13 @@ public class UserLoginValidator {
 //		String "validate " = getClass().getEnclosingMethod().getName();
 		String product = login.getProstatus().getProduct();
 		sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
+		log.info("LOG Product name " +product);
 		System.out.println("product  is " + product);
 
 		LoginProstatus proStatus = login.getProstatus();
 
 		// get product type
-		System.out.println("Product Type: " + proStatus.getOfferTrial());
+		//System.out.println("Product Type: " + proStatus.getOfferTrial();
 
 		Integer time = login.getProstatus().getExpirationTimestamp();
 		sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");

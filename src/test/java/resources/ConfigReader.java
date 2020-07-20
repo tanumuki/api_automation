@@ -13,7 +13,7 @@ public class ConfigReader {
 
     private ConfigReader() {
 		BufferedReader reader;
-	    	String propertyFilePath = "src/test/java/resources//global.properties";
+	    	String propertyFilePath = "src/test/java/resources/global.properties";
 	        try {
 	            reader = new BufferedReader(new FileReader(propertyFilePath));
 	            properties = new Properties();
@@ -59,6 +59,21 @@ public class ConfigReader {
         if(ctx != null) return ctx;
         else throw new RuntimeException("ctx not specified in the Configuration.properties file.");
     }
+    
+    
+    public String getUsername() {
+        String username = properties.getProperty("username");
+        if(username != null) return username;
+        else throw new RuntimeException("ctx not specified in the Configuration.properties file.");
+    }
+    
+    
+    public String getPassword() {
+        String password = properties.getProperty("password");
+        if(password != null) return password;
+        else throw new RuntimeException("ctx not specified in the Configuration.properties file.");
+    }
+    
 
     public String getUserID() {
         String userId = properties.getProperty("user_Id");
