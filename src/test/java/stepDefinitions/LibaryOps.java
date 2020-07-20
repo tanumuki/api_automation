@@ -22,6 +22,7 @@ import io.restassured.specification.ResponseSpecification;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
+import statusCodes.StatusCode;
 
 public class LibaryOps extends Util {
 
@@ -42,7 +43,7 @@ public class LibaryOps extends Util {
 
 	}
 
-	@When("^User calls method with below params$")
+	@When("User calls method with below params")
 	public void user_calls_method_with_below_params(io.cucumber.datatable.DataTable table) throws Throwable {
 		resspec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
@@ -63,8 +64,8 @@ public class LibaryOps extends Util {
 			System.out.println("tan3 " + resspec);
 
 			System.out.println("toto" + table.asList().toString());
-			res.queryParam("username", "tanu@saavn.com");
-			res.queryParam("password", "Tanu1234");
+			res.queryParam("username", ConfigReader.getInstance().getUsername());
+			res.queryParam("password",  ConfigReader.getInstance().getPassword());
 			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 
 		}
@@ -73,15 +74,18 @@ public class LibaryOps extends Util {
 		}
 	}
 
-	@Then("^The API returns success with status code \"([^\"]*)\"$")
-	public void the_api_returns_success_with_status_code_something(String strArg1) throws Throwable {
+	@Then("The API returns success with status code {string}")
+	public void the_API_returns_success_with_status_code( String statusCode) throws Throwable {
 
-		assertEquals(resp.getStatusCode(), 200);
+
+		StatusCode code = StatusCode.valueOf(statusCode);
+		int resource = code.getResource();
+		System.out.println("the code is  " + resource);
+
+		System.out.println("the response is  " + resp.body().asString());
+
+		assertEquals(resp.getStatusCode(), resource);
 	}
 
-	@And("^\"([^\"]*)\" in response body is \"([^\"]*)\"$")
-	public void something_in_response_body_is_something(String strArg1, String strArg2) throws Throwable {
-		throw new PendingException();
-	}
 
 }

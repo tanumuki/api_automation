@@ -31,7 +31,7 @@ import resources.Util;
 import statusCodes.StatusCode;
 import validators.UserLoginValidator;
 
-public class User extends Util {
+public class Login extends Util {
 
 	RequestSpecification res;
 	ResponseSpecification resspec;

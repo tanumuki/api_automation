@@ -6,8 +6,7 @@ Scenario: Verify if user is able to login
 		When User calls method with below params
 		|method|n|p|
 		|GET|10|1|		
-		Then The API returns success with status code "200"
-		And "status" in response body is "OK"
+		Then The API returns success with status code "OK"
 		
 			
 
