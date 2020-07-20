@@ -1,28 +1,9 @@
 package testcases;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.it.Data;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import login_pojos.SlotsUsed;
-import login_pojos.UserLogin;
-
-import static io.restassured.RestAssured.*;
-
-import java.util.List;
-import java.util.Map;
-
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class BaseTest {
