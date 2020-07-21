@@ -24,6 +24,7 @@ Content-Length: 576
 Content-Type: text/html; charset=UTF-8
 Content-Encoding: gzip
 Vary: User-Agent,Accept-Encoding
+<<<<<<< HEAD
 Set-Cookie: geo=27.5.236.95%2CIN%2CTamil+Nadu%2CChennai%2C600005; expires=Tue, 28-Jul-2020 04:21:13 GMT; Max-Age=604800; path=/; domain=.saavn.com
 Set-Cookie: B=ffe4666bb75b34f8d0c4789326ab82eb; expires=Sun, 01-Jan-2023 08:00:00 GMT; Max-Age=77254727; path=/; domain=.saavn.com
 Set-Cookie: CT=MTcxMjM3Nzg4NQ==; expires=Thu, 20-Aug-2020 04:21:13 GMT; Max-Age=2592000; path=/; domain=.saavn.com; HttpOnly
@@ -32,6 +33,16 @@ Set-Cookie: I=Et5YN3SrktJWbm2knSGeiApowIWbKvV4iMyqVVhOn0wiGxtz4HzvNkh7s0XL2KeOax
 Set-Cookie: SG=f; expires=Thu, 21-Jul-2022 04:21:13 GMT; Max-Age=63072000; path=/; domain=.saavn.com
 X-Azure-Ref: 0OG0WXwAAAACQmRcGWhDDQLB/+iXUfz8OTUFBMDFFREdFMDMwNwAzM2Y1OWYzYS05MDk1LTRlODAtOGZkYi0yZDA5YzI2N2Y4NTk=
 Date: Tue, 21 Jul 2020 04:21:13 GMT
+=======
+Set-Cookie: geo=110.227.200.17%2CIN%2CMaharashtra%2CPune%2C411037; expires=Tue, 28-Jul-2020 12:00:58 GMT; Max-Age=604800; path=/; domain=.saavn.com
+Set-Cookie: B=f3b75175c8d93836e67a4ca968c67128; expires=Sun, 01-Jan-2023 08:00:00 GMT; Max-Age=77227142; path=/; domain=.saavn.com
+Set-Cookie: CT=NTY0MzUwMzQ3; expires=Thu, 20-Aug-2020 12:00:58 GMT; Max-Age=2592000; path=/; domain=.saavn.com; HttpOnly
+Set-Cookie: P=trial%3A1595583799; expires=Thu, 20-Aug-2020 12:00:58 GMT; Max-Age=2592000; path=/; domain=.saavn.com
+Set-Cookie: I=q7mA6ZimXZ%2FEJKhRvdJQ2%2BkNfgRusVR8I%2Fsgnk7OCZwiGxtz4HzvNkh7s0XL2KeOaxPz6p%2F4nSD474a011D6A2M%2FlMKVqL3130zoERWAdYgxZtoU2MU1DBvq3kodN12BFsyVDKyyhedgoC6o%2FSvIhPJE2JIvI%2BGrI2YXZwFeCF0O1K3WwKvi2Nlz5CUYDWG423pi4B9GG5nQpbdpAPTDKbSEqgJSBTm0DKmzgl5QqZPStUmjD7aXT4Oc8O6T%2FQRL165karGyKuNxPvck9HPdx2dyqjGqWyHyIJqw7QfCGAqZqbeZjXlFea4BF7bSe9mC; expires=Thu, 21-Jul-2022 12:00:58 GMT; Max-Age=63072000; path=/; domain=.saavn.com
+Set-Cookie: SG=f; expires=Thu, 21-Jul-2022 12:00:58 GMT; Max-Age=63072000; path=/; domain=.saavn.com
+X-Azure-Ref: 0+dgWXwAAAAD4L25Hsu8sQrwYwkA0Iid0Qk9NMDFFREdFMDIxMwAzM2Y1OWYzYS05MDk1LTRlODAtOGZkYi0yZDA5YzI2N2Y4NTk=
+Date: Tue, 21 Jul 2020 12:00:57 GMT
+>>>>>>> Rest_Assured_Tanu_Working
 
 <html>
   <body>

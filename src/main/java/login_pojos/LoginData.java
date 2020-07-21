@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 
@@ -15,9 +17,15 @@ import lombok.Data;
 
 
 @Data
-@Builder
+@Getter
+@Setter
 public  class LoginData {
 
+	public LoginData() {
+		super();
+	}
+	
+	
 	@JsonProperty("username")
 	private String username;
 	@JsonProperty("uid")
