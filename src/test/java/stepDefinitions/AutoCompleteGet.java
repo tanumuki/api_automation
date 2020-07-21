@@ -36,7 +36,7 @@ public class AutoCompleteGet extends Util {
 	Response resp;
 	
 
-	@Given("Add payload with search endpoint {string}")
+	@Given("Add payload with pojos.search endpoint {string}")
 	public void add_payload_with_search_endpoint(String endpoint) throws IOException {
 		APIResources resourceAPI = APIResources.valueOf(endpoint);
 		String resource = resourceAPI.getResource();
@@ -44,7 +44,7 @@ public class AutoCompleteGet extends Util {
 		reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
 	}
 
-	@When("User calls {string} https request for queries in file {string}")
+	@When("stepDefinitions.stepDefinitions.User calls {string} https request for queries in file {string}")
 	public void user_calls_https_request_for_queries_in_file(String method, String queryFilePath) throws FileNotFoundException {
 		resSpec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
@@ -76,6 +76,6 @@ public class AutoCompleteGet extends Util {
 		
 		
 	}
-	
+
 
 }

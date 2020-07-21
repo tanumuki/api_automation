@@ -107,4 +107,10 @@ public class Validate {
 		return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}");
 	}
 
+	public static boolean asGender(String str)
+	{
+		return str.matches("m|f|u");
+	}
+
+
 }

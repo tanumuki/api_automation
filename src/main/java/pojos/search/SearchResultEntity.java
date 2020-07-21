@@ -1,7 +1,7 @@
 /**
  * 
  */
-package search;
+package pojos.search;
 
 /**
  * @author aswingokulachandran
