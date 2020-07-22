@@ -65,13 +65,13 @@ public class MoreInfo {
 	private String language;
 	
 	@JsonProperty("uid")
-	private Object uid;
+	private String uid;
 	
 	@JsonProperty("seed")
-	private Object seed;
+	private String seed;
 	
 	@JsonProperty("creation_date")
-	private Object creationDate;
+	private String creationDate;
 	
 	@JsonProperty("featured_station_type")
 	private String featuredStationType;
@@ -88,9 +88,19 @@ public class MoreInfo {
 	@JsonProperty("lastname")
 	private String lastname;
 	
+	@JsonProperty("is_movie")
+	private String is_movie;
 
 	@JsonProperty("year")
 	private String year;
+	
+	@JsonProperty("song_pids")
+	private String song_pids;
+	
+	@JsonProperty("season_number")
+	private int season_number;
+	
+	
 
 	
 }
