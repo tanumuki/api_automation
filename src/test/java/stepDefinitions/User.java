@@ -9,9 +9,13 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.config.LogConfig;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import pojos.login_pojos.UserLogin;
@@ -30,6 +34,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class User extends Util{
     RequestSpecification request;
     ResponseSpecification resspec;
@@ -54,6 +59,8 @@ public class User extends Util{
         }
         request.header("Cookie",GetCookies.initCookies("sun@s.in", "saavn123"));
         request.log().everything();
+        LogConfig logconfig = new LogConfig().enableLoggingOfRequestAndResponseIfValidationFails().enablePrettyPrinting(true);
+        RestAssured.config().logConfig(logconfig);
         resp = request.given()
                 .when()
                 .get("/api.php")
@@ -64,12 +71,17 @@ public class User extends Util{
                 .response();
 
         System.out.println(resp.getBody().asString());
+        log.info(resp.getBody().asString());
+        log.info(String.valueOf(resp.time()));
+
+        logResponseTime(resp);
     }
 
     @Then("The User Update API returns {string} with status code {int}")
     public void theUserUpdateAPIReturnsWithStatusCode(String expectedStatus, int expectedStatusCode) throws JsonProcessingException {
         SoftAssert sa = new SoftAssert();
 
+        given().log().equals(resp.time());
         Assert.assertEquals(expectedStatusCode, resp.getStatusCode(), "Response code validation failed for user update API");
         Assert.assertEquals(expectedStatus, resp.jsonPath().get("status"), "Status validation failed for user update API");
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
@@ -77,7 +89,6 @@ public class User extends Util{
         UserProfileUpdate profileUpdate = objectMapper.readValue(resp.asString(), UserProfileUpdate.class);
 
         new UserPofileDataValidator().validate(profileUpdate, sa);
-
 
     }
 }
