@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+     
+    "required": [
+        "album",
+        "ctr",
+        "score",
+        "vcode",
+        "vlink",
+        "primary_artists",
+        "singers",
+        "video_available"
+    ],
+    "additionalProperties": true,
+    "definitions": {
+    	"more_info" : {
+    		"type": "object",
+    		"properties": {
+		        "album": {		            
+		            "type": "string",
+		            "pattern": ".+"
+		        },
+		        "ctr": {		            
+		            "type": "integer"		            
+		        },
+		        "score": {		            
+		            "type": "string",
+		            "pattern": ".*"
+		        },
+		        "vcode": {		            
+		            "type": "string",
+		          	"pattern": ".*"  
+		        },
+		        "vlink": {		            
+		            "type": "string",
+		            "pattern": ".*"
+		            
+		        },
+		        "primary_artists": {		            
+		            "type": "string",
+		            "pattern": ".*" 
+		            
+		        },
+		        "singers": {		            
+		            "type": "string",
+		            "pattern": ".*" 
+		        },
+		        "video_available": {		            
+		            "type": "boolean"		            
+		        }
+		    }
+    	}
+    }
+    
+}
