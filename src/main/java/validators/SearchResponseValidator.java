@@ -5,17 +5,18 @@ package validators;
 
 import org.testng.asserts.SoftAssert;
 
-import search.DataMini;
-import search.MoreInfo;
-import search.SearchResponse;
-import search.SearchResultEntity;
+import pojos.search.DataMini;
+import pojos.search.MoreInfo;
+import pojos.search.SearchResponse;
+import pojos.search.SearchResultEntity;
+
 
 /**
  * @author aswingokulachandran
  *
  */
 public class SearchResponseValidator {
-	String className = SearchResponse.class.getName();
+	String className = pojos.search.SearchResponse.class.getName();
 	public void validate(SearchResponse response, SoftAssert sa) {
 		SearchResultEntity albums = response.getAlbums();
 		this.validateAlbums(albums, sa);
