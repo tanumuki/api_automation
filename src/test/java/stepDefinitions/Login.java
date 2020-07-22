@@ -76,9 +76,7 @@ public class Login extends Util {
 			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 
 		}
-		if (method.equalsIgnoreCase("POST")) {
-
-		}
+	
 	}
 
 	@Then("The Login API returns success with status code {string}")

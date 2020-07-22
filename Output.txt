@@ -1,16 +1,16 @@
 Request method:	GET
-Request URI:	https://staging.saavn.com/api.php?__call=user.login&api_version=4&_format=json&_marker=0&app_version=6.1&v=211.0&ctx=android&username=tanu%40saavn.com&password=Tanu1234
+Request URI:	https://staging.saavn.com/api.php?__call=webradio.createArtistStation&api_version=4&_format=json&_marker=0&app_version=6.1&v=211.0&ctx=android&query=sonu&name=sonu
 Proxy:			<none>
 Request params:	<none>
-Query params:	__call=user.login
+Query params:	__call=webradio.createArtistStation
 				api_version=4
 				_format=json
 				_marker=0
 				app_version=6.1
 				v=211.0
 				ctx=android
-				username=tanu@saavn.com
-				password=Tanu1234
+				query=sonu
+				name=sonu
 Form params:	<none>
 Path params:	<none>
 Headers:		Accept=*/*
@@ -20,47 +20,54 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Cache-Control: no-store, no-cache, must-revalidate, private, max-age=0
-Content-Length: 576
+Content-Length: 95
 Content-Type: text/html; charset=UTF-8
 Content-Encoding: gzip
 Vary: User-Agent,Accept-Encoding
-<<<<<<< HEAD
-Set-Cookie: geo=27.5.236.95%2CIN%2CTamil+Nadu%2CChennai%2C600005; expires=Tue, 28-Jul-2020 04:21:13 GMT; Max-Age=604800; path=/; domain=.saavn.com
-Set-Cookie: B=ffe4666bb75b34f8d0c4789326ab82eb; expires=Sun, 01-Jan-2023 08:00:00 GMT; Max-Age=77254727; path=/; domain=.saavn.com
-Set-Cookie: CT=MTcxMjM3Nzg4NQ==; expires=Thu, 20-Aug-2020 04:21:13 GMT; Max-Age=2592000; path=/; domain=.saavn.com; HttpOnly
-Set-Cookie: P=trial%3A1595583799; expires=Thu, 20-Aug-2020 04:21:13 GMT; Max-Age=2592000; path=/; domain=.saavn.com
-Set-Cookie: I=Et5YN3SrktJWbm2knSGeiApowIWbKvV4iMyqVVhOn0wiGxtz4HzvNkh7s0XL2KeOaxPz6p%2F4nSD474a011D6A2M%2FlMKVqL3130zoERWAdYgxZtoU2MU1DBvq3kodN12BFsyVDKyyhedgoC6o%2FSvIhPJE2JIvI%2BGrI2YXZwFeCF0O1K3WwKvi2Nlz5CUYDWG4kOhDouZ0fbe5D1UT64aK9rSEqgJSBTm0DKmzgl5QqZPStUmjD7aXT4Oc8O6T%2FQRL165karGyKuNxPvck9HPdx2dyqjGqWyHyIJqw7QfCGAqZqbeZjXlFea4BF7bSe9mC; expires=Thu, 21-Jul-2022 04:21:13 GMT; Max-Age=63072000; path=/; domain=.saavn.com
-Set-Cookie: SG=f; expires=Thu, 21-Jul-2022 04:21:13 GMT; Max-Age=63072000; path=/; domain=.saavn.com
-X-Azure-Ref: 0OG0WXwAAAACQmRcGWhDDQLB/+iXUfz8OTUFBMDFFREdFMDMwNwAzM2Y1OWYzYS05MDk1LTRlODAtOGZkYi0yZDA5YzI2N2Y4NTk=
-Date: Tue, 21 Jul 2020 04:21:13 GMT
-=======
-Set-Cookie: geo=110.227.200.17%2CIN%2CMaharashtra%2CPune%2C411037; expires=Tue, 28-Jul-2020 12:00:58 GMT; Max-Age=604800; path=/; domain=.saavn.com
-Set-Cookie: B=f3b75175c8d93836e67a4ca968c67128; expires=Sun, 01-Jan-2023 08:00:00 GMT; Max-Age=77227142; path=/; domain=.saavn.com
-Set-Cookie: CT=NTY0MzUwMzQ3; expires=Thu, 20-Aug-2020 12:00:58 GMT; Max-Age=2592000; path=/; domain=.saavn.com; HttpOnly
-Set-Cookie: P=trial%3A1595583799; expires=Thu, 20-Aug-2020 12:00:58 GMT; Max-Age=2592000; path=/; domain=.saavn.com
-Set-Cookie: I=q7mA6ZimXZ%2FEJKhRvdJQ2%2BkNfgRusVR8I%2Fsgnk7OCZwiGxtz4HzvNkh7s0XL2KeOaxPz6p%2F4nSD474a011D6A2M%2FlMKVqL3130zoERWAdYgxZtoU2MU1DBvq3kodN12BFsyVDKyyhedgoC6o%2FSvIhPJE2JIvI%2BGrI2YXZwFeCF0O1K3WwKvi2Nlz5CUYDWG423pi4B9GG5nQpbdpAPTDKbSEqgJSBTm0DKmzgl5QqZPStUmjD7aXT4Oc8O6T%2FQRL165karGyKuNxPvck9HPdx2dyqjGqWyHyIJqw7QfCGAqZqbeZjXlFea4BF7bSe9mC; expires=Thu, 21-Jul-2022 12:00:58 GMT; Max-Age=63072000; path=/; domain=.saavn.com
-Set-Cookie: SG=f; expires=Thu, 21-Jul-2022 12:00:58 GMT; Max-Age=63072000; path=/; domain=.saavn.com
-X-Azure-Ref: 0+dgWXwAAAAD4L25Hsu8sQrwYwkA0Iid0Qk9NMDFFREdFMDIxMwAzM2Y1OWYzYS05MDk1LTRlODAtOGZkYi0yZDA5YzI2N2Y4NTk=
-Date: Tue, 21 Jul 2020 12:00:57 GMT
->>>>>>> Rest_Assured_Tanu_Working
+Set-Cookie: geo=110.227.200.17%2CIN%2CMaharashtra%2CPune%2C411037; expires=Wed, 29-Jul-2020 10:25:34 GMT; Max-Age=604800; path=/; domain=.saavn.com
+Set-Cookie: B=8d24b7bffadde857b5ca94309c6a5c59; expires=Sun, 01-Jan-2023 08:00:00 GMT; Max-Age=77146466; path=/; domain=.saavn.com
+Set-Cookie: CT=MTA5MDYwMTU1; expires=Fri, 21-Aug-2020 10:25:34 GMT; Max-Age=2592000; path=/; domain=.saavn.com; HttpOnly
+X-Azure-Ref: 0HhQYXwAAAACjsXf1JSCURKA4v9e9O+PXQk9NMDFFREdFMDMxOAAzM2Y1OWYzYS05MDk1LTRlODAtOGZkYi0yZDA5YzI2N2Y4NTk=
+Date: Wed, 22 Jul 2020 10:25:34 GMT
 
 <html>
   <body>
 
 
+{"stationid":"aKoIUPWcR-buV2uLXGJ2ijF9omeh2BYSRochrDd5b,FNVfayX1mZlw__"}</body>
+</html>
+Request method:	GET
+Request URI:	https://staging.saavn.com/api.php?__call=webradio.createArtistStation&api_version=4&_format=json&_marker=0&app_version=6.1&v=211.0&ctx=android&next=1&stationid=aKoIUPWcR-buV2uLXGJ2ijF9omeh2BYSRochrDd5b%2CFNVfayX1mZlw__
+Proxy:			<none>
+Request params:	<none>
+Query params:	__call=webradio.createArtistStation
+				api_version=4
+				_format=json
+				_marker=0
+				app_version=6.1
+				v=211.0
+				ctx=android
+				next=1
+				stationid=aKoIUPWcR-buV2uLXGJ2ijF9omeh2BYSRochrDd5b,FNVfayX1mZlw__
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache, must-revalidate, private, max-age=0
+Content-Length: 99
+Content-Type: text/html; charset=UTF-8
+Content-Encoding: gzip
+Vary: User-Agent,Accept-Encoding
+Set-Cookie: geo=110.227.200.17%2CIN%2CMaharashtra%2CPune%2C411037; expires=Wed, 29-Jul-2020 10:25:35 GMT; Max-Age=604800; path=/; domain=.saavn.com
+Set-Cookie: B=4284b73c7f6157d3b61c436599f4244f; expires=Sun, 01-Jan-2023 08:00:00 GMT; Max-Age=77146465; path=/; domain=.saavn.com
+Set-Cookie: CT=MTEwMDYyNDA1MQ==; expires=Fri, 21-Aug-2020 10:25:35 GMT; Max-Age=2592000; path=/; domain=.saavn.com; HttpOnly
+X-Azure-Ref: 0HxQYXwAAAADZFbPi0ZRHQpVtdk1rBiAtQk9NMDFFREdFMDIxMAAzM2Y1OWYzYS05MDk1LTRlODAtOGZkYi0yZDA5YzI2N2Y4NTk=
+Date: Wed, 22 Jul 2020 10:25:35 GMT
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-{"data":{"username":"tanu@saavn.com","uid":"bce7c660c72e9872e9b627fd4f6fc0f2","fbid":"","email":"tanu@saavn.com","phone_number":"+919326763297","fbtoken":"","regdate":"2018-11-09 01:53:53","status":"TRIAL","lastname":"Lastname","firstname":"Firstname","gender":"f","dob":"1990-01-22","birthyear":"0","network":null,"following_count":"142","follower_count":"5","update_time":"2020-05-08 02:43:19","paywall_only":"false","loginwall":"false"},"prostatus":{"type":"trial","offer_trial":"no","product":"prime","expiration_timestamp":1595583799,"slots_used":[{"id":"U1zpwrSzW8jm\/V7JYA9+WVyJnienvB1gnXph5GTxFn8=","name":"GM1911"},{"id":"MyM3bcFJ6axSUpOIk2JU0FyJnienvB1gnXph5GTxFn8=","name":"SM-M307F"},{"id":"did_v1_29C8D11E-BE04-49FF-8990-77F169B1CAE7","name":"Saavn QA iP7"},{"id":"dummydtzpbtfumqdczlwfbque","name":"Pixel XL"},{"id":"YWairscFlLln0I1EPwpTPFyJnienvB1gnXph5GTxFn8=","name":"HD1911"}],"vendor":""}}</body>
+<html>
+  <body>{"error":{"code":"INPUT_MISSING","msg":"One or more required field missing:name"}}</body>
 </html>

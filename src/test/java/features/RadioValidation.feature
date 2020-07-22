@@ -1,7 +1,17 @@
 Feature: Validating user Radio APIs
 
-Scenario: Verify if user is able to play artist radio
+Scenario: Verify if station ID is generated
 
-		Given Add payload with get create station endpoint "CreateArtistStation" and language "hindi"
-		When User calls endpoint "GetSong" with the stationId and next=1	
-		Then The Radio API returns success with status code "OK"
+		Given Add payload with endpoint "CreateArtistStation" 
+		When User calls GET method with below params
+		|method|name|query|
+		|GET|sonu|sonu|			
+		Then The Radio API returns station ID with status code "OK"
+
+Scenario: Verify if radio is playable after passing the station id along with get song parameter
+           
+          Given Add payload with endpoint "WebRadioGetSong"
+      	  When User calls GET method with below params
+          |method|next|
+          |GET|1|  
+		 Then The Radio API returns station ID with status code "OK"
