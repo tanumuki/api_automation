@@ -21,7 +21,7 @@ public class Radio extends Util {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("User calls endpoint {string} with the stationId and next=1")
+	@When("stepDefinitions.stepDefinitions.User calls endpoint {string} with the stationId and next=1")
 	public void user_calls_endpoint_with_the_stationId_and_next_1(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();

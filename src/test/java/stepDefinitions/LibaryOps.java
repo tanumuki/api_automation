@@ -43,7 +43,7 @@ public class LibaryOps extends Util {
 
 	}
 
-	@When("User calls method with below params")
+	@When("stepDefinitions.stepDefinitions.User calls method with below params")
 	public void user_calls_method_with_below_params(io.cucumber.datatable.DataTable table) throws Throwable {
 		resspec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
@@ -72,6 +72,7 @@ public class LibaryOps extends Util {
 		if (method.equalsIgnoreCase("POST")) {
 
 		}
+		logResponseTime(resp);
 	}
 
 	@Then("The Library API returns success with status code {string}")

@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.testng.asserts.SoftAssert;
 
-import login_pojos.LoginProstatus;
-import login_pojos.SlotsUsed;
-import login_pojos.UserLogin;
+import pojos.login_pojos.LoginProstatus;
+import pojos.login_pojos.SlotsUsed;
+import pojos.login_pojos.UserLogin;
 import lombok.extern.slf4j.Slf4j;
 
 
