@@ -1,2 +1,5 @@
 /target/*
 /target/
+.idea/
+Backend_Automation.iml
+Output.txt
