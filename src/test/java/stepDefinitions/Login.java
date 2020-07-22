@@ -77,6 +77,7 @@ public class Login extends Util {
 		if (method.equalsIgnoreCase("POST")) {
 
 		}
+		logResponseTime(resp);
 	}
 
 	@Then("The Login API returns success with status code {string}")

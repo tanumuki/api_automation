@@ -72,6 +72,7 @@ public class LibaryOps extends Util {
 		if (method.equalsIgnoreCase("POST")) {
 
 		}
+		logResponseTime(resp);
 	}
 
 	@Then("The Library API returns success with status code {string}")

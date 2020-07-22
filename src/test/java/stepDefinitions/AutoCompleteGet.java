@@ -62,6 +62,8 @@ public class AutoCompleteGet extends Util {
 					break;
 			}
 		}
+
+		logResponseTime(resp);
 	}
 
 	@Then("Api should return response with status code {string}")
