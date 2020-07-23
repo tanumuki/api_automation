@@ -69,7 +69,8 @@ public class UserLoginValidator {
 		// phone number
 		String ph = login.getData().getPhoneNumber();
 		System.out.println("Ph: " + ph);
-		sa.assertTrue(Validate.asString(ph), className + "." + "validate ph failed - ");
+		if(ph != null)
+			sa.assertTrue(Validate.asString(ph), className + "." + "validate ph failed - ");
 
 		// fb token
 		String fbToken = login.getData().getFbtoken();
