@@ -24,11 +24,7 @@ import resources.Util;
 import statusCodes.StatusCode;
 
 public class Radio extends Util {
-
-	protected Radio() throws FileNotFoundException {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	RequestSpecification res;
 	ResponseSpecification resspec;
