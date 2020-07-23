@@ -1,6 +1,6 @@
-Feature: Validating user login APIs
+Feature: Validating Library APIs
 
-Scenario: Verify if user is able to login
+Scenario: Verify user library
 
 		Given Add payload with get library endpoint "LibraryGetAllAPI" and account credentials for cookie
 		When User calls method with below params

@@ -3,6 +3,7 @@ package stepDefinitions;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,11 @@ import resources.Util;
 import statusCodes.StatusCode;
 
 public class Radio extends Util {
+
+	protected Radio() throws FileNotFoundException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	RequestSpecification res;
 	ResponseSpecification resspec;

@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions (features = "src/test/java/features/RadioValidation.feature", glue = {"stepDefinitions"})
+@CucumberOptions (features = {"src/test/java/features/LoginValidation.feature","src/test/java/features/LibraryOps.feature"} , glue = {"stepDefinitions"})
 public class TestRunner {
 	
 	

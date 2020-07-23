@@ -16,6 +16,10 @@ public class UserLoginValidator {
 	String className = getClass().getName();
 
 	public void validate(UserLogin login, SoftAssert sa) {
+		
+		
+		
+		
 //		String "validate " = getClass().getEnclosingMethod().getName();
 		String product = login.getProstatus().getProduct();
 		sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");

@@ -25,7 +25,7 @@ public class Util {
 	
 	public RequestSpecification requestSpecification(String ctx, String endPoint) throws IOException {
 		
-		if(request==null) {
+	
 			PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
 
 			 request	=new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
@@ -38,7 +38,7 @@ public class Util {
 				.addQueryParam("app_version", ConfigReader.getInstance().getAppVersion())
 				.addQueryParam("v", ConfigReader.getInstance().getVersion())
 				.addQueryParam("ctx", ctx).setContentType(ContentType.JSON).build();
-		}
+		
 		 return request;
 		
 	}
@@ -51,7 +51,7 @@ public class Util {
 	
 	public RequestSpecification  requestSpecificationWithHeaders(String ctx, String endPoint, String cookie) throws FileNotFoundException {
 		
-		if(request==null) {
+	
 			PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
 
 			 request	=new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
@@ -65,7 +65,7 @@ public class Util {
 				.addQueryParam("app_version", ConfigReader.getInstance().getAppVersion())
 				.addQueryParam("v", ConfigReader.getInstance().getVersion())
 				.addQueryParam("ctx", ctx).setContentType(ContentType.JSON).build();
-		}
+		
 		 return request;
 	}
 	
