@@ -7,8 +7,10 @@ public enum APIResources {
 	UserCreateAPI ("user.createV2"),
 	LibraryGetAllAPI ("library.getAll"),
 	CreateArtistStation("webradio.createArtistStation"),
-	WebRadioGetSong("webradio.getSong");
-	
+	WebRadioGetSong("webradio.getSong"),
+	GetSong("webradio.getSong"),
+	UserProfileUpdateAPI("user.update");
+
 	private String resource;
 	
 	APIResources(String resource){
