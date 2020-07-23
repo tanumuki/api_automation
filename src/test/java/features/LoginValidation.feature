@@ -1,4 +1,4 @@
-Feature: Validating user login APIs
+Feature: Validating  login APIs
 
 Scenario: Verify if user is able to login
 

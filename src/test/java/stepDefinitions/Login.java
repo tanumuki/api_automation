@@ -19,10 +19,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import pojos.login_pojos.UserLogin;
+import login_pojos.LoginData;
+import login_pojos.UserLogin;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
@@ -74,10 +76,7 @@ public class Login extends Util {
 			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 
 		}
-		if (method.equalsIgnoreCase("POST")) {
-
-		}
-		logResponseTime(resp);
+	
 	}
 
 	@Then("The Login API returns success with status code {string}")

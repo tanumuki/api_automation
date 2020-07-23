@@ -82,7 +82,7 @@ public class LibaryOps extends Util {
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();
 		System.out.println("the code is  " + resource);
-
+		System.out.println("cookie in response " +resp.getHeaders());
 		System.out.println("the response is  " + resp.body().asString());
 
 		assertEquals(resp.getStatusCode(), resource);

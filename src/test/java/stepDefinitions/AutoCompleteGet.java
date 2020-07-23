@@ -31,6 +31,11 @@ import resources.Util;
  */
 public class AutoCompleteGet extends Util {
 
+	protected AutoCompleteGet() throws FileNotFoundException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	RequestSpecification reqSpec;
 	ResponseSpecification resSpec;
 	Response resp;
