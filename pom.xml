@@ -37,14 +37,14 @@
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>5.7.0</version>
+			<version>6.2.2</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>5.7.0</version>
+			<version>6.2.2</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
@@ -147,8 +147,14 @@
 			<artifactId>spring-web</artifactId>
 			<version>4.1.7.RELEASE</version>
 		</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 

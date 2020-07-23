@@ -36,10 +36,9 @@ public class LibaryOps extends Util {
 		
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		String resource = resourceAPI.getResource();
-		System.out.println("respurce api " + resourceAPI.getResource());
 		String cookie = GetCookies.initCookies(ConfigReader.getInstance().getUsername(), ConfigReader.getInstance().getPassword());
 		System.out.println("Cookie "+cookie);
-		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));	
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
 
 	}
 
@@ -66,7 +65,7 @@ public class LibaryOps extends Util {
 			System.out.println("toto" + table.asList().toString());
 			res.queryParam("username", ConfigReader.getInstance().getUsername());
 			res.queryParam("password",  ConfigReader.getInstance().getPassword());
-			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 
 		}
 		if (method.equalsIgnoreCase("POST")) {

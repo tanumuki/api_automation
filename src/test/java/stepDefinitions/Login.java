@@ -72,7 +72,8 @@ public class Login extends Util {
 			System.out.println("toto" + table.asList().toString());
 			res.queryParam("username", cells.get(1).get(2));
 			res.queryParam("password", cells.get(1).get(3));
-			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			logResponseTime(resp);
 
 		}
 	
