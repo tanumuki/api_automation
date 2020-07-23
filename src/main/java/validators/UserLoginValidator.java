@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.testng.asserts.SoftAssert;
 
+import lombok.extern.slf4j.Slf4j;
 import pojos.login_pojos.LoginProstatus;
 import pojos.login_pojos.SlotsUsed;
 import pojos.login_pojos.UserLogin;
-import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
