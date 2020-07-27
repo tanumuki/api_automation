@@ -111,6 +111,8 @@ public class Validate {
 	{
 		return str.matches("m|f|u");
 	}
-
+	public static boolean isNonEmptyString(String str){
+	    return str != null && !str.equals("") && !str.trim().isEmpty();
+	}
 
 }
