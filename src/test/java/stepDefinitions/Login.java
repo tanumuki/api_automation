@@ -92,6 +92,8 @@ public class Login extends Util {
 		assertEquals(resp.getStatusCode(), resource);
 
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
 				
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
 	

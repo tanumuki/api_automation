@@ -2,9 +2,11 @@ package validators;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
 
 import lombok.extern.slf4j.Slf4j;
+import pojos.login_pojos.LoginData;
 import pojos.login_pojos.LoginProstatus;
 import pojos.login_pojos.SlotsUsed;
 import pojos.login_pojos.UserLogin;
@@ -18,9 +20,12 @@ public class UserLoginValidator {
 	public void validate(UserLogin login, SoftAssert sa) {
 		
 		
+		JSONObject inputJSONOBject = new JSONObject(login);
 		
 		
 //		String "validate " = getClass().getEnclosingMethod().getName();
+		//JsonParser.getKey(inputJSONOBject, "phone_number");
+
 		String product = login.getProstatus().getProduct();
 		sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
 		log.info("LOG Product name " +product);
@@ -67,10 +72,12 @@ public class UserLoginValidator {
 		sa.assertTrue(Validate.asId(uid), className + "." + "validate uid failed - ");
 
 		// phone number
-		String ph = login.getData().getPhoneNumber();
-		System.out.println("Ph: " + ph);
-		if(ph != null)
+		if(login.getData().validateNull()) {
+			System.out.println("****************************");
+			String ph = login.getData().getPhoneNumber();
 			sa.assertTrue(Validate.asString(ph), className + "." + "validate ph failed - ");
+		}
+		
 
 		// fb token
 		String fbToken = login.getData().getFbtoken();

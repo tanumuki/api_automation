@@ -2,11 +2,13 @@ package pojos.login_pojos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.tools.xjc.reader.Util;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import validators.Validate;
 
 
 
@@ -63,6 +65,19 @@ public  class LoginData {
 	private String paywallOnly;
 	@JsonProperty("loginwall")
 	private String loginwall;
+	
+	
+	
+	public boolean validateNull() {
+		
+		if(!Validate.isNonEmptyString(phoneNumber)) {
+			System.out.println("****************************");
+			System.out.println("Phone is empty");
+			return false;
+		}
+		return true;
+
+	}
 
 	
 }
