@@ -8,7 +8,15 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
+import org.testng.asserts.SoftAssert;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import endPoints.APIResources;
+import entities.Album;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +28,7 @@ import io.restassured.specification.ResponseSpecification;
 import resources.ConfigReader;
 import resources.Util;
 import statusCodes.StatusCode;
+import validators.EntityValidator;
 
 /**
  * @author aswingokulachandran
@@ -60,8 +69,10 @@ public class AlbumGetDetails extends Util {
 	}
 
 	@Then("User should see the response validated")
-	public void user_should_see_the_response_validated() {
-		System.out.println("TODO: JSON Validation");
+	public void user_should_see_the_response_validated() throws JsonMappingException, JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		Album albumObj = mapper.readValue(resp.asString(), Album.class);
+		new EntityValidator().validate(albumObj, new SoftAssert());
 	}
 
 }
