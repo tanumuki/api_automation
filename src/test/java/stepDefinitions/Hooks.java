@@ -3,7 +3,6 @@ package stepDefinitions;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
-import org.junit.jupiter.api.BeforeAll;
 
 import java.io.File;
 import java.io.FileOutputStream;

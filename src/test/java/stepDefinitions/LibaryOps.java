@@ -4,8 +4,15 @@ import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import org.testng.asserts.SoftAssert;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.xml.xsom.impl.Ref.ContentType;
 
 import cookieManager.GetCookies;
@@ -19,26 +26,34 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.slf4j.Slf4j;
+import pojos.libraryOps.LibraryData;
+import pojos.login_pojos.UserLogin;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
 import statusCodes.StatusCode;
+import validators.LibraryValidator;
+import validators.UserLoginValidator;
 
+@Slf4j
 public class LibaryOps extends Util {
 
 	RequestSpecification res;
 	ResponseSpecification resspec;
 	Response resp;
 
-
 	@Given("Add payload with get library endpoint {string} and account credentials for cookie")
-	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint) throws IOException {
-		
+	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint)
+			throws Exception {
+
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		String resource = resourceAPI.getResource();
-		String cookie = GetCookies.initCookies(ConfigReader.getInstance().getUsername(), ConfigReader.getInstance().getPassword());
-		System.out.println("Cookie "+cookie);
-		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+		HashMap<String, String> userMap = Util.generateNewUser();
+		userMap.get("cookie");
+		log.info("Username is " + userMap.get("username"));
+		res = given().spec(
+				requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, userMap.get("cookie")));
 
 	}
 
@@ -64,7 +79,7 @@ public class LibaryOps extends Util {
 
 			System.out.println("toto" + table.asList().toString());
 			res.queryParam("username", ConfigReader.getInstance().getUsername());
-			res.queryParam("password",  ConfigReader.getInstance().getPassword());
+			res.queryParam("password", ConfigReader.getInstance().getPassword());
 			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 
 		}
@@ -75,17 +90,39 @@ public class LibaryOps extends Util {
 	}
 
 	@Then("The Library API returns success with status code {string}")
-	public void the_Library_API_returns_success_with_status_code( String statusCode) throws Throwable {
-
+	public void the_Library_API_returns_success_with_status_code(String statusCode) throws Throwable {
 
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();
 		System.out.println("the code is  " + resource);
-		System.out.println("cookie in response " +resp.getHeaders());
+		System.out.println("cookie in response " + resp.getHeaders());
 		System.out.println("the response is  " + resp.body().asString());
 
 		assertEquals(resp.getStatusCode(), resource);
 	}
 
+	@Then("Validate the library data for new user")
+	public void validate_the_library_data_for_new_user() throws JsonMappingException, JsonProcessingException {
+		SoftAssert sa = new SoftAssert();
+
+	
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+				
+		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
+		
+	
+		new LibraryValidator().validate(library, sa);
+		sa.assertAll();
+	
+	}
+	
+	@Then("Add a song to your library and verify it's been added")
+	public void add_a_song_to_your_library_and_verify_it_s_been_added() {
+	 
+		
+		
+	}
 
 }

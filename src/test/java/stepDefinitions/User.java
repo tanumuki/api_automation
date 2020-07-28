@@ -69,7 +69,7 @@ public class User extends Util{
         Assert.assertEquals(expectedStatusCode, resp.getStatusCode(), "Response code validation failed for user update API");
         Assert.assertEquals(expectedStatus, resp.jsonPath().get("status"), "Status validation failed for user update API");
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
-
+        
         UserProfileUpdate profileUpdate = objectMapper.readValue(resp.asString(), UserProfileUpdate.class);
 
         new UserPofileDataValidator().validate(profileUpdate, sa);

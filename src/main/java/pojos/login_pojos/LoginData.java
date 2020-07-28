@@ -54,7 +54,7 @@ public  class LoginData {
 	@JsonProperty("birthyear")
 	private String birthyear;
 	@JsonProperty("network")
-	private Object network;
+	private String network;
 	@JsonProperty("following_count")
 	private String followingCount;
 	@JsonProperty("follower_count")
@@ -67,17 +67,8 @@ public  class LoginData {
 	private String loginwall;
 	
 	
-	
-	public boolean validateNull() {
-		
-		if(!Validate.isNonEmptyString(phoneNumber)) {
-			System.out.println("****************************");
-			System.out.println("Phone is empty");
-			return false;
-		}
-		return true;
 
-	}
+	
 
 	
 }
