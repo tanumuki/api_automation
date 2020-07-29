@@ -18,7 +18,7 @@ public class SongValidator {
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		
 		sa.assertTrue(Validate.asId(songObj.getId()), AssertionMsg.print(className, methodName, "song - ", "id", songObj.getId()));
-		
+
 		sa.assertTrue(Validate.asString(songObj.getTitle()), AssertionMsg.print(className, methodName, "song - ", "title", songObj.getTitle()));
 		
 		sa.assertTrue(Validate.asString(songObj.getSubtitle()), AssertionMsg.print(className, methodName, "song - ", "subtitle", songObj.getSubtitle()));
