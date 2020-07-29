@@ -1,4 +1,4 @@
-Feature: Validation of user profile update API
+Feature: Validation of user profile update API.
 
   Scenario: Verify user is able to update profile information
     Given I have the endpoint for "UserProfileUpdateAPI"
