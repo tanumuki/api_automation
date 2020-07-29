@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 	
+	GetPlaylistDetailsAPI("playlist.getDetails"),
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),

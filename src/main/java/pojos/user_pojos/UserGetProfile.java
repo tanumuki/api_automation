@@ -13,8 +13,8 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class UserGetProile {
-    public UserGetProile() {
+public class UserGetProfile {
+    public UserGetProfile() {
     }
 
     @JsonProperty("playlist_count")

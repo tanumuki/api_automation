@@ -51,4 +51,10 @@ public class PlaylistMoreInfo {
     private String[] meta;
     @JsonProperty("isFY")
     private String isFY;
+
+    @JsonProperty("fan_count")
+    private String fan_count;
+
+    @JsonProperty("playlist_type")
+    private String playlist_type;
 }

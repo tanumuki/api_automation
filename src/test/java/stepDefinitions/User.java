@@ -17,7 +17,7 @@ import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import pojos.user_pojos.UserGetProile;
+import pojos.user_pojos.UserGetProfile;
 import pojos.user_pojos.UserProfileUpdate;
 import resources.APIConstants;
 import resources.ConfigReader;
@@ -87,7 +87,7 @@ public class User extends Util {
         Assert.assertEquals(expectedStatusCode, resp.getStatusCode(), "Response code validation failed for user update API");
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
-        UserGetProile userGetProile = objectMapper.readValue(resp.asString(), UserGetProile.class);
+        UserGetProfile userGetProfile = objectMapper.readValue(resp.asString(), UserGetProfile.class);
         List<JsonObject> playlists = resp.jsonPath().get("playlists");
 //        JsonObject playlist1  = playlists.get(0);
         List<Playlist> playlist = objectMapper.convertValue(playlists, new TypeReference<List<Playlist>>() {});

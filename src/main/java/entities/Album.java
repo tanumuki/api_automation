@@ -19,7 +19,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Album extends Entity {
-	
+
+	public Album(){}
 	
 	@JsonProperty("list")
 	private java.util.List<Song> list = null;

@@ -28,6 +28,7 @@ import io.restassured.specification.ResponseSpecification;
 import resources.ConfigReader;
 import resources.Util;
 import statusCodes.StatusCode;
+import validators.AlbumValidator;
 import validators.EntityValidator;
 
 /**
@@ -72,7 +73,9 @@ public class AlbumGetDetails extends Util {
 	public void user_should_see_the_response_validated() throws JsonMappingException, JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		Album albumObj = mapper.readValue(resp.asString(), Album.class);
-		new EntityValidator().validate(albumObj, new SoftAssert());
+		SoftAssert sa = new SoftAssert();
+		new AlbumValidator().validate(albumObj, sa);
+		sa.assertAll();
 	}
 
 }

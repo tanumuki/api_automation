@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @Data
@@ -13,7 +15,7 @@ import lombok.Setter;
 @Setter
 public class Playlist extends Entity{
     @JsonProperty("list")
-    private String list;
+    private List<Song> list;
     @JsonProperty("more_info")
     private PlaylistMoreInfo more_info;
 }
