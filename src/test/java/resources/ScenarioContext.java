@@ -2,6 +2,7 @@ package resources;
 
 import java.util.HashMap;
 import java.util.Map;
+import endPoints.Context;
 
 public class ScenarioContext {
 	 
@@ -11,8 +12,8 @@ public class ScenarioContext {
 	        scenarioContext = new HashMap<>();
 	    }
 
-	    public void setContext(Context key, Object cookie) {
-	        scenarioContext.put(key.toString(), cookie);
+	    public void setContext(Context key, Object value) {
+	        scenarioContext.put(key.toString(), value);
 	    }
 
 	    public Object getContext(Context key){

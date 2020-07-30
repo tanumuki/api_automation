@@ -30,7 +30,6 @@ import resources.Util;
 import statusCodes.StatusCode;
 import validators.UserLoginValidator;
 
-
 public class Login extends Util {
 
 	RequestSpecification res;
@@ -97,7 +96,6 @@ public class Login extends Util {
 
 				
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
-		
 	
 		new UserLoginValidator().validate(login, sa);
 

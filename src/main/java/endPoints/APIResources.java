@@ -2,15 +2,17 @@ package endPoints;
 
 public enum APIResources {
 	
+	GetPlaylistDetailsAPI("playlist.getDetails"),
+	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
 	UserCreateAPI ("user.createV2"),
 	LibraryGetAllAPI ("library.getAll"),
-	LibraryAddAPI("library.add"),
 	CreateArtistStation("webradio.createArtistStation"),
 	WebRadioGetSong("webradio.getSong"),
 	GetSong("webradio.getSong"),
-	UserProfileUpdateAPI("user.update");
+	UserProfileUpdateAPI("user.update"),
+	UserGetProfileAPI("user.getDetails");
 
 	private String resource;
 	

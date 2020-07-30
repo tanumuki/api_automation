@@ -9,10 +9,15 @@ package pojos.search;
  */
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "albums", "songs", "radios", "playlists", "artists", "topquery", "shows", "episodes" })
+@Data
+@Getter
+@Setter
 public class SearchResponse {
 
 	@JsonProperty("albums")

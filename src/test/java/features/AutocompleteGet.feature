@@ -1,3 +1,4 @@
+@search
 Feature: Search queries using autocompleteGet
   
 Scenario Outline: Search for album and verify the results

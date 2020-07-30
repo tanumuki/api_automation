@@ -1,8 +1,10 @@
 package validators;
 
 import java.util.List;
+
+import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
-import static org.hamcrest.MatcherAssert.assertThat;
+
 import lombok.extern.slf4j.Slf4j;
 import pojos.login_pojos.LoginData;
 import pojos.login_pojos.LoginProstatus;
@@ -18,14 +20,11 @@ public class UserLoginValidator {
 	public void validate(UserLogin login, SoftAssert sa) {
 		
 		
+		JSONObject inputJSONOBject = new JSONObject(login);
 		
-		if(Validate.isNonEmptyString(login.getProstatus().getProduct())) {
-			String product = login.getProstatus().getProduct();
-			sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
-		}
-		else {
-			log.info("product is NULL or empty");
-		}
+		
+//		String "validate " = getClass().getEnclosingMethod().getName();
+		//JsonParser.getKey(inputJSONOBject, "phone_number");
 
 		String product = login.getProstatus().getProduct();
 		sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
@@ -35,40 +34,22 @@ public class UserLoginValidator {
 		LoginProstatus proStatus = login.getProstatus();
 
 		// get product type
-		if(Validate.isNonEmptyString(String.valueOf(login.getProstatus().getExpirationTimestamp()))) {
-			Integer time = login.getProstatus().getExpirationTimestamp();
-			sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
-			System.out.println("exp time stamp is " + time);
+		//System.out.println("Product Type: " + proStatus.getOfferTrial();
 
-		}
-		else {
-			System.out.println("product is NULL or empty");
-		}
+		Integer time = login.getProstatus().getExpirationTimestamp();
+		sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
+		System.out.println("exp time stamp is " + time);
 
 		// get data -email
-		if(Validate.isNonEmptyString(login.getData().getEmail())) {
-
-			String email = login.getData().getEmail();
-			System.out.println("email " + login.getData().getEmail());
-			sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
-		}
-		else {
-			System.out.println("Email field is NULL or empty");
-		}
-
+		String email = login.getData().getEmail();
+		System.out.println("email " + login.getData().getEmail());
+		sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
 
 		// get network
-		if(Validate.isNonEmptyString(login.getData().getNetwork())) {
-			String network =  login.getData().getNetwork();
-			System.out.println("network " + login.getData().getNetwork());
-				sa.assertTrue(Validate.asString(network), className + "." + "validate network failed - ");
-		}
-		else{
-			System.out.println("Network field is NULL or empty");
-
-		}
-
-
+		String network = (String) login.getData().getNetwork();
+		System.out.println("network " + login.getData().getNetwork());
+		if(network != null)
+			sa.assertTrue(Validate.asString(network), className + "." + "validate network failed - ");
 
 		// get fbid
 		String fbId = login.getData().getFbid();
@@ -89,18 +70,14 @@ public class UserLoginValidator {
 		String uid = login.getData().getUid();
 		System.out.println("Uid: " + uid);
 		sa.assertTrue(Validate.asId(uid), className + "." + "validate uid failed - ");
-		
-	
-	
-		
-	if(Validate.isNonEmptyString(login.getData().getPhoneNumber())) {
-		sa.assertTrue(Validate.asString(login.getData().getPhoneNumber()), className + "." + "validate phone failed - ");
-	}
-	else {
-		System.out.println("phone is NULL or empty");
-	}
-		
 
+		// phone number
+		if(login.getData().validateNull()) {
+			System.out.println("****************************");
+			String ph = login.getData().getPhoneNumber();
+			sa.assertTrue(Validate.asString(ph), className + "." + "validate ph failed - ");
+		}
+		
 
 		// fb token
 		String fbToken = login.getData().getFbtoken();
@@ -172,27 +149,20 @@ public class UserLoginValidator {
 		System.out.println("offer_trial: " + offer_trial);
 		sa.assertTrue(Validate.asString(offer_trial), className + "." + "validate offer_trial failed - ");		
 
-		
-		if(!(proStatus.getSlotsUsed()==null)) {
-			List<SlotsUsed> slots = proStatus.getSlotsUsed();
-			for(SlotsUsed su : slots) {
-				String id = su.getId();
-				System.out.println("id: " + id);
-				sa.assertTrue(Validate.asString(id), className + "." + "validate id failed - ");
-				
-				String name = su.getName();
-				System.out.println("name: " + name);
-				sa.assertTrue(Validate.asString(name), className + "." + "validate name failed - ");
-			}
+		List<SlotsUsed> slots = proStatus.getSlotsUsed();
+		for(SlotsUsed su : slots) {
+			String id = su.getId();
+			System.out.println("id: " + id);
+			sa.assertTrue(Validate.asString(id), className + "." + "validate id failed - ");
 			
-			String vendor = proStatus.getVendor();
-			System.out.println("vendor: " + vendor);
-			sa.assertTrue(Validate.asString(vendor), className + "." + "validate vendor failed - ");	
+			String name = su.getName();
+			System.out.println("name: " + name);
+			sa.assertTrue(Validate.asString(name), className + "." + "validate name failed - ");
 		}
-		else {
-			System.out.println("Slots used is NULL");
-		}
-	
+		
+		String vendor = proStatus.getVendor();
+		System.out.println("vendor: " + vendor);
+		sa.assertTrue(Validate.asString(vendor), className + "." + "validate vendor failed - ");
 
 	}
 
