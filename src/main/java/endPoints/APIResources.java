@@ -1,7 +1,8 @@
 package endPoints;
 
 public enum APIResources {
-	
+
+	GetAllChannelsAPI("channel.getAllChannels"),
 	GetPlaylistDetailsAPI("playlist.getDetails"),
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
