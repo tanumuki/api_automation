@@ -52,6 +52,9 @@ public class GetCookies {
 		return cookieString;
 	}	
 	
+	public String getCookieValue() {
+		 return cookieString;
+		 }
 	
 	
 	public static String initCookies( String languageCookie, Map<String, List<String>> headerFields) throws IOException {
