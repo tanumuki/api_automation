@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cookieManager.GetCookies;
 import endPoints.APIResources;
-import entities.Playlist;
+import entities.Song;
+import entities.UserProfilePlaylists;
 import io.cucumber.core.internal.gherkin.deps.com.google.gson.JsonObject;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -24,11 +25,13 @@ import resources.ConfigReader;
 import resources.Util;
 import validators.genericValidators.PlaylistValidator;
 import validators.UserPofileDataValidator;
+import validators.genericValidators.SongValidator;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
 
 @Slf4j
@@ -40,21 +43,16 @@ public class User extends Util {
     @Given("I have the endpoint for {string}")
     public void iHaveTheEndopointFor(String endPoint) throws IOException {
         apiResource = APIResources.valueOf(endPoint).getResource();
-        String cookie = GetCookies.initCookies("sun@s.in", "saavn123");
-        try {
-            request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String cookie = initCookies("sun@s.in", "saavn123");
+        request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
     }
 
     @When("I make the {string} request with the following query parameters")
-    public void iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) {
+    public void iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
         List<Map<String, String>> params = queryParams.asMaps();
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
         }
-//        request.header("Cookie", initCookies("sun@s.in", "saavn123"));
         resp = request.given()
                 .log()
                 .all()
@@ -89,13 +87,23 @@ public class User extends Util {
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
         UserGetProfile userGetProfile = objectMapper.readValue(resp.asString(), UserGetProfile.class);
-        List<JsonObject> playlists = resp.jsonPath().get("playlists");
-//        JsonObject playlist1  = playlists.get(0);
-        List<Playlist> playlist = objectMapper.convertValue(playlists, new TypeReference<List<Playlist>>() {});
+//        List<JsonObject> playlists = resp.jsonPath().get("playlists");
+        List<UserProfilePlaylists> playlists = objectMapper.convertValue(resp.jsonPath().get("playlists"), new TypeReference<List<UserProfilePlaylists>>() {
+        });
 
-        new PlaylistValidator().validate(playlist.get(0),sa);
+        new PlaylistValidator().validate(playlists.get(0),sa);
         sa.assertAll();
 
+        new UserPofileDataValidator().validateUserProfileInfo(userGetProfile, sa);
+        for (UserProfilePlaylists playlist : playlists) {
+            new PlaylistValidator().validate(playlist, sa);
+        }
 
+        List<Song> songs = objectMapper.convertValue(resp.jsonPath().get("recent_songs"), new TypeReference<List<Song>>() {
+        });
+        for (Song song : songs) {
+            if (song.getType().equals("song"))
+                new SongValidator().validate(song, sa);
+        }
     }
 }

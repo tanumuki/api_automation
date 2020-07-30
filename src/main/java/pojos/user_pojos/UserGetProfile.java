@@ -2,6 +2,9 @@ package pojos.user_pojos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.Playlist;
+import entities.Song;
+import entities.UserProfilePlaylists;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,9 +51,9 @@ public class UserGetProfile {
     @JsonProperty("is_followed")
     private String is_followed;
     @JsonProperty("playlists")
-    private List<PlaylistsData> playlists;
+    private List<UserProfilePlaylists> playlists;
     @JsonProperty("recent_songs")
-    private List<SongsData> recent_songs;
+    private List<Song> recent_songs;
     @JsonProperty("status")
     private String status;
     @JsonProperty("music_identity")
