@@ -1,7 +1,9 @@
 package validators;
 
 import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.hamcrest.collection.HasItemInArray;
 import org.testng.asserts.SoftAssert;
 import lombok.extern.slf4j.Slf4j;
 import pojos.libraryOps.LibraryData;
@@ -13,7 +15,7 @@ public class LibraryValidator {
 
 	String className = getClass().getName();
 
-	public void validate(LibraryData library, SoftAssert sa) {
+	public void validateForNewUSer(LibraryData library, SoftAssert sa) {
 
 		/*
 		 * Validating playlist
@@ -66,21 +68,19 @@ public class LibraryValidator {
 		log.info("Validating IMAGE " +obj.getImage());
 		sa.assertTrue(Validate.asUrl(obj.getImage()),  className + "." + "validate image URL  failed ");
 	
-
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 
 	}
+	public void validateLibraryForUserWithUpdatedData(LibraryData library, SoftAssert sa) {
+		
+	
+
+		
+		//sa.assertTrue(library.getSong()
+		
+		
+	}
+	
+	
+	
 }

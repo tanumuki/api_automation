@@ -30,4 +30,7 @@ public class Hooks {
         RestAssured.config = RestAssured.config().logConfig(LogConfig.logConfig().defaultStream(printStream).enablePrettyPrinting(true));
 
     }
+    
+    
+  
 }

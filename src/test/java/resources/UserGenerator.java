@@ -36,7 +36,7 @@ public class UserGenerator {
 	   /* Other methods protected by singleton-ness */
 	
 	
-	   public HashMap<String, String> generateNewUser() throws Exception {
+	   public HashMap<String, String> generateNewUserCookie() throws Exception {
 		   
 		   System.out.println("howdy");
 		

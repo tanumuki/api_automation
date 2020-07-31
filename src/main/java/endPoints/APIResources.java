@@ -8,6 +8,7 @@ public enum APIResources {
 	UserLoginAPI ("user.login"),
 	UserCreateAPI ("user.createV2"),
 	LibraryAddAPI ("library.add"),
+	SocialFollowAPI ("social.follow"),
 	LibraryGetAllAPI ("library.getAll"),
 	CreateArtistStation("webradio.createArtistStation"),
 	WebRadioGetSong("webradio.getSong"),

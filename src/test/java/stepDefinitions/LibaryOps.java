@@ -51,7 +51,7 @@ public class LibaryOps extends Util {
 		resource = resourceAPI.getResource();
 		System.out.println("respurce api " + resourceAPI.getResource());
 		UserGenerator user = UserGenerator.getInstance();
-		HashMap<String, String> userMap = user.generateNewUser();
+		HashMap<String, String> userMap = user.generateNewUserCookie();
 		cookie = userMap.get("cookie");
 		System.setProperty("cookie", cookie);
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
@@ -79,8 +79,8 @@ public class LibaryOps extends Util {
 
 	}
 
-	@Then("The Library API returns success with a status code {string}")
-	public void the_Library_API_returns_success_with_a_status_code(String statusCode) {
+	@Then("The Library API returns success with status code {string}")
+	public void the_Library_API_returns_success_with_status_code(String statusCode) {
 
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();
@@ -99,7 +99,7 @@ public class LibaryOps extends Util {
 				true);
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
-		new LibraryValidator().validate(library, sa);
+		new LibraryValidator().validateForNewUSer(library, sa);
 		sa.assertAll();
 
 	}
@@ -135,50 +135,49 @@ public class LibaryOps extends Util {
 	
 
 
-	@When("User calls method with below param")
-		public void user_calls_method_with_below_param(io.cucumber.datatable.DataTable table) {
+
+
+@When("User calls {string} method with below param with {string} and entity_type as {string}")
+public void user_calls_method_with_below_param_with_and_entity_type_as(String method, String entity_ids, String entity_type) {
 			
 			resspec = new ResponseSpecBuilder().expectStatusCode(200)
 					.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
-	
-			
-			//steps to handle Data Table
-			List<Map<String,String>> data = table.asMaps();
-			System.out.println("my data" +data.get(0));
-			String method= data.get(0).get("method");	
-			System.out.println("yo 1 " +data.get(0).get("entity_ids") );
-			System.out.println("yo 2 " +data.get(0).get("entity_type") );
+
 	
 			
 			if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 	
-					res.queryParam("entity_ids",data.get(0).get("entity_ids") );
-					res.queryParam("entity_type",data.get(0).get("entity_type") );
-					System.out.println("res3 " +res.toString());
+					res.queryParam("entity_ids",entity_ids );
+					res.queryParam("entity_type",entity_type );
 					resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 				
 			
 		}
 		}
 	
-	@Then("The Library API returns success with status code {string}")
-	public void the_Library_API_returns_success_with_status_code(String statusCode) {
-		 
-		System.out.println("cookie here " +cookie);
-		StatusCode code = StatusCode.valueOf(statusCode);
-		int resource = code.getResource();
-		System.out.println("the code is  " + resource);
-		
-		
-		}
+
 	
 	@Then("Validate the library data by calling endpoint {string} using same cookie")
 	public void validate_the_library_data_by_calling_endpoint_using_same_cookie(String endPoint) throws IOException {
 		   
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		resource = resourceAPI.getResource();
-		System.out.println("respurce api " + resourceAPI.getResource());
 		cookie= System.getProperty("cookie");
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+	}
+	
+	@And("Verify if the added song is present in the response")
+	public void verify_if_the_added_song_is_present_in_the_response() throws JsonMappingException, JsonProcessingException {
+		
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
+		new LibraryValidator().validateLibraryForUserWithUpdatedData(library, sa);
+		sa.assertAll();
+
+		
+		
 	}
 }
