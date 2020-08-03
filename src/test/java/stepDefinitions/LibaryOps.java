@@ -3,6 +3,7 @@ package stepDefinitions;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cookieManager.GetCookies;
 import endPoints.APIResources;
+import entities.Entity;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -32,6 +35,7 @@ import resources.UserGenerator;
 import resources.Util;
 import statusCodes.StatusCode;
 import validators.LibraryValidator;
+import entities.Album;
 
 @Slf4j
 public class LibaryOps extends Util {
@@ -39,14 +43,17 @@ public class LibaryOps extends Util {
 	RequestSpecification res;
 	ResponseSpecification resspec;
 	Response resp;
-	 String cookie = "";
-	String resource ; 
-
+	String cookie = "";
+	String resource;
+	String seed_song_id = "";
+	String seed_album_id = "";
+	Album albumDataInLibrary ;
+	String albumResponse="";
 
 	@Given("Add payload with get library endpoint {string} and account credentials for cookie")
 	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint)
 			throws Exception {
-		
+
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		resource = resourceAPI.getResource();
 		System.out.println("respurce api " + resourceAPI.getResource());
@@ -55,7 +62,7 @@ public class LibaryOps extends Util {
 		cookie = userMap.get("cookie");
 		System.setProperty("cookie", cookie);
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
-		log.info("MYCOOKIE1 "+cookie);
+		log.info("MYCOOKIE1 " + cookie);
 
 	}
 
@@ -104,80 +111,106 @@ public class LibaryOps extends Util {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Given("Add payload with get library endpoint {string}")
+	public void add_payload_with_get_library_endpoint(String endPoint) throws IOException {
+
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		resource = resourceAPI.getResource();
+		System.out.println("respurce api " + resourceAPI.getResource());
+		res = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
+
+	}
+
+	@When("User calls method with album id as param")
+	public void user_calls_method_with_album_id_as_param(io.cucumber.datatable.DataTable table) throws JsonMappingException, JsonProcessingException {
+		
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
+		// code to handle Data Table
+		List<Map<String, String>> data = table.asMaps();
+		System.out.println("data" + data.get(0));
+		String method = data.get(0).get("method");
+
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+
+			res.queryParam("albumid", data.get(0).get("albumid"));
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+		}
+
+		resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
+		 albumResponse = resp.asString();
+		System.setProperty("albumResponse", albumResponse);
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		 albumDataInLibrary = objectMapper.readValue(resp.asString(), Album.class);
+		
+		
+	}
 	
 	
 	
 	
 
 	@Given("Add payload with add library endpoint {string} with the same account credentials")
-		public void add_payload_with_add_library_endpoint_with_the_same_account_credentials(String endPoint) throws Exception {
-		
+	public void add_payload_with_add_library_endpoint_with_the_same_account_credentials(String endPoint)
+			throws Exception {
+
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		resource = resourceAPI.getResource();
 		System.out.println("respurce api " + resourceAPI.getResource());
 		cookie = System.getProperty("cookie");
-		log.info("MYCOOKIE2 "+cookie);
+		log.info("MYCOOKIE2 " + cookie);
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
 
-		
 	}
 
-	
+	@When("User calls {string} method with below param with {string} and entity_type as {string}")
+	public void user_calls_method_with_below_param_with_and_entity_type_as(String method, String entity_ids,
+			String entity_type) {
 
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
 
-
-
-@When("User calls {string} method with below param with {string} and entity_type as {string}")
-public void user_calls_method_with_below_param_with_and_entity_type_as(String method, String entity_ids, String entity_type) {
-			
-			resspec = new ResponseSpecBuilder().expectStatusCode(200)
-					.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
-
-	
-			
-			if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-	
-					res.queryParam("entity_ids",entity_ids );
-					res.queryParam("entity_type",entity_type );
-					resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
-				
-			
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			res.queryParam("entity_ids", entity_ids);
+			res.queryParam("entity_type", entity_type);
+			if (entity_type.equals("song")) {
+				seed_song_id = entity_ids;
+				System.setProperty("seed_song_id", seed_song_id);
+				log.info(seed_song_id);
+			} else if (entity_type.equals("album")) {
+				seed_album_id = entity_ids;
+				System.setProperty("seed_album_id", seed_album_id);
+				log.info(seed_album_id);
+			}
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 		}
-		}
-	
+	}
 
-	
-	@Then("Validate the library data by calling endpoint {string} using same cookie")
+	@Given("Validate the library data by calling endpoint {string} using same cookie")
 	public void validate_the_library_data_by_calling_endpoint_using_same_cookie(String endPoint) throws IOException {
-		   
+
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		resource = resourceAPI.getResource();
-		cookie= System.getProperty("cookie");
+		cookie = System.getProperty("cookie");
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
 	}
-	
+
 	@And("Verify if the added song is present in the response")
-	public void verify_if_the_added_song_is_present_in_the_response() throws JsonMappingException, JsonProcessingException {
-		
+	public void verify_if_the_added_song_is_present_in_the_response()
+			throws JsonMappingException, JsonProcessingException {
+
 		SoftAssert sa = new SoftAssert();
+		albumResponse = System.getProperty("albumResponse");
+		seed_album_id =System.getProperty("seed_album_id");
+		seed_song_id =System.getProperty("seed_song_id");
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
-		new LibraryValidator().validateLibraryForUserWithUpdatedData(library, sa);
+		new LibraryValidator().validateLibraryForUserWithUpdatedData(library, sa, seed_album_id, seed_song_id, albumResponse);
 		sa.assertAll();
 
-		
-		
 	}
 }

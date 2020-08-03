@@ -14,7 +14,8 @@ public enum APIResources {
 	WebRadioGetSong("webradio.getSong"),
 	GetSong("webradio.getSong"),
 	UserProfileUpdateAPI("user.update"),
-	UserGetProfileAPI("user.getDetails");
+	UserGetProfileAPI("user.getDetails"),
+	ContentGetAlbumDetails ("content.getAlbumDetails");
 
 	private String resource;
 	
