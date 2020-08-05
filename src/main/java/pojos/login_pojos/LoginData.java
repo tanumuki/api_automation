@@ -54,7 +54,7 @@ public  class LoginData {
 	@JsonProperty("birthyear")
 	private String birthyear;
 	@JsonProperty("network")
-	private Object network;
+	private String network;
 	@JsonProperty("following_count")
 	private String followingCount;
 	@JsonProperty("follower_count")

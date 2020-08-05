@@ -3,14 +3,22 @@ package stepDefinitions;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.sun.xml.xsom.impl.Ref.ContentType;
+import org.testng.asserts.SoftAssert;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cookieManager.GetCookies;
 import endPoints.APIResources;
-import io.cucumber.java.PendingException;
+import entities.Entity;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,73 +27,190 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.slf4j.Slf4j;
+import pojos.libraryOps.LibraryData;
 import resources.APIConstants;
 import resources.ConfigReader;
+import resources.UserGenerator;
 import resources.Util;
 import statusCodes.StatusCode;
+import validators.LibraryValidator;
+import entities.Album;
 
+@Slf4j
 public class LibaryOps extends Util {
 
 	RequestSpecification res;
 	ResponseSpecification resspec;
 	Response resp;
-
+	String cookie = "";
+	String resource;
+	String seed_song_id = "";
+	String seed_album_id = "";
+	Album albumDataInLibrary ;
+	String albumResponse="";
 
 	@Given("Add payload with get library endpoint {string} and account credentials for cookie")
-	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint) throws IOException {
-		
+	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint)
+			throws Exception {
+
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
-		String resource = resourceAPI.getResource();
-		String cookie = GetCookies.initCookies(ConfigReader.getInstance().getUsername(), ConfigReader.getInstance().getPassword());
-		System.out.println("Cookie "+cookie);
+		resource = resourceAPI.getResource();
+		System.out.println("respurce api " + resourceAPI.getResource());
+		UserGenerator user = UserGenerator.getInstance();
+		HashMap<String, String> userMap = user.generateNewUserCookie();
+		cookie = userMap.get("cookie");
+		System.setProperty("cookie", cookie);
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+		log.info("MYCOOKIE1 " + cookie);
 
 	}
 
 	@When("User calls method with below params")
-	public void user_calls_method_with_below_params(io.cucumber.datatable.DataTable table) throws Throwable {
+	public void user_calls_method_with_below_params(io.cucumber.datatable.DataTable table) {
 		resspec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
-
-		String method = "";
-
-		method = table.cell(1, 0);
-		System.out.println("method is " + method);
-		System.out.println("The value is : " + table.cell(1, 0));
-		System.out.println("The value is : " + table.cell(1, 1));
-
-		List<List<String>> cells = table.cells();
-
-		System.out.println("The value is : " + cells.get(1).get(0));
-		System.out.println("The value is : " + cells.get(1).get(1));
+		// code to handle Data Table
+		List<Map<String, String>> data = table.asMaps();
+		System.out.println("data" + data.get(0));
+		String method = data.get(0).get("method");
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			System.out.println("tan3 " + resspec);
 
-			System.out.println("toto" + table.asList().toString());
-			res.queryParam("username", ConfigReader.getInstance().getUsername());
-			res.queryParam("password",  ConfigReader.getInstance().getPassword());
-			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
-
+			res.queryParam("n", data.get(0).get("n"));
+			res.queryParam("p", data.get(0).get("p"));
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 		}
-		if (method.equalsIgnoreCase("POST")) {
 
-		}
-		logResponseTime(resp);
+		resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
+
 	}
 
 	@Then("The Library API returns success with status code {string}")
-	public void the_Library_API_returns_success_with_status_code( String statusCode) throws Throwable {
-
+	public void the_Library_API_returns_success_with_status_code(String statusCode) {
 
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();
 		System.out.println("the code is  " + resource);
-		System.out.println("cookie in response " +resp.getHeaders());
+		System.out.println("cookie in response " + resp.getHeaders());
 		System.out.println("the response is  " + resp.body().asString());
 
 		assertEquals(resp.getStatusCode(), resource);
 	}
 
+	@And("Validate the library data for new user")
+	public void validate_the_library_data_for_new_user() throws JsonMappingException, JsonProcessingException {
+		SoftAssert sa = new SoftAssert();
 
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
+		new LibraryValidator().validateForNewUSer(library, sa);
+		sa.assertAll();
+
+	}
+
+	@Given("Add payload with get library endpoint {string}")
+	public void add_payload_with_get_library_endpoint(String endPoint) throws IOException {
+
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		resource = resourceAPI.getResource();
+		System.out.println("respurce api " + resourceAPI.getResource());
+		res = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
+
+	}
+
+	@When("User calls method with album id as param")
+	public void user_calls_method_with_album_id_as_param(io.cucumber.datatable.DataTable table) throws JsonMappingException, JsonProcessingException {
+		
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
+		// code to handle Data Table
+		List<Map<String, String>> data = table.asMaps();
+		System.out.println("data" + data.get(0));
+		String method = data.get(0).get("method");
+
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+
+			res.queryParam("albumid", data.get(0).get("albumid"));
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+		}
+
+		resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
+		 albumResponse = resp.asString();
+		System.setProperty("albumResponse", albumResponse);
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		 albumDataInLibrary = objectMapper.readValue(resp.asString(), Album.class);
+		
+		
+	}
+	
+	
+	
+	
+
+	@Given("Add payload with add library endpoint {string} with the same account credentials")
+	public void add_payload_with_add_library_endpoint_with_the_same_account_credentials(String endPoint)
+			throws Exception {
+
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		resource = resourceAPI.getResource();
+		System.out.println("respurce api " + resourceAPI.getResource());
+		cookie = System.getProperty("cookie");
+		log.info("MYCOOKIE2 " + cookie);
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+
+	}
+
+	@When("User calls {string} method with below param with {string} and entity_type as {string}")
+	public void user_calls_method_with_below_param_with_and_entity_type_as(String method, String entity_ids,
+			String entity_type) {
+
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
+
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			res.queryParam("entity_ids", entity_ids);
+			res.queryParam("entity_type", entity_type);
+			if (entity_type.equals("song")) {
+				seed_song_id = entity_ids;
+				System.setProperty("seed_song_id", seed_song_id);
+				log.info(seed_song_id);
+			} else if (entity_type.equals("album")) {
+				seed_album_id = entity_ids;
+				System.setProperty("seed_album_id", seed_album_id);
+				log.info(seed_album_id);
+			}
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+		}
+	}
+
+	@Given("Validate the library data by calling endpoint {string} using same cookie")
+	public void validate_the_library_data_by_calling_endpoint_using_same_cookie(String endPoint) throws IOException {
+
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		resource = resourceAPI.getResource();
+		cookie = System.getProperty("cookie");
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+	}
+
+	@And("Verify if the added song is present in the response")
+	public void verify_if_the_added_song_is_present_in_the_response()
+			throws JsonMappingException, JsonProcessingException {
+
+		SoftAssert sa = new SoftAssert();
+		albumResponse = System.getProperty("albumResponse");
+		seed_album_id =System.getProperty("seed_album_id");
+		seed_song_id =System.getProperty("seed_song_id");
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
+		new LibraryValidator().validateLibraryForUserWithUpdatedData(library, sa, seed_album_id, seed_song_id, albumResponse);
+		sa.assertAll();
+
+	}
 }

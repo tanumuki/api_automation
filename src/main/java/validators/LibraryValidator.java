@@ -1,8 +1,23 @@
 package validators;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.hamcrest.collection.HasItemInArray;
+import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.xml.bind.v2.schemagen.Util;
+
+import endPoints.APIResources;
+import entities.Album;
+import entities.Song;
 import lombok.extern.slf4j.Slf4j;
 import pojos.libraryOps.LibraryData;
 import pojos.libraryOps.Playlist;
@@ -13,7 +28,7 @@ public class LibraryValidator {
 
 	String className = getClass().getName();
 
-	public void validate(LibraryData library, SoftAssert sa) {
+	public void validateForNewUSer(LibraryData library, SoftAssert sa) {
 
 		/*
 		 * Validating playlist
@@ -66,21 +81,65 @@ public class LibraryValidator {
 		log.info("Validating IMAGE " +obj.getImage());
 		sa.assertTrue(Validate.asUrl(obj.getImage()),  className + "." + "validate image URL  failed ");
 	
-
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 
 	}
+	public void validateLibraryForUserWithUpdatedData(LibraryData library, SoftAssert sa, String seed_album_id, String seed_song_id, String albumResponse) throws JsonMappingException, JsonProcessingException {
+		
+		log.info("Album " +seed_album_id);
+		log.info("song " +seed_song_id);
+		System.out.println("song id " +seed_song_id);
+		
+		/*
+		 * Verifying if the song , album and songs from the added album is reflected in the user's my library
+		 */
+
+		
+		List<String> songList = library.getSong();
+		sa.assertTrue(songList.contains(seed_song_id),  className + "." + "validate seed song failed ");
+		List<String> albumList  = library.getAlbum();
+		sa.assertTrue(albumList.contains(seed_album_id), className + "." + "validate seed Album failed");
+		
+		/*
+		 * Verify if the songs are added from the album to the library by calling content.getAlbumDetails
+		 */
+	
+		
+		//getting song id from library
+		Set<String> libraryObjectSet = new HashSet<String>();
+
+		List<String> librarySongList= library.getSong();
+		for(int i=0; i<librarySongList.size() ;i++) {
+			libraryObjectSet.add(librarySongList.get(i));
+			
+		}
+		
+		
+		Album album = new ObjectMapper().readValue(albumResponse, Album.class);
+		Set<String> albumObjectSet = new HashSet<String>();
+
+		System.out.println("al res" +albumResponse);
+		List<Song> albums = album.getList();
+			for(int i=0;i<albums.size(); i++) {			
+				albumObjectSet.add(albums.get(i).getId());				
+			}
+			//Adding the song to album's object
+		albumObjectSet.add(seed_song_id);
+		System.out.println("=======printing sets============" );
+		log.info(" libraryObjectSet " +libraryObjectSet.toString());
+		log.info(" albumObjectSet " +albumObjectSet.toString());
+
+		
+		/*
+		 * comparing the objects
+		 */
+		
+		sa.assertTrue(CompareSet.equals(libraryObjectSet, albumObjectSet));
+		log.info("All the objects are valdated in user's library!");
+		
+		
+	}
+	
+	
+	
 }

@@ -26,30 +26,65 @@ public class UserLoginValidator {
 //		String "validate " = getClass().getEnclosingMethod().getName();
 		//JsonParser.getKey(inputJSONOBject, "phone_number");
 
-		String product = login.getProstatus().getProduct();
-		sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
-		log.info("LOG Product name " +product);
-		System.out.println("product  is " + product);
+		
+		if(Validate.isNonEmptyString(login.getProstatus().getProduct())) {
+			String product = login.getProstatus().getProduct();
+			sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
+		}
+		else {
+			log.info("product is NULL or empty");
 
+		
+	
 		LoginProstatus proStatus = login.getProstatus();
 
 		// get product type
 		//System.out.println("Product Type: " + proStatus.getOfferTrial();
+		// get product type
+		if(Validate.isNonEmptyString(String.valueOf(login.getProstatus().getExpirationTimestamp()))) {
+			Integer time = login.getProstatus().getExpirationTimestamp();
+			sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
+			System.out.println("exp time stamp is " + time);
+		
 
-		Integer time = login.getProstatus().getExpirationTimestamp();
-		sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
-		System.out.println("exp time stamp is " + time);
+		}
+		else {
+			System.out.println("product is NULL or empty");
+		}
 
-		// get data -email
-		String email = login.getData().getEmail();
-		System.out.println("email " + login.getData().getEmail());
-		sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
+		//get email
+
+		if(Validate.isNonEmptyString(login.getData().getEmail())) {
+
+			String email = login.getData().getEmail();
+			System.out.println("email " + login.getData().getEmail());
+			sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
+		}
+		else {
+			System.out.println("Email field is NULL or empty");
+		}
+
 
 		// get network
-		String network = (String) login.getData().getNetwork();
-		System.out.println("network " + login.getData().getNetwork());
-		if(network != null)
-			sa.assertTrue(Validate.asString(network), className + "." + "validate network failed - ");
+		if(Validate.isNonEmptyString(login.getData().getNetwork())) {
+			String network =  login.getData().getNetwork();
+			System.out.println("network " + login.getData().getNetwork());
+				sa.assertTrue(Validate.asString(network), className + "." + "validate network failed - ");
+		}
+		else{
+			System.out.println("Network field is NULL or empty");
+
+		}
+		//get phone no
+		
+		
+	if(Validate.isNonEmptyString(login.getData().getPhoneNumber())) {
+		sa.assertTrue(Validate.asString(login.getData().getPhoneNumber()), className + "." + "validate phone failed - ");
+	}
+	else {
+		System.out.println("phone is NULL or empty");
+	}
+
 
 		// get fbid
 		String fbId = login.getData().getFbid();
@@ -166,4 +201,5 @@ public class UserLoginValidator {
 
 	}
 
+	}
 }

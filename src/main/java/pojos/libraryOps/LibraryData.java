@@ -20,6 +20,10 @@ public List<Playlist> playlist = null;
 public List<Object> show = null;
 @JsonProperty("artist")
 public List<Object> artist = null;
+@JsonProperty("song")
+public List<String> song = null;
+@JsonProperty("album")
+public List<String> album = null;
 @JsonProperty("user")
 public User user;
 

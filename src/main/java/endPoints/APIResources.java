@@ -9,12 +9,15 @@ public enum APIResources {
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
 	UserCreateAPI ("user.createV2"),
+	LibraryAddAPI ("library.add"),
+	SocialFollowAPI ("social.follow"),
 	LibraryGetAllAPI ("library.getAll"),
 	CreateArtistStation("webradio.createArtistStation"),
 	WebRadioGetSong("webradio.getSong"),
 	GetSong("webradio.getSong"),
 	UserProfileUpdateAPI("user.update"),
-	UserGetProfileAPI("user.getDetails");
+	UserGetProfileAPI("user.getDetails"),
+	ContentGetAlbumDetails ("content.getAlbumDetails");
 
 	private String resource;
 	
