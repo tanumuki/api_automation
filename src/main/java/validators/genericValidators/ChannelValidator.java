@@ -1,8 +1,10 @@
-package validators;
+package validators.genericValidators;
 
 import entities.Channel;
 import entities.ChannelMoreInfo;
 import org.testng.asserts.SoftAssert;
+import validators.AssertionMsg;
+import validators.Validate;
 
 public class ChannelValidator extends EntityValidator {
     final String className = SongValidator.class.getName();

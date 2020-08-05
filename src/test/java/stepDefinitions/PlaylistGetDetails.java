@@ -20,7 +20,7 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import statusCodes.StatusCode;
-import validators.PlaylistValidator;
+import validators.genericValidators.PlaylistValidator;
 
 import java.io.IOException;
 

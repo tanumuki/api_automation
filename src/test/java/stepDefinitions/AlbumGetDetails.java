@@ -28,8 +28,7 @@ import io.restassured.specification.ResponseSpecification;
 import resources.ConfigReader;
 import resources.Util;
 import statusCodes.StatusCode;
-import validators.AlbumValidator;
-import validators.EntityValidator;
+import validators.genericValidators.AlbumValidator;
 
 /**
  * @author aswingokulachandran

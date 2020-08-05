@@ -1,11 +1,13 @@
 /**
  * 
  */
-package validators;
+package validators.genericValidators;
 
 import org.testng.asserts.SoftAssert;
 
 import entities.Artist;
+import validators.AssertionMsg;
+import validators.Validate;
 
 /**
  * @author aswingokulachandran

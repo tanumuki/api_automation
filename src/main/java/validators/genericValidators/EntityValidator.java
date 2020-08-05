@@ -1,13 +1,13 @@
 /**
  * 
  */
-package validators;
+package validators.genericValidators;
 
 import org.testng.asserts.SoftAssert;
 
-import entities.Album;
 import entities.Entity;
-import entities.Song;
+import validators.AssertionMsg;
+import validators.Validate;
 
 /**
  * @author aswingokulachandran

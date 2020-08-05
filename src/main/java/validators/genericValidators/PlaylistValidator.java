@@ -1,10 +1,12 @@
-package validators;
+package validators.genericValidators;
 
 import entities.PlaylistMoreInfo;
 import org.testng.asserts.SoftAssert;
 
 import entities.Playlist;
 import entities.Song;
+import validators.AssertionMsg;
+import validators.Validate;
 
 public class PlaylistValidator extends EntityValidator {
 

@@ -22,7 +22,7 @@ import pojos.user_pojos.UserProfileUpdate;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
-import validators.PlaylistValidator;
+import validators.genericValidators.PlaylistValidator;
 import validators.UserPofileDataValidator;
 
 import java.io.IOException;

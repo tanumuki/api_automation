@@ -1,7 +1,7 @@
 /**
  * 
  */
-package validators;
+package validators.genericValidators;
 
 import org.testng.asserts.SoftAssert;
 
@@ -10,6 +10,8 @@ import entities.AlbumMoreInfo;
 import entities.Artist;
 import entities.ArtistMap;
 import entities.Song;
+import validators.AssertionMsg;
+import validators.Validate;
 
 /**
  * @author aswingokulachandran

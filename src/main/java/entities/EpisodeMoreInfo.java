@@ -1,0 +1,59 @@
+package entities;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+@Data
+@Getter
+@Setter
+public class EpisodeMoreInfo {
+
+    @JsonProperty("duration")
+    private String duration;
+    @JsonProperty("geo_rules")
+    private List<Integer> geoRules = null;
+    @JsonProperty("square_image_url")
+    private String squareImageUrl;
+    @JsonProperty("label_id")
+    private String labelId;
+    @JsonProperty("release_date")
+    private String releaseDate;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("season_no")
+    private String seasonNo;
+    @JsonProperty("show_id")
+    private String showId;
+    @JsonProperty("season_id")
+    private String seasonId;
+    @JsonProperty("show_title")
+    private String showTitle;
+    @JsonProperty("season_title")
+    private String seasonTitle;
+    @JsonProperty("square_image")
+    private String squareImage;
+    @JsonProperty("artistMap")
+    private ArtistMap artistMap;
+    @JsonProperty("episode_number")
+    private String episodeNumber;
+    @JsonProperty("label")
+    private String label;
+    @JsonProperty("origin")
+    private String origin;
+    @JsonProperty("ad_breaks")
+    private String adBreaks;
+    @JsonProperty("rights")
+    private Rights rights;
+    @JsonProperty("starred")
+    private String starred;
+    @JsonProperty("cache_state")
+    private String cacheState;
+    @JsonProperty("show_url")
+    private String showUrl;
+    @JsonProperty("encrypted_media_url")
+    private String encryptedMediaUrl;
+
+}

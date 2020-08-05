@@ -1,7 +1,7 @@
 /**
  * 
  */
-package validators;
+package validators.genericValidators;
 
 import org.testng.asserts.SoftAssert;
 
@@ -10,6 +10,8 @@ import entities.ArtistMap;
 import entities.Rights;
 import entities.Song;
 import entities.SongMoreInfo;
+import validators.AssertionMsg;
+import validators.Validate;
 
 /**
  * @author aswingokulachandran
@@ -105,18 +107,7 @@ public class SongValidator extends EntityValidator {
 
 		Rights rights = songObj.getMoreInfo().getRights();
 
-		sa.assertTrue(Validate.asNum(rights.getCode()), AssertionMsg.print(className, methodName, songObj.getType(),
-				"more_info.rights.code", rights.getCode(), songObj.getId()));
-
-		sa.assertTrue(Validate.asBoolean(rights.getCacheable()), AssertionMsg.print(className, methodName,
-				songObj.getType(), "more_info.rights.cacheable", rights.getCacheable(), songObj.getId()));
-
-		sa.assertTrue(Validate.asBoolean(rights.getDeleteCachedObject()),
-				AssertionMsg.print(className, methodName, songObj.getType(), "more_info.rights.delete_cached_object",
-						rights.getDeleteCachedObject(), songObj.getId()));
-
-		sa.assertTrue(Validate.asString(rights.getReason()), AssertionMsg.print(className, methodName,
-				songObj.getType(), "more_info.rights.reason", rights.getReason(), songObj.getId()));
+		new RightsValidator().validate(rights, sa, "song", songObj.getId());
 	}
 
 }
