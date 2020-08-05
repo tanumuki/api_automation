@@ -107,7 +107,7 @@ public class LibraryValidator {
 		
 		//getting song id from library
 		Set<String> libraryObjectSet = new HashSet<String>();
-
+		
 		List<String> librarySongList= library.getSong();
 		for(int i=0; i<librarySongList.size() ;i++) {
 			libraryObjectSet.add(librarySongList.get(i));
@@ -137,6 +137,55 @@ public class LibraryValidator {
 		sa.assertTrue(CompareSet.equals(libraryObjectSet, albumObjectSet));
 		log.info("All the objects are valdated in user's library!");
 		
+		
+	}
+	
+	public void validateForUSerAfterDeletionOfLibraryData(LibraryData library, SoftAssert sa) {
+
+		/*
+		 * Validating playlist
+		 */
+
+		log.info("Library response afted deletion" + library);
+
+		List<Playlist> list = library.getPlaylist();
+
+		for (int i = 0; i < list.size(); i++) {
+			sa.assertTrue(Validate.asId(list.get(i).getId()), className + "." + "validate id failed - ");
+			log.info(list.get(i).getId());
+			sa.assertTrue(Validate.asTimeStamp(list.get(i).getTs()), className + "." + "validate id failed - ");
+			log.info(list.get(i).getTs());
+
+		}
+		log.info("Playlist timestamp and id validation complete!");
+
+		/*
+		 * Validating show for new user
+		 */
+
+		sa.assertTrue(library.getShow().size() == 0);
+		log.info("Show size for new user is 0, validation complete!");
+
+		/*
+		 * Validating artist for new user
+		 */
+
+		sa.assertTrue(library.getArtist().size() == 0);
+		log.info("Artist size for new user is 0, validation complete!");
+		
+		/*
+		 * Validating song size after deletion
+		 */
+
+		sa.assertTrue(library.getSong().size() == 0);
+		log.info("Song  size for user after deletion is 0, validation complete!");
+	
+		/*
+		 * Validating album size after deletion
+		 */
+
+		sa.assertTrue(library.getAlbum().size() == 0);
+		log.info("Album size for user after deletion is 0, validation complete!");
 		
 	}
 	

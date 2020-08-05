@@ -213,4 +213,30 @@ public class LibaryOps extends Util {
 		sa.assertAll();
 
 	}
+	
+	@Given("Validate the library data by calling library delete endpoint {string} using same cookie")
+	public void validate_the_library_data_by_calling_library_delete_endpoint_using_same_cookie(String endPoint) throws FileNotFoundException {
+		
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		resource = resourceAPI.getResource();
+		System.out.println("resource api " + resourceAPI.getResource());
+		cookie = System.getProperty("cookie");
+		log.info("Cookie for library delete API " + cookie);
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+		
+	}
+	
+	
+	@Then("Verify if the song and album are not present in the response")
+	public void verify_if_the_song_and_album_are_not_present_in_the_response() throws JsonMappingException, JsonProcessingException {
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
+		new LibraryValidator().validateForUSerAfterDeletionOfLibraryData(library, sa);
+		sa.assertAll();
+		
+	}
+	
 }
