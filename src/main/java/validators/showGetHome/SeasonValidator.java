@@ -12,7 +12,7 @@ import validators.genericValidators.SongValidator;
 import validators.Validate;
 
 public class SeasonValidator extends EntityValidator {
-    final String className = SongValidator.class.getName();
+    final String className = getClass().getName();
 
     public void validate(Season season, SoftAssert sa, String sourceEntity, String sourceType) {
         super.validate(season, sa, sourceEntity, sourceType);
@@ -38,17 +38,7 @@ public class SeasonValidator extends EntityValidator {
 
         ArtistMap artistMap = mi.getArtistMap();
 
-        for(Artist artist : artistMap.getPrimaryArtists()) {
-            new ArtistMapValidator().validate(artist, sa, "primary_artists", "season", seasonid);
-        }
-
-        for(Artist artist : artistMap.getFeaturedArtists()) {
-            new ArtistMapValidator().validate(artist, sa, "featured_artists", "season", seasonid);
-        }
-
-        for(Artist artist : artistMap.getArtists()) {
-            new ArtistMapValidator().validate(artist, sa, "artists", "season", seasonid);
-        }
+        new ArtistMapValidator().validate(artistMap, sa, "season", seasonid);
     }
 }
 

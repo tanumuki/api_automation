@@ -17,6 +17,7 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import statusCodes.StatusCode;
+import validators.showGetHome.ShowGetHomeValidator;
 
 import java.io.IOException;
 
@@ -60,9 +61,10 @@ public class ShowGetHomePage extends Util {
     public void shows_get_homepage_API_response_is_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         ShowGetHome showHomePage = mapper.readValue(resp.asString(), ShowGetHome.class);
-        System.out.println("showHomePage: " + showHomePage == null);
+//        System.out.println("showHomePage: " + showHomePage == null);
         SoftAssert sa = new SoftAssert();
-
+        new ShowGetHomeValidator().validate(showHomePage, sa);
+        sa.assertAll();
     }
 
 }

@@ -3,6 +3,7 @@
  */
 package validators.genericValidators;
 
+import entities.ArtistMap;
 import org.testng.asserts.SoftAssert;
 
 import entities.Artist;
@@ -15,6 +16,20 @@ import validators.Validate;
  */
 public class ArtistMapValidator {
 	final String className = SongValidator.class.getName();
+
+	public void validate(ArtistMap artistMap, SoftAssert sa, String sourceType, String sourceId) {
+		for(Artist artist : artistMap.getPrimaryArtists()) {
+			new ArtistMapValidator().validate(artist, sa, "primary_artists", sourceType, sourceId);
+		}
+
+		for(Artist artist : artistMap.getFeaturedArtists()) {
+			new ArtistMapValidator().validate(artist, sa, "featured_artists", sourceType, sourceId);
+		}
+
+		for(Artist artist : artistMap.getArtists()) {
+			new ArtistMapValidator().validate(artist, sa, "artists", sourceType, sourceId);
+		}
+	}
 
 	public void validate(Artist artist, SoftAssert sa, String artistType, String sourceType, String sourceEntity) {
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();
