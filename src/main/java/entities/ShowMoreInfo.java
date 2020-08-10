@@ -61,4 +61,8 @@ public class ShowMoreInfo {
     private String isFollowed;
     @JsonProperty("fan_count")
     private String fanCount;
+    @JsonProperty("year")
+    private String year;
+    @JsonProperty("badge")
+    private String badge;
 }

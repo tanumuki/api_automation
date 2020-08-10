@@ -73,5 +73,18 @@ public class EpisodeValidator extends EntityValidator {
 
         new RightsValidator().validate(rights, sa, "episode", episode.getId());
 
+        if(mi.getGenre_tags() != null) {
+            for(String tag : mi.getGenre_tags()) {
+                sa.assertTrue(Validate.asString(tag), AssertionMsg.print(className, methodName, "episode", "episode.more_info.genre_tag", tag, episode.getId()));
+            }
+        }
+
+        if(mi.getSeasonality_tags() != null) {
+            for(String tag : mi.getSeasonality_tags()) {
+                sa.assertTrue(Validate.asString(tag), AssertionMsg.print(className, methodName, "episode", "episode.more_info.seasonality_tag", tag, episode.getId()));
+            }
+        }
+
+
     }
 }

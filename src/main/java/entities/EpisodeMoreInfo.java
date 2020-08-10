@@ -55,5 +55,10 @@ public class EpisodeMoreInfo {
     private String showUrl;
     @JsonProperty("encrypted_media_url")
     private String encryptedMediaUrl;
+    @JsonProperty("genre_tags")
+    private List<String> genre_tags;
+    @JsonProperty("seasonality_tags")
+    private List<String> seasonality_tags;
+
 
 }
