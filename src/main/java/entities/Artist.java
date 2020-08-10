@@ -33,5 +33,17 @@ public class Artist {
 	private String type;
 	@JsonProperty("perma_url")
 	private String permaUrl;
+	@JsonProperty("ctr")
+	private Integer ctr;
+	@JsonProperty("entity")
+	private Integer entity;
+	@JsonProperty("mini_obj")
+	private Boolean mini_obj;
+	@JsonProperty("isRadioPresent")
+	private Boolean isRadioPresent;
+	@JsonProperty("is_followed")
+	private Boolean is_followed;
+
+
 
 }
