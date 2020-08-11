@@ -27,7 +27,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import resources.ConfigReader;
 import resources.Util;
-import statusCodes.StatusCode;
+import enums.StatusCode;
 import validators.genericValidators.AlbumValidator;
 
 /**
