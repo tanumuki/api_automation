@@ -51,6 +51,8 @@ public class PlaylistMoreInfo {
     private String[] meta;
     @JsonProperty("isFY")
     private String isFY;
+    @JsonProperty("description")
+    private String description;
 
     @JsonProperty("fan_count")
     private String fan_count;

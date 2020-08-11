@@ -16,9 +16,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import cookieManager.GetCookies;
 import endPoints.APIResources;
-import entities.Entity;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -33,7 +31,7 @@ import resources.APIConstants;
 import resources.ConfigReader;
 import resources.UserGenerator;
 import resources.Util;
-import statusCodes.StatusCode;
+import enums.StatusCode;
 import validators.LibraryValidator;
 import entities.Album;
 

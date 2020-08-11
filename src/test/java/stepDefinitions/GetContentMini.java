@@ -18,7 +18,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import statusCodes.StatusCode;
+import enums.StatusCode;
 import validators.ContentMiniValidator;
 
 import java.io.IOException;

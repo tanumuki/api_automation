@@ -1,0 +1,22 @@
+package enums;
+
+public enum musicLanguages {
+	ENGLISH,
+	HINDI,
+	PUNJABI,
+	TAMIL,
+	TELUGU,
+	MARATHI,
+	GUJARATI,
+	BENGALI,
+	KANNADA,
+	BHOJPURI,
+	MALAYALAM,
+	URDU,
+	HARYANVI,
+	RAJASTHANI,
+	ODIA,
+	ASSAMESE,
+	UNKNOWN;
+}
+
