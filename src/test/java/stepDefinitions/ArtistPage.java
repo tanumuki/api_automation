@@ -61,7 +61,6 @@ public class ArtistPage extends Util {
         Artist artistObj = mapper.readValue(resp.asString(), Artist.class);
         SoftAssert sa = new SoftAssert();
         new ArtistPageValidator().validateAll(artistObj, sa);
-//        TODO Ashwin: Before commit, uncomment the following and verify
         sa.assertAll();
 
     }

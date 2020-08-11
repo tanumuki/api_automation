@@ -94,8 +94,17 @@ public class Validate {
      * Validate as boolean
      */
     public static boolean asBoolean(String str) {
-        log.debug("Testing as boolean: \"" + str + "\"");
+        log.debug("Testing as string boolean: \"" + str + "\"");
         return str.matches("^$|true|false|0|1|True|False");
+    }
+
+    public static boolean asBoolean(boolean value) {
+        log.debug("Testing as primitive boolean: \"" + value + "\"");
+        if (value || !value) {
+            return true;
+        }
+        else
+            return false;
     }
 
     /*

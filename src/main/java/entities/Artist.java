@@ -60,7 +60,7 @@ public class Artist extends Entity{
 	@JsonProperty("similarArtists")
 	private List<SimilarArtists> similarArtists;
 	@JsonProperty("isRadioPresent")
-	private String isRadioPresent;
+	private boolean isRadioPresent;
 	@JsonProperty("bio")
 	private String bio;
 	@JsonProperty("dob")
@@ -80,5 +80,5 @@ public class Artist extends Entity{
 	@JsonProperty("fan_count")
 	private String fan_count;
 	@JsonProperty("is_followed")
-	private String is_followed;
+	private boolean is_followed;
 }
