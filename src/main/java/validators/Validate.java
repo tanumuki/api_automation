@@ -121,7 +121,8 @@ public class Validate {
      */
     public static boolean asDate(String str) {
         log.debug("Testing as date: \"" + str + "\"");
-        return (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}") || str.matches("[0-9]{2}-[0-9]{2}-[0-9]{4}"));
+        return (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}") || str.matches("[0-9]{2}-[0-9]{2}-[0-9]{4}")
+                || str.matches("[0-9]{1}-[0-9]{2}-[0-9]{4}"));
     }
 
     public static boolean asProduct(String str) {
