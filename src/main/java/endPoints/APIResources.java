@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 
+	ChannelGetDetailsAPI("channel.getDetails"),
 	SearchGetArtistResults("search.getArtistResults"),
 	ContentGetTopShows("content.getTopShows"),
 	ShowGetAllEpisodes("show.getAllEpisodes"),
