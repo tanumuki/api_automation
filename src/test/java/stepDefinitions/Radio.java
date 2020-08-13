@@ -3,7 +3,6 @@ package stepDefinitions;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +18,8 @@ import io.restassured.specification.ResponseSpecification;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.ScenarioContext;
-import resources.TestContext;
 import resources.Util;
-import statusCodes.StatusCode;
+import enums.StatusCode;
 
 public class Radio extends Util {
 	

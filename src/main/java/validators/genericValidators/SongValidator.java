@@ -98,8 +98,10 @@ public class SongValidator extends EntityValidator {
 		sa.assertTrue(Validate.asString(moreInfo.getCopyrightText()), AssertionMsg.print(className, methodName,
 				songObj.getType(), "more_info.copyright_text", moreInfo.getCopyrightText(), songObj.getId()));
 
-		sa.assertTrue(Validate.asString(moreInfo.getReleaseDate()), AssertionMsg.print(className, methodName,
-				songObj.getType(), "more_info.release_date", moreInfo.getReleaseDate(), songObj.getId()));
+		if (moreInfo.getReleaseDate() != null) {
+			sa.assertTrue(Validate.asString(moreInfo.getReleaseDate()), AssertionMsg.print(className, methodName,
+					songObj.getType(), "more_info.release_date", moreInfo.getReleaseDate(), songObj.getId()));
+		}
 	}
 
 	void validateRights(Song songObj, SoftAssert sa) {

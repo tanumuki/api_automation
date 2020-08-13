@@ -19,7 +19,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -27,7 +26,7 @@ import pojos.login_pojos.UserLogin;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
-import statusCodes.StatusCode;
+import enums.StatusCode;
 import validators.UserLoginValidator;
 
 public class Login extends Util {
