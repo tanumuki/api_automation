@@ -10,5 +10,7 @@ Feature: Validating Artist Page details
 		Examples:
 			| artistid |
 			| 459320   |
+			| 565534   |
+			| 458135   |
 
 

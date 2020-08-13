@@ -44,7 +44,9 @@ public class ArtistPageValidator extends EntityValidator {
         validateAvailableLanguages(artistObj, sa);
 
 //        Validate artist playlists
-        validateArtistPlaylists(artistObj, sa);
+        if(artistObj.getArtistPlaylists() != null) {
+            validateArtistPlaylists(artistObj, sa);
+        }
 
 
     }
@@ -65,7 +67,10 @@ public class ArtistPageValidator extends EntityValidator {
         sa.assertTrue(Validate.asString(artistObj.getBio()), AssertionMsg.print(methodName, methodName, "bio", artistObj.getBio()));
         sa.assertTrue(Validate.asDate(artistObj.getDob()), AssertionMsg.print(methodName, methodName, "dob", artistObj.getDob()));
         sa.assertTrue(Validate.asExternalURL(artistObj.getFb()), AssertionMsg.print(methodName, methodName, "fb", artistObj.getFb()));
-        sa.assertTrue(Validate.asExternalURL(artistObj.getTwitter()), AssertionMsg.print(methodName, methodName, "twitter", artistObj.getTwitter()));
+
+        if(Validate.isNonEmptyString(artistObj.getTwitter())) {
+            sa.assertTrue(Validate.asExternalURL(artistObj.getTwitter()), AssertionMsg.print(methodName, methodName, "twitter", artistObj.getTwitter()));
+        }
         sa.assertTrue(Validate.asExternalURL(artistObj.getWiki()), AssertionMsg.print(methodName, methodName, "wiki", artistObj.getWiki()));
         sa.assertTrue(Validate.asNum(artistObj.getFan_count()), AssertionMsg.print(methodName, methodName, "fan_count", artistObj.getFan_count()));
         sa.assertTrue(Validate.asBoolean(artistObj.is_followed()), AssertionMsg.print(methodName, methodName, "is_followed", Boolean.toString(artistObj.is_followed())));
