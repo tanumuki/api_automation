@@ -78,6 +78,7 @@ public class User extends Util {
         UserProfileUpdate profileUpdate = objectMapper.readValue(resp.asString(), UserProfileUpdate.class);
 
         new UserPofileDataValidator().validate(profileUpdate, sa);
+        sa.assertAll();
 
     }
 
@@ -93,6 +94,7 @@ public class User extends Util {
         List<Playlist> playlist = objectMapper.convertValue(playlists, new TypeReference<List<Playlist>>() {});
 
         new PlaylistValidator().validate(playlist.get(0),sa);
+        sa.assertAll();
 
 
     }

@@ -1,10 +1,11 @@
 /**
  * 
  */
-package entities;
+package pojos.Artist;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.AlbumMiniObject;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,11 +21,13 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class TopSongs {
+public class TopAlbums {
 
-	@JsonProperty("songs")
-	private List<Song> songs;
+	@JsonProperty("albums")
+	private List<AlbumMiniObject> albums;
 	@JsonProperty("total")
 	private int total;
+	@JsonProperty("last_page")
+	private Boolean last_page;
 
 }

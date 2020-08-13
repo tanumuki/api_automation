@@ -19,4 +19,6 @@ public class ContentGetTopShows {
 
     @JsonProperty("shows")
     private List<ShowDetails> shows;
+    @JsonProperty("last_page")
+    private Boolean last_page;
 }

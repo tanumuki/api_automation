@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 import pojos.Artist.SimilarArtists;
 import pojos.Artist.ArtistURLs;
+import pojos.Artist.TopAlbums;
+import pojos.Artist.TopSongs;
 
 import java.util.List;
 

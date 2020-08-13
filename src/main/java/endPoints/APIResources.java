@@ -24,7 +24,10 @@ public enum APIResources {
 	UserGetProfileAPI("user.getDetails"),
 	ContentGetAlbumDetails ("content.getAlbumDetails"),
 	LibraryDelete("library.delete"),
-	GetArtistPageDetailsAPI("artist.getArtistPageDetails");
+	GetArtistPageDetailsAPI("artist.getArtistPageDetails"),
+	GetArtistMoreSongs("artist.getArtistMoreSong"),
+	GetArtistMoreAlbums("artist.getArtistMoreAlbum"),
+	GetArtistSimilarArtists("artist.getSimilarArtists");
 
 
 	private String resource;
