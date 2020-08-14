@@ -12,7 +12,7 @@ public class RightsValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
 
-        sa.assertTrue(Validate.asNum(rights.getCode()), AssertionMsg.print(className, methodName, sourceType,
+        sa.assertTrue(Validate.asSongRightsCode(rights.getCode()), AssertionMsg.print(className, methodName, sourceType,
                 "more_info.rights.code", rights.getCode(), sourceId));
 
         sa.assertTrue(Validate.asBoolean(rights.getCacheable()), AssertionMsg.print(className, methodName,

@@ -29,8 +29,6 @@ public class Artist extends Entity{
 
 	@JsonProperty("artistId")
 	private String artistId;
-//	@JsonProperty("id")
-//	private String id;
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("role")
@@ -43,14 +41,10 @@ public class Artist extends Entity{
 	private Integer entity;
 	@JsonProperty("mini_obj")
 	private Boolean mini_obj;
-//	@JsonProperty("type")
-//	private String type;
-//	@JsonProperty("perma_url")
-//	private String permaUrl;
 	@JsonProperty("follower_count")
 	private String follower_count;
 	@JsonProperty("isVerified")
-	private String isVerified;
+	private Boolean isVerified;
 	@JsonProperty("dominantLanguage")
 	private String dominantLanguage;
 	@JsonProperty("dominantType")

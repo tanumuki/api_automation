@@ -79,7 +79,7 @@ public class LibraryValidator {
 
 		//username
 		log.info("Validating IMAGE " +obj.getImage());
-		sa.assertTrue(Validate.asUrl(obj.getImage()),  className + "." + "validate image URL  failed ");
+		sa.assertTrue(Validate.asCDNURL(obj.getImage()),  className + "." + "validate image URL  failed ");
 	
 		
 

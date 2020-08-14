@@ -19,7 +19,7 @@ public class EpisodeValidator extends EntityValidator {
         EpisodeMoreInfo mi = episode.getMoreInfo();
         sa.assertTrue(Validate.asNum(mi.getDuration()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.duration", mi.getDuration(), episode.getId()));
 
-        sa.assertTrue(Validate.asUrl(mi.getSquareImageUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.square_image_url", mi.getSquareImageUrl(), episode.getId()));
+        sa.assertTrue(Validate.asCDNURL(mi.getSquareImageUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.square_image_url", mi.getSquareImageUrl(), episode.getId()));
 
         sa.assertTrue(Validate.asNum(mi.getLabelId()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.label_id", mi.getLabelId(), episode.getId()));
 
@@ -37,7 +37,7 @@ public class EpisodeValidator extends EntityValidator {
 
         sa.assertTrue(Validate.asString(mi.getSeasonTitle()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.season_title", mi.getSeasonTitle(), episode.getId()));
 
-        sa.assertTrue(Validate.asUrl(mi.getSquareImage()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.square_image", mi.getSquareImage(), episode.getId()));
+        sa.assertTrue(Validate.asCDNURL(mi.getSquareImage()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.square_image", mi.getSquareImage(), episode.getId()));
 
         ArtistMap artistMap = mi.getArtistMap();
 
@@ -65,7 +65,7 @@ public class EpisodeValidator extends EntityValidator {
 
         sa.assertTrue(Validate.asBoolean(mi.getCacheState()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.cache_state", mi.getCacheState(), episode.getId()));
 
-        sa.assertTrue(Validate.asUrl(mi.getShowUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.show_url", mi.getShowUrl(), episode.getId()));
+        sa.assertTrue(Validate.asPermaURL(mi.getShowUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.show_url", mi.getShowUrl(), episode.getId()));
 
         sa.assertTrue(Validate.asString(mi.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.encrypted_media_url", mi.getEncryptedMediaUrl(), episode.getId()));
 

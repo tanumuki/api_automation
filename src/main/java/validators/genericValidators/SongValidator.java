@@ -74,7 +74,7 @@ public class SongValidator extends EntityValidator {
 		sa.assertTrue(Validate.asString(moreInfo.getEncryptedCacheUrl()), AssertionMsg.print(className, methodName,
 				songObj.getType(), "more_info.encrypted_cache_url", moreInfo.getEncryptedCacheUrl(), songObj.getId()));
 
-		sa.assertTrue(Validate.asUrl(moreInfo.getAlbumUrl()), AssertionMsg.print(className, methodName,
+		sa.assertTrue(Validate.asPermaURL(moreInfo.getAlbumUrl()), AssertionMsg.print(className, methodName,
 				songObj.getType(), "more_info.album_url", moreInfo.getAlbumUrl(), songObj.getId()));
 
 		sa.assertTrue(Validate.asNum(moreInfo.getDuration()), AssertionMsg.print(className, methodName,
@@ -85,9 +85,6 @@ public class SongValidator extends EntityValidator {
 
 		sa.assertTrue(Validate.asBoolean(moreInfo.getHasLyrics()), AssertionMsg.print(className, methodName,
 				songObj.getType(), "more_info.has_lyrics", moreInfo.getHasLyrics(), songObj.getId()));
-
-		sa.assertTrue(Validate.asString(moreInfo.getLyricsSnippet()), AssertionMsg.print(className, methodName,
-				songObj.getType(), "more_info.lyrics_snippet", moreInfo.getLyricsSnippet(), songObj.getId()));
 
 		sa.assertTrue(Validate.asString(moreInfo.getLyricsSnippet()), AssertionMsg.print(className, methodName,
 				songObj.getType(), "more_info.lyrics_snippet", moreInfo.getLyricsSnippet(), songObj.getId()));

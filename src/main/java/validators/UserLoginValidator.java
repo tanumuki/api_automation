@@ -137,7 +137,7 @@ public class UserLoginValidator {
 		// gender
 		String gender = login.getData().getGender();
 		System.out.println("gender: " + gender);
-		sa.assertTrue(Validate.asString(gender), className + "." + "validate gender failed - ");
+		sa.assertTrue(Validate.asGender(gender), className + "." + "validate gender failed - ");
 
 		// dob
 		String dob = login.getData().getDob();
