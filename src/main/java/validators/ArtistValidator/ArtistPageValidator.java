@@ -77,7 +77,7 @@ public class ArtistPageValidator extends EntityValidator {
 
     }
 
-    void validateTopSongs(Artist artistObj, SoftAssert sa) {
+    public void validateTopSongs(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         List<Song> songListing = artistObj.getTopSongs().getSongs();
@@ -88,9 +88,14 @@ public class ArtistPageValidator extends EntityValidator {
         sa.assertTrue(Validate.asNum((artistObj.getTopSongs().getTotal())),
                 AssertionMsg.print(methodName, methodName, "total songs", Integer.toString(artistObj.getTopSongs().getTotal())));
 
+        if (artistObj.getTopSongs().getLast_page() != null) {
+            sa.assertTrue(Validate.asBoolean((artistObj.getTopSongs().getLast_page())),
+                    AssertionMsg.print(methodName, methodName, "is_last_page", Boolean.toString(artistObj.getTopSongs().getLast_page())));
+        }
+
     }
 
-    void validateTopAlbums(Artist artistObj, SoftAssert sa) {
+    public void validateTopAlbums(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         List<AlbumMiniObject> albumListing = artistObj.getTopAlbums().getAlbums();
@@ -101,8 +106,18 @@ public class ArtistPageValidator extends EntityValidator {
         sa.assertTrue(Validate.asNum((artistObj.getTopAlbums().getTotal())),
                 AssertionMsg.print(methodName, methodName, "total albums", Integer.toString(artistObj.getTopAlbums().getTotal())));
 
+        if (artistObj.getTopAlbums().getLast_page() != null) {
+            sa.assertTrue(Validate.asBoolean((artistObj.getTopAlbums().getLast_page())),
+                    AssertionMsg.print(methodName, methodName, "is_last_page", Boolean.toString(artistObj.getTopAlbums().getLast_page())));
+        }
+
     }
 
+    /**
+     * This method is used to validate the SimilarArtists array in the artist.getArtistPageDetails API response.
+     * @param artistObj
+     * @param sa
+     */
     public void validateSimilarArtists(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
@@ -110,50 +125,70 @@ public class ArtistPageValidator extends EntityValidator {
         List<SimilarArtists> similarArtistsObj = artistObj.getSimilarArtists();
 
         for (SimilarArtists sm_art : similarArtistsObj) {
-            sa.assertTrue(Validate.asNum(sm_art.get_id()), AssertionMsg.print(methodName, methodName, "id", sm_art.get_id()));
-            sa.assertTrue(Validate.asString(sm_art.getName()), AssertionMsg.print(methodName, methodName, "name", sm_art.getName()));
-
-            if(Validate.isNonEmptyString(sm_art.getBio())) {
-                sa.assertTrue(Validate.asString(sm_art.getBio()), AssertionMsg.print(methodName, methodName, "bio", sm_art.getBio()));
-            }
-
-            sa.assertTrue(Validate.asString(sm_art.getRoles()), AssertionMsg.print(methodName, methodName, "roles", sm_art.getRoles()));
-
-            if(Validate.isNonEmptyString(sm_art.getAka())) {
-                sa.assertTrue(Validate.asString(sm_art.getAka()), AssertionMsg.print(methodName, methodName, "aka", sm_art.getAka()));
-            }
-
-            if(Validate.isNonEmptyString(sm_art.getFb())) {
-                sa.assertTrue(Validate.asExternalURL(sm_art.getFb()), AssertionMsg.print(methodName, methodName, "fb", sm_art.getFb()));
-            }
-
-            if(Validate.isNonEmptyString(sm_art.getTwitter())) {
-                sa.assertTrue(Validate.asExternalURL(sm_art.getTwitter()), AssertionMsg.print(methodName, methodName, "twitter", sm_art.getTwitter()));
-            }
-
-            if(Validate.isNonEmptyString(sm_art.getWiki())) {
-                sa.assertTrue(Validate.asExternalURL(sm_art.getWiki()), AssertionMsg.print(methodName, methodName, "wiki", sm_art.getWiki()));
-            }
-            sa.assertTrue(Validate.asString(sm_art.getSimilar()), AssertionMsg.print(methodName, methodName, "similar", sm_art.getSimilar()));
-
-            if(Validate.isNonEmptyString(sm_art.getDob())) {
-                sa.assertTrue(Validate.asDate(sm_art.getDob()), AssertionMsg.print(methodName, methodName, "dob", sm_art.getDob()));
-            }
-            sa.assertTrue(Validate.asUrl(sm_art.getImage_url()), AssertionMsg.print(methodName, methodName, "image_url", sm_art.getImage_url()));
-
-            sa.assertTrue(Validate.asString(sm_art.getSearch_keywords().replaceAll("(\\r?\\n)","")), AssertionMsg.print(methodName, methodName, "search_keywords", sm_art.getSearch_keywords()));
-            sa.assertTrue(Validate.asString(sm_art.getPrimary_artist_id()), AssertionMsg.print(methodName, methodName, "primary_artist_id", sm_art.getPrimary_artist_id()));
-            sa.assertTrue(Validate.asNum(sm_art.getCombine_artist_pages()), AssertionMsg.print(methodName, methodName, "combine_artist_pages", sm_art.getCombine_artist_pages()));
-            sa.assertTrue(Validate.asNum(sm_art.getReplace_with_primary_artists()), AssertionMsg.print(methodName, methodName, "replace_with_primary_artists", sm_art.getReplace_with_primary_artists()));
-            sa.assertTrue(Validate.asString(sm_art.getLanguages()), AssertionMsg.print(methodName, methodName, "languages", sm_art.getLanguages()));
-            sa.assertTrue(Validate.asUrl(sm_art.getPerma_url()), AssertionMsg.print(methodName, methodName, "perma_url", sm_art.getPerma_url()));
-            sa.assertTrue(Validate.asString(sm_art.getType()), AssertionMsg.print(methodName, methodName, "type", sm_art.getType()));
-            sa.assertTrue(Validate.asBoolean(sm_art.getMini_obj()), AssertionMsg.print(methodName, methodName, "mini_obj", sm_art.getMini_obj()));
-            sa.assertTrue(Validate.asBoolean(sm_art.getIsRadioPresent()), AssertionMsg.print(methodName, methodName, "iSRadioPresent", sm_art.getIsRadioPresent()));
-            sa.assertTrue(Validate.asString(sm_art.getDominantType()), AssertionMsg.print(methodName, methodName, "dominantType", sm_art.getDominantType()));
+            validateSimilarArtistFields(sm_art, sa);
 
         }
+    }
 
+    /**
+     * This method is used to validate the artist.GetArtistSimilarArtists API response.
+     * @param similarArtistObj
+     * @param sa
+     */
+    public void validateSimilarArtists(SimilarArtists similarArtistObj, SoftAssert sa) {
+        validateSimilarArtistFields(similarArtistObj, sa);
+    }
+
+    /**
+     * Generic method that will validate all the fields inside the similarArtists object.
+     * AVOID calling this method directly. Use validateSimilarArtists method instead
+     * @param sm_art
+     * @param sa
+     */
+    void validateSimilarArtistFields(SimilarArtists sm_art, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+        sa.assertTrue(Validate.asNum(sm_art.get_id()), AssertionMsg.print(methodName, methodName, "id", sm_art.get_id()));
+        sa.assertTrue(Validate.asString(sm_art.getName()), AssertionMsg.print(methodName, methodName, "name", sm_art.getName()));
+
+        if(Validate.isNonEmptyString(sm_art.getBio())) {
+            sa.assertTrue(Validate.asString(sm_art.getBio()), AssertionMsg.print(methodName, methodName, "bio", sm_art.getBio()));
+        }
+
+        sa.assertTrue(Validate.asString(sm_art.getRoles()), AssertionMsg.print(methodName, methodName, "roles", sm_art.getRoles()));
+
+        if(Validate.isNonEmptyString(sm_art.getAka())) {
+            sa.assertTrue(Validate.asString(sm_art.getAka()), AssertionMsg.print(methodName, methodName, "aka", sm_art.getAka()));
+        }
+
+        if(Validate.isNonEmptyString(sm_art.getFb())) {
+            sa.assertTrue(Validate.asExternalURL(sm_art.getFb()), AssertionMsg.print(methodName, methodName, "fb", sm_art.getFb()));
+        }
+
+        if(Validate.isNonEmptyString(sm_art.getTwitter())) {
+            sa.assertTrue(Validate.asExternalURL(sm_art.getTwitter()), AssertionMsg.print(methodName, methodName, "twitter", sm_art.getTwitter()));
+        }
+
+        if(Validate.isNonEmptyString(sm_art.getWiki())) {
+            sa.assertTrue(Validate.asExternalURL(sm_art.getWiki()), AssertionMsg.print(methodName, methodName, "wiki", sm_art.getWiki()));
+        }
+        sa.assertTrue(Validate.asString(sm_art.getSimilar()), AssertionMsg.print(methodName, methodName, "similar", sm_art.getSimilar()));
+
+        if(Validate.isNonEmptyString(sm_art.getDob())) {
+            sa.assertTrue(Validate.asDate(sm_art.getDob()), AssertionMsg.print(methodName, methodName, "dob", sm_art.getDob()));
+        }
+        sa.assertTrue(Validate.asUrl(sm_art.getImage_url()), AssertionMsg.print(methodName, methodName, "image_url", sm_art.getImage_url()));
+
+        sa.assertTrue(Validate.asString(sm_art.getSearch_keywords().replaceAll("(\\r?\\n)","")), AssertionMsg.print(methodName, methodName, "search_keywords", sm_art.getSearch_keywords()));
+        sa.assertTrue(Validate.asString(sm_art.getPrimary_artist_id()), AssertionMsg.print(methodName, methodName, "primary_artist_id", sm_art.getPrimary_artist_id()));
+        sa.assertTrue(Validate.asNum(sm_art.getCombine_artist_pages()), AssertionMsg.print(methodName, methodName, "combine_artist_pages", sm_art.getCombine_artist_pages()));
+        sa.assertTrue(Validate.asNum(sm_art.getReplace_with_primary_artists()), AssertionMsg.print(methodName, methodName, "replace_with_primary_artists", sm_art.getReplace_with_primary_artists()));
+        sa.assertTrue(Validate.asString(sm_art.getLanguages()), AssertionMsg.print(methodName, methodName, "languages", sm_art.getLanguages()));
+        sa.assertTrue(Validate.asUrl(sm_art.getPerma_url()), AssertionMsg.print(methodName, methodName, "perma_url", sm_art.getPerma_url()));
+        sa.assertTrue(Validate.asString(sm_art.getType()), AssertionMsg.print(methodName, methodName, "type", sm_art.getType()));
+        sa.assertTrue(Validate.asBoolean(sm_art.getMini_obj()), AssertionMsg.print(methodName, methodName, "mini_obj", sm_art.getMini_obj()));
+        sa.assertTrue(Validate.asBoolean(sm_art.getIsRadioPresent()), AssertionMsg.print(methodName, methodName, "iSRadioPresent", sm_art.getIsRadioPresent()));
+        sa.assertTrue(Validate.asString(sm_art.getDominantType()), AssertionMsg.print(methodName, methodName, "dominantType", sm_art.getDominantType()));
     }
 
     void validateURLs(Artist artistObj, SoftAssert sa) {
