@@ -79,13 +79,13 @@ public class Validate {
      * Validate as url
      */
     //http(s)?
-    public static boolean asUrl(String str) {
-        log.debug("str size: " + str.length());
-        log.debug("Testing url: \"" + str + "\"");
-        return str.matches("^$|((https|http)://(c|www|staging|c.sop|pli|qa-az|staging-az|prod-az|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|((https|http)://(c|www|staging|c.sop|qa-az|staging-az|prod-az)?.(saavn|saavncdn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|(https://graph.facebook.com/v2.9/.+/picture|https://static.saavncdn.com/_i/share-image.png)");
-        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+/)?.(png|jpg)?/(s/radio/.+/.+)?|https://graph.facebook.com/v2.9/.+/.+");
-        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+)?.(png|jpg)?");
-    }
+//    public static boolean asUrl(String str) {
+//        log.debug("str size: " + str.length());
+//        log.debug("Testing url: \"" + str + "\"");
+//        return str.matches("^$|((https|http)://(c|www|staging|c.sop|pli|qa-az|staging-az|prod-az|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|((https|http)://(c|www|staging|c.sop|qa-az|staging-az|prod-az)?.(saavn|saavncdn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|(https://graph.facebook.com/v2.9/.+/picture|https://static.saavncdn.com/_i/share-image.png)");
+//        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+/)?.(png|jpg)?/(s/radio/.+/.+)?|https://graph.facebook.com/v2.9/.+/.+");
+//        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+)?.(png|jpg)?");
+//    }
 
     /**
      * Verify as external third party URLs like fb, wiki, twitter
@@ -105,8 +105,8 @@ public class Validate {
     public static boolean asCDNURL(String url) {
         return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
-                "|(http:\\/\\/staging.saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
-                "|(https:\\/\\/staging.jiosaavn.com\\/_i\\/3.0\\/user-default.png)");
+                "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
+                "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.png)");
     }
 
     /**
