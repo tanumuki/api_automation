@@ -75,17 +75,19 @@ public class Validate {
 
     }
 
-    /*
+    /* DEPRECATED; Use the more specific URL matching methods instead
      * Validate as url
      */
     //http(s)?
-//    public static boolean asUrl(String str) {
+    @Deprecated
+    public static boolean asUrl(String str) {
+        return false;
 //        log.debug("str size: " + str.length());
 //        log.debug("Testing url: \"" + str + "\"");
 //        return str.matches("^$|((https|http)://(c|www|staging|c.sop|pli|qa-az|staging-az|prod-az|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|((https|http)://(c|www|staging|c.sop|qa-az|staging-az|prod-az)?.(saavn|saavncdn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|(https://graph.facebook.com/v2.9/.+/picture|https://static.saavncdn.com/_i/share-image.png)");
 //        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+/)?.(png|jpg)?/(s/radio/.+/.+)?|https://graph.facebook.com/v2.9/.+/.+");
 //        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+)?.(png|jpg)?");
-//    }
+    }
 
     /**
      * Verify as external third party URLs like fb, wiki, twitter
