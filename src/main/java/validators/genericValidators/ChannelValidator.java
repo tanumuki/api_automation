@@ -20,15 +20,15 @@ public class ChannelValidator extends EntityValidator {
         ChannelMoreInfo moreInfo = chObj.getMore_info();
         sa.assertTrue(Validate.asString(moreInfo.getBadge()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.badge", moreInfo.getBadge(), chObj.getId()));
 
-        sa.assertTrue(Validate.asString(moreInfo.getSubType()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.sub_type", moreInfo.getSubType(), chObj.getId()));
+        sa.assertTrue(Validate.asChannelSubtype(moreInfo.getSubType()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.sub_type", moreInfo.getSubType(), chObj.getId()));
 
         sa.assertTrue(Validate.asNum(moreInfo.getAvailable()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.available", moreInfo.getAvailable(), chObj.getId()));
 
         sa.assertTrue(Validate.asNum(moreInfo.getIsFeatured()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.is_featured", moreInfo.getIsFeatured(), chObj.getId()));
 
-        sa.assertTrue(Validate.asString(moreInfo.getVideoUrl()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_url", moreInfo.getVideoUrl(), chObj.getId()));
+        sa.assertTrue(Validate.asCDNURL(moreInfo.getVideoUrl()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_url", moreInfo.getVideoUrl(), chObj.getId()));
 
-        sa.assertTrue(Validate.asString(moreInfo.getVideoThumbnail()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_thumbnail", moreInfo.getVideoThumbnail(), chObj.getId()));
+        sa.assertTrue(Validate.asCDNURL(moreInfo.getVideoThumbnail()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_thumbnail", moreInfo.getVideoThumbnail(), chObj.getId()));
 
     }
 

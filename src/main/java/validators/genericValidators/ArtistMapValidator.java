@@ -43,13 +43,13 @@ public class ArtistMapValidator {
 		sa.assertTrue(Validate.asString(artist.getRole()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.role", artist.getRole(), sourceEntity));
 
-		sa.assertTrue(Validate.asUrl(artist.getImage()), AssertionMsg.print(className, methodName, sourceType,
+		sa.assertTrue(Validate.asCDNURL(artist.getImage()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.image", artist.getImage(), sourceEntity));
 
-		sa.assertTrue(Validate.asString(artist.getType()), AssertionMsg.print(className, methodName, sourceType,
+		sa.assertTrue(Validate.asArtistType(artist.getType()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.type", artist.getType(), sourceEntity));
 
-		sa.assertTrue(Validate.asUrl(artist.getPermaUrl()), AssertionMsg.print(className, methodName, sourceType,
+		sa.assertTrue(Validate.asPermaURL(artist.getPermaUrl()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.perma_url", artist.getPermaUrl(), sourceEntity));
 	}
 

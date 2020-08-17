@@ -60,17 +60,17 @@ public class ShowDetailsValidator extends EntityValidator {
 
         sa.assertTrue(Validate.asString(mi.getCopyrightText()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.copyright_text", mi.getCopyrightText()));
 
-        sa.assertTrue(Validate.asUrl(mi.getHeaderLogo()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_logo", mi.getHeaderLogo()));
+        sa.assertTrue(Validate.asCDNURL(mi.getHeaderLogo()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_logo", mi.getHeaderLogo()));
 
         sa.assertTrue(Validate.asString(mi.getHeaderColor()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_color", mi.getHeaderColor()));
 
-        sa.assertTrue(Validate.asUrl(mi.getHeaderImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_image", mi.getHeaderImage()));
+        sa.assertTrue(Validate.asCDNURL(mi.getHeaderImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_image", mi.getHeaderImage()));
 
         sa.assertTrue(Validate.asString(mi.getLabel()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.label", mi.getLabel()));
 
         sa.assertTrue(Validate.asString(mi.getSortOrder()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.sort_order", mi.getSortOrder()));
 
-        sa.assertTrue(Validate.asUrl(mi.getSquareImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.square_image", mi.getSquareImage()));
+        sa.assertTrue(Validate.asCDNURL(mi.getSquareImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.square_image", mi.getSquareImage()));
 
         sa.assertTrue(Validate.asNum(mi.getSeasonNumber()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.season_number", mi.getSeasonNumber()));
 
@@ -90,7 +90,7 @@ public class ShowDetailsValidator extends EntityValidator {
 
         sa.assertTrue(Validate.asString(en.getMessage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.editors_note.message", en.getMessage()));
 
-        sa.assertTrue(Validate.asUrl(en.getImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.editors_note.image", en.getImage()));
+        sa.assertTrue(Validate.asCDNURL(en.getImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.editors_note.image", en.getImage()));
 
 
         sa.assertTrue(Validate.asNum(mi.getYear()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.year", mi.getYear()));

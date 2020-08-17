@@ -121,11 +121,11 @@ public class UserPofileDataValidator {
         log.info("LOG response playlists type in user get profile is " + playlists_type);
 
         String playlists_perma_url = userGetProfile.getPlaylists().get(0).getPerma_url();
-        sa.assertTrue(Validate.asUrl(playlists_perma_url), "validate playlists perma_url failed");
+        sa.assertTrue(Validate.asPermaURL(playlists_perma_url), "validate playlists perma_url failed");
         log.info("LOG response playlists perma_url in user get profile is " + playlists_perma_url);
 
         String playlists_image = userGetProfile.getPlaylists().get(0).getImage();
-        sa.assertTrue(Validate.asUrl(playlists_image), "validate playlists image failed");
+        sa.assertTrue(Validate.asCDNURL(playlists_image), "validate playlists image failed");
         log.info("LOG response playlists perma_url in user get profile is " + playlists_image);
 
         String playlists_language = userGetProfile.getPlaylists().get(0).getLanguage();
