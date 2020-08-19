@@ -43,4 +43,5 @@ public class Entity {
     @JsonProperty("list_type")
     protected String listType;
 
+
 }

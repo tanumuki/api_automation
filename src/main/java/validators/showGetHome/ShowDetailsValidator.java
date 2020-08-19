@@ -5,6 +5,7 @@ import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 import validators.genericValidators.ArtistMapValidator;
+import validators.genericValidators.EditorsNoteValidator;
 import validators.genericValidators.EntityValidator;
 import validators.genericValidators.SongValidator;
 
@@ -15,9 +16,17 @@ public class ShowDetailsValidator extends EntityValidator {
         System.out.println("className: " + className);
         ShowDetails showDetails = showHome.getShowDetails();
         super.validate(showDetails, sa, showDetails.getId(), "show");
-
+        validateMoreInfo(showDetails, sa);
         
     }
+
+    public void validate(ShowDetails showDetails, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        System.out.println("className: " + className);
+        super.validate(showDetails, sa, showDetails.getId(), "show");
+        validateMoreInfo(showDetails, sa);
+    }
+
 
     public void validateMoreInfo(ShowDetails showDetails, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
@@ -52,33 +61,47 @@ public class ShowDetailsValidator extends EntityValidator {
         if(mi.getReleaseDate() != null)
             sa.assertTrue(Validate.asDate(mi.getReleaseDate()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.release_date", mi.getReleaseDate()));
 
-        sa.assertTrue(Validate.asNum(mi.getFollowersCount()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.followers_count", mi.getFollowersCount()));
+        if(mi.getFollowersCount() != null)
+            sa.assertTrue(Validate.asNum(mi.getFollowersCount()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.followers_count", mi.getFollowersCount()));
 
-        sa.assertTrue(Validate.asNum(mi.getParentalAdvisory()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.parental_advisory", mi.getParentalAdvisory()));
+        if(mi.getParentalAdvisory() != null)
+            sa.assertTrue(Validate.asNum(mi.getParentalAdvisory()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.parental_advisory", mi.getParentalAdvisory()));
 
-        sa.assertTrue(Validate.asNum(mi.getIsDisabled()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.is_disabled", mi.getIsDisabled()));
+        if(mi.getIsDisabled() != null)
+            sa.assertTrue(Validate.asNum(mi.getIsDisabled()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.is_disabled", mi.getIsDisabled()));
 
-        sa.assertTrue(Validate.asString(mi.getCopyrightText()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.copyright_text", mi.getCopyrightText()));
+        if(mi.getCopyrightText() != null)
+            sa.assertTrue(Validate.asString(mi.getCopyrightText()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.copyright_text", mi.getCopyrightText()));
 
-        sa.assertTrue(Validate.asUrl(mi.getHeaderLogo()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_logo", mi.getHeaderLogo()));
+        if(mi.getHeaderLogo() != null)
+            sa.assertTrue(Validate.asUrl(mi.getHeaderLogo()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_logo", mi.getHeaderLogo()));
 
-        sa.assertTrue(Validate.asString(mi.getHeaderColor()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_color", mi.getHeaderColor()));
+        if(mi.getHeaderColor() != null)
+            sa.assertTrue(Validate.asString(mi.getHeaderColor()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_color", mi.getHeaderColor()));
 
-        sa.assertTrue(Validate.asUrl(mi.getHeaderImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_image", mi.getHeaderImage()));
+        if(mi.getHeaderImage() != null)
+            sa.assertTrue(Validate.asUrl(mi.getHeaderImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.header_image", mi.getHeaderImage()));
 
-        sa.assertTrue(Validate.asString(mi.getLabel()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.label", mi.getLabel()));
+        if(mi.getLabel() != null)
+            sa.assertTrue(Validate.asString(mi.getLabel()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.label", mi.getLabel()));
 
-        sa.assertTrue(Validate.asString(mi.getSortOrder()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.sort_order", mi.getSortOrder()));
+        if(mi.getSortOrder() != null)
+            sa.assertTrue(Validate.asString(mi.getSortOrder()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.sort_order", mi.getSortOrder()));
 
-        sa.assertTrue(Validate.asUrl(mi.getSquareImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.square_image", mi.getSquareImage()));
+        if(mi.getSquareImage() != null)
+            sa.assertTrue(Validate.asUrl(mi.getSquareImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.square_image", mi.getSquareImage()));
 
-        sa.assertTrue(Validate.asNum(mi.getSeasonNumber()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.season_number", mi.getSeasonNumber()));
+        if(mi.getSeasonNumber() != null)
+            sa.assertTrue(Validate.asNum(mi.getSeasonNumber()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.season_number", mi.getSeasonNumber()));
 
-        sa.assertTrue(Validate.asNum(mi.getTotalEpisodes()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.total_episodes", mi.getTotalEpisodes()));
+        if(mi.getTotalEpisodes() != null)
+            sa.assertTrue(Validate.asNum(mi.getTotalEpisodes()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.total_episodes", mi.getTotalEpisodes()));
 
-        sa.assertTrue(Validate.asBoolean(mi.getIsFollowed()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.is_followed", mi.getIsFollowed()));
+        if(mi.getIsFollowed() != null)
+            sa.assertTrue(Validate.asBoolean(mi.getIsFollowed()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.is_followed", mi.getIsFollowed()));
 
-        sa.assertTrue(Validate.asNum(mi.getFanCount()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.fan_count", mi.getFanCount()));
+        if(mi.getFanCount() != null)
+            sa.assertTrue(Validate.asNum(mi.getFanCount()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.fan_count", mi.getFanCount()));
 
         ArtistMap artistMap = mi.getArtistMap();
 
@@ -86,16 +109,14 @@ public class ShowDetailsValidator extends EntityValidator {
 
         EditorsNote en = mi.getEditorsNote();
 
-        sa.assertTrue(Validate.asString(en.getTitle()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.editors_note.title", en.getTitle()));
+        if(en != null)
+            new EditorsNoteValidator().validate(en, sa, "show", showDetails.getId());
 
-        sa.assertTrue(Validate.asString(en.getMessage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.editors_note.message", en.getMessage()));
+        if(mi.getYear() != null)
+            sa.assertTrue(Validate.asNum(mi.getYear()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.year", mi.getYear()));
 
-        sa.assertTrue(Validate.asUrl(en.getImage()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.editors_note.image", en.getImage()));
-
-
-        sa.assertTrue(Validate.asNum(mi.getYear()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.year", mi.getYear()));
-
-        sa.assertTrue(Validate.asString(mi.getBadge()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.badge", mi.getBadge()));
+        if(mi.getBadge() != null)
+            sa.assertTrue(Validate.asString(mi.getBadge()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.badge", mi.getBadge()));
     }
 
 }
