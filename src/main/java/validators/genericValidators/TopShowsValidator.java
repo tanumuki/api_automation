@@ -14,8 +14,11 @@ public class TopShowsValidator {
 
         sa.assertTrue(Validate.asString(topShows.getBadge()), AssertionMsg.print(className, methodName, "topshows.badge", topShows.getBadge()));
 
-        sa.assertFalse(topShows.getLast_page(), AssertionMsg.print(className, methodName, "topshows.last_page", String.valueOf(topShows.getLast_page())));
-
+        if(topShows.getLast_page())
+            sa.assertTrue(topShows.getLast_page() , AssertionMsg.print(className, methodName, "topshows.last_page", String.valueOf(topShows.getLast_page())));
+        else
+            sa.assertFalse(topShows.getLast_page() , AssertionMsg.print(className, methodName, "topshows.last_page", String.valueOf(topShows.getLast_page())));
+        
         for(ShowDetails show : topShows.getShows()) {
             new ShowDetailsValidator().validate(show, sa);
         }

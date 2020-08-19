@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class ContentGetTopShows {
+public class TopShows {
     @JsonProperty("badge")
     private String badge;
 
