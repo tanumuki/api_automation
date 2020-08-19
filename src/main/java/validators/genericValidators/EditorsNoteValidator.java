@@ -17,6 +17,6 @@ public class EditorsNoteValidator {
             sa.assertTrue(Validate.asString(en.getMessage()), AssertionMsg.print(className, methodName, entityType, "more_info.editors_note.message", en.getMessage(), entityId));
 
         if(en.getImage() != null)
-            sa.assertTrue(Validate.asUrl(en.getImage()), AssertionMsg.print(className, methodName, entityType, "more_info.editors_note.image", en.getImage(), entityId));
+            sa.assertTrue(Validate.asCDNURL(en.getImage()), AssertionMsg.print(className, methodName, entityType, "more_info.editors_note.image", en.getImage(), entityId));
     }
 }

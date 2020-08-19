@@ -15,7 +15,7 @@ public class GenreValidator {
         }
 
         if(g.getImage() != null){
-            sa.assertTrue(Validate.asUrl(g.getImage()), AssertionMsg.print(className, methodName, "genre.image", g.getImage()));
+            sa.assertTrue(Validate.asCDNURL(g.getImage()), AssertionMsg.print(className, methodName, "genre.image", g.getImage()));
         }
 
         if(g.getTitle() != null){
