@@ -25,13 +25,14 @@ public class EntityValidator {
 		if(adObj.getSubtitle() != null)
 			sa.assertTrue(Validate.asString(adObj.getSubtitle()), AssertionMsg.print(className, methodName, adObj.getType(),"Subtitle", adObj.getSubtitle(), adObj.getId()));
 		if(adObj.getType() != null)
+//			TODO Ashwin: Need to add a custom validator for the "type" field that will validate across all entity classes: artist, song, album, etc
 			sa.assertTrue(Validate.asString(adObj.getType()), AssertionMsg.print(className, methodName, adObj.getType(),"Type", adObj.getType(), adObj.getId()));
 		if(adObj.getPermaUrl() != null)
-			sa.assertTrue(Validate.asUrl(adObj.getPermaUrl()), AssertionMsg.print(className, methodName, adObj.getType(),"perma_url", adObj.getPermaUrl(), adObj.getId()));
+			sa.assertTrue(Validate.asPermaURL(adObj.getPermaUrl()), AssertionMsg.print(className, methodName, adObj.getType(),"perma_url", adObj.getPermaUrl(), adObj.getId()));
 		if(adObj.getImage() != null)
-			sa.assertTrue(Validate.asUrl(adObj.getImage()), AssertionMsg.print(className, methodName, adObj.getType(),"image", adObj.getImage(), adObj.getId()));
+			sa.assertTrue(Validate.asCDNURL(adObj.getImage()), AssertionMsg.print(className, methodName, adObj.getType(),"image", adObj.getImage(), adObj.getId()));
 		if(adObj.getLanguage() != null)
-			sa.assertTrue(Validate.asString(adObj.getLanguage()), AssertionMsg.print(className, methodName,adObj.getType(), "language", adObj.getLanguage(), adObj.getId()));
+			sa.assertTrue(Validate.asMusicLanguage(adObj.getLanguage()), AssertionMsg.print(className, methodName,adObj.getType(), "language", adObj.getLanguage(), adObj.getId()));
 		if(adObj.getYear() != null)
 			sa.assertTrue(Validate.asNum(adObj.getYear()), AssertionMsg.print(className, methodName, adObj.getType(),"year", adObj.getYear(), adObj.getId()));
 		if(adObj.getPlayCount() != null)
@@ -58,16 +59,17 @@ public class EntityValidator {
 			sa.assertTrue(Validate.asString(adObj.getSubtitle()), AssertionMsg.print(className, methodName, sourceType,"Subtitle", adObj.getSubtitle(), sourceEntity));
 
 		if(adObj.getType() != null)
+//			TODO Ashwin: Need to add a custom validator for the "type" field that will validate across all entity classes: artist, song, album, etc
 			sa.assertTrue(Validate.asString(adObj.getType()), AssertionMsg.print(className, methodName, sourceType,"Type", adObj.getType(), sourceEntity));
 
 		if(adObj.getPermaUrl() != null)
-			sa.assertTrue(Validate.asUrl(adObj.getPermaUrl()), AssertionMsg.print(className, methodName, sourceType,"perma_url", adObj.getPermaUrl(), sourceEntity));
+			sa.assertTrue(Validate.asPermaURL(adObj.getPermaUrl()), AssertionMsg.print(className, methodName, sourceType,"perma_url", adObj.getPermaUrl(), sourceEntity));
 
 		if(adObj.getImage() != null)
-			sa.assertTrue(Validate.asUrl(adObj.getImage()), AssertionMsg.print(className, methodName, sourceType,"image", adObj.getImage(), sourceEntity));
+			sa.assertTrue(Validate.asCDNURL(adObj.getImage()), AssertionMsg.print(className, methodName, sourceType,"image", adObj.getImage(), sourceEntity));
 
 		if(adObj.getLanguage() != null)
-			sa.assertTrue(Validate.asString(adObj.getLanguage()), AssertionMsg.print(className, methodName,sourceType, "language", adObj.getLanguage(), sourceEntity));
+			sa.assertTrue(Validate.asMusicLanguage(adObj.getLanguage()), AssertionMsg.print(className, methodName,sourceType, "language", adObj.getLanguage(), sourceEntity));
 
 		if(adObj.getYear() != null)
 			sa.assertTrue(Validate.asNum(adObj.getYear()), AssertionMsg.print(className, methodName, sourceType,"year", adObj.getYear(), sourceEntity));

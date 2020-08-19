@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 import pojos.Artist.SimilarArtists;
 import pojos.Artist.ArtistURLs;
+import pojos.Artist.TopAlbums;
+import pojos.Artist.TopSongs;
 
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class Artist extends Entity{
 	@JsonProperty("follower_count")
 	private String follower_count;
 	@JsonProperty("isVerified")
-	private String isVerified;
+	private Boolean isVerified;
 	@JsonProperty("dominantLanguage")
 	private String dominantLanguage;
 	@JsonProperty("dominantType")

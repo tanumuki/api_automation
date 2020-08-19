@@ -75,11 +75,11 @@ public class SearchResponseValidator {
 			sa.assertTrue(Validate.asString(data.getType()),
 					assertionMsg(methodName, entityType, "type", data.getType()));
 
-			sa.assertTrue(Validate.asUrl(data.getImage()),
+			sa.assertTrue(Validate.asCDNURL(data.getImage()),
 					assertionMsg(methodName, entityType, "image", data.getImage()));
 			
 			if(!entityType.equals("artist")) {
-				sa.assertTrue(Validate.asUrl(data.getPermaUrl()),
+				sa.assertTrue(Validate.asString(data.getPermaUrl()),
 						assertionMsg(methodName, entityType, "perma_url", data.getPermaUrl()));
 				
 				sa.assertTrue(Validate.asString(data.getExplicitContent()),
@@ -135,7 +135,7 @@ public class SearchResponseValidator {
 						assertionMsg(methodName, entityType, "vcode", moreInfoObj.getVcode()));
 
 			if (moreInfoObj.getVlink() != null)
-				sa.assertTrue(Validate.asString(moreInfoObj.getVlink()),
+				sa.assertTrue(Validate.asVlinkURL(moreInfoObj.getVlink()),
 						assertionMsg(methodName, entityType, "vlink", moreInfoObj.getVlink()));
 
 			sa.assertTrue(Validate.asString(moreInfoObj.getPrimaryArtists()),
@@ -149,7 +149,7 @@ public class SearchResponseValidator {
 			sa.assertTrue(Validate.asString(moreInfoObj.getUsername()),
 					assertionMsg(methodName, entityType, "username", moreInfoObj.getUsername()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getLanguage()),
+			sa.assertTrue(Validate.asMusicLanguage(moreInfoObj.getLanguage()),
 					assertionMsg(methodName, entityType, "language", moreInfoObj.getLanguage()));
 
 			if (moreInfoObj.getUid() != null)
@@ -184,7 +184,7 @@ public class SearchResponseValidator {
 		}
 
 		if (entityType.equalsIgnoreCase("playlist") || entityType.equalsIgnoreCase("album")) {
-			sa.assertTrue(Validate.asString(moreInfoObj.getLanguage()),
+			sa.assertTrue(Validate.asMusicLanguage(moreInfoObj.getLanguage()),
 					assertionMsg(methodName, entityType, "language", moreInfoObj.getLanguage()));
 		}
 	}

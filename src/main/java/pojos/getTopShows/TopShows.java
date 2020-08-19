@@ -13,13 +13,12 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class TopShows {
+public class ContentGetTopShows {
     @JsonProperty("badge")
     private String badge;
 
     @JsonProperty("shows")
     private List<ShowDetails> shows;
-
     @JsonProperty("last_page")
     private Boolean last_page;
 }
