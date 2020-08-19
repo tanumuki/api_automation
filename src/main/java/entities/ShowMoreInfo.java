@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @Getter
 @Setter
@@ -65,4 +67,9 @@ public class ShowMoreInfo {
     private String year;
     @JsonProperty("badge")
     private String badge;
+    @JsonProperty("category_tags")
+    private List<String> category_tags;
+    @JsonProperty("sub_category_tags")
+    private List<String> sub_category_tags;
+
 }

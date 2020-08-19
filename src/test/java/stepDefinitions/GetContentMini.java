@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
-import entities.ContentMini;
+import entities.PlaylistMini;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,7 +19,7 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import enums.StatusCode;
-import validators.ContentMiniValidator;
+import validators.PlaylistMiniValidator;
 
 import java.io.IOException;
 import java.util.List;
@@ -63,10 +63,10 @@ public class GetContentMini extends Util {
     public void user_should_successfully_validate_the_Get_All_contents_response() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        List<ContentMini> contentMinis = mapper.readValue(resp.asString(), new TypeReference<List<ContentMini>>() {});
+        List<PlaylistMini> contentMinis = mapper.readValue(resp.asString(), new TypeReference<List<PlaylistMini>>() {});
         SoftAssert sa = new SoftAssert();
-        for(ContentMini ch : contentMinis) {
-            new ContentMiniValidator().validate(ch, sa);
+        for(PlaylistMini ch : contentMinis) {
+            new PlaylistMiniValidator().validate(ch, sa);
         }
         sa.assertAll();
     }
