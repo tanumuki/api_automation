@@ -21,7 +21,7 @@ public class RadioStationValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "radio_station", "radio_station.more_info.description", mi.getDescription(), station.getId() ));
 
         if(mi.getFeaturedStationType() != null)
-            sa.assertTrue(Validate.asString(mi.getFeaturedStationType()), AssertionMsg.print(className, methodName, "radio_station", "radio_station.more_info.featured_station_type", mi.getFeaturedStationType(), station.getId() ));
+            sa.assertTrue(Validate.asFeaturedStationType(mi.getFeaturedStationType()), AssertionMsg.print(className, methodName, "radio_station", "radio_station.more_info.featured_station_type", mi.getFeaturedStationType(), station.getId() ));
 
         if(mi.getQuery() != null)
             sa.assertTrue(Validate.asString(mi.getQuery()), AssertionMsg.print(className, methodName, "radio_station", "radio_station.more_info.query", mi.getQuery(), station.getId() ));
