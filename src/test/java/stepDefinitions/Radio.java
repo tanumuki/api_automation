@@ -63,14 +63,9 @@ public class Radio extends Util {
 
 			res.queryParam("query", data.get(0).get("query"));
 			res.queryParam("name", data.get(0).get("name"));
+			res.queryParam("language", data.get(0).get("language"));
 			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 
-//			
-//			if(resource.equals("webradio.getSong")){
-//				res.queryParam("next",data.get(0).get("next") );
-//				res.queryParam("stationid", stationId);
-//				resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
-//			}
 
 		}
 	}
@@ -133,11 +128,27 @@ public class Radio extends Util {
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);		
-		//pojos.radio.Radio radio = objectMapper.readValue(resp.asString(), Radio.class);
-		//new RadioValidator().validateRadio(radio, sa);
+		entities.Radio  radio = objectMapper.readValue(resp.asString(),entities.Radio.class);
+		new RadioValidator().validateRadio(radio, stationId, sa);
 		sa.assertAll();
 		
 		
 	}
+	
+	@Then("Validate the artist in radio station response")
+	public void validate_the_artist_in_radio_station_response() throws JsonMappingException, JsonProcessingException {
+	   
+		System.out.println("Radio response" + resp.getBody().asString());
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);		
+		entities.Radio  radio = objectMapper.readValue(resp.asString(),entities.Radio.class);
+		new RadioValidator().validateRadio(radio, stationId, sa);
+		
+		
+		
+	}
+
 
 }

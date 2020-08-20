@@ -22,7 +22,7 @@ public class AlbumValidator extends EntityValidator {
 	final String className = SongValidator.class.getName();
 	
 	public void validate(Album album, SoftAssert sa) {
-	
+		
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		
 		super.validate(album, sa);

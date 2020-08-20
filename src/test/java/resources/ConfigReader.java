@@ -80,4 +80,9 @@ public class ConfigReader {
         if(userId != null) return userId;
         else throw new RuntimeException("user_Id not specified in the Configuration.properties file.");
     }
+    public String getUserAgent() {
+        String userAgent = properties.getProperty("userAgent");
+        if(userAgent != null) return userAgent;
+        else throw new RuntimeException("userAgent not specified in the Configuration.properties file.");
+    }
 }

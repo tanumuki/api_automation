@@ -2,10 +2,14 @@ package validators.genericValidators;
 
 import entities.Entity;
 import entities.Rights;
+import lombok.extern.slf4j.Slf4j;
+
+
 import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 
+@Slf4j
 public class RightsValidator {
     final String className = SongValidator.class.getName();
     public void validate(Rights rights, SoftAssert sa, String sourceType, String sourceId) {
@@ -24,5 +28,7 @@ public class RightsValidator {
 
         sa.assertTrue(Validate.asString(rights.getReason()), AssertionMsg.print(className, methodName,
                 sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
+		log.info("Rights Validation done for "+sourceId+ "and "+sourceType);
+
     }
 }
