@@ -69,6 +69,12 @@ public class HomepageDataValidator {
         }
     }
 
+    void validateUserState(HomePageDataV2 hd, SoftAssert sa) {
+        System.out.println("=====Validating User state======");
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+    }
+
 
     public void validateNewTrending(HomePageDataV2 hd, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
