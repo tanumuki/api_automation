@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Getter
@@ -16,4 +18,6 @@ public class RadioStation extends Entity {
 
     @JsonProperty("mini_obj")
     private Boolean mini_obj;
+
+
 }

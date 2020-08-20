@@ -12,7 +12,7 @@ public class ContentGetTopShows {
     public void validate(TopShows shows, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         sa.assertTrue(Validate.asString(shows.getBadge()), AssertionMsg.print(className, methodName, "show", "topShows.badge", shows.getBadge() ));
-        for(ShowDetails show : shows.getShows()) {
+        for(ShowDetails show : shows.getData()) {
             new ShowDetailsValidator().validate(show, sa);
         }
     }
