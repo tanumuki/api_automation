@@ -6,7 +6,7 @@ package validators.genericValidators;
 import org.testng.asserts.SoftAssert;
 
 import entities.Entity;
-import jdk.internal.org.jline.utils.Log;
+
 import lombok.extern.slf4j.Slf4j;
 import validators.AssertionMsg;
 import validators.RadioValidator;

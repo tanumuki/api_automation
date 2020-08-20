@@ -37,7 +37,7 @@ public class HomepageDataValidator {
         System.out.println("=====Validating Radio======");
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         Radio radio = hd.getRadio();
-        for(RadioStation station : radio.getFeaturedStations()) {
+        for(RadioStation station : radio.getFeatured_stations()) {
             new RadioStationValidator().validate(station, sa);
         }
     }
@@ -67,6 +67,12 @@ public class HomepageDataValidator {
         for(Genre genre : hd.getGenres()) {
             new GenreValidator().validate(genre, sa);
         }
+    }
+
+    void validateUserState(HomePageDataV2 hd, SoftAssert sa) {
+        System.out.println("=====Validating User state======");
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
     }
 
 

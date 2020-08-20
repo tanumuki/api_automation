@@ -3,6 +3,7 @@ package stepDefinitions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cookieManager.GetCookies;
 import endPoints.APIResources;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -29,6 +30,7 @@ public class GetHomePageDataV2 extends Util {
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     Response resp;
+    String cookie = "";
 
     @Given("Payload with endpoint GetHomepageDataV2 {string}")
     public void payload_with_endpoint_GetHomepageDataV2(String endpoint) throws IOException {
@@ -64,5 +66,27 @@ public class GetHomePageDataV2 extends Util {
         new HomepageDataValidator().validate(home, sa);
         sa.assertAll();
     }
+
+    @Given("Payload with endpoint GetHomepageDataV2 {string} along with the credentials")
+    public void payload_with_endpoint_GetHomepageDataV2_along_with_the_credentials(String endpoint) throws IOException {
+        APIResources resourceAPI = APIResources.valueOf(endpoint);
+        String username = ConfigReader.getInstance().getUsername();
+        String password = ConfigReader.getInstance().getPassword();
+        cookie = GetCookies.initCookies(username, password);
+        String resource = resourceAPI.getResource();
+        System.out.println("resource: " + resource);
+        System.out.println("cookie: " + cookie);
+        reqSpec = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+    }
+
+    @Then("Get homepage data api response must be validated successfully with user state as logged in")
+    public void get_homepage_data_api_response_must_be_validated_successfully_with_user_state_as_logged_in() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        HomePageDataV2 home = mapper.readValue(resp.asString(), HomePageDataV2.class);
+        SoftAssert sa = new SoftAssert();
+        new HomepageDataValidator().validate(home, sa);
+        sa.assertAll();
+    }
+
 
 }
