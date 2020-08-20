@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
-import entities.ShowDetails;
+import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,37 +14,35 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
-import pojos.getTopShows.TopShows;
 import resources.ConfigReader;
 import resources.Util;
-import enums.StatusCode;
-import validators.genericValidators.TopShowsValidator;
-import validators.showGetHome.ShowDetailsValidator;
+import validators.ChannelGetDetails.ChannelGetDetailsValidator;
+
 
 import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class ContentGetTopShows extends Util {
+public class ChannelGetDetails extends Util {
 
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     Response resp;
-    boolean lastPageCheck;
 
-    @Given("Payload with endpoint content get top shows {string}")
-    public void payload_with_endpoint_content_get_top_shows(String endpoint) throws IOException {
+    @Given("Payload with Channel get details api {string}")
+    public void payload_with_Channel_get_details_api(String endpoint) throws IOException {
         APIResources resourceAPI = APIResources.valueOf(endpoint);
         String resource = resourceAPI.getResource();
         System.out.println("resource: " + resource);
         reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
     }
 
-    @When("User calls get top shows api")
-    public void user_calls_get_top_shows_api() {
+    @When("User calls the channel get details with given {string}")
+    public void user_calls_the_channel_get_details_with_given(String channel_id) {
         resSpec = new ResponseSpecBuilder().expectStatusCode(200)
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
+        reqSpec.queryParam("channel_id", channel_id);
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
         System.out.println("Aswin response: " + resp.asString());
@@ -52,30 +50,19 @@ public class ContentGetTopShows extends Util {
         logResponseTime(resp);
     }
 
-    @When("User calls get top shows api with {string} and {string}")
-    public void user_calls_get_top_shows_api_with_and(String page_no, String items_per_page) {
-        resSpec = new ResponseSpecBuilder().expectStatusCode(200)
-                .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-        System.out.println("resSpec: " + resSpec.toString());
-        reqSpec.queryParam("n", items_per_page);
-        reqSpec.queryParam("p", page_no);
-        resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
-    }
-
-    @Then("Get top shows must respond with status code {string}")
-    public void get_top_shows_must_respond_with_status_code(String statusCode) {
+    @Then("Channel get details api must respond with status {string}")
+    public void channel_get_details_api_must_respond_with_status(String statusCode) {
         StatusCode code = StatusCode.valueOf(statusCode);
         int resource = code.getResource();
         assertEquals(resp.getStatusCode(), resource);
     }
 
-    @Then("Get top shows api response must be validated successfully")
-    public void get_top_shows_api_response_must_be_validated_successfully() throws JsonProcessingException {
+    @Then("Channel get details api response must be validated successfully")
+    public void channel_get_details_api_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        TopShows shows = mapper.readValue(resp.asString(), TopShows.class);
+        pojos.channelGetDetailsPojos.ChannelGetDetails chanDets = mapper.readValue(resp.asString(), pojos.channelGetDetailsPojos.ChannelGetDetails.class);
         SoftAssert sa = new SoftAssert();
-        new TopShowsValidator().validate(shows, sa);
+        new ChannelGetDetailsValidator().validate(chanDets, sa);
         sa.assertAll();
     }
 

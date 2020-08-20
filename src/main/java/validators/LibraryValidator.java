@@ -120,7 +120,7 @@ public class LibraryValidator {
 
 		System.out.println("al res" +albumResponse);
 		List<Song> albums = album.getList();
-			for(int i=0;i<albums.size(); i++) {			
+		for(int i=0;i<albums.size(); i++) {
 				albumObjectSet.add(albums.get(i).getId());				
 			}
 			//Adding the song to album's object

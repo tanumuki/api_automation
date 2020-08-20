@@ -8,10 +8,10 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class ContentMini extends Entity {
+public class PlaylistMini extends Entity {
 
     @JsonProperty("more_info")
-    private ContentMiniMoreInfo moreInfo;
+    private PlaylistMiniMoreInfo moreInfo;
 
     @JsonProperty("mini_obj")
     private Boolean mini_obj;

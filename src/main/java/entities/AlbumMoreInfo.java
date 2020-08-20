@@ -32,5 +32,7 @@ public class AlbumMoreInfo {
 	private String songCount;
 	@JsonProperty("copyright_text")
 	private String copyrightText;
+	@JsonProperty("release_date")
+	private String release_date;
 
 }

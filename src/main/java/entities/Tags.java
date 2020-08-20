@@ -15,11 +15,11 @@ import java.util.List;
 public class Tags {
 
     @JsonProperty("seasonality")
-    private List<Object> seasonality;
+    private List<String> seasonality;
     @JsonProperty("situation")
-    private List<Object> situation;
+    private List<String> situation;
     @JsonProperty("mood")
-    private List<Object> mood;
+    private List<String> mood;
     @JsonProperty("genre")
-    private List<Object> genre;
+    private List<String> genre;
 }
