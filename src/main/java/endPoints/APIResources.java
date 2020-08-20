@@ -29,7 +29,8 @@ public enum APIResources {
 	GetArtistPageDetailsAPI("artist.getArtistPageDetails"),
 	GetArtistMoreSongs("artist.getArtistMoreSong"),
 	GetArtistMoreAlbums("artist.getArtistMoreAlbum"),
-	GetArtistSimilarArtists("artist.getSimilarArtists");
+	GetArtistSimilarArtists("artist.getSimilarArtists"),
+	PlaylistCreate("playlist.create");
 
 
 	private String resource;

@@ -10,6 +10,7 @@ import entities.ArtistMap;
 import entities.Rights;
 import entities.Song;
 import entities.SongMoreInfo;
+import lombok.extern.slf4j.Slf4j;
 import validators.AssertionMsg;
 import validators.Validate;
 
@@ -17,6 +18,7 @@ import validators.Validate;
  * @author aswingokulachandran
  *
  */
+@Slf4j
 public class SongValidator extends EntityValidator {
 	final String className = SongValidator.class.getName();
 
@@ -99,6 +101,9 @@ public class SongValidator extends EntityValidator {
 			sa.assertTrue(Validate.asString(moreInfo.getReleaseDate()), AssertionMsg.print(className, methodName,
 					songObj.getType(), "more_info.release_date", moreInfo.getReleaseDate(), songObj.getId()));
 		}
+		
+		log.info("More Info Validation done!");
+
 	}
 
 	void validateRights(Song songObj, SoftAssert sa) {

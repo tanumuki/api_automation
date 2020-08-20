@@ -6,13 +6,17 @@ package validators.genericValidators;
 import org.testng.asserts.SoftAssert;
 
 import entities.Entity;
+import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
 import validators.AssertionMsg;
+import validators.RadioValidator;
 import validators.Validate;
 
 /**
  * @author aswingokulachandran
  *
  */
+@Slf4j
 public class EntityValidator {
 	final String className = EntityValidator.class.getName();
 	
@@ -87,6 +91,7 @@ public class EntityValidator {
 			sa.assertTrue(Validate.asString(adObj.getListType()), AssertionMsg.print(className, methodName,sourceType, "list_type", adObj.getListType(), sourceEntity));
 		
 		
+		log.info("Entity Validation done for "+sourceEntity+ "and "+sourceType);
 	}
 
 }
