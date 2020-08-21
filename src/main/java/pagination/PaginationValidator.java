@@ -1,7 +1,5 @@
 package pagination;
 
-import entities.AlbumMiniObject;
-import entities.Song;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

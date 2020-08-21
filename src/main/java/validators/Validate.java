@@ -32,6 +32,23 @@ public class Validate {
             return false;
         }
     }
+
+    /**
+     * Use this to verify floating point numbers.
+     * @param floatingPtNumber
+     * @return
+     */
+    public static boolean asFloat(String floatingPtNumber) {
+        try {
+            Float number = Float.parseFloat(floatingPtNumber);
+            return true;
+        }
+
+        catch(NumberFormatException | NullPointerException ex) {
+            return false;
+        }
+    }
+
     /*
      * Validate timestamp
      */
