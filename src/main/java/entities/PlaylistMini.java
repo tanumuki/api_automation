@@ -12,7 +12,8 @@ public class PlaylistMini extends Entity {
 
     @JsonProperty("more_info")
     private PlaylistMiniMoreInfo moreInfo;
-
+    @JsonProperty("list")
+    private String list;
     @JsonProperty("mini_obj")
     private Boolean mini_obj;
 

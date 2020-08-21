@@ -8,7 +8,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class Episode extends Entity{
+public class EpisodeMini extends Entity{
 
     @JsonProperty("list")
     private String list;

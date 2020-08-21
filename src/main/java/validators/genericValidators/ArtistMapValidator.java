@@ -38,7 +38,7 @@ public class ArtistMapValidator {
 	public void validate(Artist artist, SoftAssert sa, String artistType, String sourceType, String sourceEntity) {
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-		sa.assertTrue(Validate.asId(artist.getId()), AssertionMsg.print(className, methodName, sourceType,
+		sa.assertTrue(Validate.asId(artist.getId().trim()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.id", artist.getId(), sourceEntity));
 
 		sa.assertTrue(Validate.asString(artist.getName()), AssertionMsg.print(className, methodName, sourceType,
