@@ -27,5 +27,7 @@ public class Album extends Entity {
 	private java.util.List<Song> list = null;
 	@JsonProperty("more_info")
 	private AlbumMoreInfo moreInfo;
+	@JsonProperty("modules")
+	private Modules modules;
 
 }

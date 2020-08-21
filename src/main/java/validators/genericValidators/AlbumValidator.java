@@ -3,13 +3,10 @@
  */
 package validators.genericValidators;
 
+
+import entities.*;
 import org.testng.asserts.SoftAssert;
 
-import entities.Album;
-import entities.AlbumMoreInfo;
-import entities.Artist;
-import entities.ArtistMap;
-import entities.Song;
 import validators.AssertionMsg;
 import validators.Validate;
 
@@ -50,6 +47,12 @@ public class AlbumValidator extends EntityValidator {
 		for(Artist artist : artistMap.getArtists()) {
 			new ArtistMapValidator().validate(artist, sa, "artists", "album", album.getId());
 		}
+
+		Modules modules = album.getModules();
+		if(modules != null)
+			new ModulesValidator().validate(modules, sa);
+
+
 	}
 
 }
