@@ -126,10 +126,10 @@ public class SongValidator extends EntityValidator {
             sa.assertTrue(Validate.asNum(geo_rule), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.geo_rules", geo_rule, songObj.getId()));
         }
-        sa.assertTrue(Validate.asUrl(moreInfo.getSquare_image_url()), AssertionMsg.print(className, methodName,
+        sa.assertTrue(Validate.asCDNURL(moreInfo.getSquare_image_url()), AssertionMsg.print(className, methodName,
                 songObj.getType(), "more_info.square_image_url", moreInfo.getSquare_image_url(), songObj.getId()));
 
-        sa.assertTrue(Validate.asUrl(moreInfo.getSquare_image()), AssertionMsg.print(className, methodName,
+        sa.assertTrue(Validate.asCDNURL(moreInfo.getSquare_image()), AssertionMsg.print(className, methodName,
                 songObj.getType(), "more_info.square_image", moreInfo.getSquare_image(), songObj.getId()));
 
         sa.assertTrue(Validate.asNum(moreInfo.getLabel_id()), AssertionMsg.print(className, methodName,
@@ -156,7 +156,7 @@ public class SongValidator extends EntityValidator {
         sa.assertTrue(Validate.asString(moreInfo.getAd_breaks()), AssertionMsg.print(className, methodName,
                 songObj.getType(), "more_info.ad_breaks", moreInfo.getAd_breaks(), songObj.getId()));
 
-        sa.assertTrue(Validate.asUrl(moreInfo.getShow_url()), AssertionMsg.print(className, methodName,
+        sa.assertTrue(Validate.asExternalURL(moreInfo.getShow_url()), AssertionMsg.print(className, methodName,
                 songObj.getType(), "more_info.show_url", moreInfo.getShow_url(), songObj.getId()));
 
 

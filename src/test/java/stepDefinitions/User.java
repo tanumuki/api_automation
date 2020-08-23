@@ -64,6 +64,7 @@ public class User extends Util {
                 .extract()
                 .response();
         logResponseTime(resp);
+        System.out.println(resp.asString());
     }
 
     @Then("The User Update API returns {string} with status code {int}")
