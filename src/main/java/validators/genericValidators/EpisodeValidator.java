@@ -8,12 +8,29 @@ import validators.Validate;
 public class EpisodeValidator extends EntityValidator {
     final String className = SongValidator.class.getName();
 
+    /**
+     * Entity validation for episode object
+     * @param episode
+     * @param sa
+     */
     public void validate(Episode episode, SoftAssert sa) {
         super.validate(episode, sa);
-
-
     }
 
+    /**
+     * Entity validation for episode mini object
+     * @param episodeMini
+     * @param sa
+     */
+    public void validate(EpisodeMini episodeMini, SoftAssert sa) {
+        super.validate(episodeMini, sa);
+    }
+
+    /**
+     * More info validation for episode object
+     * @param episode
+     * @param sa
+     */
     public void validateMoreInfo(Episode episode, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         EpisodeMoreInfo mi = episode.getMoreInfo();
@@ -84,7 +101,28 @@ public class EpisodeValidator extends EntityValidator {
                 sa.assertTrue(Validate.asString(tag), AssertionMsg.print(className, methodName, "episode", "episode.more_info.seasonality_tag", tag, episode.getId()));
             }
         }
+    }
 
+    /**
+     * More info validation for episode mini object
+     * @param epMini
+     * @param sa
+     */
+    private void validateMoreInfoEpisodeMini(EpisodeMini epMini, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        EpisodeMoreInfo mi = epMini.getMoreInfo();
+
+        sa.assertTrue(Validate.asFloat(mi.getWeight()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.weight", mi.getWeight(), epMini.getId()));
+        sa.assertTrue(Validate.asNum(mi.getSeasonNumber()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.season_number", mi.getSeasonNumber(), epMini.getId()));
+        sa.assertTrue(Validate.asNum(mi.getShowId()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.show_id", mi.getShowId(), epMini.getId()));
+        sa.assertTrue(Validate.asNum(mi.getSeasonId()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.season_id", mi.getSeasonId(), epMini.getId()));
+        sa.assertTrue(Validate.asString(mi.getShowTitle()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.show_title", mi.getShowTitle(), epMini.getId()));
+        sa.assertTrue(Validate.asString(mi.getSeasonTitle()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.season_title", mi.getSeasonTitle(), epMini.getId()));
+        sa.assertTrue(Validate.asString(mi.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.encrypted_media_url", mi.getEncryptedMediaUrl(), epMini.getId()));
+        sa.assertTrue(Validate.asNum(mi.getEpisodeNumber()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.episode_number", mi.getEpisodeNumber(), epMini.getId()));
+
+        Rights rights = mi.getRights();
+        new RightsValidator().validate(rights, sa, "episode", epMini.getId());
 
     }
 }

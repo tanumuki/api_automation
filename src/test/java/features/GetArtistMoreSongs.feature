@@ -1,4 +1,4 @@
-Feature: Validating Artist More Songs details
+Feature: Get Artist More Songs
 
 	Scenario Outline: Get Artist More Songs for an Artist
 

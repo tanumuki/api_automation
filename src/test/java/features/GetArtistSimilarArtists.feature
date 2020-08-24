@@ -1,4 +1,4 @@
-Feature: Validating Similar artists for a given artist
+Feature: Get Artist Similar Artists
 
 	Scenario Outline: Get Similar artists for an Artist
 

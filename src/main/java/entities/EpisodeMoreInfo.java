@@ -13,6 +13,8 @@ public class EpisodeMoreInfo {
 
     @JsonProperty("duration")
     private String duration;
+    @JsonProperty("weight")
+    private String weight;
     @JsonProperty("geo_rules")
     private List<Integer> geoRules = null;
     @JsonProperty("square_image_url")
@@ -25,6 +27,8 @@ public class EpisodeMoreInfo {
     private String description;
     @JsonProperty("season_no")
     private String seasonNo;
+    @JsonProperty("season_number")
+    private String seasonNumber;
     @JsonProperty("show_id")
     private String showId;
     @JsonProperty("season_id")
