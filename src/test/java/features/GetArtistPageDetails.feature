@@ -1,4 +1,4 @@
-Feature: Validating Artist Page details
+Feature: Get Artist Page Details
 
 	Scenario Outline: Get Artist page details for an artist
 

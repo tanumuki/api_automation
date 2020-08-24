@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
+import entities.AlbumMiniObject;
+import entities.Artist;
 import entities.AssortedEntities;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -16,10 +18,14 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
+import pagination.PaginationValidator;
 import resources.ConfigReader;
 import resources.Util;
+import validators.ArtistValidator.ArtistPageValidator;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -68,7 +74,34 @@ public class ContentGetTrending extends Util {
 
     }
     @Then("Pagination for Content Get Trending API should return the requested content with startindex {int}, pagesize {int}, max pages {int}")
-    public void pagination_for_Content_Get_Trending_API_should_return_the_requested_content_with_startindex_pagesize_max_pages(int startindex, int pagesize, int maxNumberOfPages) {
+    public void pagination_for_Content_Get_Trending_API_should_return_the_requested_content_with_startindex_pagesize_max_pages(int startindex, int pagesize, int maxNumberOfPages) throws IOException {
+
+        List<String> paginatedList = new ArrayList<String>();
+        for (int i = startindex; i < maxNumberOfPages; i++) {
+
+//            Reset the request spec and construct a new one with pagination parameters
+            reqSpec = null;
+            reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), this.apiResource));
+            reqSpec.queryParam("page", i);
+            reqSpec.queryParam("size", pagesize);
+
+//            Reset the response spec and get a new one
+            resp = null;
+            resp = reqSpec.given().when().get("/api.php").then().extract().response();
+            assertEquals(resp.getStatusCode(), this.statusCodeResource);
+
+//            Validate the paginated responses
+            SoftAssert sa = new SoftAssert();
+
+//            Pass the list of IDs as an argument to the validator
+            PaginationValidator pgv = new PaginationValidator();
+            paginatedList = AssortedEntities.getValuesForAllKeys(resp, "id");
+            sa.assertTrue(pgv.paginationDuplicateValidator(paginatedList),
+                    "Found duplicate entities in paginated responses for content.GetTrending");
+
+            sa.assertAll();
+            sa = null;
+        }
 
     }
 }

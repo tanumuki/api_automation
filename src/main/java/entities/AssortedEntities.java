@@ -13,6 +13,7 @@ import validators.genericValidators.AlbumMiniValidator;
 import validators.genericValidators.EpisodeValidator;
 import validators.genericValidators.SongValidator;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -65,6 +66,24 @@ public class AssortedEntities {
 
     }
 
+    /**
+     * This method will return all the values of the requested `key` from the JSON Array.
+     * See sample implementation in ContentGetTrending pagination step
+     * @param response
+     * @param key
+     * @return
+     */
+    public static List<String> getValuesForAllKeys(Response response, String key) {
+        List<LinkedHashMap> entityList = response.jsonPath().getJsonObject("$");
+        List<String> valueList = new ArrayList<String>();
+        String keyValue;
 
+        for (LinkedHashMap item : entityList) {
+            keyValue = item.get(key).toString();
+//            System.out.println("Adding: " + key + " Value: " + keyValue);
+            valueList.add(keyValue);
+        }
 
+        return valueList;
+    }
 }

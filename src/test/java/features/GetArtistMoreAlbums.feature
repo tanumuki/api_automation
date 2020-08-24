@@ -1,4 +1,4 @@
-Feature: Validating Artist More Albums details
+Feature: Get Artist More Albums
 
 	Scenario Outline: Get Artist More Albums for an Artist
 
