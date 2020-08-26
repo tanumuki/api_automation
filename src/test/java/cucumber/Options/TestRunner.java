@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions (
-		features = "src/test/java/features/RadioValidation.feature",
+		features = "src/test/java/features",
 		glue = {"stepDefinitions"},
 		plugin = {"pretty", "html:target/cucumberReports", "rerun:target/rerun.txt", "json:target/jsonReport.json","timeline:target/timelineReport"}
 
