@@ -32,6 +32,8 @@ import io.restassured.specification.RequestSpecification;
 public class Util {
 	
 	public static RequestSpecification  request ;
+	public static final TestContext testContext = new TestContext();
+
 	
 	public RequestSpecification requestSpecification(String ctx, String endPoint) throws IOException {
 		

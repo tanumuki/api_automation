@@ -40,9 +40,9 @@ public class Radio extends Util {
 	Response resp;
 	String resource;
 	static String stationId = "";
-	static final TestContext testContext = new TestContext();
 	public ScenarioContext scenarioContext;
-
+	
+	
 	@Given("Create the artist station with endpoint {string}")
 	public void create_the_artist_station_with_endpoint(String endPoint) throws IOException {
 
