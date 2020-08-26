@@ -95,7 +95,6 @@ public class Validate {
     /* DEPRECATED; Use the more specific URL matching methods instead
      * Validate as url
      */
-    //http(s)?
     @Deprecated
     public static boolean asUrl(String str) {
         return false;
