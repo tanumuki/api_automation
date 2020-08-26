@@ -19,7 +19,7 @@ public class TopShowsValidator {
         else
             sa.assertFalse(topShows.getLast_page() , AssertionMsg.print(className, methodName, "topshows.last_page", String.valueOf(topShows.getLast_page())));
         
-        for(ShowDetails show : topShows.getData()) {
+        for(ShowDetails show : topShows.getShows()) {
             new ShowDetailsValidator().validate(show, sa);
         }
     }

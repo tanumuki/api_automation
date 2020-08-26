@@ -1,13 +1,14 @@
 package stepDefinitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
 import entities.AlbumMiniObject;
 import entities.Artist;
+import entities.AssortedEntities;
 import enums.StatusCode;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,55 +30,52 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class ArtistMoreAlbums extends Util {
+public class ContentGetTrending extends Util {
 
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     Response resp;
 
-//    Pagination support parameters
+    //    Pagination support parameters
     String apiResource;
-    String artistID;
     int statusCodeResource;
 
-    @Given("Payload with artist more albums endpoint {string}")
-    public void payloadWithArtistPageDetailsEndpoint(String endPoint) throws IOException {
+    @Given("Payload with content get trending endpoint {string}")
+    public void payload_with_content_get_trending_endpoint(String endPoint) throws IOException {
         APIResources resourceAPI = APIResources.valueOf(endPoint);
         String resource = resourceAPI.getResource();
         this.apiResource = resource; //Required for pagination step later
         System.out.println("resource api " + resourceAPI.getResource());
         reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
+
     }
 
-    @When("User calls Get Artist More Albums api with {string}")
-    public void userCallsGetArtistPageApi(String artistID) {
-        this.artistID = artistID; //Required for pagination step later
+    @When("User calls Content Get Trending API")
+    public void user_calls_Content_Get_Trending_API() {
         resSpec = new ResponseSpecBuilder().expectStatusCode(200)
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-        reqSpec.queryParam("artistId", artistID);
         resp = reqSpec.given().when().get("/api.php").then().extract().response();
         logResponseTime(resp);
-    }
 
-    @Then("Get Artist More Albums API must respond with status code {string}")
-    public void getArtistPageAPIMustRespondWithStatusCode(String statusCode) {
+    }
+    @Then("Get Content Get Trending API must respond with status code {string}")
+    public void get_Content_Get_Trending_API_must_respond_with_status_code(String statusCode) {
         StatusCode code = StatusCode.valueOf(statusCode);
         int resource = code.getResource();
         this.statusCodeResource = resource; //Required for pagination step later
         assertEquals(resp.getStatusCode(), resource);
-    }
 
-    @And("User should see the artist more albums response validated")
-    public void userShouldSeeTheArtistPageResponseValidated() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        Artist artistObj = mapper.readValue(resp.asString(), Artist.class);
+    }
+    @Then("User should see the Content Get Trending response validated")
+    public void user_should_see_the_Content_Get_Trending_response_validated() throws JsonProcessingException {
         SoftAssert sa = new SoftAssert();
-        new ArtistPageValidator().validateTopAlbums(artistObj, sa);
+        AssortedEntities.readAndValidateAssortedEntity(resp, sa);
         sa.assertAll();
-    }
 
-    @And("Pagination for More Albums API should return the requested content with startindex {int}, pagesize {int}, max pages {int}")
-    public void paginationForMoreAlbumsAPIShouldReturnTheRequestedContentWithStartindexPagesizeMaxPages(int startindex, int pagesize, int maxNumberOfPages) throws JsonProcessingException,  IOException {
+    }
+    @Then("Pagination for Content Get Trending API should return the requested content with startindex {int}, pagesize {int}, max pages {int}")
+    public void pagination_for_Content_Get_Trending_API_should_return_the_requested_content_with_startindex_pagesize_max_pages(int startindex, int pagesize, int maxNumberOfPages) throws IOException {
+
         List<String> paginatedList = new ArrayList<String>();
         for (int i = startindex; i < maxNumberOfPages; i++) {
 
@@ -86,31 +84,24 @@ public class ArtistMoreAlbums extends Util {
             reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), this.apiResource));
             reqSpec.queryParam("page", i);
             reqSpec.queryParam("size", pagesize);
-            reqSpec.queryParam("artistId", this.artistID);
 
 //            Reset the response spec and get a new one
             resp = null;
             resp = reqSpec.given().when().get("/api.php").then().extract().response();
             assertEquals(resp.getStatusCode(), this.statusCodeResource);
-            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-            Artist artistObj = mapper.readValue(resp.asString(), Artist.class);
 
 //            Validate the paginated responses
             SoftAssert sa = new SoftAssert();
-            new ArtistPageValidator().validateTopAlbums(artistObj, sa);
 
-//            Create a list of IDs of each album mini object
-            for (AlbumMiniObject a : artistObj.getTopAlbums().getAlbums()) {
-                paginatedList.add(a.getId());
-            }
-
-//            Pass the list as an argument to the validator
+//            Pass the list of IDs as an argument to the validator
             PaginationValidator pgv = new PaginationValidator();
+            paginatedList = AssortedEntities.getValuesForAllKeys(resp, "id");
             sa.assertTrue(pgv.paginationDuplicateValidator(paginatedList),
-                    "Found duplicate entities in paginated responses for Top Albums for artist " + this.artistID);
+                    "Found duplicate entities in paginated responses for content.GetTrending");
 
             sa.assertAll();
             sa = null;
         }
+
     }
 }

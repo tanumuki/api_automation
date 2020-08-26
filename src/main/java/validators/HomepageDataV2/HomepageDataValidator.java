@@ -6,10 +6,8 @@ import pojos.getHomePageDataV2.HomePageDataV2;
 import pojos.getTopShows.TopShows;
 import validators.AssertionMsg;
 import validators.PlaylistMiniValidator;
-import validators.genericValidators.ChannelValidator;
-import validators.genericValidators.GenreValidator;
-import validators.genericValidators.RadioStationValidator;
-import validators.genericValidators.TopShowsValidator;
+import validators.Validate;
+import validators.genericValidators.*;
 
 import java.util.Iterator;
 
@@ -72,7 +70,12 @@ public class HomepageDataValidator {
     void validateUserState(HomePageDataV2 hd, SoftAssert sa) {
         System.out.println("=====Validating User state======");
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        UserState userState = hd.getUserState();
+        new UserStateValidator().validate(userState, sa);
+    }
 
+    void validateSuggests(){
+        
     }
 
 
@@ -80,10 +83,7 @@ public class HomepageDataValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         sa.assertTrue(hd.getLastPage(), AssertionMsg.print(className, methodName, "last_page", String.valueOf(hd.getLastPage())));
 
-        if(hd.getUserState() != null) {
-            UserState us = hd.getUserState();
-            sa.assertTrue(us.getUserLoggedIn() == 0, AssertionMsg.print(className, methodName, "user_logged_in", String.valueOf(us.getUserLoggedIn())));
-        }
+
 
         for(Object entity : hd.getNewTrending()) {
             boolean isAlbum = entity instanceof AlbumMiniObject;

@@ -153,8 +153,14 @@
 			<artifactId>json</artifactId>
 			<version>20190722</version>
 		</dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.3.0</version>
+            <scope>compile</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 

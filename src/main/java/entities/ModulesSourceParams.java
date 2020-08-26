@@ -1,31 +1,19 @@
-/**
- * 
- */
 package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author aswingokulachandran
- *
- */
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Getter
 @Setter
-public class Song extends Entity {
-
-
-	@JsonProperty("list")
-	private String list;
-	@JsonProperty("more_info")
-	private SongMoreInfo moreInfo;
-	@JsonProperty("modules")
-	private Object modules;
+public class ModulesSourceParams {
+    @JsonProperty("albumid")
+    private String albumid;
 
 }

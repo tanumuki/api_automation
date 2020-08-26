@@ -75,6 +75,8 @@ public class Artist extends Entity{
 	private List<Playlist> artistPlaylists;
 	@JsonProperty("fan_count")
 	private String fan_count;
+	@JsonProperty("topEpisodes")
+	private List<String> topEpisodes;
 	@JsonProperty("is_followed")
 	private boolean is_followed;
 }

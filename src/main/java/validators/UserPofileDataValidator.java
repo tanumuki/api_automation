@@ -57,32 +57,48 @@ public class UserPofileDataValidator {
         log.info("LOG response pro in user get profile is " + pro);
 
         String username = userGetProfile.getUsername();
-        sa.assertTrue(Validate.asString(username), className + "." + "validate user name failed - ");
+        sa.assertTrue(Validate.asEmail(username), className + "." + "validate user name failed - ");
         log.info("LOG response user name in user get profile is " + username);
 
-        String fbid = userGetProfile.getFbid();
-        sa.assertTrue(Validate.asString(fbid), className + "." + "validate fbid failed - ");
-        log.info("LOG response fbid in user get profile is " + username);
+        if (Validate.isNonEmptyString(userGetProfile.getFbid())) {
+            String fbid = userGetProfile.getFbid();
+            sa.assertTrue(Validate.asString(fbid), className + "." + "validate fbid failed - ");
+        } else {
+            log.info("LOG response Fb id in user get profile is NULL or empty");
+        }
 
         String image_url = userGetProfile.getImage_url();
         sa.assertTrue(Validate.asString(image_url), className + "." + "validate image URL failed - ");
         log.info("LOG response image URL in user get profile is " + image_url);
 
-        String phone_number = userGetProfile.getPhone_number();
-        sa.assertTrue(Validate.asString(phone_number), className + "." + "validate phone number failed - ");
-        log.info("LOG response phone number in user get profile is " + phone_number);
+        if (Validate.isNonEmptyString(userGetProfile.getPhone_number())) {
+            String phone_number = userGetProfile.getPhone_number();
+            sa.assertTrue(Validate.asNum(phone_number), className + "." + "validate phone number failed - ");
+        } else {
+            log.info("LOG response phone number in user get profile is NULL or empty");
+        }
 
-        String email = userGetProfile.getEmail();
-        sa.assertTrue(Validate.asString(email), className + "." + "validate email address failed - ");
-        log.info("LOG response email address in user get profile is " + email);
+        if (Validate.isNonEmptyString(userGetProfile.getEmail())) {
+            String email = userGetProfile.getEmail();
+            sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
+        } else {
+            log.info("LOG response email in user get profile is NULL or empty");
+        }
 
-        String gender = userGetProfile.getGender();
-        sa.assertTrue(Validate.asString(gender), className + "." + "validate gender failed - ");
-        log.info("LOG response gender in user get profile is " + gender);
+        if (Validate.isNonEmptyString(userGetProfile.getGender())) {
+            String gender = userGetProfile.getGender();
+            sa.assertTrue(Validate.asGender(gender), className + "." + "validate gender failed - ");
+        } else {
+            log.info("LOG response gender in user get profile is NULL or empty");
+        }
 
-        String dob = userGetProfile.getDob();
-        sa.assertTrue(Validate.asString(dob), className + "." + "validate date of birth failed - ");
-        log.info("LOG response date of birth in user get profile is " + dob);
+
+        if (Validate.isNonEmptyString(userGetProfile.getDob())) {
+            String dob = userGetProfile.getDob();
+            sa.assertTrue(Validate.asGender(dob), className + "." + "validate dob failed - ");
+        } else {
+            log.info("LOG response dob in user get profile is NULL or empty");
+        }
 
         String following_usersCount = userGetProfile.getFollowing().getUsersCount();
         sa.assertTrue(Validate.asNum(following_usersCount), className + "." + "validate following users count failed - ");
@@ -120,9 +136,9 @@ public class UserPofileDataValidator {
         sa.assertTrue(Validate.asString(playlists_type), "validate playlists type failed");
         log.info("LOG response playlists type in user get profile is " + playlists_type);
 
-        String playlists_perma_url = userGetProfile.getPlaylists().get(0).getPerma_url();
-        sa.assertTrue(Validate.asPermaURL(playlists_perma_url), "validate playlists perma_url failed");
-        log.info("LOG response playlists perma_url in user get profile is " + playlists_perma_url);
+//        String playlists_perma_url = userGetProfile.getPlaylists().get(0).getPerma_url();
+//        sa.assertTrue(Validate.asPermaURL(playlists_perma_url), "validate playlists perma_url failed");
+//        log.info("LOG response playlists perma_url in user get profile is " + playlists_perma_url);
 
         String playlists_image = userGetProfile.getPlaylists().get(0).getImage();
         sa.assertTrue(Validate.asCDNURL(playlists_image), "validate playlists image failed");
@@ -140,17 +156,17 @@ public class UserPofileDataValidator {
         sa.assertTrue(Validate.asString(playlists_play_count), "validate playlists play_count failed");
         log.info("LOG response playlists play_count in user get profile is " + playlists_play_count);
 
-        String playlists_explicit_content = userGetProfile.getPlaylists().get(0).getExplicit_content();
-        sa.assertTrue(Validate.asNum(playlists_explicit_content), "validate playlists explicit_content failed");
-        log.info("LOG response playlists explicit_content in user get profile is " + playlists_explicit_content);
+//        String playlists_explicit_content = userGetProfile.getPlaylists().get(0).getExplicit_content();
+//        sa.assertTrue(Validate.asNum(playlists_explicit_content), "validate playlists explicit_content failed");
+//        log.info("LOG response playlists explicit_content in user get profile is " + playlists_explicit_content);
 
-        String playlists_list_count = userGetProfile.getPlaylists().get(0).getList_count();
-        sa.assertTrue(Validate.asNum(playlists_list_count), "validate playlists list_count failed");
-        log.info("LOG response playlists list_count in user get profile is " + playlists_list_count);
-
-        String playlists_list_type = userGetProfile.getPlaylists().get(0).getList_type();
-        sa.assertTrue(Validate.asString(playlists_list_type), "validate playlists list_type failed");
-        log.info("LOG response playlists list_type in user get profile is " + playlists_list_type);
+//        String playlists_list_count = userGetProfile.getPlaylists().get(0).getList_count();
+//        sa.assertTrue(Validate.asNum(playlists_list_count), "validate playlists list_count failed");
+//        log.info("LOG response playlists list_count in user get profile is " + playlists_list_count);
+//
+//        String playlists_list_type = userGetProfile.getPlaylists().get(0).getList_type();
+//        sa.assertTrue(Validate.asString(playlists_list_type), "validate playlists list_type failed");
+//        log.info("LOG response playlists list_type in user get profile is " + playlists_list_type);
 
         String playlists_list = userGetProfile.getPlaylists().get(0).getList();
         sa.assertTrue(Validate.asString(playlists_list), "validate playlists list failed");
@@ -160,12 +176,9 @@ public class UserPofileDataValidator {
         sa.assertTrue(Validate.asString(playlists_moreinfo_username), "validate username in playlists more info failed");
         log.info("LOG response of username in playlists more info in user get profile is " + playlists_moreinfo_username);
 
-        String playlists_moreinfo_uid = userGetProfile.getPlaylists().get(0).getMore_info().getUid();
-        sa.assertTrue(Validate.asString(playlists_moreinfo_uid), "validate uid in playlists more info failed");
-        log.info("LOG response of uid in playlists more info in user get profile is " + playlists_moreinfo_uid);
+    }
 
-        String playlists_moreinfo_contents = userGetProfile.getPlaylists().get(0).getMore_info().getUid();
-        sa.assertTrue(Validate.asString(playlists_moreinfo_uid), "validate uid in playlists more info failed");
-        log.info("LOG response of uid in playlists more info in user get profile is " + playlists_moreinfo_uid);
+    public static boolean isNonEmptyString(String str) {
+        return str != null && !str.equals("") && !str.trim().isEmpty();
     }
 }

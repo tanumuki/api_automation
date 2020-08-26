@@ -1,6 +1,3 @@
-/**
- * 
- */
 package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SongMoreInfo {
-	
+
 	@JsonProperty("music")
 	private String music;
 	@JsonProperty("album_id")
@@ -62,5 +59,31 @@ public class SongMoreInfo {
 	private String vlink;
 	@JsonProperty("lyrics_id")
 	private String lyricsId;
+	@JsonProperty("geo_rules")
+	private String[] geo_rules;
+	@JsonProperty("square_image_url")
+	private String square_image_url;
+	@JsonProperty("label_id")
+	private String label_id;
+	@JsonProperty("description")
+	private String description;
+	@JsonProperty("season_no")
+	private String season_no;
+	@JsonProperty("show_id")
+	private String show_id;
+	@JsonProperty("season_id")
+	private String season_id;
+	@JsonProperty("show_title")
+	private String show_title;
+	@JsonProperty("season_title")
+	private String season_title;
+	@JsonProperty("square_image")
+	private String square_image;
+	@JsonProperty("episode_number")
+	private String episode_number;
+	@JsonProperty("ad_breaks")
+	private String ad_breaks;
+	@JsonProperty("show_url")
+	private String show_url;
 
 }

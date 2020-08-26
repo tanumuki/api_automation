@@ -32,6 +32,23 @@ public class Validate {
             return false;
         }
     }
+
+    /**
+     * Use this to verify floating point numbers.
+     * @param floatingPtNumber
+     * @return
+     */
+    public static boolean asFloat(String floatingPtNumber) {
+        try {
+            Float number = Float.parseFloat(floatingPtNumber);
+            return true;
+        }
+
+        catch(NumberFormatException | NullPointerException ex) {
+            return false;
+        }
+    }
+
     /*
      * Validate timestamp
      */
@@ -78,7 +95,6 @@ public class Validate {
     /* DEPRECATED; Use the more specific URL matching methods instead
      * Validate as url
      */
-    //http(s)?
     @Deprecated
     public static boolean asUrl(String str) {
         return false;
@@ -139,7 +155,7 @@ public class Validate {
      */
     public static boolean asBoolean(String str) {
         log.debug("Testing as string boolean: \"" + str + "\"");
-        return str.matches("^$|true|false|0|1|True|False");
+        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No");
     }
 
     /*
@@ -241,5 +257,21 @@ public class Validate {
 	public static boolean isNonEmptyString(String str){
 	    return str != null && !str.equals("") && !str.trim().isEmpty();
 	}
+
+	public static boolean asModulesSource(String source) {
+        return source.matches("list|reco.getAlbumReco");
+    }
+
+    public static boolean asModulesPosition(int pos){
+        return pos <= 10;
+    }
+
+    public static boolean asModulesScrollType(String scrollType){
+        return scrollType.matches("SS_Basic|SS_Basic_Double|SS_Condensed|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|Cells_EditorsNote|Cells_Text|THREETILE_MENU");
+    }
+
+    public static boolean asProStatusType(String type) {
+        return type.matches("pro | free | expired | trial");
+    }
 
 }

@@ -16,8 +16,8 @@ import java.util.List;
 public class TopShows {
     @JsonProperty("badge")
     private String badge;
-    @JsonProperty("data")
-    private List<ShowDetails> data;
+    @JsonProperty("shows")
+    private List<ShowDetails> shows;
     @JsonProperty("last_page")
     private Boolean last_page;
 }
