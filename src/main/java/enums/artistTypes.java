@@ -4,6 +4,11 @@ public enum artistTypes {
 	ARTIST,
 	SINGER,
 	MUSIC_DIRECTOR,
-	ACTOR;
+	ACTOR,
+	DJ,
+	LYRICIST,
+	REMIXER,
+	PRODUCER,
+	DIRECTOR;
 }
 

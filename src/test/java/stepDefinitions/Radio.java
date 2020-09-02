@@ -15,7 +15,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import endPoints.APIResources;
+import endPoints.Context;
 import entities.Song;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,6 +28,7 @@ import io.restassured.specification.ResponseSpecification;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.ScenarioContext;
+import resources.TestContext;
 import resources.Util;
 import validators.RadioValidator;
 import enums.StatusCode;
@@ -38,7 +41,8 @@ public class Radio extends Util {
 	String resource;
 	static String stationId = "";
 	public ScenarioContext scenarioContext;
-
+	
+	
 	@Given("Create the artist station with endpoint {string}")
 	public void create_the_artist_station_with_endpoint(String endPoint) throws IOException {
 
@@ -83,15 +87,18 @@ public class Radio extends Util {
 
 	@Then("Parse the stationId")
 	public void parse_the_stationId() {
-
+		//testContext = new TestContext();
 		stationId = resp.jsonPath().get("stationid");
-		System.setProperty("stationid", stationId);
+		testContext.scenarioContext.setContext(Context.STATIONID, stationId);
+		String st = (String) testContext.scenarioContext.getContext(Context.STATIONID);
+		System.out.println("sth " +st);
+		//System.setProperty("stationid", stationId);
 		System.out.println("sta id is " + stationId);
 	}
 
 	@Given("Fetch the song by adding payload of {string}")
 	public void fetch_the_song_by_adding_payload_of(String endPoint) throws IOException {
-
+		
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		resource = resourceAPI.getResource();
 		System.out.println("respurce api " + resourceAPI.getResource());
@@ -105,6 +112,10 @@ public class Radio extends Util {
 		resspec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
 
+		//testContext = new TestContext() ;
+		stationId = (String) testContext.scenarioContext.getContext(Context.STATIONID);
+		
+		System.out.println("mewooooo "+stationId);
 		// code to handle Data Table
 		List<Map<String, String>> data = table.asMaps();
 		System.out.println("data" + data.get(0));
@@ -135,7 +146,7 @@ public class Radio extends Util {
 		
 	}
 	
-	@Then("Validate the artist in radio station response")
+	@And("Validate the artist in radio station response")
 	public void validate_the_artist_in_radio_station_response() throws JsonMappingException, JsonProcessingException {
 	   
 		System.out.println("Radio response" + resp.getBody().asString());
