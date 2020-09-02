@@ -21,14 +21,14 @@ public class HomepageDataValidator {
     final String className = getClass().getName();
     public void validate(HomePageDataV2 hd, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-//        validateBrowse(hd, sa);
-//        validateGenres(hd, sa);
-//        validateNewTrending(hd, sa);
-//        validatePlaylistsCharts(hd, sa);
-//        validateRadio(hd, sa);
-//        validateTopShows(hd, sa);
-//        validateFavorites(hd, sa);
-//        validateSuggests(hd, sa);
+        validateBrowse(hd, sa);
+        validateGenres(hd, sa);
+        validateNewTrending(hd, sa);
+        validatePlaylistsCharts(hd, sa);
+        validateRadio(hd, sa);
+        validateTopShows(hd, sa);
+        validateFavorites(hd, sa);
+        validateSuggests(hd, sa);
         validateTopicsPromos(hd.getTopicPromos(), sa);
         validateMixes(hd, sa);
         validateTagMixes(hd, sa);
