@@ -29,10 +29,15 @@ public class ModulesData {
     private Boolean simpleHeader;
     @JsonProperty("noHeader")
     private Boolean noHeader;
+    @JsonProperty("hideMeta")
+    private Boolean hideMeta;
     @JsonProperty("source_api")
     private Boolean sourceApi;
     @JsonProperty("source_params")
     private ModulesSourceParams sourceParams;
-    @JsonProperty("view_more")
-    private List<Object> viewMore = null;
+    @JsonProperty("featured")
+    private Boolean featured;
+    @JsonProperty("featured_text")
+    private String featuredText;
+
 }

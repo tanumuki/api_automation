@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class BaseTest {
 
 	
-	@Test
+//	@Test
 	public void requestSpecBuilder() throws JsonMappingException, JsonProcessingException {
 		
 //		

@@ -26,7 +26,7 @@ import java.io.IOException;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class ContentGetTopShows extends Util {
+public class ContentGetTopShowsTest extends Util {
 
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;

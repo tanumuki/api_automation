@@ -25,5 +25,6 @@ public class AlbumMiniObject extends Entity {
 	private String list;
 	@JsonProperty("more_info")
 	private AlbumMoreInfo moreInfo;
-
+	@JsonProperty("modules")
+	private Object modules;
 }
