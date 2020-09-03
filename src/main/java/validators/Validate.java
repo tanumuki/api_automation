@@ -12,6 +12,7 @@ import io.restassured.response.Response;
 import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
+import validators.ArtistValidator.ArtistPageValidator;
 import validators.genericValidators.AlbumMiniValidator;
 import validators.genericValidators.EpisodeValidator;
 import validators.genericValidators.PlaylistValidator;
@@ -309,6 +310,7 @@ public class Validate {
                 break;
             case "artist":
                 Artist artist = mapper.convertValue(entity, Artist.class);
+                new ArtistPageValidator().validateAll(artist, sa);
                 break;
         }
     }

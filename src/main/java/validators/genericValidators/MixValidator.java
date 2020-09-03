@@ -38,5 +38,9 @@ public class MixValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(mi.getReward()))
             sa.assertTrue(Validate.asFloat(mi.getReward()), AssertionMsg.print(className, methodName, "mix.more_info.reward", mi.getReward()));
+
+        if(Validate.isNonEmptyString(mi.getPosition()))
+            sa.assertTrue(Validate.asString(mi.getPosition()), AssertionMsg.print(className, methodName, "mix.more_info.position", mi.getPosition()));
+
     }
 }
