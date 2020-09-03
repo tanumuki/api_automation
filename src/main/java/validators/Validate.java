@@ -3,10 +3,22 @@
  */
 package validators;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import entities.*;
 import enums.artistTypes;
 import enums.musicLanguages;
+import io.restassured.response.Response;
 import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
+import org.testng.asserts.SoftAssert;
+import validators.genericValidators.AlbumMiniValidator;
+import validators.genericValidators.EpisodeValidator;
+import validators.genericValidators.PlaylistValidator;
+import validators.genericValidators.SongValidator;
+
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @author aswingokulachandran
@@ -134,7 +146,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
         }
         else
 //          perma_url is empty, just verify it as a string and return it
@@ -272,6 +284,40 @@ public class Validate {
 
     public static boolean asProStatusType(String type) {
         return type.matches("pro | free | expired | trial");
+    }
+
+    public static void asAssortedEntity(LinkedHashMap entity, SoftAssert sa) {
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        String type = entity.get("type").toString();
+        System.out.println("id: " + entity.get("id").toString());
+        switch (type){
+            case "playlist":
+                PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
+                new PlaylistValidator().validate(playlist, sa);
+                break;
+            case "album":
+                AlbumMiniObject album = mapper.convertValue(entity, AlbumMiniObject.class);
+                new AlbumMiniValidator().validate(album, sa);
+                break;
+            case "episode":
+                EpisodeMini episode = mapper.convertValue(entity, EpisodeMini.class);
+                new EpisodeValidator().validate(episode, sa);
+                break;
+            case "song":
+                Song song = mapper.convertValue(entity, Song.class);
+                new SongValidator().validate(song, sa);
+                break;
+            case "artist":
+                Artist artist = mapper.convertValue(entity, Artist.class);
+                break;
+        }
+    }
+
+    public static void asAssortedEntity(Response response,SoftAssert sa) {
+        List<LinkedHashMap> entityList = response.jsonPath().getJsonObject("$");
+        for(LinkedHashMap entity : entityList){
+            Validate.asAssortedEntity(entity, sa);
+        }
     }
 
 }

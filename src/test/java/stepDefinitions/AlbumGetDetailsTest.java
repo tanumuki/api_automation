@@ -34,7 +34,7 @@ import validators.genericValidators.AlbumValidator;
  * @author aswingokulachandran
  *
  */
-public class AlbumGetDetails extends Util {
+public class AlbumGetDetailsTest extends Util {
 
 	RequestSpecification reqSpec;
 	ResponseSpecification resSpec;

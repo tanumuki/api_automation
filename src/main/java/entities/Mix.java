@@ -6,20 +6,16 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 @Data
 @Getter
 @Setter
-public class Playlist extends Entity{
+public class Mix extends Entity {
+
+    @JsonProperty("description")
+    private String description;
     @JsonProperty("list")
-    private List<Song> list;
+    private String list;
     @JsonProperty("more_info")
-    private PlaylistMoreInfo more_info;
-    @JsonProperty("mini_obj")
-    private Boolean mini_obj;
-
-
+    private MixMoreInfo moreInfo;
 }

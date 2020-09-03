@@ -13,6 +13,9 @@ public class PlaylistMiniValidator extends EntityValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(ch, sa);
 
+        if(Validate.isNonEmptyString(ch.getUid()))
+            sa.assertTrue(Validate.asString(ch.getUid()), AssertionMsg.print(className, methodName, "mix/playlist", "entity.uid", ch.getUid()));
+
         PlaylistMiniMoreInfo mi = ch.getMoreInfo();
         if(mi.getFirstname() != null)
             sa.assertTrue(Validate.asString(mi.getFirstname()), AssertionMsg.print(className, methodName, "chart", "more_info.firstname", mi.getFirstname()));

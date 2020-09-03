@@ -23,4 +23,7 @@ public class PlaylistMiniMoreInfo {
     private String uid;
     @JsonProperty("isWeekly")
     private String isWeekly;
+    @JsonProperty("reward")
+    private String reward;
+
 }
