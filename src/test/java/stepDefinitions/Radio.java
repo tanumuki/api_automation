@@ -155,10 +155,7 @@ public class Radio extends Util {
 				true);
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);		
 		entities.Radio  radio = objectMapper.readValue(resp.asString(),entities.Radio.class);
-		new RadioValidator().validateRadio(radio, stationId, sa);
-		
-		
-		
+		new RadioValidator().validateRadio(radio, stationId, sa);		
 	}
 
 
