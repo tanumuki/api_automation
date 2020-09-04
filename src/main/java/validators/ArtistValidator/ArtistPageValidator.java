@@ -147,7 +147,7 @@ public class ArtistPageValidator extends EntityValidator {
      * @param sm_art
      * @param sa
      */
-    void validateSimilarArtistFields(SimilarArtists sm_art, SoftAssert sa) {
+    private void validateSimilarArtistFields(SimilarArtists sm_art, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         sa.assertTrue(Validate.asNum(sm_art.get_id()), AssertionMsg.print(className, methodName, "id", sm_art.get_id()));

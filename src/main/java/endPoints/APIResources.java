@@ -3,6 +3,7 @@ package endPoints;
 public enum APIResources {
 
 	GetHomepageDataV2("content.getHomepageDataV2"),
+	ContentGetListeningHistory("content.getListeningHistory"),
 	ContentGetTrending("content.getTrending"),
 	ChannelGetDetailsAPI("channel.getDetails"),
 	SearchGetArtistResults("search.getArtistResults"),
