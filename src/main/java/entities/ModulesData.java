@@ -39,5 +39,6 @@ public class ModulesData {
     private Boolean featured;
     @JsonProperty("featured_text")
     private String featuredText;
-
+    @JsonProperty("showMore")
+    private ModulesDataShowMore showMore;
 }

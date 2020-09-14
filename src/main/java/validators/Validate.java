@@ -227,13 +227,27 @@ public class Validate {
      */
     public static boolean asMusicLanguage(String str) {
         if(!str.isEmpty()) {
-            try {
-                musicLanguages ml = musicLanguages.valueOf(str.toUpperCase());
+            String[] splits = str.split(",");
+            if(splits.length > 1){
+                for(int i=0; i< splits.length; i++){
+                    try {
+                        musicLanguages ml = musicLanguages.valueOf(splits[i].toUpperCase());
+                    }
+                    catch (IllegalArgumentException ex) {
+                        log.error("Not a valid music language: " + ex.getMessage());
+                        return false;
+                    }
+                }
+            }else{
+                try {
+                    musicLanguages ml = musicLanguages.valueOf(splits[0].toUpperCase());
+                }
+                catch (IllegalArgumentException ex) {
+                    log.error("Not a valid music language: " + ex.getMessage());
+                    return false;
+                }
             }
-            catch (IllegalArgumentException ex) {
-                log.error("Not a valid music language: " + ex.getMessage());
-                return false;
-            }
+
             return true;
         }
         else
@@ -320,6 +334,10 @@ public class Validate {
         for(LinkedHashMap entity : entityList){
             Validate.asAssortedEntity(entity, sa);
         }
+    }
+
+    public boolean asEntityType(String entityType) {
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station");
     }
 
 }

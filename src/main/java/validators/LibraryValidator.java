@@ -119,9 +119,9 @@ public class LibraryValidator {
 		Set<String> albumObjectSet = new HashSet<String>();
 
 		System.out.println("al res" +albumResponse);
-		List<Song> albums = album.getList();
+		List<Song> albums = (List<Song>) (List<?>)album.getList();
 		for(int i=0;i<albums.size(); i++) {
-				albumObjectSet.add(albums.get(i).getId());				
+				albumObjectSet.add(albums.get(i).getId());
 			}
 			//Adding the song to album's object
 		albumObjectSet.add(seed_song_id);
@@ -129,11 +129,11 @@ public class LibraryValidator {
 		log.info(" libraryObjectSet " +libraryObjectSet.toString());
 		log.info(" albumObjectSet " +albumObjectSet.toString());
 
-		
+
 		/*
 		 * comparing the objects
 		 */
-		
+
 		sa.assertTrue(CompareSet.equals(libraryObjectSet, albumObjectSet));
 		log.info("All the objects are valdated in user's library!");
 		

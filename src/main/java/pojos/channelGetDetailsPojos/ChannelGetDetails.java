@@ -19,7 +19,7 @@ public class ChannelGetDetails extends Entity {
 
 
     @JsonProperty("top_playlists")
-    private List<Playlist> topPlaylists = null;
+    private List<PlaylistMini> topPlaylists = null;
     @JsonProperty("quick_stations")
     private List<RadioStation> quickStations = null;
     @JsonProperty("top_songs")
@@ -28,8 +28,9 @@ public class ChannelGetDetails extends Entity {
     private String list;
     @JsonProperty("more_info")
     private ChannelGetDetailsMoreInfo moreInfo;
+
     @JsonProperty("modules")
-    private Object modules;
+    private ChannelGetDetailsModules modules;
 
 
 }

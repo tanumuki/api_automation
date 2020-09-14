@@ -2,6 +2,9 @@ package endPoints;
 
 public enum APIResources {
 
+	MixGetDetails("mix.getDetails"),
+	MixesList("mix.list"),
+	ContentGetAlbums("content.getAlbums"),
 	GetHomepageDataV2("content.getHomepageDataV2"),
 	ContentGetListeningHistory("content.getListeningHistory"),
 	ContentGetTrending("content.getTrending"),
