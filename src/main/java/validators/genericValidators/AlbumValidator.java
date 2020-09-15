@@ -7,8 +7,12 @@ package validators.genericValidators;
 import entities.*;
 import org.testng.asserts.SoftAssert;
 
+import scala.Enumeration;
 import validators.AssertionMsg;
 import validators.Validate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author aswingokulachandran
@@ -19,20 +23,31 @@ public class AlbumValidator extends EntityValidator {
 	final String className = SongValidator.class.getName();
 	
 	public void validate(Album album, SoftAssert sa) {
-		
+
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+		System.out.println("========" + className + "---" + methodName + "========");
 		
 		super.validate(album, sa);
-		
-		for(Song song : album.getList()) {
-			new SongValidator().validate(song, sa, album.getId(), "album");
+
+		Object listVal = album.getList();
+		if(listVal instanceof String){
+			sa.assertTrue(Validate.asString((String) listVal), AssertionMsg.print(className, methodName, "album.list", (String)listVal));
+		}else if(listVal instanceof List){
+			List<Song> songs = (List<Song>) (List<?>)listVal;
+
+			for(Song song : songs){
+				new SongValidator().validate(song, sa, album.getId(), "album");
+			}
 		}
-		
+
 		AlbumMoreInfo moreInfo = album.getMoreInfo();
-		
-		sa.assertTrue(Validate.asNum(moreInfo.getSongCount()), AssertionMsg.print(methodName, methodName, "album.more_info.song_count", moreInfo.getSongCount()));
-		
-		sa.assertTrue(Validate.asString(moreInfo.getCopyrightText()), AssertionMsg.print(methodName, methodName, "album.more_info.copyright_text", moreInfo.getCopyrightText()));
+
+		if(Validate.isNonEmptyString(moreInfo.getSongCount()))
+			sa.assertTrue(Validate.asNum(moreInfo.getSongCount()), AssertionMsg.print(methodName, methodName, "album.more_info.song_count", moreInfo.getSongCount()));
+
+		if(Validate.isNonEmptyString(moreInfo.getCopyrightText()))
+			sa.assertTrue(Validate.asString(moreInfo.getCopyrightText()), AssertionMsg.print(methodName, methodName, "album.more_info.copyright_text", moreInfo.getCopyrightText()));
 		
 		ArtistMap artistMap = moreInfo.getArtistMap();
 		
