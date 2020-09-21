@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +23,11 @@ public class GenericSteps extends Util{
     static RequestSpecification request = null;
     static Response resp;
     static String apiResource;
+    String cookie;
 
     @Given("I have the endpoint for {string}")
-    public void iHaveTheEndopointFor(String endPoint, DataTable userDetails) throws IOException {
-        List<Map<String, String>> user = userDetails.asMaps();
+    public void iHaveTheEndopointFor(String endPoint) throws FileNotFoundException {
         apiResource = APIResources.valueOf(endPoint).getResource();
-        String cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
         request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
     }
 
@@ -49,5 +49,11 @@ public class GenericSteps extends Util{
                 .response();
         logResponseTime(resp);
         System.out.println(resp.asString());
+    }
+
+    @Given("I have the cookie for the following user")
+    public void iHaveTheCookieForTheFollowingUser(DataTable userDetails) throws IOException {
+        List<Map<String, String>> user = userDetails.asMaps();
+        cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
     }
 }
