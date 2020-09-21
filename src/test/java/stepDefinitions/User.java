@@ -36,45 +36,45 @@ import static io.restassured.RestAssured.given;
 
 @Slf4j
 public class User extends Util {
-    RequestSpecification request = null;
-    Response resp;
-    String apiResource;
-
-    @Given("I have the endpoint for {string}")
-    public void iHaveTheEndopointFor(String endPoint) throws IOException {
-        apiResource = APIResources.valueOf(endPoint).getResource();
-        String cookie = initCookies("sun@s.in", "saavn123");
-        request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
-    }
-
-    @When("I make the {string} request with the following query parameters")
-    public void iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
-        List<Map<String, String>> params = queryParams.asMaps();
-        if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-            request.queryParams(params.get(0));
-        }
-        resp = request.given()
-                .log()
-                .all()
-                .when()
-                .get("/api.php")
-                .then()
-                .log()
-                .all()
-                .extract()
-                .response();
-        logResponseTime(resp);
-        System.out.println(resp.asString());
-    }
+//    RequestSpecification request = null;
+//    Response resp;
+//    String apiResource;
+//
+//    @Given("I have the endpoint for {string}")
+//    public void iHaveTheEndopointFor(String endPoint) throws IOException {
+//        apiResource = APIResources.valueOf(endPoint).getResource();
+//        String cookie = initCookies("sun@s.in", "saavn123");
+//        request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
+//    }
+//
+//    @When("I make the {string} request with the following query parameters")
+//    public void iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
+//        List<Map<String, String>> params = queryParams.asMaps();
+//        if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+//            request.queryParams(params.get(0));
+//        }
+//        resp = request.given()
+//                .log()
+//                .all()
+//                .when()
+//                .get("/api.php")
+//                .then()
+//                .log()
+//                .all()
+//                .extract()
+//                .response();
+//        logResponseTime(resp);
+//        System.out.println(resp.asString());
+//    }
 
     @Then("The User Update API returns {string} with status code {int}")
     public void theUserUpdateAPIReturnsWithStatusCode(String expectedStatus, int expectedStatusCode) throws JsonProcessingException {
         SoftAssert sa = new SoftAssert();
-        Assert.assertEquals(expectedStatusCode, resp.getStatusCode(), "Response code validation failed for user update API");
-        Assert.assertEquals(expectedStatus, resp.jsonPath().get("status"), "Status validation failed for user update API");
+        Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
+        Assert.assertEquals(expectedStatus, GenericSteps.resp.jsonPath().get("status"), "Status validation failed for user update API");
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
-        UserProfileUpdate profileUpdate = objectMapper.readValue(resp.asString(), UserProfileUpdate.class);
+        UserProfileUpdate profileUpdate = objectMapper.readValue(GenericSteps.resp.asString(), UserProfileUpdate.class);
 
         new UserPofileDataValidator().validate(profileUpdate, sa);
         sa.assertAll();
@@ -84,27 +84,35 @@ public class User extends Util {
     @Then("The User Get Profile API returns response with status code {int}")
     public void theUserGetProfileAPIReturnsWithStatusCode(int expectedStatusCode) throws JsonProcessingException {
         SoftAssert sa = new SoftAssert();
-        Assert.assertEquals(expectedStatusCode, resp.getStatusCode(), "Response code validation failed for user update API");
+        Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
-        UserGetProfile userGetProfile = objectMapper.readValue(resp.asString(), UserGetProfile.class);
-//        List<JsonObject> playlists = resp.jsonPath().get("playlists");
-        List<UserProfilePlaylists> playlists = objectMapper.convertValue(resp.jsonPath().get("playlists"), new TypeReference<List<UserProfilePlaylists>>() {
+        UserGetProfile userGetProfile = objectMapper.readValue(GenericSteps.resp.asString(), UserGetProfile.class);
+        List<UserProfilePlaylists> playlists = objectMapper.convertValue(GenericSteps.resp.jsonPath().get("playlists"), new TypeReference<List<UserProfilePlaylists>>() {
         });
 
-        new PlaylistValidator().validate(playlists.get(0),sa);
-        sa.assertAll();
+        new PlaylistValidator().validate(playlists.get(0), sa);
 
         new UserPofileDataValidator().validateUserProfileInfo(userGetProfile, sa);
         for (UserProfilePlaylists playlist : playlists) {
             new PlaylistValidator().validate(playlist, sa);
         }
 
-        List<Song> songs = objectMapper.convertValue(resp.jsonPath().get("recent_songs"), new TypeReference<List<Song>>() {
+        List<Song> songs = objectMapper.convertValue(GenericSteps.resp.jsonPath().get("recent_songs"), new TypeReference<List<Song>>() {
         });
         for (Song song : songs) {
             if (song.getType().equals("song"))
                 new SongValidator().validate(song, sa);
         }
+        sa.assertAll();
+
+    }
+
+    @Then("The User Logout API returns {string} with status code {int}")
+    public void theUserLogoutAPIReturnsResponseWithStatusCode(String expectedStatus, int expectedStatusCode) {
+        SoftAssert sa = new SoftAssert();
+        Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
+        Assert.assertEquals(expectedStatus, GenericSteps.resp.jsonPath().get("status"), "Status validation failed for user update API");
+        sa.assertAll();
     }
 }

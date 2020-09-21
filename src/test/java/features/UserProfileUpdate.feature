@@ -1,5 +1,10 @@
 Feature: Validation of user profile update API.
 
+  Background:
+    Given I have the cookie for the following user
+      | username | password |
+      | sun@s.in | saavn123 |
+
   Scenario: Verify user is able to update profile information
     Given I have the endpoint for "UserProfileUpdateAPI"
     When I make the "GET" request with the following query parameters

@@ -20,7 +20,6 @@ import lombok.Setter;
 @Setter
 public class Song extends Entity {
 
-
 	@JsonProperty("list")
 	private String list;
 	@JsonProperty("more_info")
