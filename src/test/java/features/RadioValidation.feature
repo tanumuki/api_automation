@@ -26,6 +26,8 @@ Feature: Validating user Radio APIs
 
   Scenario: Verify song radio is created
     Given I have the endpoint for "WebRadioCreateStation"
+      | username | password |
+      | sun@s.in | saavn123 |
     When I make the "GET" request with the following query parameters
       | query         | mode     | pid      |
       | Meri Aashiqui | discover | 56BDZXY- |
@@ -34,6 +36,8 @@ Feature: Validating user Radio APIs
 
   Scenario: Verify song radio is playable
     Given I have the endpoint for "WebRadioGetSong"
+      | username | password |
+      | sun@s.in | saavn123 |
     When I make the "GET" request with the following query parameters and the station Id
       | k | type    |
       | 5 | scratch |
@@ -41,6 +45,8 @@ Feature: Validating user Radio APIs
 
   Scenario: Verify playlist radio is created
     Given I have the endpoint for "WebRadioCreateEntityStation"
+      | username | password |
+      | sun@s.in | saavn123 |
     When I make the "GET" request with the following query parameters
       | mode     | entity_type | entity_id                                                                                                                                                                                                          |
       | discover | queue       | ["MWk8kfwt","vX2v9Orm","eseCEtC8","aknAX8Fr","ktEA5hKT","bQbXpPby","iprLqckr","zxVrHL0j","DTCtgv78","wdCdmeKl","ERfYw4Ay","t6PdrExF","1rV4UY9B","ixFkIAmP","fVOmobci","zfYRn6l8","c8S4M5w2","ChAXSJ-i","N3GOvNcO"] |
@@ -49,6 +55,8 @@ Feature: Validating user Radio APIs
 
   Scenario: Verify playlist radio is playable
     Given I have the endpoint for "WebRadioGetSong"
+      | username | password |
+      | sun@s.in | saavn123 |
     When I make the "GET" request with the following query parameters and the station Id
       | k | type    |
       | 5 | scratch |

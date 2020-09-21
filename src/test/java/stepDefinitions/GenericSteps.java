@@ -24,9 +24,10 @@ public class GenericSteps extends Util{
     static String apiResource;
 
     @Given("I have the endpoint for {string}")
-    public void iHaveTheEndopointFor(String endPoint) throws IOException {
+    public void iHaveTheEndopointFor(String endPoint, DataTable userDetails) throws IOException {
+        List<Map<String, String>> user = userDetails.asMaps();
         apiResource = APIResources.valueOf(endPoint).getResource();
-        String cookie = initCookies("sun@s.in", "saavn123");
+        String cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
         request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
     }
 
