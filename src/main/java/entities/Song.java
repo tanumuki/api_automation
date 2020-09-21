@@ -27,5 +27,6 @@ public class Song extends Entity {
 	private SongMoreInfo moreInfo;
 	@JsonProperty("modules")
 	private Object modules;
-
+	@JsonProperty("mini_obj")
+	private Boolean mini_obj;
 }

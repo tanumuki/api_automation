@@ -33,83 +33,51 @@ public class HomepageDataValidator {
         validateMixes(hd, sa);
         validateTagMixes(hd, sa);
         validateArtistRecos(hd, sa);
-//        validateCityMod(hd, sa);
+        validateCityMod(hd, sa);
     }
 
     void validateCityMod(HomePageDataV2 hd, SoftAssert sa) {
-        for(LinkedHashMap entity : hd.getCityMod()){
-            Validate.asAssortedEntity(entity, sa);
-        }
+        Validate.asAssortedEntity(hd.getCityMod(), sa);
     }
 
     void validateArtistRecos(HomePageDataV2 hd, SoftAssert sa) {
-        for(RadioStation rs : hd.getArtistRecos()){
-            new RadioStationValidator().validate(rs, sa);
-        }
+        Validate.asArtistRecos(hd.getArtistRecos(), sa);
     }
 
     void validateMixes(HomePageDataV2 hd, SoftAssert sa){
-        for(Mix mix : hd.getMixes()){
-            new MixValidator().validate(mix, sa);
-        }
+        Validate.asMixes(hd.getMixes(), sa);
     }
 
     void validateTagMixes(HomePageDataV2 hd, SoftAssert sa){
-        for(Mix mix : hd.getTagMixes()){
-            new MixValidator().validate(mix, sa);
-        }
+        Validate.asMixes(hd.getTagMixes(), sa);
     }
 
     void validateTopicsPromos(Map<String, List<Object>> map, SoftAssert sa) {
-        for(String key : map.keySet()){
-            if(key.startsWith("promo")) continue;  //TODO: Validate promos once the more_info issue is fixed
-            System.out.println("key: " + key);
-            for(Object entity : map.get(key)) {
-                LinkedHashMap entityMap = (LinkedHashMap) entity;
-                Validate.asAssortedEntity(entityMap, sa);
-            }
-
-        }
+        Validate.asTopicsPromos(map, sa);
     }
 
     void validateSuggests(HomePageDataV2 hd, SoftAssert sa) {
 //        new SuggestsValidator().validate(, sa);
+        //TODO: Suggests validation
     }
 
     void validateFavorites(HomePageDataV2 hd, SoftAssert sa) {
-        List<LinkedHashMap> favorites = hd.getFavorites();
-        for(LinkedHashMap entity : favorites){
-            Validate.asAssortedEntity(entity, sa);
-        }
+        if(hd.getFavorites() != null)
+            Validate.asAssortedEntity(hd.getFavorites(), sa);
     }
 
     public void validateBrowse(HomePageDataV2 hd, SoftAssert sa) {
-        System.out.println("=====Validating Browse======");
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        for(Channel channel : hd.getBrowseDiscover()) {
-            new ChannelValidator().validate(channel, sa);
-        }
+        Validate.asBrowseAndDiscover(hd.getBrowseDiscover(), sa);
     }
 
     void validateRadio(HomePageDataV2 hd, SoftAssert sa) {
-        System.out.println("=====Validating Radio======");
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        Radio radio = hd.getRadio();
-        for(RadioStation station : radio.getFeatured_stations()) {
-            new RadioStationValidator().validate(station, sa);
-        }
+        Validate.asFeaturedStations(hd.getRadio(), sa);
     }
 
     public void validatePlaylistsCharts(HomePageDataV2 hd, SoftAssert sa) {
         System.out.println("=====Validating Playlist (charts)======");
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        for(PlaylistMini chart : hd.getCharts()) {
-            new PlaylistMiniValidator().validate(chart, sa);
-        }
-
-        for(PlaylistMini playlist : hd.getTopPlaylists()) {
-            new PlaylistMiniValidator().validate(playlist, sa);
-        }
+        Validate.asChartsAndPlaylists(hd.getCharts(), sa);
+        Validate.asChartsAndPlaylists(hd.getTopPlaylists(), sa);
     }
 
     public void validateTopShows(HomePageDataV2 hd, SoftAssert sa) {
@@ -135,11 +103,6 @@ public class HomepageDataValidator {
     }
 
     public void validateNewTrending(HomePageDataV2 hd, SoftAssert sa) {
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        sa.assertTrue(hd.getLastPage(), AssertionMsg.print(className, methodName, "last_page", String.valueOf(hd.getLastPage())));
-        for(LinkedHashMap entity : hd.getNewTrending()) {
-            System.out.println(entity.toString());
-            Validate.asAssortedEntity(entity, sa);
-        }
+        Validate.asAssortedEntity(hd.getNewTrending(), sa);
     }
 }

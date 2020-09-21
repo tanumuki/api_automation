@@ -19,7 +19,7 @@ public class LoginProStatusValidator {
         if(Validate.isNonEmptyString(lp.getProduct()))
             sa.assertTrue(Validate.asString(lp.getProduct()), AssertionMsg.print(className, methodName, "user_state.prostatus.product", lp.getProduct()));
 
-        if(Validate.isNonEmptyString(String.valueOf(lp.getExpirationTimestamp())))
+        if(lp.getExpirationTimestamp() != null)
             sa.assertTrue(Validate.asTimeStamp(String.valueOf(lp.getExpirationTimestamp())),
                     AssertionMsg.print(className, methodName, "user_state.prostatus.expiration_timestamp", String.valueOf(lp.getExpirationTimestamp())));
 

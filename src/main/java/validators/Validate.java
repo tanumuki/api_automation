@@ -13,13 +13,11 @@ import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import validators.ArtistValidator.ArtistPageValidator;
-import validators.genericValidators.AlbumMiniValidator;
-import validators.genericValidators.EpisodeValidator;
-import validators.genericValidators.PlaylistValidator;
-import validators.genericValidators.SongValidator;
+import validators.genericValidators.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author aswingokulachandran
@@ -108,14 +106,9 @@ public class Validate {
     /* DEPRECATED; Use the more specific URL matching methods instead
      * Validate as url
      */
-    @Deprecated
-    public static boolean asUrl(String str) {
-        return false;
-//        log.debug("str size: " + str.length());
-//        log.debug("Testing url: \"" + str + "\"");
-//        return str.matches("^$|((https|http)://(c|www|staging|c.sop|pli|qa-az|staging-az|prod-az|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|((https|http)://(c|www|staging|c.sop|qa-az|staging-az|prod-az)?.(saavn|saavncdn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|(https://graph.facebook.com/v2.9/.+/picture|https://static.saavncdn.com/_i/share-image.png)");
-//        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+/)?.(png|jpg)?/(s/radio/.+/.+)?|https://graph.facebook.com/v2.9/.+/.+");
-//        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+)?.(png|jpg)?");
+
+    public static boolean asUpdateUrl(String str) {
+        return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/android_soft_upgrade.php");
     }
 
     /**
@@ -286,7 +279,7 @@ public class Validate {
 	}
 
 	public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco");
+        return source.matches("list|reco.getAlbumReco|client");
     }
 
     public static boolean asModulesPosition(int pos){
@@ -336,8 +329,55 @@ public class Validate {
         }
     }
 
+    public static void asAssortedEntity(List<LinkedHashMap> entityList, SoftAssert sa) {
+        for(LinkedHashMap entity : entityList){
+            Validate.asAssortedEntity(entity, sa);
+        }
+    }
+
     public boolean asEntityType(String entityType) {
         return entityType.matches("artist|mix|playlist|album|song|channel|radio_station");
+    }
+
+    public static void asChartsAndPlaylists(List<PlaylistMini> plObj, SoftAssert sa) {
+        for(PlaylistMini pl : plObj){
+            new PlaylistMiniValidator().validate(pl, sa);
+        }
+    }
+
+    public static void asTopicsPromos(Map<String, List<Object>> map, SoftAssert sa) {
+        for(String key : map.keySet()){
+            System.out.println("key: " + key);
+            for(Object entity : map.get(key)) {
+                LinkedHashMap entityMap = (LinkedHashMap) entity;
+                Validate.asAssortedEntity(entityMap, sa);
+            }
+
+        }
+    }
+    public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
+        for(RadioStation rs : artistRecos){
+            new RadioStationValidator().validate(rs, sa);
+        }
+    }
+
+    public static void asMixes(List<Mix> mixes, SoftAssert sa) {
+        for(Mix mix : mixes){
+            new MixValidator().validate(mix, sa);
+        }
+    }
+
+    public static void asBrowseAndDiscover(List<Channel> channels, SoftAssert sa) {
+        for(Channel channel : channels) {
+            new ChannelValidator().validate(channel, sa);
+        }
+    }
+
+    public static void asFeaturedStations(Radio radio, SoftAssert sa){
+        List<RadioStation> featuredStaions = radio.getFeatured_stations();
+        for(RadioStation station : featuredStaions) {
+            new RadioStationValidator().validate(station, sa);
+        }
     }
 
 }
