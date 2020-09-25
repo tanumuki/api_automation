@@ -59,6 +59,21 @@ Feature: Validating user Radio APIs
       | 5 | scratch |
     Then The Web Radio Get Song API returns response with status code 200
 
+  Scenario: Verify featured radio station is crated
+    Given I have the endpoint for "WebRadioCreateFavouriteStation"
+    When I make the "GET" request with the following query parameters
+      | language | name    | mode     |
+      | english  | Hip Hop | discover |
+    Then The create entity station returns status code 200
+    And I parse the stationId
+
+  Scenario: Verify featured radio is playable
+    Given I have the endpoint for "WebRadioGetSong"
+    When I make the "GET" request with the following query parameters and the station Id
+      | k | type    |
+      | 5 | scratch |
+    Then The Web Radio Get Song API returns response with status code 200
+
 
 
 

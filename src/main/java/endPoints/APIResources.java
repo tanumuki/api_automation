@@ -38,7 +38,8 @@ public enum APIResources {
     PlaylistCreate("playlist.create"),
     UserLogoutAPI("user.logout"),
 	WebRadioCreateEntityStation("webradio.createEntityStation"),
-	WebRadioCreateStation("webradio.createStation");
+	WebRadioCreateStation("webradio.createStation"),
+    WebRadioCreateFavouriteStation("webradio.createFeaturedStation");
 
     private String resource;
 
