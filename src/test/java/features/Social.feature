@@ -1,4 +1,4 @@
-Feature: Validation of user profile update API.
+Feature: Validation of Social follow/Unfollow API.
 
   Background:
     Given I have the cookie for the following user
@@ -6,14 +6,14 @@ Feature: Validation of user profile update API.
       | sun@s.in | saavn123 |
 
   Scenario: Verify user is able to follow an artist
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type   | entity_id |
       | artist | 459320    |
     Then The Social Follow API returns "success" with status code 200
 
   Scenario: Verify an error is shown when user tries follow an already followed artist
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type   | entity_id |
       | artist | 459320    |
@@ -22,14 +22,14 @@ Feature: Validation of user profile update API.
 
 
   Scenario: Verify user is able to unfollow an artist
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type   | entity_id |
       | artist | 459320    |
     Then The Social unfollow API returns "success" with status code 200
 
   Scenario: Verify an error is shown whe user tries unfollow an artist who is not followed already
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type   | entity_id |
       | artist | 459320    |
@@ -39,14 +39,14 @@ Feature: Validation of user profile update API.
 ###########################################################################################
 
   Scenario: Verify user is able to follow a playlist
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type     | entity_id |
       | playlist | 89579550  |
     Then The Social Follow API returns "success" with status code 200
 
   Scenario: Verify an error is shown when user tries follow an already followed playlist
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type     | entity_id |
       | playlist | 89579550  |
@@ -55,14 +55,14 @@ Feature: Validation of user profile update API.
 
 
   Scenario: Verify user is able to unfollow a playlist
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type     | entity_id |
       | playlist | 89579550  |
     Then The Social unfollow API returns "success" with status code 200
 
   Scenario: Verify an error is shown whe user tries unfollow a playlist which is not followed already
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type     | entity_id |
       | playlist | 89579550  |
@@ -72,14 +72,14 @@ Feature: Validation of user profile update API.
 ###########################################################################################
 
   Scenario: Verify user is able to follow a channel
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type    | entity_id |
       | channel | 111       |
     Then The Social Follow API returns "success" with status code 200
 
   Scenario: Verify an error is shown when user tries follow an already followed channel
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type    | entity_id |
       | channel | 111       |
@@ -88,14 +88,14 @@ Feature: Validation of user profile update API.
 
 
   Scenario: Verify user is able to unfollow a channel
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type    | entity_id |
       | channel | 111       |
     Then The Social unfollow API returns "success" with status code 200
 
   Scenario: Verify an error is shown whe user tries unfollow a channel which is not followed already
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type    | entity_id |
       | channel | 111       |
@@ -105,14 +105,14 @@ Feature: Validation of user profile update API.
 ###########################################################################################
 
   Scenario: Verify user is able to follow a show
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type | entity_id |
       | show | 25       |
     Then The Social Follow API returns "success" with status code 200
 
   Scenario: Verify an error is shown when user tries follow an already followed show
-    Given I have the endpoint for "SocialFollow"
+    Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type | entity_id |
       | show | 25       |
@@ -121,14 +121,14 @@ Feature: Validation of user profile update API.
 
 
   Scenario: Verify user is able to unfollow a show
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type | entity_id |
       | show | 25       |
     Then The Social unfollow API returns "success" with status code 200
 
   Scenario: Verify an error is shown whe user tries unfollow a show which is not followed already
-    Given I have the endpoint for "SocialUnfollow"
+    Given I have the endpoint for "SocialUnfollowAPI"
     When I make the "GET" request with the following query parameters
       | type | entity_id |
       | show | 25       |
