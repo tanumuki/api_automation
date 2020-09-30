@@ -23,6 +23,7 @@ public enum APIResources {
     UserCreateAPI("user.createV2"),
     LibraryAddAPI("library.add"),
     SocialFollowAPI("social.follow"),
+    SocialUnfollowAPI("social.unfollow"),
     LibraryGetAllAPI("library.getAll"),
     CreateArtistStation("webradio.createArtistStation"),
     WebRadioGetSong("webradio.getSong"),
