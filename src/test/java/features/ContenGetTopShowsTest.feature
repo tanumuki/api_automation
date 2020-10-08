@@ -1,6 +1,6 @@
 # new feature
 # Tags: optional
-
+@runNow
 Feature: Get all Top shows
 
   Scenario: Get all top shows

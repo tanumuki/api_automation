@@ -44,7 +44,7 @@ public class GetHomePageDataV2 extends Util {
     public void user_calls_get_homepage_data_api() {
         resSpec = new ResponseSpecBuilder().expectStatusCode(200)
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-        System.out.println("resSpec: " + resSpec.toString());
+//        System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
         System.out.println("Response: " + resp.asString());
 

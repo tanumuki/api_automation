@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
 import validators.PlaylistMiniValidator;
+import validators.Validate;
 import validators.genericValidators.AlbumMiniValidator;
 import validators.genericValidators.EpisodeValidator;
 import validators.genericValidators.SongValidator;
@@ -33,37 +34,7 @@ import java.util.List;
 public class AssortedEntities {
 
     public static void readAndValidateAssortedEntity(Response response, SoftAssert sa) {
-        List<LinkedHashMap> entityList = response.jsonPath().getJsonObject("$");
-        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        String type;
-
-        for (LinkedHashMap item : entityList) {
-            type = item.get("type").toString();
-
-            switch (type) {
-                case "playlist":
-                    PlaylistMini playlistMiniObj = mapper.convertValue(item, PlaylistMini.class);
-                    new PlaylistMiniValidator().validate(playlistMiniObj, sa);
-                    break;
-
-                case "album":
-                    AlbumMiniObject albumMiniObj = mapper.convertValue(item, AlbumMiniObject.class);
-                    new AlbumMiniValidator().validate(albumMiniObj, sa);
-                    break;
-
-                case "episode":
-                    EpisodeMini episodeMiniObj = mapper.convertValue(item, EpisodeMini.class);
-                    new EpisodeValidator().validate(episodeMiniObj, sa);
-                    break;
-
-                case "song":
-                    Song songObj = mapper.convertValue(item, Song.class);
-                    new SongValidator().validate(songObj, sa);
-                    break;
-            }
-
-        }
-
+        Validate.asAssortedEntity(response, sa);
     }
 
     /**

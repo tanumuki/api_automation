@@ -14,36 +14,46 @@ public class ModulesValidator {
 
     void validateList(Modules modules, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        ModulesData list = modules.getList();
+        this.validate(modules.getList(), sa);
+    }
 
-        if(Validate.isNonEmptyString(list.getSource()))
-            sa.assertTrue(Validate.asModulesSource(list.getSource()), AssertionMsg.print(className, methodName, "modules.list.source", list.getSource()));
-
-        if(list.getPosition() != null)
-            sa.assertTrue(Validate.asModulesPosition(list.getPosition()), AssertionMsg.print(className, methodName, "modules.list.position", String.valueOf(list.getPosition())));
-
-        if(Validate.isNonEmptyString(list.getScrollType()))
-            sa.assertTrue(Validate.asModulesScrollType(list.getScrollType()), AssertionMsg.print(className, methodName, "modules.list.scroll_type", list.getScrollType()));
-
-        if(Validate.isNonEmptyString(list.getTitle()))
-            sa.assertTrue(Validate.asString(list.getTitle()), AssertionMsg.print(className, methodName, "modules.list.title", list.getTitle()));
-
-        if(Validate.isNonEmptyString(list.getSubtitle()))
-            sa.assertTrue(Validate.asString(list.getSubtitle()), AssertionMsg.print(className, methodName, "modules.list.subtitle", list.getSubtitle()));
-
-        if(Validate.isNonEmptyString(list.getHighlight()))
-            sa.assertTrue(Validate.asString(list.getHighlight()), AssertionMsg.print(className, methodName, "modules.list.highlight", list.getHighlight()));
-
-        if(list.getSimpleHeader() != null)
-            sa.assertTrue(Validate.asBoolean(list.getSimpleHeader()), AssertionMsg.print(className,methodName, "modules.list.simple_header", String.valueOf(list.getSimpleHeader())));
-
-        if(list.getNoHeader() != null)
-            sa.assertTrue(Validate.asBoolean(list.getNoHeader()),AssertionMsg.print(className, methodName, "modules.list.noHeader", String.valueOf(list.getNoHeader())));
-
-        if(list.getSourceApi() != null)
-            sa.assertTrue(Validate.asBoolean(list.getSourceApi()), AssertionMsg.print(className, methodName, "modules.list.source_api", String.valueOf(list.getSourceApi())));
+    public void validate(ModulesData md, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        if(Validate.isNonEmptyString(md.getSource()))
+            sa.assertTrue(Validate.asModulesSource(md.getSource()), AssertionMsg.print(className, methodName, "modules.list.source", md.getSource()));
 
 
+        sa.assertTrue(Validate.asModulesPosition(md.getPosition()), AssertionMsg.print(className, methodName, "modules.list.position", String.valueOf(md.getPosition())));
+
+        if(Validate.isNonEmptyString(md.getScrollType()))
+            sa.assertTrue(Validate.asModulesScrollType(md.getScrollType()), AssertionMsg.print(className, methodName, "modules.list.scroll_type", md.getScrollType()));
+
+        if(Validate.isNonEmptyString(md.getTitle()))
+            sa.assertTrue(Validate.asString(md.getTitle()), AssertionMsg.print(className, methodName, "modules.list.title", md.getTitle()));
+
+        if(Validate.isNonEmptyString(md.getSubtitle()))
+            sa.assertTrue(Validate.asString(md.getSubtitle()), AssertionMsg.print(className, methodName, "modules.list.subtitle", md.getSubtitle()));
+
+        if(Validate.isNonEmptyString(md.getHighlight()))
+            sa.assertTrue(Validate.asString(md.getHighlight()), AssertionMsg.print(className, methodName, "modules.list.highlight", md.getHighlight()));
+
+        if(md.getSimpleHeader() != null)
+            sa.assertTrue(Validate.asBoolean(md.getSimpleHeader()), AssertionMsg.print(className,methodName, "modules.list.simple_header", String.valueOf(md.getSimpleHeader())));
+
+        if(md.getNoHeader() != null)
+            sa.assertTrue(Validate.asBoolean(md.getNoHeader()),AssertionMsg.print(className, methodName, "modules.list.noHeader", String.valueOf(md.getNoHeader())));
+
+        if(md.getSourceApi() != null)
+            sa.assertTrue(Validate.asBoolean(md.getSourceApi()), AssertionMsg.print(className, methodName, "modules.list.source_api", String.valueOf(md.getSourceApi())));
+
+        if(md.getHideMeta() != null)
+            sa.assertTrue(Validate.asBoolean(md.getHideMeta()), AssertionMsg.print(className, methodName, "module.hideMeta", String.valueOf(md.getHideMeta())));
+
+        if(md.getFeatured() != null)
+            sa.assertTrue(Validate.asBoolean(md.getFeatured()), AssertionMsg.print(className, methodName, "module.featured", String.valueOf(md.getFeatured())));
+
+        if(Validate.isNonEmptyString(md.getFeaturedText()))
+            sa.assertTrue(Validate.asString(md.getFeaturedText()), AssertionMsg.print(className, methodName, "module.hideMeta", md.getFeaturedText()));
     }
 
 

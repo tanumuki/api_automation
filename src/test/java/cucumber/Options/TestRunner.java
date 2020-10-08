@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions (
 		features = "src/test/java/features/FeaturedRadio.feature",
 		glue = {"stepDefinitions"},
-		plugin = {"pretty", "html:target/cucumberReports", "rerun:target/rerun.txt", "json:target/jsonReport.json","timeline:target/timelineReport"}
+		plugin = {"pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "json:target/jsonReport.json","timeline:target/timelineReport"}
 
 		)
 public class TestRunner {

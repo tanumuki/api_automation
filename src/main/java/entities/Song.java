@@ -20,12 +20,12 @@ import lombok.Setter;
 @Setter
 public class Song extends Entity {
 
-
 	@JsonProperty("list")
 	private String list;
 	@JsonProperty("more_info")
 	private SongMoreInfo moreInfo;
 	@JsonProperty("modules")
 	private Object modules;
-
+	@JsonProperty("mini_obj")
+	private Boolean mini_obj;
 }

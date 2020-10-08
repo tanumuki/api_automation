@@ -19,6 +19,7 @@ import resources.Util;
 import validators.ChannelGetDetails.ChannelGetDetailsValidator;
 
 
+
 import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
@@ -60,9 +61,9 @@ public class ChannelGetDetails extends Util {
     @Then("Channel get details api response must be validated successfully")
     public void channel_get_details_api_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        pojos.channelGetDetailsPojos.ChannelGetDetails chanDets = mapper.readValue(resp.asString(), pojos.channelGetDetailsPojos.ChannelGetDetails.class);
+        pojos.channelGetDetailsPojos.ChannelGetDetails channels = mapper.readValue(resp.asString(), pojos.channelGetDetailsPojos.ChannelGetDetails.class);
         SoftAssert sa = new SoftAssert();
-        new ChannelGetDetailsValidator().validate(chanDets, sa);
+        new ChannelGetDetailsValidator().validate(channels, sa);
         sa.assertAll();
     }
 

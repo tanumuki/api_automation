@@ -14,7 +14,7 @@ public class PaginationValidator {
         for (String item : items) {
             if (temp.indexOf(item)!=-1) {
 //                if the item is already present in the list
-                log.error("FAILED: Duplicates found! \"" + item + "\" has been seen on an earlier!");
+                log.error("FAILED: Duplicates found! \"" + item + "\" has been seen earlier!");
                 return false;
             }
             else {

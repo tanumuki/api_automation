@@ -96,6 +96,7 @@ public class ContentGetTrending extends Util {
 //            Pass the list of IDs as an argument to the validator
             PaginationValidator pgv = new PaginationValidator();
             paginatedList = AssortedEntities.getValuesForAllKeys(resp, "id");
+            sa.assertTrue(paginatedList.size() > 0);
             sa.assertTrue(pgv.paginationDuplicateValidator(paginatedList),
                     "Found duplicate entities in paginated responses for content.GetTrending");
 

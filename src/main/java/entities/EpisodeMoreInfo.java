@@ -63,6 +63,8 @@ public class EpisodeMoreInfo {
     private List<String> genre_tags;
     @JsonProperty("seasonality_tags")
     private List<String> seasonality_tags;
+    @JsonProperty("multi_br")
+    private String multiBr;
 
 
 }

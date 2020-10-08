@@ -2,7 +2,13 @@ package endPoints;
 
 public enum APIResources {
 
+	AppGetLaunchData("app.getLaunchData"),
+	ShowGetEpisodeDetails("show.getEpisodeDetails"),
+	MixGetDetails("mix.getDetails"),
+	MixesList("mix.list"),
+	ContentGetAlbums("content.getAlbums"),
 	GetHomepageDataV2("content.getHomepageDataV2"),
+	ContentGetListeningHistory("content.getListeningHistory"),
 	ContentGetTrending("content.getTrending"),
 	ChannelGetDetailsAPI("channel.getDetails"),
 	SearchGetArtistResults("search.getArtistResults"),

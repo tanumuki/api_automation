@@ -1,4 +1,4 @@
-package validators.ContentGetTopShows;
+package validators.Content;
 
 import entities.ShowDetails;
 import org.testng.asserts.SoftAssert;

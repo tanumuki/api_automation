@@ -1,5 +1,6 @@
 package pojos.getHomePageDataV2;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.*;
@@ -8,7 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 import pojos.getTopShows.TopShows;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -19,7 +22,7 @@ public class HomePageDataV2 {
     @JsonProperty("last_page")
     private Boolean lastPage;
     @JsonProperty("new_trending")
-    private List<Object> newTrending = null;
+    private List<LinkedHashMap> newTrending = null;
     @JsonProperty("charts")
     private List<PlaylistMini> charts = null;
     @JsonProperty("new_albums")
@@ -37,5 +40,29 @@ public class HomePageDataV2 {
     @JsonProperty("user_state")
     private UserState userState;
     @JsonProperty("suggests")
-    private List<Object> suggests = null;
+    private List<Suggests> suggests = null;
+    @JsonProperty("mixes")
+    private List<Mix> mixes = null; //mix type
+    @JsonProperty("tag_mixes")
+    private List<Mix> tagMixes = null; //mix type
+    @JsonProperty("favorites")
+    private List<LinkedHashMap> favorites = null; //favorite type
+    @JsonProperty("artist_recos")
+    private List<RadioStation> artistRecos = null;
+    @JsonProperty("city_mod")
+    private List<LinkedHashMap> cityMod = null;
+    @JsonProperty("modules")
+    private HomePageDataModules modules;
+    @JsonProperty("greeting")
+    private String greeting;
+
+    private Map<String, List<Object>> topicPromos = new LinkedHashMap<>();
+    @JsonAnySetter
+    public void setTopicPromos(String key, List<Object> val){
+        topicPromos.put(key,val);
+    }
+
+
+
+
 }

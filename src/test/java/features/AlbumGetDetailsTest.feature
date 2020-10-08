@@ -1,4 +1,4 @@
-@contents
+@contents @runNow
 Feature: Content Get Album Details of given albumId
 
   Scenario Outline: Get Album details for given albumId

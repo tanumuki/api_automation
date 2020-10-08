@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Modules {
 
     @JsonProperty("list")
-    private ModulesData list;
+    private ModuleWithViewMoreArray list;
     @JsonProperty("reco")
-    private ModulesData reco;
+    private ModuleWithViewMoreArray reco;
 
 }

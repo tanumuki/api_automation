@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
+import entities.MixDetails;
 import entities.Playlist;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,6 +21,7 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import enums.StatusCode;
+import validators.genericValidators.MixDetailsValidator;
 import validators.genericValidators.PlaylistValidator;
 
 import java.io.IOException;
@@ -68,9 +70,9 @@ public class PlaylistGetDetails extends Util {
     @Then("User should see the PlaylistGetDetails response validated")
     public void user_should_see_the_PlaylistGetDetails_response_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        Playlist plObj = mapper.readValue(resp.asString(), Playlist.class);
+        MixDetails plObj = mapper.readValue(resp.asString(), MixDetails.class);
         SoftAssert sa = new SoftAssert();
-        new PlaylistValidator().validate(plObj, sa);
+        new MixDetailsValidator().validate(plObj, sa);
         sa.assertAll();
     }
 

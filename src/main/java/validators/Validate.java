@@ -3,10 +3,21 @@
  */
 package validators;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import entities.*;
 import enums.artistTypes;
 import enums.musicLanguages;
+import io.restassured.response.Response;
 import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
+import org.testng.asserts.SoftAssert;
+import validators.ArtistValidator.ArtistPageValidator;
+import validators.genericValidators.*;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author aswingokulachandran
@@ -95,14 +106,9 @@ public class Validate {
     /* DEPRECATED; Use the more specific URL matching methods instead
      * Validate as url
      */
-    @Deprecated
-    public static boolean asUrl(String str) {
-        return false;
-//        log.debug("str size: " + str.length());
-//        log.debug("Testing url: \"" + str + "\"");
-//        return str.matches("^$|((https|http)://(c|www|staging|c.sop|pli|qa-az|staging-az|prod-az|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|((https|http)://(c|www|staging|c.sop|qa-az|staging-az|prod-az)?.(saavn|saavncdn).com/(s|editorial|artists|.+)(/.+)?.(png|jpg)?(/.+)?)|(https://graph.facebook.com/v2.9/.+/picture|https://static.saavncdn.com/_i/share-image.png)");
-//        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+/)?.(png|jpg)?/(s/radio/.+/.+)?|https://graph.facebook.com/v2.9/.+/.+");
-//        //return str.matches("(https|http)://(c|c.sop|staging|www|.+)?.(saavncdn|saavn).com/(s|editorial|artists|.+)/(.+)?.(png|jpg)?");
+
+    public static boolean asUpdateUrl(String str) {
+        return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/android_soft_upgrade.php");
     }
 
     /**
@@ -134,7 +140,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
         }
         else
 //          perma_url is empty, just verify it as a string and return it
@@ -214,13 +220,27 @@ public class Validate {
      */
     public static boolean asMusicLanguage(String str) {
         if(!str.isEmpty()) {
-            try {
-                musicLanguages ml = musicLanguages.valueOf(str.toUpperCase());
+            String[] splits = str.split(",");
+            if(splits.length > 1){
+                for(int i=0; i< splits.length; i++){
+                    try {
+                        musicLanguages ml = musicLanguages.valueOf(splits[i].toUpperCase());
+                    }
+                    catch (IllegalArgumentException ex) {
+                        log.error("Not a valid music language: " + ex.getMessage());
+                        return false;
+                    }
+                }
+            }else{
+                try {
+                    musicLanguages ml = musicLanguages.valueOf(splits[0].toUpperCase());
+                }
+                catch (IllegalArgumentException ex) {
+                    log.error("Not a valid music language: " + ex.getMessage());
+                    return false;
+                }
             }
-            catch (IllegalArgumentException ex) {
-                log.error("Not a valid music language: " + ex.getMessage());
-                return false;
-            }
+
             return true;
         }
         else
@@ -259,7 +279,7 @@ public class Validate {
 	}
 
 	public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco");
+        return source.matches("list|reco.getAlbumReco|client");
     }
 
     public static boolean asModulesPosition(int pos){
@@ -272,6 +292,92 @@ public class Validate {
 
     public static boolean asProStatusType(String type) {
         return type.matches("pro | free | expired | trial");
+    }
+
+    public static void asAssortedEntity(LinkedHashMap entity, SoftAssert sa) {
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        String type = entity.get("type").toString();
+        System.out.println("id: " + entity.get("id").toString());
+        switch (type){
+            case "playlist":
+                PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
+                new PlaylistValidator().validate(playlist, sa);
+                break;
+            case "album":
+                AlbumMiniObject album = mapper.convertValue(entity, AlbumMiniObject.class);
+                new AlbumMiniValidator().validate(album, sa);
+                break;
+            case "episode":
+                EpisodeMini episode = mapper.convertValue(entity, EpisodeMini.class);
+                new EpisodeValidator().validate(episode, sa);
+                break;
+            case "song":
+                Song song = mapper.convertValue(entity, Song.class);
+                new SongValidator().validate(song, sa);
+                break;
+            case "artist":
+                Artist artist = mapper.convertValue(entity, Artist.class);
+                new ArtistPageValidator().validateAll(artist, sa);
+                break;
+        }
+    }
+
+    public static void asAssortedEntity(Response response,SoftAssert sa) {
+        List<LinkedHashMap> entityList = response.jsonPath().getJsonObject("$");
+        for(LinkedHashMap entity : entityList){
+            Validate.asAssortedEntity(entity, sa);
+        }
+    }
+
+    public static void asAssortedEntity(List<LinkedHashMap> entityList, SoftAssert sa) {
+        for(LinkedHashMap entity : entityList){
+            Validate.asAssortedEntity(entity, sa);
+        }
+    }
+
+    public boolean asEntityType(String entityType) {
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station");
+    }
+
+    public static void asChartsAndPlaylists(List<PlaylistMini> plObj, SoftAssert sa) {
+        for(PlaylistMini pl : plObj){
+            new PlaylistMiniValidator().validate(pl, sa);
+        }
+    }
+
+    public static void asTopicsPromos(Map<String, List<Object>> map, SoftAssert sa) {
+        for(String key : map.keySet()){
+            System.out.println("key: " + key);
+            for(Object entity : map.get(key)) {
+                LinkedHashMap entityMap = (LinkedHashMap) entity;
+                Validate.asAssortedEntity(entityMap, sa);
+            }
+
+        }
+    }
+    public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
+        for(RadioStation rs : artistRecos){
+            new RadioStationValidator().validate(rs, sa);
+        }
+    }
+
+    public static void asMixes(List<Mix> mixes, SoftAssert sa) {
+        for(Mix mix : mixes){
+            new MixValidator().validate(mix, sa);
+        }
+    }
+
+    public static void asBrowseAndDiscover(List<Channel> channels, SoftAssert sa) {
+        for(Channel channel : channels) {
+            new ChannelValidator().validate(channel, sa);
+        }
+    }
+
+    public static void asFeaturedStations(Radio radio, SoftAssert sa){
+        List<RadioStation> featuredStaions = radio.getFeatured_stations();
+        for(RadioStation station : featuredStaions) {
+            new RadioStationValidator().validate(station, sa);
+        }
     }
 
 }
