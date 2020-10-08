@@ -40,6 +40,8 @@ public class Radio extends Util {
 	Response resp;
 	String resource;
 	static String stationId = "";
+	static String artist="";
+	static String language="";
 	public ScenarioContext scenarioContext;
 	
 	
@@ -62,6 +64,12 @@ public class Radio extends Util {
 		List<Map<String, String>> data = table.asMaps();
 		System.out.println("data" + data.get(0));
 		String method = data.get(0).get("method");
+		
+		 artist= data.get(0).get("name");		
+		 language= data.get(0).get("language");
+		testContext.scenarioContext.setContext(Context.ARTIST_NAME, artist);
+		testContext.scenarioContext.setContext(Context.LANGUAGE, language);
+		
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 
@@ -115,12 +123,12 @@ public class Radio extends Util {
 		//testContext = new TestContext() ;
 		stationId = (String) testContext.scenarioContext.getContext(Context.STATIONID);
 		
-		System.out.println("mewooooo "+stationId);
+		System.out.println("station id "+stationId);
 		// code to handle Data Table
 		List<Map<String, String>> data = table.asMaps();
 		System.out.println("data" + data.get(0));
 		String method = data.get(0).get("method");
-
+		
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 
 			res.queryParam("next", data.get(0).get("next"));
@@ -131,20 +139,7 @@ public class Radio extends Util {
 
 	}
 
-	@Then("Validate the station response")
-	public void validate_the_station_response() throws JsonMappingException, JsonProcessingException {
 
-		System.out.println("Radio response" + resp.getBody().asString());
-		SoftAssert sa = new SoftAssert();
-		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);		
-		entities.Radio  radio = objectMapper.readValue(resp.asString(),entities.Radio.class);
-		new RadioValidator().validateRadio(radio, stationId, sa);
-		sa.assertAll();
-		
-		
-	}
 	
 	@And("Validate the artist in radio station response")
 	public void validate_the_artist_in_radio_station_response() throws JsonMappingException, JsonProcessingException {
@@ -155,7 +150,9 @@ public class Radio extends Util {
 				true);
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);		
 		entities.Radio  radio = objectMapper.readValue(resp.asString(),entities.Radio.class);
-		new RadioValidator().validateRadio(radio, stationId, sa);		
+		artist = (String) testContext.scenarioContext.getContext(Context.ARTIST_NAME);
+		language = (String) testContext.scenarioContext.getContext(Context.LANGUAGE);
+		new RadioValidator().validateRadio(radio, stationId, artist,language, sa);		
 	}
 
 

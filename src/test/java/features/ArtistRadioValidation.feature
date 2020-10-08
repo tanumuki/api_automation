@@ -16,8 +16,12 @@ Scenario: Verify if radio is playable after passing the station id along with ge
 	          |method|next|
 	          |GET|1|
 			  Then The Radio API returns station ID with status code "OK"
-			  And Validate the station response
 			  When User calls GET method with below param with next =1 and stationid "stationid"
+			  |method|next|
+	          |GET|1|
+				Then The Radio API returns station ID with status code "OK"
+			  And Validate the artist in radio station response
+			   When User calls GET method with below param with next =1 and stationid "stationid"
 			  |method|next|
 	          |GET|1|
 				Then The Radio API returns station ID with status code "OK"

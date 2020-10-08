@@ -22,6 +22,8 @@ public enum APIResources {
 	LibraryGetAllAPI ("library.getAll"),
 	CreateArtistStation("webradio.createArtistStation"),
 	WebRadioGetSong("webradio.getSong"),
+	WebRadioGetFeaturedStation("webradio.getFeaturedStations"),
+	WebRadioCreateFeaturedStation("webradio.createFeaturedStation"),
 	GetSong("webradio.getSong"),
 	UserProfileUpdateAPI("user.update"),
 	UserGetProfileAPI("user.getDetails"),

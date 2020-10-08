@@ -2,6 +2,9 @@ package endPoints;
 
 public enum Context {
 	
-	STATIONID;
+	STATIONID,
+	ARTIST_NAME,
+	LANGUAGE,
+	FEATURED_STATIONS
 
 }
