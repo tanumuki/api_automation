@@ -95,7 +95,7 @@ public class UserPofileDataValidator {
 
         if (Validate.isNonEmptyString(userGetProfile.getDob())) {
             String dob = userGetProfile.getDob();
-            sa.assertTrue(Validate.asGender(dob), className + "." + "validate dob failed - ");
+            sa.assertTrue(Validate.asString(dob), className + "." + "validate dob failed - ");
         } else {
             log.info("LOG response dob in user get profile is NULL or empty");
         }
