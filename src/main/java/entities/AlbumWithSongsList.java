@@ -6,15 +6,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Getter
 @Setter
-public class Modules {
-
+public class AlbumWithSongsList extends Album {
     @JsonProperty("list")
-    private ModuleWithViewMoreArray list;
-    @JsonProperty("reco")
-    private ModuleWithViewMoreArray reco;
-
+    private List<Song> list = null;
 }

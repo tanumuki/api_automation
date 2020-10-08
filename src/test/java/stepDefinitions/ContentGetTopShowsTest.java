@@ -15,6 +15,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import pojos.getTopShows.TopShows;
+import pojos.getTopShows.TopShowsData;
 import resources.ConfigReader;
 import resources.Util;
 import enums.StatusCode;
@@ -73,7 +74,7 @@ public class ContentGetTopShowsTest extends Util {
     @Then("Get top shows api response must be validated successfully")
     public void get_top_shows_api_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        TopShows shows = mapper.readValue(resp.asString(), TopShows.class);
+        TopShowsData shows = mapper.readValue(resp.asString(), TopShowsData.class);
         SoftAssert sa = new SoftAssert();
         new TopShowsValidator().validate(shows, sa);
         sa.assertAll();

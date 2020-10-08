@@ -90,6 +90,10 @@ public class GetLaunchDataValidator {
 //        Validate.asTopicsPromos(obj.getTopicPromos(), sa);
         //TODO: Validate Promos
 
+        //validate modules
+//        new ModulesValidator().validate(obj.getModules(), sa);
+
+
     }
 
     void validateAds(Ads ads, SoftAssert sa) {

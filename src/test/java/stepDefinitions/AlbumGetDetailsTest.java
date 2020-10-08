@@ -8,6 +8,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
+import entities.AlbumWithSongsList;
 import org.testng.asserts.SoftAssert;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -71,7 +72,7 @@ public class AlbumGetDetailsTest extends Util {
 	@Then("User should see the response validated")
 	public void user_should_see_the_response_validated() throws JsonMappingException, JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-		Album albumObj = mapper.readValue(resp.asString(), Album.class);
+		AlbumWithSongsList albumObj = mapper.readValue(resp.asString(), AlbumWithSongsList.class);
 		SoftAssert sa = new SoftAssert();
 		new AlbumValidator().validate(albumObj, sa);
 		sa.assertAll();

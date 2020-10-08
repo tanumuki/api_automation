@@ -17,7 +17,7 @@ public class ModulesValidator {
         this.validate(modules.getList(), sa);
     }
 
-    void validate(ModulesData md, SoftAssert sa) {
+    public void validate(ModulesData md, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         if(Validate.isNonEmptyString(md.getSource()))
             sa.assertTrue(Validate.asModulesSource(md.getSource()), AssertionMsg.print(className, methodName, "modules.list.source", md.getSource()));

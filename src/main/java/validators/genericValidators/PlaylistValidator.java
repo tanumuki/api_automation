@@ -20,6 +20,7 @@ public class PlaylistValidator extends EntityValidator {
             new SongValidator().validate(song, sa, playlistObj.getId(), "playlist");
         }
         validateMoreInfo(playlistObj, sa);
+//        new ModulesValidator().validate(playlistObj.getModules(), sa);
     }
 
     public void validate(UserProfilePlaylists playlistObj, SoftAssert sa) {
