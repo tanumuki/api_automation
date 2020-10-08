@@ -213,8 +213,7 @@
 					<version>2.19.1</version>
 					<configuration>
 						<includes>
-							<include>**/TestRunner.java</include>
-<!--							<include>**/FailedRunner.java</include>-->
+							<include>**/*Runner.java</include>
 						</includes>
 					</configuration>
 				</plugin>
