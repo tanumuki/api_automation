@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions (
-		features = "src/test/java/features/FeaturedRadio.feature",
+		features = "src/test/java/features",
 		glue = {"stepDefinitions"},
 		plugin = {"pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "json:target/jsonReport.json","timeline:target/timelineReport"}
 
