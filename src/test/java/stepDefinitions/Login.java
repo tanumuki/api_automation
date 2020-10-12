@@ -1,19 +1,11 @@
 package stepDefinitions;
 
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
-
-import java.io.IOException;
-import java.util.List;
-
-import org.testng.asserts.SoftAssert;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import endPoints.APIResources;
+import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,12 +14,18 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.testng.asserts.SoftAssert;
 import pojos.login_pojos.UserLogin;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
-import enums.StatusCode;
 import validators.UserLoginValidator;
+
+import java.io.IOException;
+import java.util.List;
+
+import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
 public class Login extends Util {
 

@@ -3,3 +3,5 @@
 .idea/
 Backend_Automation.iml
 Output.txt
+test-output/
+.settings/

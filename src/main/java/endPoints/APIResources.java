@@ -25,6 +25,7 @@ public enum APIResources {
 	UserCreateAPI ("user.createV2"),
 	LibraryAddAPI ("library.add"),
 	SocialFollowAPI ("social.follow"),
+	SocialUnfollowAPI("social.unfollow"),
 	LibraryGetAllAPI ("library.getAll"),
 	CreateArtistStation("webradio.createArtistStation"),
 	WebRadioGetSong("webradio.getSong"),
@@ -39,19 +40,25 @@ public enum APIResources {
 	GetArtistMoreSongs("artist.getArtistMoreSong"),
 	GetArtistMoreAlbums("artist.getArtistMoreAlbum"),
 	GetArtistSimilarArtists("artist.getSimilarArtists"),
-	PlaylistCreate("playlist.create");
+	PlaylistCreate("playlist.create"),
+	UserLogoutAPI("user.logout"),
+	WebRadioCreateEntityStation("webradio.createEntityStation"),
+	WebRadioCreateStation("webradio.createStation"),
+	WebRadioCreateFavouriteStation("webradio.createFeaturedStation"),
+	BenefitsCountApi("benefits.count"),
+	BenefitsListApi("benefits.list");
 
 
 	private String resource;
-	
+
 	APIResources(String resource){
 		this.resource =resource;
 	}
-	
+
 	public String getResource() {
 		return resource;
 	}
-	
-	
+
+
 
 }

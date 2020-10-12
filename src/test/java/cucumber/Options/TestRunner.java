@@ -1,20 +1,14 @@
 package cucumber.Options;
 
-import org.junit.runner.RunWith;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
 
-@RunWith(Cucumber.class)
-@CucumberOptions (
-		features = "src/test/java/features",
-		glue = {"stepDefinitions"},
-		plugin = {"pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "json:target/jsonReport.json","timeline:target/timelineReport"}
+@CucumberOptions(
+        features = "src/test/java/features",
+        glue = {"stepDefinitions"},
+        plugin = {"pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "json:target/jsonReport.json", "timeline:target/timelineReport"}
 
-		)
-public class TestRunner {
-	
-	
-	
-
+)
+public class TestRunner extends AbstractTestNGCucumberTests {
 }

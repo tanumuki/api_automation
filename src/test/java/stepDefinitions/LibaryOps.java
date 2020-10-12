@@ -1,22 +1,12 @@
 package stepDefinitions;
 
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.testng.asserts.SoftAssert;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import endPoints.APIResources;
+import entities.Album;
+import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -26,14 +16,23 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
+import org.testng.asserts.SoftAssert;
 import pojos.libraryOps.LibraryData;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.UserGenerator;
 import resources.Util;
-import enums.StatusCode;
 import validators.LibraryValidator;
-import entities.Album;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
+
 
 @Slf4j
 public class LibaryOps extends Util {

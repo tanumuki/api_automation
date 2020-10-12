@@ -4,68 +4,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cookieManager.GetCookies;
-import endPoints.APIResources;
 import entities.Song;
 import entities.UserProfilePlaylists;
-import io.cucumber.core.internal.gherkin.deps.com.google.gson.JsonObject;
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import pojos.user_pojos.UserGetProfile;
 import pojos.user_pojos.UserProfileUpdate;
-import resources.APIConstants;
-import resources.ConfigReader;
 import resources.Util;
-import validators.genericValidators.PlaylistValidator;
 import validators.UserPofileDataValidator;
+import validators.genericValidators.PlaylistValidator;
 import validators.genericValidators.SongValidator;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-
-import static cookieManager.GetCookies.initCookies;
-import static io.restassured.RestAssured.given;
 
 @Slf4j
 public class User extends Util {
-//    RequestSpecification request = null;
-//    Response resp;
-//    String apiResource;
-//
-//    @Given("I have the endpoint for {string}")
-//    public void iHaveTheEndopointFor(String endPoint) throws IOException {
-//        apiResource = APIResources.valueOf(endPoint).getResource();
-//        String cookie = initCookies("sun@s.in", "saavn123");
-//        request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
-//    }
-//
-//    @When("I make the {string} request with the following query parameters")
-//    public void iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
-//        List<Map<String, String>> params = queryParams.asMaps();
-//        if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-//            request.queryParams(params.get(0));
-//        }
-//        resp = request.given()
-//                .log()
-//                .all()
-//                .when()
-//                .get("/api.php")
-//                .then()
-//                .log()
-//                .all()
-//                .extract()
-//                .response();
-//        logResponseTime(resp);
-//        System.out.println(resp.asString());
-//    }
 
     @Then("The User Update API returns {string} with status code {int}")
     public void theUserUpdateAPIReturnsWithStatusCode(String expectedStatus, int expectedStatusCode) throws JsonProcessingException {
