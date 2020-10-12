@@ -1,12 +1,7 @@
 package stepDefinitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
-import entities.AlbumMiniObject;
-import entities.Artist;
 import entities.AssortedEntities;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -21,7 +16,6 @@ import org.testng.asserts.SoftAssert;
 import pagination.PaginationValidator;
 import resources.ConfigReader;
 import resources.Util;
-import validators.ArtistValidator.ArtistPageValidator;
 
 import java.io.IOException;
 import java.util.ArrayList;

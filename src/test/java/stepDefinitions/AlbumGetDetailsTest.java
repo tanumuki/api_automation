@@ -3,21 +3,13 @@
  */
 package stepDefinitions;
 
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
-
-import java.io.IOException;
-
-import entities.AlbumWithSongsList;
-import org.testng.asserts.SoftAssert;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import endPoints.APIResources;
-import entities.Album;
+import entities.AlbumWithSongsList;
+import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,10 +18,15 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import enums.StatusCode;
 import validators.genericValidators.AlbumValidator;
+
+import java.io.IOException;
+
+import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
 /**
  * @author aswingokulachandran

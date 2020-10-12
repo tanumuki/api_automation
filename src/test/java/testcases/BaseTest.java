@@ -11,15 +11,13 @@ import cucumber.Options.TestRunner;
 
 public class BaseTest {
 
-	
-	@Test
-	public void start() throws JsonMappingException, JsonProcessingException {
-		
-			 new TestRunner();
-		
-	}
-	
-	
-	
-	
+
+    @Test
+    public void start() throws JsonMappingException, JsonProcessingException {
+
+        new TestRunner();
+
+    }
+
+
 }

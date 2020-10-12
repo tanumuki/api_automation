@@ -1,22 +1,12 @@
 package stepDefinitions;
 
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-import org.testng.asserts.SoftAssert;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import endPoints.APIResources;
 import endPoints.Context;
-import entities.Song;
+import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,13 +15,19 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.testng.asserts.SoftAssert;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.ScenarioContext;
-import resources.TestContext;
 import resources.Util;
 import validators.RadioValidator;
-import enums.StatusCode;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
 public class Radio extends Util {
 

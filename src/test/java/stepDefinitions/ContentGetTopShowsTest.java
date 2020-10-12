@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
-import entities.ShowDetails;
+import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,13 +14,10 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
-import pojos.getTopShows.TopShows;
 import pojos.getTopShows.TopShowsData;
 import resources.ConfigReader;
 import resources.Util;
-import enums.StatusCode;
 import validators.genericValidators.TopShowsValidator;
-import validators.showGetHome.ShowDetailsValidator;
 
 import java.io.IOException;
 

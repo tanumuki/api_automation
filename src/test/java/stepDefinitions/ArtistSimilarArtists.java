@@ -5,8 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
-import entities.Artist;
-import entities.Channel;
 import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

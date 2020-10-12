@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
-import entities.Episode;
 import entities.EpisodeDetails;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -19,7 +18,6 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import validators.genericValidators.EpisodeDetailsValidator;
-import validators.genericValidators.EpisodeValidator;
 
 import java.io.IOException;
 

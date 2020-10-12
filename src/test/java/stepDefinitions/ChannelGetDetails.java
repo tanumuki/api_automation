@@ -18,8 +18,6 @@ import resources.ConfigReader;
 import resources.Util;
 import validators.ChannelGetDetails.ChannelGetDetailsValidator;
 
-
-
 import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
