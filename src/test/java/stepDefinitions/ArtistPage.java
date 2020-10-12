@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
 import entities.Artist;
+import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +18,6 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import enums.StatusCode;
 import validators.ArtistValidator.ArtistPageValidator;
 
 import java.io.IOException;

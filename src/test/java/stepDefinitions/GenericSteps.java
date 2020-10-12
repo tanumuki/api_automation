@@ -1,11 +1,15 @@
 package stepDefinitions;
 
+
 import endPoints.APIResources;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import resources.APIConstants;
+import resources.ConfigReader;
+import resources.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,10 +18,6 @@ import java.util.Map;
 
 import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
-
-import resources.APIConstants;
-import resources.ConfigReader;
-import resources.Util;
 
 public class GenericSteps extends Util{
     static RequestSpecification request = null;
@@ -55,5 +55,21 @@ public class GenericSteps extends Util{
     public void iHaveTheCookieForTheFollowingUser(DataTable userDetails) throws IOException {
         List<Map<String, String>> user = userDetails.asMaps();
         cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
+    }
+
+    @When("I make the {string} request")
+    public void iMakeTheRequest(String method) {
+        resp = request.given()
+                .log()
+                .all()
+                .when()
+                .get("/api.php")
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        logResponseTime(resp);
+        System.out.println(resp.asString());
     }
 }

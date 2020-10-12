@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.PlaylistMini;
+import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,7 +19,6 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import enums.StatusCode;
 import validators.PlaylistMiniValidator;
 
 import java.io.IOException;

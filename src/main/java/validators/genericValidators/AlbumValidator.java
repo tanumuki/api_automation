@@ -7,7 +7,6 @@ package validators.genericValidators;
 import entities.*;
 import org.testng.asserts.SoftAssert;
 
-import scala.Enumeration;
 import validators.AssertionMsg;
 import validators.Validate;
 
