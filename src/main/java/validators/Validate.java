@@ -248,6 +248,10 @@ public class Validate {
             return asString(str);
     }
 
+    public static boolean asMusicLanguages(String lang) {
+        return lang.matches("english|hindi|punjabi|tamil|telugu|marathi|gujarati|bengali|kannada|bhojpuri|malayalam|urdu|haryanvi|rajasthani|odia|assamese|spanish|latin|italian|french|portuguese|instrumental|croatian|korean|unknown");
+    }
+
     /**
      * Will verify artist types like artist, singer, music director, lyricist, etc. Refer the enum class for more details
      * @param str
@@ -279,11 +283,11 @@ public class Validate {
 	}
 
 	public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes");
     }
 
     public static boolean asModulesPosition(int pos){
-        return pos <= 10;
+        return pos <= 15;
     }
 
     public static boolean asModulesScrollType(String scrollType){
@@ -319,6 +323,10 @@ public class Validate {
                 Artist artist = mapper.convertValue(entity, Artist.class);
                 new ArtistPageValidator().validateAll(artist, sa);
                 break;
+            case "mix":
+                Mix mix = mapper.convertValue(entity, Mix.class);
+                new MixValidator().validate(mix, sa);
+                break;
         }
     }
 
@@ -335,7 +343,7 @@ public class Validate {
         }
     }
 
-    public boolean asEntityType(String entityType) {
+    public static boolean asEntityType(String entityType) {
         return entityType.matches("artist|mix|playlist|album|song|channel|radio_station");
     }
 
