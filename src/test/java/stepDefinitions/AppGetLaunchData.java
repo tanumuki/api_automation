@@ -3,6 +3,7 @@ package stepDefinitions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cookieManager.GetCookies;
 import endPoints.APIResources;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -28,7 +29,7 @@ public class AppGetLaunchData extends Util {
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     Response resp;
-
+    String cookie = "";
     @Given("Payload with endpoint for app get launch {string}")
     public void payload_with_endpoint_for_app_get_launch(String endpoint) throws IOException {
         APIResources resourceAPI = APIResources.valueOf(endpoint);
@@ -36,6 +37,19 @@ public class AppGetLaunchData extends Util {
         System.out.println("resource: " + resource);
         reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
     }
+
+    @Given("Payload with app get launch endpoint {string} along with given credentials")
+    public void payload_with_app_get_launch_endpoint_along_with_given_credentials(String endpoint) throws IOException {
+        APIResources resourceAPI = APIResources.valueOf(endpoint);
+        String username = ConfigReader.getInstance().getUsername();
+        String password = ConfigReader.getInstance().getPassword();
+        cookie = GetCookies.initCookies(username, password);
+        String resource = resourceAPI.getResource();
+        System.out.println("resource: " + resource);
+        System.out.println("cookie: " + cookie);
+        reqSpec = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+    }
+
 
     @When("User calls app get launch api")
     public void user_calls_app_get_launch_api() {

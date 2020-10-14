@@ -295,7 +295,7 @@ public class Validate {
     }
 
     public static boolean asProStatusType(String type) {
-        return type.matches("pro | free | expired | trial");
+        return type.matches("pro|free|expired|trial");
     }
 
     public static void asAssortedEntity(LinkedHashMap entity, SoftAssert sa) {

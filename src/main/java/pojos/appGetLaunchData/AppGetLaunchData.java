@@ -69,7 +69,8 @@ public class AppGetLaunchData {
     private Boolean lastPage;
     @JsonProperty("modules")
     private HomePageDataModules modules;
-
+    @JsonProperty("device_status")
+    private String deviceStatus;
     @JsonProperty("global_config")
     private AppGetLaunchDataGlobalConfig global_config;
 
