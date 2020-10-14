@@ -16,4 +16,6 @@ public class ShowGetHome {
     private List<Season> seasons = null;
     @JsonProperty("episodes")
     private List<Episode> episodes = null;
+    @JsonProperty("modules")
+    private ShowHomePageModules modules;
 }

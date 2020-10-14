@@ -6,8 +6,11 @@ import pojos.appGetLaunchData.Ads;
 import pojos.appGetLaunchData.AppGetLaunchData;
 import pojos.appGetLaunchData.TopSearch;
 import pojos.appGetLaunchData.UpdateConfig;
+import pojos.getHomePageDataV2.HomePageDataModules;
 import pojos.getHomePageDataV2.HomePageDataV2;
+import pojos.libraryOps.SongData;
 import validators.AssertionMsg;
+import validators.HomepageDataV2.HomePageDataModuleValidator;
 import validators.PlaylistMiniValidator;
 import validators.Validate;
 import validators.genericValidators.*;
@@ -33,8 +36,14 @@ public class GetLaunchDataValidator {
             sa.assertTrue(Validate.asString(item), AssertionMsg.print(className, methodName, "ef", item));
         }
 
+
+        //Validate ab_test
+
+        //Validate suggests
+
         //Validate ping_server
         sa.assertTrue(Validate.asString(obj.getPingServer()), AssertionMsg.print(className, methodName, "ping_server", obj.getPingServer()));
+
 
         //Validate new trending
         Validate.asAssortedEntity(obj.getNewTrending(), sa);
@@ -61,13 +70,17 @@ public class GetLaunchDataValidator {
             validateTopSearches(ts, sa);
         }
 
+        //TODO: Validate global_config
+
+
+
         //Validate loginwall
         if(Validate.isNonEmptyString(obj.getLoginwall()))
-            sa.assertTrue(Validate.asString(obj.getLoginwall()), AssertionMsg.print(className, methodName, "loginwall", obj.getLoginwall()));
+            sa.assertTrue(Validate.asBoolean(obj.getLoginwall()), AssertionMsg.print(className, methodName, "loginwall", obj.getLoginwall()));
 
         //Validate jiologinwall
         if(Validate.isNonEmptyString(obj.getJiologinwall()))
-            sa.assertTrue(Validate.asString(obj.getJiologinwall()), AssertionMsg.print(className, methodName, "jiologinwall", obj.getJiologinwall()));
+            sa.assertTrue(Validate.asBoolean(obj.getJiologinwall()), AssertionMsg.print(className, methodName, "jiologinwall", obj.getJiologinwall()));
 
         //Validate charts
         Validate.asChartsAndPlaylists(obj.getCharts(), sa);
@@ -82,19 +95,24 @@ public class GetLaunchDataValidator {
         //Validate artist recos
         Validate.asArtistRecos(obj.getArtistRecos(), sa);
 
-        //Valoidate city modules
-//        Validate.asAssortedEntity(obj.getCityMod(), sa);
-        //TODO: Validate City Modules
+        //Validate City Modules
+        //validateCityModules(obj.getCityMod(), sa);
 
-        //Validate promos
-//        Validate.asTopicsPromos(obj.getTopicPromos(), sa);
+
         //TODO: Validate Promos
 
-        //validate modules
-//        new ModulesValidator().validate(obj.getModules(), sa);
+        validateModules(obj.getModules(), sa);
 
+        sa.assertTrue(Validate.asString(obj.getGreeting()), AssertionMsg.print(className, methodName, "greeting", obj.getGreeting()));
+
+        sa.assertTrue(Validate.asBoolean(obj.getLastPage()), AssertionMsg.print(className, methodName, "last_page", String.valueOf(obj.getLastPage())));
 
     }
+
+    void validateModules(HomePageDataModules modules, SoftAssert sa) {
+        new HomePageDataModuleValidator().validate(modules, sa);
+    }
+
 
     void validateAds(Ads ads, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
@@ -127,7 +145,7 @@ public class GetLaunchDataValidator {
             sa.assertTrue(Validate.asString(ts.getEntityName()), AssertionMsg.print(className, methodName, "top_searches.entity_name", ts.getEntityName()));
 
         if(Validate.isNonEmptyString(ts.getEntityType()))
-            sa.assertTrue(Validate.asString(ts.getEntityType()), AssertionMsg.print(className, methodName, "top_searches.entity_type", ts.getEntityType()));
+            sa.assertTrue(Validate.asEntityType(ts.getEntityType()), AssertionMsg.print(className, methodName, "top_searches.entity_type", ts.getEntityType()));
 
 
 
@@ -144,5 +162,8 @@ public class GetLaunchDataValidator {
 
     }
 
+    void validateCityModules(List<LinkedHashMap> cityMods, SoftAssert sa) {
+        Validate.asAssortedEntity(cityMods, sa);
+    }
 
 }

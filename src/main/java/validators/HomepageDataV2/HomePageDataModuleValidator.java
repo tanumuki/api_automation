@@ -8,7 +8,7 @@ import validators.genericValidators.ModulesValidator;
 public class HomePageDataModuleValidator {
     final String className = getClass().getName();
 
-    void validate(HomePageDataModules hm, SoftAssert sa) {
+    public void validate(HomePageDataModules hm, SoftAssert sa) {
         //Validate history
         new ModulesValidator().validate(hm.getHistory(), sa);
 
