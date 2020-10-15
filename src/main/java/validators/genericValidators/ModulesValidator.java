@@ -22,8 +22,8 @@ public class ModulesValidator {
         if(Validate.isNonEmptyString(md.getSource()))
             sa.assertTrue(Validate.asModulesSource(md.getSource()), AssertionMsg.print(className, methodName, "modules.list.source", md.getSource()));
 
-
-        sa.assertTrue(Validate.asNum(md.getPosition()), AssertionMsg.print(className, methodName, "modules.list.position", String.valueOf(md.getPosition())));
+        if(md.getPosition() != null)
+            sa.assertTrue(Validate.asNum(md.getPosition()), AssertionMsg.print(className, methodName, "modules.list.position", String.valueOf(md.getPosition())));
 
         if(Validate.isNonEmptyString(md.getScrollType()))
             sa.assertTrue(Validate.asModulesScrollType(md.getScrollType()), AssertionMsg.print(className, methodName, "modules.list.scroll_type", md.getScrollType()));

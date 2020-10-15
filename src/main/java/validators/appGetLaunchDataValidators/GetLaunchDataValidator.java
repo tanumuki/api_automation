@@ -114,21 +114,35 @@ public class GetLaunchDataValidator {
     }
 
 
-    void validateAds(Ads ads, SoftAssert sa) {
+    public void validateAds(Ads ads, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        System.out.println("=======Validate Ads=========");
+        System.out.println("ads null? " + ads == null);
+        if(ads != null) {
+            System.out.println("----Not Null----");
+            if(Validate.isNonEmptyString(ads.getCarrier())){
+                sa.assertTrue(Validate.asString(ads.getCarrier()), AssertionMsg.print(className, methodName, "ads.carrier", ads.getCarrier()));
+                System.out.println("carrier: " + ads.getCarrier());
+            }
 
-        if(Validate.isNonEmptyString(ads.getCarrier()))
-            sa.assertTrue(Validate.asString(ads.getCarrier()), AssertionMsg.print(className, methodName, "ads.carrier", ads.getCarrier()));
 
-        if(Validate.isNonEmptyString(ads.getSegmentIds()))
-            sa.assertTrue(Validate.asString(ads.getSegmentIds()), AssertionMsg.print(className, methodName, "ads.segment_ids", ads.getSegmentIds()));
+            if(Validate.isNonEmptyString(ads.getSegmentIds()))
+                sa.assertTrue(Validate.asString(ads.getSegmentIds()), AssertionMsg.print(className, methodName, "ads.segment_ids", ads.getSegmentIds()));
 
-        if(Validate.isNonEmptyString(ads.getGender()))
-            sa.assertTrue(Validate.asString(ads.getGender()), AssertionMsg.print(className, methodName, "ads.gender", ads.getGender()));
+            System.out.println("gender: " + ads.getGender());
+            if(Validate.isNonEmptyString(ads.getGender())){
+                sa.assertTrue(Validate.asString(ads.getGender()), AssertionMsg.print(className, methodName, "ads.gender", ads.getGender()));
+                System.out.println("gender: " + ads.getGender());
+            }
 
-        if(Validate.isNonEmptyString(ads.getCohort()))
-            sa.assertTrue(Validate.asString(ads.getCohort()), AssertionMsg.print(className, methodName, "ads.cohort", ads.getCohort()));
 
+            if(Validate.isNonEmptyString(ads.getCohort())) {
+                sa.assertTrue(Validate.asString(ads.getCohort()), AssertionMsg.print(className, methodName, "ads.cohort", ads.getCohort()));
+                System.out.println("cohort: " + ads.getCohort());
+            }
+
+
+        }
 
     }
 

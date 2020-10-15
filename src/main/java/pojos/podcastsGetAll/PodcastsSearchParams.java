@@ -1,4 +1,4 @@
-package entities;
+package pojos.podcastsGetAll;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,13 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 @Data
 @Getter
 @Setter
-public class ModulesWithViewMoreObj extends ModulesData {
-    @JsonProperty("view_more")
-    private ModuleViewMore viewMore;
-    @JsonProperty("source")
-    private String source;
+public class PodcastsSearchParams {
+    @JsonProperty("type")
+    private String type;
 }

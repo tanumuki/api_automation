@@ -283,7 +283,7 @@ public class Validate {
 	}
 
 	public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you");
     }
 
     public static boolean asModulesPosition(int pos){
@@ -338,8 +338,10 @@ public class Validate {
     }
 
     public static void asAssortedEntity(List<LinkedHashMap> entityList, SoftAssert sa) {
-        for(LinkedHashMap entity : entityList){
-            Validate.asAssortedEntity(entity, sa);
+        if(entityList != null && entityList.size() > 0){
+            for(LinkedHashMap entity : entityList){
+                Validate.asAssortedEntity(entity, sa);
+            }
         }
     }
 
@@ -348,8 +350,10 @@ public class Validate {
     }
 
     public static void asChartsAndPlaylists(List<PlaylistMini> plObj, SoftAssert sa) {
-        for(PlaylistMini pl : plObj){
-            new PlaylistMiniValidator().validate(pl, sa);
+        if(plObj != null && plObj.size() > 0) {
+            for(PlaylistMini pl : plObj){
+                new PlaylistMiniValidator().validate(pl, sa);
+            }
         }
     }
 
@@ -364,28 +368,38 @@ public class Validate {
         }
     }
     public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
-        for(RadioStation rs : artistRecos){
-            new RadioStationValidator().validate(rs, sa);
+        if(artistRecos != null && artistRecos.size() > 0) {
+            for(RadioStation rs : artistRecos){
+                new RadioStationValidator().validate(rs, sa);
+            }
         }
     }
 
     public static void asMixes(List<Mix> mixes, SoftAssert sa) {
-        for(Mix mix : mixes){
-            new MixValidator().validate(mix, sa);
+        if(mixes != null && mixes.size() > 0) {
+            for(Mix mix : mixes){
+                new MixValidator().validate(mix, sa);
+            }
         }
     }
 
     public static void asBrowseAndDiscover(List<Channel> channels, SoftAssert sa) {
-        for(Channel channel : channels) {
-            new ChannelValidator().validate(channel, sa);
+        if(channels != null && channels.size() > 0) {
+            for(Channel channel : channels) {
+                new ChannelValidator().validate(channel, sa);
+            }
         }
+
     }
 
     public static void asFeaturedStations(Radio radio, SoftAssert sa){
-        List<RadioStation> featuredStaions = radio.getFeatured_stations();
-        for(RadioStation station : featuredStaions) {
-            new RadioStationValidator().validate(station, sa);
+        if(radio != null) {
+            List<RadioStation> featuredStations = radio.getFeatured_stations();
+            for(RadioStation station : featuredStations) {
+                new RadioStationValidator().validate(station, sa);
+            }
         }
+
     }
 
 }
