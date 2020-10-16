@@ -17,7 +17,7 @@ public class EpisodeDetailsValidator {
         //Validate modules
         EpisodeDetailsModules modules = ed.getModules();
 
-        new ModulesValidator().validate(modules.getEpisode_details(), sa);
-        new ModulesValidator().validate(modules.getEpisode_starring(), sa);
+        new ModulesDataValidator().validate(modules.getEpisode_details(), sa);
+        new ModulesDataValidator().validate(modules.getEpisode_starring(), sa);
     }
 }

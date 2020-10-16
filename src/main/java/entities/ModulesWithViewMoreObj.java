@@ -14,6 +14,4 @@ import lombok.Setter;
 public class ModulesWithViewMoreObj extends ModulesData {
     @JsonProperty("view_more")
     private ModuleViewMore viewMore;
-    @JsonProperty("source")
-    private String source;
 }

@@ -6,7 +6,7 @@ import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 
-public class ModulesValidator {
+public class ModulesDataValidator {
     final String className = getClass().getName();
     public void validate(Modules modules, SoftAssert sa) {
 
