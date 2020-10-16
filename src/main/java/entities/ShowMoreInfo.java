@@ -71,5 +71,7 @@ public class ShowMoreInfo {
     private List<String> category_tags;
     @JsonProperty("sub_category_tags")
     private List<String> sub_category_tags;
+    @JsonProperty("bg_color")
+    private String bgColor;
 
 }

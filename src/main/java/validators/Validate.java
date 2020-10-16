@@ -12,8 +12,10 @@ import io.restassured.response.Response;
 import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
+import pojos.podcastsGetAll.PodcastCategory;
 import validators.ArtistValidator.ArtistPageValidator;
 import validators.genericValidators.*;
+import validators.showGetHome.ShowDetailsValidator;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -99,7 +101,7 @@ public class Validate {
      */
     public static boolean asString(String str) {
         log.debug("Testing as string: \"" + str + "\"");
-        return str.matches("^$|.+");
+        return str.matches("^$|.+|.*[\u0000-\uFFEE]*");
 
     }
 
@@ -283,7 +285,7 @@ public class Validate {
 	}
 
 	public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+");
     }
 
     public static boolean asModulesPosition(int pos){
@@ -291,7 +293,7 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType){
-        return scrollType.matches("SS_Basic|SS_Basic_Double|SS_Condensed|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|Cells_EditorsNote|Cells_Text|THREETILE_MENU");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM");
     }
 
     public static boolean asProStatusType(String type) {
@@ -327,6 +329,13 @@ public class Validate {
                 Mix mix = mapper.convertValue(entity, Mix.class);
                 new MixValidator().validate(mix, sa);
                 break;
+            case "show":
+                ShowDetails show = mapper.convertValue(entity, ShowDetails.class);
+                new ShowDetailsValidator().validate(show, sa);
+                break;
+            case "category":
+                PodcastCategory category = mapper.convertValue(entity, PodcastCategory.class);
+                break;
         }
     }
 
@@ -346,7 +355,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show");
     }
 
     public static void asChartsAndPlaylists(List<PlaylistMini> plObj, SoftAssert sa) {

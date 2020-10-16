@@ -18,6 +18,7 @@ import pojos.browseGetAll.BrowseGetAllPojo;
 import pojos.podcastsGetAll.PodcastGetAllPojo;
 import resources.ConfigReader;
 import resources.Util;
+import validators.PodcastGetAllValidator.PodcastGetAllValidator;
 import validators.browseGetAllValidator.BrowseGetAllValidator;
 
 import java.io.IOException;
@@ -59,9 +60,9 @@ public class PodcastsGetAll extends Util {
     @Then("Podcasts get all response must be validated successfully")
     public void podcasts_get_all_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        PodcastGetAllPojo br = mapper.readValue(resp.asString(), PodcastGetAllPojo.class);
+        PodcastGetAllPojo pg = mapper.readValue(resp.asString(), PodcastGetAllPojo.class);
         SoftAssert sa  = new SoftAssert();
-//        new BrowseGetAllValidator().validate(br, sa);
+        new PodcastGetAllValidator().validate(pg,sa);
         sa.assertAll();
     }
 }

@@ -19,5 +19,6 @@ public class PodcastCategory extends Entity {
     private Integer seasonNumber;
     @JsonProperty("category_type")
     private String categoryType;
-    
+    @JsonProperty("more_info")
+    private PodcastCategoryMoreInfo moreInfo;
 }

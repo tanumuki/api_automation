@@ -23,7 +23,8 @@ public class ModuleValidator {
 
     void validateModulesBaseMenu(ModulesWithViewMoreObj bm, SoftAssert sa) {
         // validate module data
-        new ModulesDataValidator().validate(bm, sa);
+        System.out.println("validate base menu: " + bm == null);
+        ModulesDataValidator.validate(bm, sa);
     }
 
     void validateModulesNewTrending(ModulesWithViewMoreObj nt, SoftAssert sa) {
