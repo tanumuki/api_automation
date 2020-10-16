@@ -132,7 +132,8 @@ public class AppGetLaunchDataGlobalConfig {
     private Integer server_ts;
     @JsonProperty("lib_img_cache")
     private Boolean lib_img_cache;
-
+    @JsonProperty("first_time_user_ad")
+    private Boolean first_time_user_ad;
 
 
 

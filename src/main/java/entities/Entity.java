@@ -42,5 +42,7 @@ public class Entity {
     protected String listCount;
     @JsonProperty("list_type")
     protected String listType;
+    @JsonProperty("header_desc")
+    private String headerDesc;
 
 }

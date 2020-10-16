@@ -19,6 +19,7 @@ import java.util.Map;
 
 public class HomepageDataValidator {
     final String className = getClass().getName();
+
     public void validate(HomePageDataV2 hd, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         validateBrowse(hd, sa);
@@ -44,11 +45,11 @@ public class HomepageDataValidator {
         Validate.asArtistRecos(hd.getArtistRecos(), sa);
     }
 
-    void validateMixes(HomePageDataV2 hd, SoftAssert sa){
+    void validateMixes(HomePageDataV2 hd, SoftAssert sa) {
         Validate.asMixes(hd.getMixes(), sa);
     }
 
-    void validateTagMixes(HomePageDataV2 hd, SoftAssert sa){
+    void validateTagMixes(HomePageDataV2 hd, SoftAssert sa) {
         Validate.asMixes(hd.getTagMixes(), sa);
     }
 
@@ -62,7 +63,7 @@ public class HomepageDataValidator {
     }
 
     void validateFavorites(HomePageDataV2 hd, SoftAssert sa) {
-        if(hd.getFavorites() != null)
+        if (hd.getFavorites() != null)
             Validate.asAssortedEntity(hd.getFavorites(), sa);
     }
 
@@ -90,8 +91,10 @@ public class HomepageDataValidator {
     public void validateGenres(HomePageDataV2 hd, SoftAssert sa) {
         System.out.println("=====Validating Genres======");
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        for(Genre genre : hd.getGenres()) {
-            new GenreValidator().validate(genre, sa);
+        if (hd.getGenres() != null) {
+            for (Genre genre : hd.getGenres()) {
+                new GenreValidator().validate(genre, sa);
+            }
         }
     }
 

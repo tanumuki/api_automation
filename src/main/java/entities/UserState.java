@@ -34,4 +34,6 @@ public class UserState {
     private String registeredDate;
     @JsonProperty("prostatus")
     private LoginProstatus prostatus;
+    @JsonProperty("device_status")
+    private String deviceStatus;
 }

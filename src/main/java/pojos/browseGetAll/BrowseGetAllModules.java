@@ -1,7 +1,8 @@
-package entities;
+package pojos.browseGetAll;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.ModuleWithViewMoreArray;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,9 +12,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class ModulesWithViewMoreObj extends ModulesData {
-    @JsonProperty("view_more")
-    private ModuleViewMore viewMore;
-    @JsonProperty("source")
-    private String source;
+public class BrowseGetAllModules {
+    @JsonProperty("made_for_you")
+    private ModuleWithViewMoreArray madeForYou;
 }
