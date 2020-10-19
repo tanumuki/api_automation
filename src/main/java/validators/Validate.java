@@ -355,7 +355,11 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category");
+    }
+
+    public static boolean asCategoryType(String categoryType) {
+        return categoryType.matches("static|user_defined");
     }
 
     public static void asChartsAndPlaylists(List<PlaylistMini> plObj, SoftAssert sa) {

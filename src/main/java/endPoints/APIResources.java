@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 
+	PodcastGetAllCategories("podcast.getAllCategories"),
 	PodcastGetAll("podcast.getAll"),
 	BrowseGetAll("browse.getAll"),
 	AppGetLaunchData("app.getLaunchData"),
