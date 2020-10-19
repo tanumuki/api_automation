@@ -5,7 +5,7 @@ import entities.Season;
 import entities.ShowGetHome;
 import org.testng.asserts.SoftAssert;
 import validators.genericValidators.EpisodeValidator;
-import validators.genericValidators.ModulesValidator;
+import validators.genericValidators.ModulesDataValidator;
 
 public class ShowGetHomeValidator {
     final String className = getClass().getName();
@@ -20,13 +20,13 @@ public class ShowGetHomeValidator {
             new EpisodeValidator().validate(episode, sa);
         }
 
-        new ModulesValidator().validate(showHome.getModules().getEpisodes(), sa);
+        new ModulesDataValidator().validate(showHome.getModules().getEpisodes(), sa);
 
-        new ModulesValidator().validate(showHome.getModules().getSeasons(), sa);
+        new ModulesDataValidator().validate(showHome.getModules().getSeasons(), sa);
 
-        new ModulesValidator().validate(showHome.getModules().getShowDetails(), sa);
+        new ModulesDataValidator().validate(showHome.getModules().getShowDetails(), sa);
 
-        new ModulesValidator().validate(showHome.getModules().getShowStarring(), sa);
+        new ModulesDataValidator().validate(showHome.getModules().getShowStarring(), sa);
     }
 
 }

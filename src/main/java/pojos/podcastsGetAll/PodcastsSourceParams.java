@@ -15,4 +15,6 @@ public class PodcastsSourceParams {
     private String pageParam;
     @JsonProperty("size_param")
     private String sizeParam;
+    @JsonProperty("type_param")
+    private String typeParam;
 }

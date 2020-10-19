@@ -10,9 +10,6 @@ import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author aswingokulachandran
  *
@@ -58,7 +55,7 @@ public class AlbumValidator extends EntityValidator {
 
 		Modules modules = album.getModules();
 		if(modules != null)
-			new ModulesValidator().validate(modules, sa);
+			new ModulesDataValidator().validate(modules, sa);
 
 
 	}

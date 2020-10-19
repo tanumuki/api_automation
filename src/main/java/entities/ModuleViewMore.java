@@ -26,4 +26,7 @@ public class ModuleViewMore {
     private String type;
     @JsonProperty("deeplink")
     private String deeplink;
+    @JsonProperty("source")
+    private String source;
+    //TODO: Add validator for source
 }

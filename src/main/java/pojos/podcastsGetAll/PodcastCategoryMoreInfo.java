@@ -11,7 +11,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class PodcastCategoryModule {
+public class PodcastCategoryMoreInfo {
     @JsonProperty("bg_color")
     private String bgColor;
     @JsonProperty("square_image")
