@@ -9,11 +9,10 @@ import entities.*;
 import enums.artistTypes;
 import enums.musicLanguages;
 import io.restassured.response.Response;
-import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.podcastsGetAll.PodcastCategory;
-import validators.ArtistValidator.ArtistPageValidator;
+import validators.Artist.ArtistPageValidator;
 import validators.genericValidators.*;
 import validators.showGetHome.ShowDetailsValidator;
 

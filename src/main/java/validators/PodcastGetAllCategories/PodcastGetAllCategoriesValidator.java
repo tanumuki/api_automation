@@ -1,4 +1,4 @@
-package validators.pGACategoriesValidator;
+package validators.PodcastGetAllCategories;
 
 import org.testng.asserts.SoftAssert;
 import pojos.podcastGetAllCategories.PodcastGetAllCategories;
@@ -13,12 +13,14 @@ public class PodcastGetAllCategoriesValidator {
     public void validate(PodcastGetAllCategories pc, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        for(PodcastCategory  podcastCategory : pc.getData()){
-            new PodcastCategoryValidator().validate(podcastCategory, sa);
-        }
+        if(pc != null) {
+            for(PodcastCategory  podcastCategory : pc.getData()){
+                new PodcastCategoryValidator().validate(podcastCategory, sa);
+            }
 
-        if(pc.getLastPage() != null){
-            sa.assertTrue(Validate.asBoolean(pc.getLastPage()), AssertionMsg.print(className, methodName, "last_page", String.valueOf(pc.getLastPage())));
+            if(pc.getLastPage() != null){
+                sa.assertTrue(Validate.asBoolean(pc.getLastPage()), AssertionMsg.print(className, methodName, "last_page", String.valueOf(pc.getLastPage())));
+            }
         }
     }
 }

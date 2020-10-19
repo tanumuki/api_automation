@@ -1,4 +1,4 @@
-package validators.appGetLaunchDataValidators;
+package validators.AppGetLaunchData;
 
 import entities.*;
 import org.testng.asserts.SoftAssert;
@@ -7,17 +7,13 @@ import pojos.appGetLaunchData.AppGetLaunchData;
 import pojos.appGetLaunchData.TopSearch;
 import pojos.appGetLaunchData.UpdateConfig;
 import pojos.getHomePageDataV2.HomePageDataModules;
-import pojos.getHomePageDataV2.HomePageDataV2;
-import pojos.libraryOps.SongData;
 import validators.AssertionMsg;
 import validators.HomepageDataV2.HomePageDataModuleValidator;
-import validators.PlaylistMiniValidator;
 import validators.Validate;
 import validators.genericValidators.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GetLaunchDataValidator {
     final String className = getClass().getName();

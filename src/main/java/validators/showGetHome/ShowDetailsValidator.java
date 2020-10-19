@@ -26,10 +26,8 @@ public class ShowDetailsValidator extends EntityValidator {
         validateMoreInfo(sd, sa);
     }
 
-    public void validateMoreInfo(ShowDetails showDetails, SoftAssert sa) {
+    public void validateMoreInfo(ShowMoreInfo mi, SoftAssert sa, String id) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        ShowMoreInfo mi = showDetails.getMoreInfo();
-
         if(mi.getLatestSeasonSequence() != null)
             sa.assertTrue(Validate.asNum(mi.getLatestSeasonSequence()), AssertionMsg.print(className, methodName, "show", "show_details.more_info.latest_season_sequence", mi.getLatestSeasonSequence()));
 
@@ -103,17 +101,24 @@ public class ShowDetailsValidator extends EntityValidator {
 
         ArtistMap artistMap = mi.getArtistMap();
 
-        new ArtistMapValidator().validate(artistMap, sa, "show", showDetails.getId());
+        new ArtistMapValidator().validate(artistMap, sa, "show", id);
 
         EditorsNote en = mi.getEditorsNote();
 
-        new EditorsNoteValidator().validate(en, sa, "show", showDetails.getId());
+        new EditorsNoteValidator().validate(en, sa, "show", id);
 
         if(Validate.isNonEmptyString(mi.getYear()))
             sa.assertTrue(Validate.asNum(mi.getYear()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.year", mi.getYear()));
 
         if(Validate.isNonEmptyString(mi.getBadge()))
             sa.assertTrue(Validate.asString(mi.getBadge()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.badge", mi.getBadge()));
+    }
+
+    public void validateMoreInfo(ShowDetails showDetails, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        ShowMoreInfo mi = showDetails.getMoreInfo();
+
+
     }
 
 }

@@ -15,11 +15,9 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import pojos.podcastGetAllCategories.PodcastGetAllCategories;
-import pojos.podcastsGetAll.PodcastGetAllPojo;
 import resources.ConfigReader;
 import resources.Util;
-import validators.PodcastGetAllValidator.PodcastGetAllValidator;
-import validators.pGACategoriesValidator.PodcastGetAllCategoriesValidator;
+import validators.PodcastGetAllCategories.PodcastGetAllCategoriesValidator;
 
 import java.io.IOException;
 

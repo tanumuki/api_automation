@@ -1,4 +1,4 @@
-package validators.browseGetAllValidator;
+package validators.BrowseGetAll;
 
 import entities.Mix;
 import org.testng.asserts.SoftAssert;
