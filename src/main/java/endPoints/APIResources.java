@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 
+	ReceiptList("receipt.list"),
 	PodcastGetNT("podcast.getNewandTrending"),
 	PodcastGetMoreData("podcast.getMoreData"),
 	PodcastGetCategory("podcast.getCategory"),
