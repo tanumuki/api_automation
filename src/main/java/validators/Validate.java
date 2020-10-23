@@ -162,7 +162,7 @@ public class Validate {
      */
     public static boolean asBoolean(String str) {
         log.debug("Testing as string boolean: \"" + str + "\"");
-        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No");
+        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No|Success|success|Failure|failure");
     }
 
     /*
@@ -204,7 +204,7 @@ public class Validate {
     }
 
     public static boolean asDateTime(String str) {
-        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}");
+        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\s(IST)?");
     }
 
     public static boolean asGender(String str) {
@@ -412,6 +412,10 @@ public class Validate {
             }
         }
 
+    }
+
+    public static boolean asReceiptInvoiceId(String invoiceId) {
+        return invoiceId.matches("PRO\\/[0-9]{4}\\/[0-9]{6}");
     }
 
 }
