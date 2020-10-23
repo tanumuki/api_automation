@@ -16,11 +16,18 @@ public class PlaylistValidator extends EntityValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(playlistObj, sa);
 
-        for (Song song : playlistObj.getList()) {
-            new SongValidator().validate(song, sa, playlistObj.getId(), "playlist");
+        if(playlistObj != null) {
+            if(playlistObj.getList() != null && playlistObj.getList().size() > 0) {
+                for (Song song : playlistObj.getList()) {
+                    new SongValidator().validate(song, sa, playlistObj.getId(), "playlist");
+                }
+            }
+
+            validateMoreInfo(playlistObj, sa);
+            //TODO: Modules validation
         }
-        validateMoreInfo(playlistObj, sa);
-//        new ModulesValidator().validate(playlistObj.getModules(), sa);
+
+
     }
 
     public void validate(UserProfilePlaylists playlistObj, SoftAssert sa) {
