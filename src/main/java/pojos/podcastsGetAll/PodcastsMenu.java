@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class PodcastsBaseMenu extends Entity {
+public class PodcastsMenu extends Entity {
     @JsonProperty("source_api")
     private Boolean sourceApi;
     @JsonProperty("source")

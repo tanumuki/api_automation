@@ -14,12 +14,10 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
-import pojos.browseGetAll.BrowseGetAllPojo;
 import pojos.podcastsGetAll.PodcastGetAllPojo;
 import resources.ConfigReader;
 import resources.Util;
 import validators.PodcastGetAllValidator.PodcastGetAllValidator;
-import validators.browseGetAllValidator.BrowseGetAllValidator;
 
 import java.io.IOException;
 

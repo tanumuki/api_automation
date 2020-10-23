@@ -1,11 +1,9 @@
-package validators.appGetLaunchDataValidators;
+package validators.AppGetLaunchData;
 
 import org.testng.asserts.SoftAssert;
 import pojos.appGetLaunchData.*;
 import validators.AssertionMsg;
 import validators.Validate;
-
-import java.util.List;
 
 public class GlobalConfigValidator {
     final String className = getClass().getName();

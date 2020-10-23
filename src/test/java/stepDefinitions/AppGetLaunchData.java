@@ -17,7 +17,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import validators.appGetLaunchDataValidators.GetLaunchDataValidator;
+import validators.AppGetLaunchData.GetLaunchDataValidator;
 
 import java.io.IOException;
 

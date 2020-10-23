@@ -24,7 +24,19 @@ public class PodcastCategoryValidator extends EntityValidator {
             }
 
             if(Validate.isNonEmptyString(pc.getCategoryType())) {
-                sa.assertTrue(Validate.asString(pc.getCategoryType()), AssertionMsg.print(className, methodName, "category.category_type", pc.getCategoryType()));
+                sa.assertTrue(Validate.asCategoryType(pc.getCategoryType()), AssertionMsg.print(className, methodName, "category.category_type", pc.getCategoryType()));
+            }
+
+            if(Validate.isNonEmptyString(pc.getDescription())){
+                sa.assertTrue(Validate.asString(pc.getDescription()), AssertionMsg.print(className, methodName, "category.description", pc.getDescription()));
+            }
+
+            if(pc.getPosition() != null){
+                sa.assertTrue(Validate.asNum(pc.getPosition()), AssertionMsg.print(className, methodName, "category.position", String.valueOf(pc.getPosition())));
+            }
+
+            for(String lang : pc.getLanguages()) {
+                sa.assertTrue(Validate.asMusicLanguages(lang), AssertionMsg.print(className, methodName, "category.language", lang));
             }
 
             validateMoreInfo(pc.getMoreInfo(), sa);

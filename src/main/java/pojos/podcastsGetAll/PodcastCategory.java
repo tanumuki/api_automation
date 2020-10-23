@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @Data
@@ -21,4 +23,10 @@ public class PodcastCategory extends Entity {
     private String categoryType;
     @JsonProperty("more_info")
     private PodcastCategoryMoreInfo moreInfo;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("position")
+    private Integer position;
+    @JsonProperty("languages")
+    private List<String> languages;
 }

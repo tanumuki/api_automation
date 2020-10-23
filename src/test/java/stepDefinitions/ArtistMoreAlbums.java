@@ -20,7 +20,7 @@ import org.testng.asserts.SoftAssert;
 import pagination.PaginationValidator;
 import resources.ConfigReader;
 import resources.Util;
-import validators.ArtistValidator.ArtistPageValidator;
+import validators.Artist.ArtistPageValidator;
 
 import java.io.IOException;
 import java.util.ArrayList;

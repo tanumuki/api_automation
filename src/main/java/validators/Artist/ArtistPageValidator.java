@@ -1,4 +1,4 @@
-package validators.ArtistValidator;
+package validators.Artist;
 
 import entities.*;
 import lombok.extern.slf4j.Slf4j;

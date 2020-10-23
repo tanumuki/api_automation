@@ -18,7 +18,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import validators.ArtistValidator.ArtistPageValidator;
+import validators.Artist.ArtistPageValidator;
 
 import java.io.IOException;
 

@@ -21,7 +21,7 @@ public class PodcastGetAllPojo {
     @JsonProperty("modules")
     private PodcastsGetAllModules modules;
     @JsonProperty("base_menu")
-    private List<PodcastsBaseMenu> baseMenu;
+    private List<PodcastsMenu> baseMenu;
     @JsonProperty("new_and_trending")
     private List<Episode> newAndTrending;
 

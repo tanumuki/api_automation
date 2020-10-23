@@ -21,8 +21,8 @@ public class PodcastGetAllValidator {
         new ModuleValidator().validateModules(pg.getModules(), sa);
 
         //Validate base_menu
-        for(PodcastsBaseMenu pb : pg.getBaseMenu()) {
-            validatePodcastBaseMenu(pb, sa);
+        for(PodcastsMenu pb : pg.getBaseMenu()) {
+            validatePodcastMenu(pb, sa);
         }
 
         //Validate new and trending
@@ -40,7 +40,7 @@ public class PodcastGetAllValidator {
 
     }
 
-    public void validatePodcastBaseMenu(PodcastsBaseMenu pbm, SoftAssert sa) {
+    public void validatePodcastMenu(PodcastsMenu pbm, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         if(pbm != null) {
             if(Validate.isNonEmptyString(pbm.getSearchApi())) {
