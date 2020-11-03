@@ -25,5 +25,16 @@ public class PlaylistMiniMoreInfo {
     private String isWeekly;
     @JsonProperty("reward")
     private String reward;
+    @JsonProperty("artist_name")
+    private String artist_name;
+    @JsonProperty("entity_type")
+    private String entity_type;
+    @JsonProperty("lastname")
+    private String lastname;
+    @JsonProperty("share")
+    private String share;
+    @JsonProperty("language")
+    private String language;
+
 
 }

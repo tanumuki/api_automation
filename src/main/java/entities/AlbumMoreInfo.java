@@ -34,5 +34,7 @@ public class AlbumMoreInfo {
 	private String copyrightText;
 	@JsonProperty("release_date")
 	private String release_date;
+	@JsonProperty("mini_obj")
+	private String miniObj;
 
 }
