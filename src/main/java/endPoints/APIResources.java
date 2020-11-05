@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 
+	GetSongReco("reco.getreco"),
 	SearchTabHomePage("search_tab.getsearchhomepage"),
 	ReceiptGetDetails("receipt.getDetails"),
 	GetPlaylistRecoAPI("reco.getPlaylistReco"),
