@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.json.JSONPropertyIgnore;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
@@ -36,15 +35,17 @@ public class BenefitsListData {
     @JsonProperty("expiry")
     private String expiry;
     @JsonProperty("used_count")
-    private int used_count;
+    private String used_count;
     @JsonProperty("access")
     private String[] access;
     @JsonProperty("priority")
-    private int priority;
+    private String priority;
     @JsonProperty("created_at")
     private String created_at;
     @JsonProperty("status")
     private String status;
     @JsonProperty("section")
     private String section;
+    @JsonProperty("code")
+    private String code;
 }
