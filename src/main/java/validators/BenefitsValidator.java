@@ -71,7 +71,7 @@ public class BenefitsValidator {
 
             for (int j = 0; j < benefitsList.getData()[i].getAccess().length; j++) {
                 String access = benefitsList.getData()[i].getAccess()[j];
-                sa.assertTrue(Validate.asAccess(access), className + "." + "validate access failed for benefit number - "+(i+1));
+                sa.assertTrue(Validate.asBenefitsAccess(access), className + "." + "validate access failed for benefit number - "+(i+1));
             }
             log.info(("LOG response access in benefits list for benefit " + (i + 1) + " is " + Arrays.toString(benefitsList.getData()[i].getAccess())));
 
@@ -94,11 +94,11 @@ public class BenefitsValidator {
             }
 
             String status = benefitsList.getData()[i].getStatus();
-            sa.assertTrue(Validate.asString(status), className + "." + "validate status failed for benefit number - "+(i+1));
+            sa.assertTrue(Validate.asBenefitStatus(status), className + "." + "validate status failed for benefit number - "+(i+1));
             log.info(("LOG response status in benefits list for benefit " + (i + 1) + " is " + status));
 
             String section = benefitsList.getData()[i].getSection();
-            sa.assertTrue(Validate.asString(section), className + "." + "validate section failed for benefit number - "+(i+1));
+            sa.assertTrue(Validate.asBenefitSection(section), className + "." + "validate section failed for benefit number - "+(i+1));
             log.info(("LOG response section in benefits list for benefit " + (i + 1) + " is " + section));
         }
     }

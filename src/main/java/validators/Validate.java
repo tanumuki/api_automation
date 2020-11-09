@@ -200,7 +200,7 @@ public class Validate {
 
     public static boolean asDateTime(String str) {
         boolean result = false;
-        if (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\s(IST)?") || str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?"))
+        if (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\sIST)?"))
             result = true;
         return result;
 
@@ -415,9 +415,20 @@ public class Validate {
         return invoiceId.matches("PRO\\/[0-9]{4}\\/[0-9]{6}");
     }
 
-    public static boolean asAccess(String str) {
+    public static boolean asBenefitsAccess(String str) {
         log.debug("Testing as access: \"" + str + "\"");
         return str.matches("^(free|trial|pro)$");
+
+    }
+
+    public static boolean asBenefitStatus(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(available|expired|redeemed)$");
+
+    }
+    public static boolean asBenefitSection(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(Old|New)$");
 
     }
 
