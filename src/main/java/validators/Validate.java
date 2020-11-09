@@ -415,4 +415,10 @@ public class Validate {
         return invoiceId.matches("PRO\\/[0-9]{4}\\/[0-9]{6}");
     }
 
+    public static boolean asAccess(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(free|trial|pro)$");
+
+    }
+
 }

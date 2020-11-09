@@ -71,7 +71,7 @@ public class BenefitsValidator {
 
             for (int j = 0; j < benefitsList.getData()[i].getAccess().length; j++) {
                 String access = benefitsList.getData()[i].getAccess()[j];
-                sa.assertTrue(Validate.asString(access), className + "." + "validate access failed for benefit number - "+(i+1));
+                sa.assertTrue(Validate.asAccess(access), className + "." + "validate access failed for benefit number - "+(i+1));
             }
             log.info(("LOG response access in benefits list for benefit " + (i + 1) + " is " + Arrays.toString(benefitsList.getData()[i].getAccess())));
 
