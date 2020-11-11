@@ -34,22 +34,15 @@ public class AlbumMiniValidator extends EntityValidator {
 		if(Validate.isNonEmptyString(moreInfo.getMusic())) {
 			sa.assertTrue(Validate.asString(moreInfo.getMusic()), AssertionMsg.print(methodName, methodName, "album.more_info.music", moreInfo.getMusic()));
 		}
-		sa.assertTrue(Validate.asNum(moreInfo.getSongCount()), AssertionMsg.print(methodName, methodName, "album.more_info.song_count", moreInfo.getSongCount()));
+		if(Validate.isNonEmptyString(moreInfo.getSongCount())) {
+			sa.assertTrue(Validate.asNum(moreInfo.getSongCount()), AssertionMsg.print(methodName, methodName, "album.more_info.song_count", moreInfo.getSongCount()));
+		}
+
 
 		
 		ArtistMap artistMap = moreInfo.getArtistMap();
 		
-		for(Artist artist : artistMap.getPrimaryArtists()) {
-			new ArtistMapValidator().validate(artist, sa, "primary_artists", "album", albumMini.getId());
-		}
-		
-		for(Artist artist : artistMap.getFeaturedArtists()) {
-			new ArtistMapValidator().validate(artist, sa, "featured_artists", "album", albumMini.getId());
-		}
-		
-		for(Artist artist : artistMap.getArtists()) {
-			new ArtistMapValidator().validate(artist, sa, "artists", "album", albumMini.getId());
-		}
+		new ArtistMapValidator().validate(artistMap, sa, "album", albumMini.getId());
 	}
 
 }

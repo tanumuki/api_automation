@@ -2,6 +2,8 @@ package endPoints;
 
 public enum APIResources {
 
+	GetPlaylistRecoAPI("reco.getPlaylistReco"),
+	GetAlbumRecoAPI("reco.getAlbumReco"),
 	ReceiptList("receipt.list"),
 	PodcastGetNT("podcast.getNewandTrending"),
 	PodcastGetMoreData("podcast.getMoreData"),

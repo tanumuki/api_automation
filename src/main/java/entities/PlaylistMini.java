@@ -20,5 +20,7 @@ public class PlaylistMini extends Entity {
     private Object modules;
     @JsonProperty("uid")
     private String uid;
+    @JsonProperty("explicit_content")
+    private String explicit_content;
 
 }
