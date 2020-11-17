@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class Count {
+public class BenefitsCount {
     @JsonProperty("count")
-    private int count;
+    private String count;
 }

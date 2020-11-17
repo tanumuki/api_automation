@@ -37,10 +37,9 @@ public class Validate {
 
     public static boolean asNum(int number) {
         log.debug("Testing as integer: " + number);
-        if (number >=0 || number < 0) {
+        if (number >= 0 || number < 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -54,9 +53,7 @@ public class Validate {
         try {
             Float number = Float.parseFloat(floatingPtNumber);
             return true;
-        }
-
-        catch(NumberFormatException | NullPointerException ex) {
+        } catch (NumberFormatException | NullPointerException ex) {
             return false;
         }
     }
@@ -142,8 +139,7 @@ public class Validate {
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
             return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
-        }
-        else
+        } else
 //          perma_url is empty, just verify it as a string and return it
             return asString(url);
     }
@@ -172,8 +168,7 @@ public class Validate {
         log.debug("Testing as primitive boolean: \"" + value + "\"");
         if (value || !value) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -204,12 +199,17 @@ public class Validate {
     }
 
     public static boolean asDateTime(String str) {
-        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}\\s(IST)?");
+        boolean result = false;
+        if (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\sIST)?"))
+            result = true;
+        return result;
+
     }
 
     public static boolean asGender(String str) {
         return str.matches("m|f|u");
     }
+
     public static boolean asSubtitleArtist(String str) {
         return str.matches("Artist.*[0-9]+.Fans");
     }
@@ -220,31 +220,28 @@ public class Validate {
      * @return
      */
     public static boolean asMusicLanguage(String str) {
-        if(!str.isEmpty()) {
+        if (!str.isEmpty()) {
             String[] splits = str.split(",");
-            if(splits.length > 1){
-                for(int i=0; i< splits.length; i++){
+            if (splits.length > 1) {
+                for (int i = 0; i < splits.length; i++) {
                     try {
                         musicLanguages ml = musicLanguages.valueOf(splits[i].toUpperCase());
-                    }
-                    catch (IllegalArgumentException ex) {
+                    } catch (IllegalArgumentException ex) {
                         log.error("Not a valid music language: " + ex.getMessage());
                         return false;
                     }
                 }
-            }else{
+            } else {
                 try {
                     musicLanguages ml = musicLanguages.valueOf(splits[0].toUpperCase());
-                }
-                catch (IllegalArgumentException ex) {
+                } catch (IllegalArgumentException ex) {
                     log.error("Not a valid music language: " + ex.getMessage());
                     return false;
                 }
             }
 
             return true;
-        }
-        else
+        } else
 //          language field is empty, just verify it as a string and return it
             return asString(str);
     }
@@ -259,12 +256,11 @@ public class Validate {
      * @return
      */
     public static boolean asArtistType(String str) {
-        str = str.replaceAll(" ","_");
+        str = str.replaceAll(" ", "_");
         try {
 //          Sanitize the string to use _ instead of whitespaces
             artistTypes at = artistTypes.valueOf(str.toUpperCase());
-        }
-        catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             log.error("Not a valid artist type: " + ex.getMessage());
             return false;
         }
@@ -279,19 +275,19 @@ public class Validate {
         return str.matches("genre|mood|music_plus");
     }
 
-	public static boolean isNonEmptyString(String str){
-	    return str != null && !str.equals("") && !str.trim().isEmpty();
-	}
+    public static boolean isNonEmptyString(String str) {
+        return str != null && !str.equals("") && !str.trim().isEmpty();
+    }
 
-	public static boolean asModulesSource(String source) {
+    public static boolean asModulesSource(String source) {
         return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+");
     }
 
-    public static boolean asModulesPosition(int pos){
+    public static boolean asModulesPosition(int pos) {
         return pos <= 15;
     }
 
-    public static boolean asModulesScrollType(String scrollType){
+    public static boolean asModulesScrollType(String scrollType) {
         return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM");
     }
 
@@ -303,7 +299,7 @@ public class Validate {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         String type = entity.get("type").toString();
         System.out.println("id: " + entity.get("id").toString());
-        switch (type){
+        switch (type) {
             case "playlist":
                 PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
                 new PlaylistValidator().validate(playlist, sa);
@@ -338,16 +334,16 @@ public class Validate {
         }
     }
 
-    public static void asAssortedEntity(Response response,SoftAssert sa) {
+    public static void asAssortedEntity(Response response, SoftAssert sa) {
         List<LinkedHashMap> entityList = response.jsonPath().getJsonObject("$");
-        for(LinkedHashMap entity : entityList){
+        for (LinkedHashMap entity : entityList) {
             Validate.asAssortedEntity(entity, sa);
         }
     }
 
     public static void asAssortedEntity(List<LinkedHashMap> entityList, SoftAssert sa) {
-        if(entityList != null && entityList.size() > 0){
-            for(LinkedHashMap entity : entityList){
+        if (entityList != null && entityList.size() > 0) {
+            for (LinkedHashMap entity : entityList) {
                 Validate.asAssortedEntity(entity, sa);
             }
         }
@@ -362,52 +358,53 @@ public class Validate {
     }
 
     public static void asChartsAndPlaylists(List<PlaylistMini> plObj, SoftAssert sa) {
-        if(plObj != null && plObj.size() > 0) {
-            for(PlaylistMini pl : plObj){
+        if (plObj != null && plObj.size() > 0) {
+            for (PlaylistMini pl : plObj) {
                 new PlaylistMiniValidator().validate(pl, sa);
             }
         }
     }
 
     public static void asTopicsPromos(Map<String, List<Object>> map, SoftAssert sa) {
-        for(String key : map.keySet()){
+        for (String key : map.keySet()) {
             System.out.println("key: " + key);
-            for(Object entity : map.get(key)) {
+            for (Object entity : map.get(key)) {
                 LinkedHashMap entityMap = (LinkedHashMap) entity;
                 Validate.asAssortedEntity(entityMap, sa);
             }
 
         }
     }
+
     public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
-        if(artistRecos != null && artistRecos.size() > 0) {
-            for(RadioStation rs : artistRecos){
+        if (artistRecos != null && artistRecos.size() > 0) {
+            for (RadioStation rs : artistRecos) {
                 new RadioStationValidator().validate(rs, sa);
             }
         }
     }
 
     public static void asMixes(List<Mix> mixes, SoftAssert sa) {
-        if(mixes != null && mixes.size() > 0) {
-            for(Mix mix : mixes){
+        if (mixes != null && mixes.size() > 0) {
+            for (Mix mix : mixes) {
                 new MixValidator().validate(mix, sa);
             }
         }
     }
 
     public static void asBrowseAndDiscover(List<Channel> channels, SoftAssert sa) {
-        if(channels != null && channels.size() > 0) {
-            for(Channel channel : channels) {
+        if (channels != null && channels.size() > 0) {
+            for (Channel channel : channels) {
                 new ChannelValidator().validate(channel, sa);
             }
         }
 
     }
 
-    public static void asFeaturedStations(Radio radio, SoftAssert sa){
-        if(radio != null) {
+    public static void asFeaturedStations(Radio radio, SoftAssert sa) {
+        if (radio != null) {
             List<RadioStation> featuredStations = radio.getFeatured_stations();
-            for(RadioStation station : featuredStations) {
+            for (RadioStation station : featuredStations) {
                 new RadioStationValidator().validate(station, sa);
             }
         }
@@ -416,6 +413,23 @@ public class Validate {
 
     public static boolean asReceiptInvoiceId(String invoiceId) {
         return invoiceId.matches("PRO\\/[0-9]{4}\\/[0-9]{6}");
+    }
+
+    public static boolean asBenefitsAccess(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(free|trial|pro)$");
+
+    }
+
+    public static boolean asBenefitStatus(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(available|expired|redeemed)$");
+
+    }
+    public static boolean asBenefitSection(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(Old|New)$");
+
     }
 
 }
