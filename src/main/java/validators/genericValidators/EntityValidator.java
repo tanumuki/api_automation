@@ -48,7 +48,8 @@ public class EntityValidator {
 			sa.assertTrue(Validate.asString(adObj.getListType()), AssertionMsg.print(className, methodName,adObj.getType(), "list_type", adObj.getListType(), adObj.getId()));
 		if(Validate.isNonEmptyString(adObj.getHeaderDesc()))
 			sa.assertTrue(Validate.asString(adObj.getHeaderDesc()), AssertionMsg.print(className, methodName,adObj.getType(), "header_desc", adObj.getHeaderDesc(), adObj.getId()));
-
+		if(adObj.getMiniObj() != null)
+			sa.assertTrue(Validate.asBoolean(adObj.getMiniObj()), AssertionMsg.print(className, methodName,adObj.getType(), "mini_obj", String.valueOf(adObj.getMiniObj()), adObj.getId()));
 	}
 
 	public void validate(Entity adObj, SoftAssert sa, String sourceEntity, String sourceType) {
@@ -91,6 +92,9 @@ public class EntityValidator {
 
 		if(Validate.isNonEmptyString(adObj.getHeaderDesc()))
 			sa.assertTrue(Validate.asString(adObj.getHeaderDesc()), AssertionMsg.print(className, methodName,adObj.getType(), "header_desc", adObj.getHeaderDesc(), adObj.getId()));
+
+		if(adObj.getMiniObj() != null)
+			sa.assertTrue(Validate.asBoolean(adObj.getMiniObj()), AssertionMsg.print(className, methodName,adObj.getType(), "mini_obj", String.valueOf(adObj.getMiniObj()), adObj.getId()));
 
 		log.info("Entity Validation done for "+sourceEntity+ "and "+sourceType);
 	}

@@ -85,5 +85,12 @@ public class SongMoreInfo {
 	private String ad_breaks;
 	@JsonProperty("show_url")
 	private String show_url;
-
+	@JsonProperty("ctr")
+	private Integer ctr;
+	@JsonProperty("score")
+	private Double score;
+	@JsonProperty("primary_artists")
+	private String primary_artists;
+	@JsonProperty("singers")
+	private String singers;
 }
