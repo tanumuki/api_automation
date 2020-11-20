@@ -29,6 +29,10 @@ public class Validate {
     /*
      * Validate as number
      */
+
+    public static boolean asSearchTabType(String str) {
+        return str.matches("standard|23left|23right");
+    }
     public static boolean asNum(String str) {
         //return str.matches("\\d+|^$");
         log.debug("Testing as number: \"" + str + "\"");

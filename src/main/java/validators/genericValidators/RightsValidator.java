@@ -19,23 +19,33 @@ public class RightsValidator {
             if(Validate.isNonEmptyString(rights.getCode())) {
                 sa.assertTrue(Validate.asSongRightsCode(rights.getCode()), AssertionMsg.print(className, methodName, sourceType,
                         "more_info.rights.code", rights.getCode(), sourceId));
+            }else {
+                sa.fail("Rights code is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
             }
 
             if(Validate.isNonEmptyString(rights.getCacheable())) {
                 sa.assertTrue(Validate.asBoolean(rights.getCacheable()), AssertionMsg.print(className, methodName,
                         sourceType, "more_info.rights.cacheable", rights.getCacheable(), sourceId));
+            }else {
+                sa.fail("Rights cacheable is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
             }
 
             if(Validate.isNonEmptyString(rights.getDeleteCachedObject())) {
                 sa.assertTrue(Validate.asBoolean(rights.getDeleteCachedObject()),
                         AssertionMsg.print(className, methodName, sourceType, "more_info.rights.delete_cached_object",
                                 rights.getDeleteCachedObject(), sourceId));
+            }else {
+                sa.fail("Rights delete cached obj is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
             }
 
             if(Validate.isNonEmptyString(rights.getReason())) {
                 sa.assertTrue(Validate.asString(rights.getReason()), AssertionMsg.print(className, methodName,
                         sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
+            }else {
+                sa.fail("Rights reason is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
             }
+        } else {
+            sa.fail("Rights is null for sourceType - " + sourceType + " and source ID - " + sourceId);
         }
 
 		log.info("Rights Validation done for "+sourceId+ "and "+sourceType);

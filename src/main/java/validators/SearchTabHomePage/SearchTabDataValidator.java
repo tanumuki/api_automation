@@ -15,7 +15,7 @@ public class SearchTabDataValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         if(Validate.isNonEmptyString(sd.getType())){
-            sa.assertTrue(Validate.asString(sd.getType()), AssertionMsg.print(className, methodName, "SearchTabData.type", sd.getType()));
+            sa.assertTrue(Validate.asSearchTabType(sd.getType()), AssertionMsg.print(className, methodName, "SearchTabData.type", sd.getType()));
         }
 
         Validate.asAssortedEntity(sd.getData(), sa);

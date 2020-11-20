@@ -78,6 +78,8 @@ public class SongValidator extends EntityValidator {
         if(Validate.isNonEmptyString(moreInfo.getEncryptedMediaUrl())) {
             sa.assertTrue(Validate.asString(moreInfo.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.encrypted_media_url", moreInfo.getEncryptedMediaUrl(), songObj.getId()));
+        }else {
+            sa.fail("Song More Info Encrypted Media URL is null/empty for song with ID - " + songObj.getId());
         }
 
         if(Validate.isNonEmptyString(moreInfo.getEncryptedCacheUrl())) {

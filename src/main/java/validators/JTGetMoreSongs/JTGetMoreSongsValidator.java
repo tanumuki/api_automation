@@ -15,10 +15,14 @@ public class JTGetMoreSongsValidator {
 
         if(ms.getTotal() != null){
             sa.assertTrue(Validate.asNum(ms.getTotal()), AssertionMsg.print(className, methodName, "total", ms.getTotal().toString()));
+        }else{
+            sa.fail("Jiotunes Get More songs total count is null");
         }
 
         if(ms.getStart() != null){
             sa.assertTrue(Validate.asNum(ms.getStart()), AssertionMsg.print(className, methodName, "start", ms.getStart().toString()));
+        }else{
+            sa.fail("Jiotunes Get More songs start count is null");
         }
 
         sa.assertTrue(ms.getStart() <= ms.getTotal(), "Start > Total for Jiotunes get more songs");

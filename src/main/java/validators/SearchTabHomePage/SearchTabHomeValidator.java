@@ -12,6 +12,8 @@ public class SearchTabHomeValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         if(Validate.isNonEmptyString(sh.getStatus())){
             sa.assertTrue(Validate.asBoolean(sh.getStatus()), AssertionMsg.print(className, methodName, "status", sh.getStatus()));
+        }else {
+            sa.fail("Search Tab home page status is null or empty");
         }
 
         if(Validate.isNonEmptyString(sh.getNext_sign())){

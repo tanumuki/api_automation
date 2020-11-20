@@ -35,10 +35,14 @@ public class JiotunePlaylistObjValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(mi.getVcode())){
             sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "vcode", mi.getVcode()));
+        }else{
+            sa.fail("vcode is null or empty for playlist with ID - " + pl.getId());
         }
 
         if(Validate.isNonEmptyString(mi.getVlink())){
             sa.assertTrue(Validate.asExternalURL(mi.getVlink()), AssertionMsg.print(className, methodName, "vlink", mi.getVlink()));
+        }else{
+            sa.fail("vlink is null or empty for playlist with ID - " + pl.getId());
         }
 
     }
