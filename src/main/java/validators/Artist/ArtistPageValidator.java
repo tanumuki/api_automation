@@ -58,49 +58,89 @@ public class ArtistPageValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(artistObj.getArtistId())){
             sa.assertTrue(Validate.asNum(artistObj.getArtistId()), AssertionMsg.print(className, methodName, "artistID", artistObj.getArtistId()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist ID is null/empty");
         }
 
         if(Validate.isNonEmptyString(artistObj.getSubtitle())) {
             sa.assertTrue(Validate.asSubtitleArtist(artistObj.getSubtitle()), AssertionMsg.print(className, methodName, "subtitle", artistObj.getSubtitle()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist Subtitle is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getName())) {
             sa.assertTrue(Validate.asString(artistObj.getName()), AssertionMsg.print(className, methodName, "name", artistObj.getName()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist name is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getFollower_count())) {
             sa.assertTrue(Validate.asNum(artistObj.getFollower_count()), AssertionMsg.print(className, methodName, "follower_count", artistObj.getFollower_count()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist follower count is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getType())) {
             sa.assertTrue(Validate.asArtistType(artistObj.getType()), AssertionMsg.print(className, methodName, "type", artistObj.getType()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist type is null/empty");
         }
+
         if(artistObj.getIsVerified() != null) {
             sa.assertTrue(Validate.asBoolean(artistObj.getIsVerified()), AssertionMsg.print(className, methodName, "isVerified", Boolean.toString(artistObj.getIsVerified())));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist is verified is null");
         }
+
         if(Validate.isNonEmptyString(artistObj.getDominantLanguage())) {
             sa.assertTrue(Validate.asMusicLanguage(artistObj.getDominantLanguage()), AssertionMsg.print(className, methodName, "dominantLanguage", artistObj.getDominantLanguage()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist dominant language is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getDominantType())) {
             sa.assertTrue(Validate.asArtistType(artistObj.getDominantType()), AssertionMsg.print(className, methodName, "dominantType", artistObj.getDominantType()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist dominant type is null/empty");
         }
+
 //        if(artistObj.isRadioPresent() ) {
             sa.assertTrue(Validate.asBoolean(artistObj.isRadioPresent()), AssertionMsg.print(className, methodName, "isRadioPresent", Boolean.toString(artistObj.isRadioPresent())));
 //        }
         if(Validate.isNonEmptyString(artistObj.getBio())) {
             sa.assertTrue(Validate.asString(artistObj.getBio()), AssertionMsg.print(className, methodName, "bio", artistObj.getBio()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist bio is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getDob())) {
             sa.assertTrue(Validate.asDate(artistObj.getDob()), AssertionMsg.print(className, methodName, "dob", artistObj.getDob()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist DOB is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getFb())) {
             sa.assertTrue(Validate.asExternalURL(artistObj.getFb()), AssertionMsg.print(className, methodName, "fb", artistObj.getFb()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist FB is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getTwitter())) {
             sa.assertTrue(Validate.asExternalURL(artistObj.getTwitter()), AssertionMsg.print(className, methodName, "twitter", artistObj.getTwitter()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist twitter is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getWiki())) {
             sa.assertTrue(Validate.asExternalURL(artistObj.getWiki()), AssertionMsg.print(className, methodName, "wiki", artistObj.getWiki()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist wiki is null/empty");
         }
+
         if(Validate.isNonEmptyString(artistObj.getFan_count())) {
             sa.assertTrue(Validate.asNum(artistObj.getFan_count()), AssertionMsg.print(className, methodName, "fan_count", artistObj.getFan_count()));
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist fan count is null/empty");
         }
 
         sa.assertTrue(Validate.asBoolean(artistObj.is_followed()), AssertionMsg.print(className, methodName, "is_followed", Boolean.toString(artistObj.is_followed())));
@@ -123,6 +163,8 @@ public class ArtistPageValidator extends EntityValidator {
                 sa.assertTrue(Validate.asBoolean((artistObj.getTopSongs().getLast_page())),
                         AssertionMsg.print(className, methodName, "is_last_page", Boolean.toString(artistObj.getTopSongs().getLast_page())));
             }
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist Top songs is null");
         }
 
 
@@ -144,6 +186,8 @@ public class ArtistPageValidator extends EntityValidator {
                 sa.assertTrue(Validate.asBoolean((artistObj.getTopAlbums().getLast_page())),
                         AssertionMsg.print(className, methodName, "is_last_page", Boolean.toString(artistObj.getTopAlbums().getLast_page())));
             }
+        }else{
+            sa.fail(className+"--"+ methodName + "Artist top albums is null");
         }
 
 
