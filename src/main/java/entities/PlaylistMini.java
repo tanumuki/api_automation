@@ -24,5 +24,6 @@ public class PlaylistMini extends Entity {
     private String uid;
     @JsonProperty("explicit_content")
     private String explicit_content;
-
+    @JsonProperty("numsongs")
+    private Object numsongs;
 }

@@ -128,6 +128,11 @@ public class SongValidator extends EntityValidator {
 
 		}
 
+		if(moreInfo.getTriller_available() != null){
+            sa.assertTrue(Validate.asBoolean(moreInfo.getTriller_available()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.starred", String.valueOf(moreInfo.getTriller_available()), songObj.getId()));
+        }
+
 		log.info("More Info Validation done!");
 
 	}

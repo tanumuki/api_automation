@@ -26,9 +26,11 @@ import java.util.Map;
  */
 @Slf4j
 public class Validate {
-    /*
-     * Validate as number
-     */
+
+
+    public static boolean asSongRightsReason(String str) {
+        return str.matches("Unavailable|unavailable|Pro only");
+    }
 
     public static boolean asSearchTabType(String str) {
         return str.matches("standard|23left|23right");
@@ -334,6 +336,10 @@ public class Validate {
                 break;
             case "category":
                 PodcastCategory category = mapper.convertValue(entity, PodcastCategory.class);
+                break;
+            case "channel":
+                Channel ch = mapper.convertValue(entity, Channel.class);
+                new ChannelValidator().validate(ch, sa);
                 break;
         }
     }

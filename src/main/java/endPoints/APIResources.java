@@ -2,6 +2,8 @@ package endPoints;
 
 public enum APIResources {
 
+	SearchGetMoreResults("search.getMoreResults"),
+	SearchGetPlaylistResults("search.getPlaylistResults"),
 	SearchGetAlbumResults("search.getAlbumResults"),
 	JTGetMoreTrendingSongs("jiotunepage.getMoreTrendingSongs"),
 	JTGetMoreSongs("jiotunepage.getMoreSongs"),

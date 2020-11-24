@@ -56,25 +56,53 @@ public class ArtistPageValidator extends EntityValidator {
     public void validateArtistFields(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        sa.assertTrue(Validate.asNum(artistObj.getArtistId()), AssertionMsg.print(className, methodName, "artistID", artistObj.getArtistId()));
-        sa.assertTrue(Validate.asSubtitleArtist(artistObj.getSubtitle()), AssertionMsg.print(className, methodName, "subtitle", artistObj.getSubtitle()));
+        if(Validate.isNonEmptyString(artistObj.getArtistId())){
+            sa.assertTrue(Validate.asNum(artistObj.getArtistId()), AssertionMsg.print(className, methodName, "artistID", artistObj.getArtistId()));
+        }
 
-        sa.assertTrue(Validate.asString(artistObj.getName()), AssertionMsg.print(className, methodName, "name", artistObj.getName()));
-        sa.assertTrue(Validate.asNum(artistObj.getFollower_count()), AssertionMsg.print(className, methodName, "follower_count", artistObj.getFollower_count()));
-        sa.assertTrue(Validate.asArtistType(artistObj.getType()), AssertionMsg.print(className, methodName, "type", artistObj.getType()));
-        sa.assertTrue(Validate.asBoolean(artistObj.getIsVerified()), AssertionMsg.print(className, methodName, "isVerified", Boolean.toString(artistObj.getIsVerified())));
-        sa.assertTrue(Validate.asMusicLanguage(artistObj.getDominantLanguage()), AssertionMsg.print(className, methodName, "dominantLanguage", artistObj.getDominantLanguage()));
-        sa.assertTrue(Validate.asArtistType(artistObj.getDominantType()), AssertionMsg.print(className, methodName, "dominantType", artistObj.getDominantType()));
-        sa.assertTrue(Validate.asBoolean(artistObj.isRadioPresent()), AssertionMsg.print(className, methodName, "isRadioPresent", Boolean.toString(artistObj.isRadioPresent())));
-        sa.assertTrue(Validate.asString(artistObj.getBio()), AssertionMsg.print(className, methodName, "bio", artistObj.getBio()));
-        sa.assertTrue(Validate.asDate(artistObj.getDob()), AssertionMsg.print(className, methodName, "dob", artistObj.getDob()));
-        sa.assertTrue(Validate.asExternalURL(artistObj.getFb()), AssertionMsg.print(className, methodName, "fb", artistObj.getFb()));
-
+        if(Validate.isNonEmptyString(artistObj.getSubtitle())) {
+            sa.assertTrue(Validate.asSubtitleArtist(artistObj.getSubtitle()), AssertionMsg.print(className, methodName, "subtitle", artistObj.getSubtitle()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getName())) {
+            sa.assertTrue(Validate.asString(artistObj.getName()), AssertionMsg.print(className, methodName, "name", artistObj.getName()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getFollower_count())) {
+            sa.assertTrue(Validate.asNum(artistObj.getFollower_count()), AssertionMsg.print(className, methodName, "follower_count", artistObj.getFollower_count()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getType())) {
+            sa.assertTrue(Validate.asArtistType(artistObj.getType()), AssertionMsg.print(className, methodName, "type", artistObj.getType()));
+        }
+        if(artistObj.getIsVerified() != null) {
+            sa.assertTrue(Validate.asBoolean(artistObj.getIsVerified()), AssertionMsg.print(className, methodName, "isVerified", Boolean.toString(artistObj.getIsVerified())));
+        }
+        if(Validate.isNonEmptyString(artistObj.getDominantLanguage())) {
+            sa.assertTrue(Validate.asMusicLanguage(artistObj.getDominantLanguage()), AssertionMsg.print(className, methodName, "dominantLanguage", artistObj.getDominantLanguage()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getDominantType())) {
+            sa.assertTrue(Validate.asArtistType(artistObj.getDominantType()), AssertionMsg.print(className, methodName, "dominantType", artistObj.getDominantType()));
+        }
+//        if(artistObj.isRadioPresent() ) {
+            sa.assertTrue(Validate.asBoolean(artistObj.isRadioPresent()), AssertionMsg.print(className, methodName, "isRadioPresent", Boolean.toString(artistObj.isRadioPresent())));
+//        }
+        if(Validate.isNonEmptyString(artistObj.getBio())) {
+            sa.assertTrue(Validate.asString(artistObj.getBio()), AssertionMsg.print(className, methodName, "bio", artistObj.getBio()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getDob())) {
+            sa.assertTrue(Validate.asDate(artistObj.getDob()), AssertionMsg.print(className, methodName, "dob", artistObj.getDob()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getFb())) {
+            sa.assertTrue(Validate.asExternalURL(artistObj.getFb()), AssertionMsg.print(className, methodName, "fb", artistObj.getFb()));
+        }
         if(Validate.isNonEmptyString(artistObj.getTwitter())) {
             sa.assertTrue(Validate.asExternalURL(artistObj.getTwitter()), AssertionMsg.print(className, methodName, "twitter", artistObj.getTwitter()));
         }
-        sa.assertTrue(Validate.asExternalURL(artistObj.getWiki()), AssertionMsg.print(className, methodName, "wiki", artistObj.getWiki()));
-        sa.assertTrue(Validate.asNum(artistObj.getFan_count()), AssertionMsg.print(className, methodName, "fan_count", artistObj.getFan_count()));
+        if(Validate.isNonEmptyString(artistObj.getWiki())) {
+            sa.assertTrue(Validate.asExternalURL(artistObj.getWiki()), AssertionMsg.print(className, methodName, "wiki", artistObj.getWiki()));
+        }
+        if(Validate.isNonEmptyString(artistObj.getFan_count())) {
+            sa.assertTrue(Validate.asNum(artistObj.getFan_count()), AssertionMsg.print(className, methodName, "fan_count", artistObj.getFan_count()));
+        }
+
         sa.assertTrue(Validate.asBoolean(artistObj.is_followed()), AssertionMsg.print(className, methodName, "is_followed", Boolean.toString(artistObj.is_followed())));
 
     }
@@ -82,36 +110,42 @@ public class ArtistPageValidator extends EntityValidator {
     public void validateTopSongs(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        List<Song> songListing = artistObj.getTopSongs().getSongs();
-        for (Song song : songListing) {
-            new SongValidator().validate(song, sa, artistObj.getArtistId(), "artist top songs");
+        if(artistObj.getTopSongs() != null){
+            List<Song> songListing = artistObj.getTopSongs().getSongs();
+            for (Song song : songListing) {
+                new SongValidator().validate(song, sa, artistObj.getArtistId(), "artist top songs");
+            }
+
+            sa.assertTrue(Validate.asNum((artistObj.getTopSongs().getTotal())),
+                    AssertionMsg.print(className, methodName, "total songs", Integer.toString(artistObj.getTopSongs().getTotal())));
+
+            if (artistObj.getTopSongs().getLast_page() != null) {
+                sa.assertTrue(Validate.asBoolean((artistObj.getTopSongs().getLast_page())),
+                        AssertionMsg.print(className, methodName, "is_last_page", Boolean.toString(artistObj.getTopSongs().getLast_page())));
+            }
         }
 
-        sa.assertTrue(Validate.asNum((artistObj.getTopSongs().getTotal())),
-                AssertionMsg.print(className, methodName, "total songs", Integer.toString(artistObj.getTopSongs().getTotal())));
-
-        if (artistObj.getTopSongs().getLast_page() != null) {
-            sa.assertTrue(Validate.asBoolean((artistObj.getTopSongs().getLast_page())),
-                    AssertionMsg.print(className, methodName, "is_last_page", Boolean.toString(artistObj.getTopSongs().getLast_page())));
-        }
 
     }
 
     public void validateTopAlbums(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        List<AlbumMiniObject> albumListing = artistObj.getTopAlbums().getAlbums();
-        for (AlbumMiniObject album : albumListing) {
-            new AlbumMiniValidator().validate(album, sa, artistObj.getArtistId(),"artist top albums");
+        if(artistObj.getTopAlbums() != null) {
+            List<AlbumMiniObject> albumListing = artistObj.getTopAlbums().getAlbums();
+            for (AlbumMiniObject album : albumListing) {
+                new AlbumMiniValidator().validate(album, sa, artistObj.getArtistId(),"artist top albums");
+            }
+
+            sa.assertTrue(Validate.asNum((artistObj.getTopAlbums().getTotal())),
+                    AssertionMsg.print(className, methodName, "total albums", Integer.toString(artistObj.getTopAlbums().getTotal())));
+
+            if (artistObj.getTopAlbums().getLast_page() != null) {
+                sa.assertTrue(Validate.asBoolean((artistObj.getTopAlbums().getLast_page())),
+                        AssertionMsg.print(className, methodName, "is_last_page", Boolean.toString(artistObj.getTopAlbums().getLast_page())));
+            }
         }
 
-        sa.assertTrue(Validate.asNum((artistObj.getTopAlbums().getTotal())),
-                AssertionMsg.print(className, methodName, "total albums", Integer.toString(artistObj.getTopAlbums().getTotal())));
-
-        if (artistObj.getTopAlbums().getLast_page() != null) {
-            sa.assertTrue(Validate.asBoolean((artistObj.getTopAlbums().getLast_page())),
-                    AssertionMsg.print(className, methodName, "is_last_page", Boolean.toString(artistObj.getTopAlbums().getLast_page())));
-        }
 
     }
 
@@ -125,11 +159,13 @@ public class ArtistPageValidator extends EntityValidator {
 
         //        Validate similarArtists
         List<SimilarArtists> similarArtistsObj = artistObj.getSimilarArtists();
+        if(similarArtistsObj != null && similarArtistsObj.size() > 0) {
+            for (SimilarArtists sm_art : similarArtistsObj) {
+                validateSimilarArtistFields(sm_art, sa);
 
-        for (SimilarArtists sm_art : similarArtistsObj) {
-            validateSimilarArtistFields(sm_art, sa);
-
+            }
         }
+
     }
 
     /**
@@ -195,32 +231,43 @@ public class ArtistPageValidator extends EntityValidator {
 
     void validateURLs(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        if(artistObj.getUrls() != null) {
+            sa.assertTrue(Validate.asPermaURL(artistObj.getUrls().getAlbums()), AssertionMsg.print(className, methodName, "artist.urls.albums", artistObj.getUrls().getAlbums()));
 
-        sa.assertTrue(Validate.asPermaURL(artistObj.getUrls().getAlbums()), AssertionMsg.print(className, methodName, "artist.urls.albums", artistObj.getUrls().getAlbums()));
-        sa.assertTrue(Validate.asString(artistObj.getUrls().getBio()), AssertionMsg.print(className, methodName, "artist.urls.bio", artistObj.getUrls().getBio()));
-        sa.assertTrue(Validate.asPermaURL(artistObj.getUrls().getComments()), AssertionMsg.print(className, methodName, "artist.urls.comments", artistObj.getUrls().getComments()));
-        sa.assertTrue(Validate.asPermaURL(artistObj.getUrls().getSongs()), AssertionMsg.print(className, methodName, "artist.urls.songs", artistObj.getUrls().getSongs()));
+            if(Validate.isNonEmptyString(artistObj.getUrls().getBio())) {
+                sa.assertTrue(Validate.asString(artistObj.getUrls().getBio()), AssertionMsg.print(className, methodName, "artist.urls.bio", artistObj.getUrls().getBio()));
+            }
 
+            if(Validate.isNonEmptyString(artistObj.getUrls().getComments())) {
+                sa.assertTrue(Validate.asPermaURL(artistObj.getUrls().getComments()), AssertionMsg.print(className, methodName, "artist.urls.comments", artistObj.getUrls().getComments()));
+            }
+
+            if(Validate.isNonEmptyString(artistObj.getUrls().getSongs())) {
+                sa.assertTrue(Validate.asPermaURL(artistObj.getUrls().getSongs()), AssertionMsg.print(className, methodName, "artist.urls.songs", artistObj.getUrls().getSongs()));
+            }
+        }
     }
 
     void validateAvailableLanguages(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        for (String language : artistObj.getAvailableLanguages()) {
-            musicLanguages ml = musicLanguages.valueOf(language.toUpperCase());
-            sa.assertEquals(language, ml.toString().toLowerCase());
+        if(artistObj.getAvailableLanguages() != null && artistObj.getAvailableLanguages().size() > 0) {
+            for (String language : artistObj.getAvailableLanguages()) {
+                musicLanguages ml = musicLanguages.valueOf(language.toUpperCase());
+                sa.assertEquals(language, ml.toString().toLowerCase());
+            }
         }
+
 
     }
 
     void validateArtistPlaylists(Artist artistObj, SoftAssert sa) {
         List<Playlist> plv = artistObj.getArtistPlaylists();
-
-        for (Playlist pl : plv) {
-            new PlaylistMiniValidator().validate(pl, sa);
+        if(plv != null && plv.size() > 0) {
+            for (Playlist pl : plv) {
+                new PlaylistMiniValidator().validate(pl, sa);
+            }
         }
-
-
     }
 
 }

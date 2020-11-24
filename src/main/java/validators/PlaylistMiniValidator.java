@@ -24,7 +24,9 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asBoolean(ch.getExplicit_content()), AssertionMsg.print(className, methodName, "chart/playlist", "entity.explicit_content", ch.getExplicit_content()));
         }
 
-
+        if(ch.getNumsongs() != null){
+            //TODO: Add validation for numsongs
+        }
 
         PlaylistMiniMoreInfo mi = ch.getMoreInfo();
         if(mi.getFirstname() != null)
@@ -42,8 +44,10 @@ public class PlaylistMiniValidator extends EntityValidator {
         if(mi.getUid() != null)
             sa.assertTrue(Validate.asString(mi.getUid()), AssertionMsg.print(className, methodName, "playlist", "more_info.uid", mi.getUid()));
 
-        if(Validate.isNonEmptyString(mi.getArtist_name())){
-            sa.assertTrue(Validate.asString(mi.getArtist_name()), AssertionMsg.print(className, methodName, "chart", "more_info.artist_name", mi.getArtist_name()));
+        if(mi.getArtist_name() != null){
+            for(String artist : mi.getArtist_name()){
+                sa.assertTrue(Validate.asString(artist), AssertionMsg.print(className, methodName, "chart", "more_info.artist_name", artist));
+            }
         }
 
         if(Validate.isNonEmptyString(mi.getLastname())){

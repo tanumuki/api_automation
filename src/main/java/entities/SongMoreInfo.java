@@ -93,4 +93,6 @@ public class SongMoreInfo {
 	private String primary_artists;
 	@JsonProperty("singers")
 	private String singers;
+	@JsonProperty("triller_available")
+	private Boolean triller_available;
 }

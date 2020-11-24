@@ -1,16 +1,14 @@
-package validators.SearchGetAlbumResults;
+package validators.SearchGetEntityResults;
 
-import entities.Album;
 import org.testng.asserts.SoftAssert;
-import pojos.SearchGetAlbumResults.SearchGetAlbumResults;
+import pojos.SearchGetEntityResults.SearchGetEntityResults;
 import validators.AssertionMsg;
 import validators.Validate;
-import validators.genericValidators.AlbumValidator;
 
-public class SearchGetAlbumResultsValidator {
+public class SearchGetEntityResultsValidator {
     final String className = getClass().getName();
 
-    public void validate(SearchGetAlbumResults ar, SoftAssert sa) {
+    public void validate(SearchGetEntityResults ar, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         if(ar.getTotal() != null){
@@ -27,8 +25,6 @@ public class SearchGetAlbumResultsValidator {
 
         sa.assertTrue(ar.getStart() <= ar.getTotal(), "Start > Total for Jiotunes get more songs");
 
-        for(Album album : ar.getResults()) {
-            new AlbumValidator().validate(album, sa);
-        }
+        Validate.asAssortedEntity(ar.getResults(), sa);
     }
 }

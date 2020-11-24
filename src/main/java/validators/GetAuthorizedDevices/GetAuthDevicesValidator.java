@@ -20,7 +20,7 @@ public class GetAuthDevicesValidator {
 
         if(ad.getDevicesLimit() != null){
             sa.assertTrue(Validate.asNum(ad.getDevicesLimit()), AssertionMsg.print(className, methodName, "devices_limit", String.valueOf(ad.getDevicesLimit())));
-            sa.assertTrue(ad.getDevicesLimit() >= 1 && ad.getDevicesLimit() <= 5, "Device limit is not within the range 1 and 5" );
+            sa.assertTrue(ad.getDevicesLimit() == 1 || ad.getDevicesLimit() == 5, "Device limit is not within the range 1 and 5" );
         }else{
             sa.fail("Device limit is null");
         }
