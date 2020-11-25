@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 
+	SearchGetResults("search.getResults"),
 	SearchGetMoreResults("search.getMoreResults"),
 	SearchGetPlaylistResults("search.getPlaylistResults"),
 	SearchGetAlbumResults("search.getAlbumResults"),
