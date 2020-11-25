@@ -2,6 +2,7 @@ package validators.showGetHome;
 
 import entities.*;
 import org.testng.asserts.SoftAssert;
+import pojos.SearchGetEntityResults.ArtistResultObj;
 import validators.AssertionMsg;
 import validators.Validate;
 import validators.genericValidators.ArtistMapValidator;
@@ -16,14 +17,81 @@ public class ShowDetailsValidator extends EntityValidator {
         System.out.println("className: " + className);
         ShowDetails showDetails = showHome.getShowDetails();
         super.validate(showDetails, sa, showDetails.getId(), "show");
-        validateMoreInfo(showDetails, sa);
-        
+        validateMoreInfo(showDetails.getMoreInfo(), sa, showDetails.getId());
+
+
     }
 
     public void validate(ShowDetails sd, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(sd, sa, sd.getId(), "show");
-        validateMoreInfo(sd, sa);
+        if(sd.getMoreInfo() != null)
+            validateMoreInfo(sd.getMoreInfo(), sa, sd.getId());
+
+        //Validate mini_obj
+        if(sd.getMini_obj() != null){
+            sa.assertTrue(Validate.asBoolean(sd.getMini_obj()), AssertionMsg.print(className, methodName, "show_details.mini_obj", String.valueOf(sd.getMini_obj())));
+        }
+
+        if(Validate.isNonEmptyString(sd.getImageFileUrl())){
+            sa.assertTrue(Validate.asCDNURL(sd.getImageFileUrl()), AssertionMsg.print(className, methodName, "show_details.image_file_url", sd.getImageFileUrl()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getPartner_name())){
+            sa.assertTrue(Validate.asString(sd.getPartner_name()), AssertionMsg.print(className, methodName, "show_details.partner_name", sd.getImageFileUrl()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getDisable_ads())){
+            sa.assertTrue(Validate.asBoolean(sd.getDisable_ads()), AssertionMsg.print(className, methodName, "show_details.disable_ads", sd.getDisable_ads()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getBackground_color())){
+            sa.assertTrue(Validate.asString(sd.getBackground_color()), AssertionMsg.print(className, methodName, "show_details.background_color", sd.getBackground_color()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getLabel_name())){
+            sa.assertTrue(Validate.asString(sd.getLabel_name()), AssertionMsg.print(className, methodName, "show_details.label_name", sd.getLabel_name()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getSong_info())){
+            sa.assertTrue(Validate.asString(sd.getSong_info()), AssertionMsg.print(className, methodName, "show_details.song_info", sd.getSong_info()));
+        }
+
+        if(sd.getLatest_season_sequence() != null){
+            sa.assertTrue(Validate.asNum(sd.getLatest_season_sequence()), AssertionMsg.print(className, methodName, "show_details.latest_season_sequence", String.valueOf(sd.getLatest_season_sequence())));
+        }
+
+        if(Validate.isNonEmptyString(sd.getSquare_image_url())){
+            sa.assertTrue(Validate.asCDNURL(sd.getSquare_image_url()), AssertionMsg.print(className, methodName, "show_details.square_image_url", sd.getSquare_image_url()));
+        }
+    }
+
+    void validateArtistObjs(ShowDetails sd, SoftAssert sa) {
+        if(sd.getArtists() != null) {
+            for(ArtistResultObj ao : sd.getArtists()){
+
+            }
+        }
+    }
+
+    void validateArtistObj(ArtistResultObj ao, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+        if(Validate.isNonEmptyString(ao.getArtists_id())){
+            sa.assertTrue(Validate.asId(ao.getArtists_id()), AssertionMsg.print(className, methodName, "artists_id", ao.getArtists_id()));
+        }
+
+        if(Validate.isNonEmptyString(ao.getArtists_name())){
+            sa.assertTrue(Validate.asId(ao.getArtists_name()), AssertionMsg.print(className, methodName, "artists_name", ao.getArtists_name()));
+        }
+
+        if(Validate.isNonEmptyString(ao.getArtists_sequence())){
+            sa.assertTrue(Validate.asId(ao.getArtists_sequence()), AssertionMsg.print(className, methodName, "artists_sequence", ao.getArtists_sequence()));
+        }
+
+        if(Validate.isNonEmptyString(ao.getArtists_role())){
+            sa.assertTrue(Validate.asId(ao.getArtists_role()), AssertionMsg.print(className, methodName, "artists_role", ao.getArtists_role()));
+        }
     }
 
     public void validateMoreInfo(ShowMoreInfo mi, SoftAssert sa, String id) {
@@ -114,11 +182,6 @@ public class ShowDetailsValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getBadge()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.badge", mi.getBadge()));
     }
 
-    public void validateMoreInfo(ShowDetails showDetails, SoftAssert sa) {
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        ShowMoreInfo mi = showDetails.getMoreInfo();
 
-
-    }
 
 }

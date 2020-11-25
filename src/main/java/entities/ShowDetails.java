@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pojos.SearchGetEntityResults.ArtistResultObj;
 
 import java.util.List;
 
@@ -37,16 +38,16 @@ public class ShowDetails extends Entity{
     @JsonProperty("song_info")
     private String song_info;
     @JsonProperty("latest_season_sequence")
-    private String latest_season_sequence;
+    private Integer latest_season_sequence;
     @JsonProperty("square_image_url")
     private String square_image_url;
 
 
 
     @JsonProperty("artists")
-    private List<String> artists;
+    private List<ArtistResultObj> artists;
     @JsonProperty("primary_artists")
-    private List<String> primary_artists;
+    private List<ArtistResultObj> primary_artists;
     @JsonProperty("featured_artists")
-    private List<String> featured_artists;
+    private List<ArtistResultObj> featured_artists;
 }

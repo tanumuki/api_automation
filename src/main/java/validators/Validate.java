@@ -164,7 +164,7 @@ public class Validate {
      */
     public static boolean asBoolean(String str) {
         log.debug("Testing as string boolean: \"" + str + "\"");
-        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No|Success|success|Failure|failure");
+        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No|Success|success|Failure|failure|None");
     }
 
     /*
