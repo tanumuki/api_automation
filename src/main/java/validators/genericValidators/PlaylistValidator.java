@@ -36,7 +36,7 @@ public class PlaylistValidator extends EntityValidator {
         validateMoreInfo(playlistObj, sa);
     }
 
-    void validateMoreInfo(Entity plObj, SoftAssert sa) {
+    public void validateMoreInfo(Entity plObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         PlaylistMoreInfo moreInfo;
 

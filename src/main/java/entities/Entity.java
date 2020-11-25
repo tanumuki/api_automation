@@ -44,5 +44,6 @@ public class Entity {
     protected String listType;
     @JsonProperty("header_desc")
     private String headerDesc;
-
+    @JsonProperty("mini_obj")
+    private Boolean miniObj;
 }

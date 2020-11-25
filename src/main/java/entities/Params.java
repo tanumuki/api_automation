@@ -11,14 +11,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-
-public class ModulesDataShowMore {
+public class Params {
     @JsonProperty("type")
     private String type;
-    @JsonProperty("source")
-    private String source;
-    @JsonProperty("params")
-    private Params params;
-    @JsonProperty("title")
-    private String title;
 }

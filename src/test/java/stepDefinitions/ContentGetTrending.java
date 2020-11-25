@@ -49,6 +49,7 @@ public class ContentGetTrending extends Util {
         resSpec = new ResponseSpecBuilder().expectStatusCode(200)
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         resp = reqSpec.given().when().get("/api.php").then().extract().response();
+        System.out.println("Aswin: " + resp.asString());
         logResponseTime(resp);
 
     }

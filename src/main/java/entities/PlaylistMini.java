@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @Getter
 @Setter
@@ -22,5 +24,6 @@ public class PlaylistMini extends Entity {
     private String uid;
     @JsonProperty("explicit_content")
     private String explicit_content;
-
+    @JsonProperty("numsongs")
+    private Object numsongs;
 }
