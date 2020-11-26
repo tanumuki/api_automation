@@ -442,4 +442,13 @@ public class Validate {
 
     }
 
+    public static boolean asViewType(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("^(grid|list)$");
+    }
+
+    public static boolean asAPIJioPhoneGetLaunchData(String str) {
+        log.debug("Testing as access: \"" + str + "\"");
+        return str.matches("(^$|\\s+|\\/api.php\\?__call=(channel|content|webradio)\\.(getDetails|getAlbums|getFeaturedPlaylists|getFeaturedStations|getTrending|getCharts)?(&channel_id=[0-9]+)??(&entity_type=playlists)?&api_version=4&_format=json&_marker=0?(&entity_type=playlists)?)");
+    }
 }
