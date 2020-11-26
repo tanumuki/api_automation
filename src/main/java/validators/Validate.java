@@ -50,6 +50,10 @@ public class Validate {
         }
     }
 
+    public static boolean asLong(Long num) {
+        return num >= Long.MIN_VALUE && num <= Long.MAX_VALUE;
+    }
+
     /**
      * Use this to verify floating point numbers.
      * @param floatingPtNumber
