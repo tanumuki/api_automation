@@ -10,7 +10,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class ConfigData {
+public class HomepageData {
     @JsonProperty("id")
     private String id;
     @JsonProperty("type")
