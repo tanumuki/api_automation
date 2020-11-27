@@ -2,6 +2,7 @@ package endPoints;
 
 public enum APIResources {
 
+	GetUserCurrSubscription("subscription.getUserCurrentSubscription"),
 	SubscriptionGetStatus("subscription.getStatus"),
 	GetContentRightsChanged("subscription.contentRightsChanged"),
 	SearchGetResults("search.getResults"),
