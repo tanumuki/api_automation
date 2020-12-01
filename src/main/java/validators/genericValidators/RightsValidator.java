@@ -41,8 +41,6 @@ public class RightsValidator {
             if(Validate.isNonEmptyString(rights.getReason())) {
                 sa.assertTrue(Validate.asSongRightsReason(rights.getReason()), AssertionMsg.print(className, methodName,
                         sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
-            }else {
-                sa.fail("Rights reason is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
             }
         } else {
             sa.fail("Rights is null for sourceType - " + sourceType + " and source ID - " + sourceId);
