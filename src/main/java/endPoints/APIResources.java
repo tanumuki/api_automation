@@ -66,7 +66,9 @@ public enum APIResources {
 	WebRadioCreateFavouriteStation("webradio.createFeaturedStation"),
 	BenefitsCountApi("benefits.count"),
 	BenefitsListApi("benefits.list"),
-	AppGetLaunchDataJioPhone("app.getLaunchDataJioPhone");
+	AppGetLaunchDataJioPhone("app.getLaunchDataJioPhone"),
+	SearchGetResultsFromEntities("search.getResultsFromEntities"),
+	ContentGetTopSearches("content.getTopSearches");
 
 
 	private String resource;

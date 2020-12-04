@@ -135,6 +135,7 @@ public class Validate {
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
                 "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.png)");
+
     }
 
     /**
@@ -432,23 +433,29 @@ public class Validate {
     }
 
     public static boolean asBenefitStatus(String str) {
-        log.debug("Testing as access: \"" + str + "\"");
+        log.debug("Testing as status: \"" + str + "\"");
         return str.matches("^(available|expired|redeemed)$");
 
     }
     public static boolean asBenefitSection(String str) {
-        log.debug("Testing as access: \"" + str + "\"");
+        log.debug("Testing as section: \"" + str + "\"");
         return str.matches("^(Old|New)$");
 
     }
 
     public static boolean asViewType(String str) {
-        log.debug("Testing as access: \"" + str + "\"");
+        log.debug("Testing as view type: \"" + str + "\"");
         return str.matches("^(grid|list)$");
     }
 
     public static boolean asAPIJioPhoneGetLaunchData(String str) {
-        log.debug("Testing as access: \"" + str + "\"");
+        log.debug("Testing as API: \"" + str + "\"");
         return str.matches("(^$|\\s+|\\/api.php\\?__call=(channel|content|webradio)\\.(getDetails|getAlbums|getFeaturedPlaylists|getFeaturedStations|getTrending|getCharts)?(&channel_id=[0-9]+)??(&entity_type=playlists)?&api_version=4&_format=json&_marker=0?(&entity_type=playlists)?)");
+    }
+
+    public static boolean asAlphaNumericWithUnderscoreHyphen(String str){
+        log.debug("Testing as API: \"" + str + "\"");
+        return str.matches("^[a-zA-Z0-9_\\-]*$");
+
     }
 }
