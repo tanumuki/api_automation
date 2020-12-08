@@ -43,11 +43,7 @@ public class Validate {
 
     public static boolean asNum(int number) {
         log.debug("Testing as integer: " + number);
-        if (number >= 0 || number < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (number >=0 || number < 0);
     }
 
     /**
@@ -213,6 +209,9 @@ public class Validate {
 
     }
 
+    public static boolean asUnixEpochTime(String str) {
+        return str.matches("^\\d{10}$");//epoch ts is 10 digits
+    }
     public static boolean asGender(String str) {
         return str.matches("m|f|u");
     }
