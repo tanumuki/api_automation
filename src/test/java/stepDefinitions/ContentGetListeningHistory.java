@@ -104,11 +104,10 @@ public class ContentGetListeningHistory extends Util {
             new ListeningHistoryValidator().validateListeningHistory(listenHistoryObj, sa);
 
 //            Pass the list of IDs as an argument to the validator
-
-//            paginatedList = AssortedEntities.getValuesForAllKeys(resp, "id");
-//            sa.assertTrue(paginatedList.size() > 0);
-//            sa.assertTrue(PaginationValidator.paginationDuplicateValidator(paginatedList),
-//                    "Found duplicate entities in paginated responses for content.GetListeningHistory");
+            paginatedList = AssortedEntities.getValuesForAllKeys(resp, "id");
+            sa.assertTrue(paginatedList.size() > 0);
+            sa.assertTrue(PaginationValidator.paginationDuplicateValidator(paginatedList),
+                    "Found duplicate entities in paginated responses for content.GetListeningHistory");
 
 
 
