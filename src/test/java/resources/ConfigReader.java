@@ -127,6 +127,29 @@ public class ConfigReader {
 				properties.setProperty("userAgent", "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1");
 			} 
 		}
+
+		//putting the values
+
+			File file = new File("src/test/java/resources/global.properties");
+			FileOutputStream fileOut = null;
+			try {
+				fileOut = new FileOutputStream(file);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				properties.store(fileOut, "properties");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				fileOut.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
     }
     	
@@ -136,37 +159,48 @@ public class ConfigReader {
     	else {
         	
     			baseUrl="https://staging.saavn.com";
+    			properties.setProperty("baseUrl", baseUrl);
     			password="Saavn123";
-    			app_version="6.1";
-    			version="211.0";
-    			ctx="android";
-    			userAgent="Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36";
-    			username="tanu@saavn.com"; 
+			properties.setProperty("password", password);
+			app_version="6.1";
+			properties.setProperty("app_version", app_version);
+			version="211.0";
+			properties.setProperty("v", version);
+			ctx="android";
+			properties.setProperty("ctx", ctx);
+			userAgent="Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36";
+			properties.setProperty("userAgent", userAgent);
+			username="tanu@saavn.com";
+			properties.setProperty("username", username);
+			password="Tanu1234";
+			properties.setProperty("password", password);
+
+			File file = new File("src/test/java/resources/global.properties");
+			FileOutputStream fileOut = null;
+			try {
+				fileOut = new FileOutputStream(file);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				properties.store(fileOut, "properties");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				fileOut.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
     	}
 		
 		
 		
-		File file = new File("src/test/java/resources/global.properties");
-		FileOutputStream fileOut = null;
-		try {
-			fileOut = new FileOutputStream(file);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			properties.store(fileOut, "properties");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			fileOut.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
     }
 		
 		

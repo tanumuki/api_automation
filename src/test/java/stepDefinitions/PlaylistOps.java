@@ -57,8 +57,8 @@ public class PlaylistOps extends Util {
 	}
 
 
-	@When("User calls method with below params")
-	public void user_calls_method_with_below_params(io.cucumber.datatable.DataTable table) {
+	@When("User calls method with below params for playlistOps")
+	public void user_calls_method_with_below_params_for_playlistOps(io.cucumber.datatable.DataTable table) {
 		resspec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
 		// code to handle Data Table
