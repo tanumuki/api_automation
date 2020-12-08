@@ -1,10 +1,13 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Getter
 @Setter
@@ -25,5 +28,16 @@ public class PlaylistMiniMoreInfo {
     private String isWeekly;
     @JsonProperty("reward")
     private String reward;
+    @JsonProperty("artist_name")
+    private List<String> artist_name;
+    @JsonProperty("entity_type")
+    private String entity_type;
+    @JsonProperty("lastname")
+    private String lastname;
+    @JsonProperty("share")
+    private String share;
+    @JsonProperty("language")
+    private String language;
+
 
 }

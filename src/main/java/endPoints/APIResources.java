@@ -2,6 +2,18 @@ package endPoints;
 
 public enum APIResources {
 
+	SearchGetMoreResults("search.getMoreResults"),
+	SearchGetPlaylistResults("search.getPlaylistResults"),
+	SearchGetAlbumResults("search.getAlbumResults"),
+	JTGetMoreTrendingSongs("jiotunepage.getMoreTrendingSongs"),
+	JTGetMoreSongs("jiotunepage.getMoreSongs"),
+	JiotuneGetHomepageData("jiotunepage.getHomepageData"),
+	SubsGetAuthorizedDevices("subscription.getAuthorizedDevices"),
+	GetSongReco("reco.getreco"),
+	SearchTabHomePage("search_tab.getsearchhomepage"),
+	ReceiptGetDetails("receipt.getDetails"),
+	GetPlaylistRecoAPI("reco.getPlaylistReco"),
+	GetAlbumRecoAPI("reco.getAlbumReco"),
 	ReceiptList("receipt.list"),
 	PodcastGetNT("podcast.getNewandTrending"),
 	PodcastGetMoreData("podcast.getMoreData"),
@@ -53,7 +65,8 @@ public enum APIResources {
 	WebRadioCreateStation("webradio.createStation"),
 	WebRadioCreateFavouriteStation("webradio.createFeaturedStation"),
 	BenefitsCountApi("benefits.count"),
-	BenefitsListApi("benefits.list");
+	BenefitsListApi("benefits.list"),
+	AppGetLaunchDataJioPhone("app.getLaunchDataJioPhone");
 
 
 	private String resource;

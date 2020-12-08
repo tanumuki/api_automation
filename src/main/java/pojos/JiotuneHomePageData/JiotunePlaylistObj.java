@@ -1,20 +1,20 @@
-package pojos.benefits;
+package pojos.JiotuneHomePageData;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.Entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.mozilla.javascript.annotations.JSConstructor;
+
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
+@Data
 @Getter
 @Setter
-@Data
-public class List {
-
-    @JsonProperty("status")
-    private String status;
-    @JsonProperty("data")
-    private BenefitsListData [] data;
+public class JiotunePlaylistObj extends Entity {
+    @JsonProperty("more_info")
+    private JTPlaylistMoreInfo moreInfo;
 }

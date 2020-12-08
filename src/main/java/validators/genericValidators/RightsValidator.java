@@ -15,19 +15,39 @@ public class RightsValidator {
     public void validate(Rights rights, SoftAssert sa, String sourceType, String sourceId) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
+        if (rights != null) {
+            if(Validate.isNonEmptyString(rights.getCode())) {
+                sa.assertTrue(Validate.asSongRightsCode(rights.getCode()), AssertionMsg.print(className, methodName, sourceType,
+                        "more_info.rights.code", rights.getCode(), sourceId));
+            }else {
+                sa.fail("Rights code is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
+            }
 
-        sa.assertTrue(Validate.asSongRightsCode(rights.getCode()), AssertionMsg.print(className, methodName, sourceType,
-                "more_info.rights.code", rights.getCode(), sourceId));
+            if(Validate.isNonEmptyString(rights.getCacheable())) {
+                sa.assertTrue(Validate.asBoolean(rights.getCacheable()), AssertionMsg.print(className, methodName,
+                        sourceType, "more_info.rights.cacheable", rights.getCacheable(), sourceId));
+            }else {
+                sa.fail("Rights cacheable is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
+            }
 
-        sa.assertTrue(Validate.asBoolean(rights.getCacheable()), AssertionMsg.print(className, methodName,
-                sourceType, "more_info.rights.cacheable", rights.getCacheable(), sourceId));
+            if(Validate.isNonEmptyString(rights.getDeleteCachedObject())) {
+                sa.assertTrue(Validate.asBoolean(rights.getDeleteCachedObject()),
+                        AssertionMsg.print(className, methodName, sourceType, "more_info.rights.delete_cached_object",
+                                rights.getDeleteCachedObject(), sourceId));
+            }else {
+                sa.fail("Rights delete cached obj is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
+            }
 
-        sa.assertTrue(Validate.asBoolean(rights.getDeleteCachedObject()),
-                AssertionMsg.print(className, methodName, sourceType, "more_info.rights.delete_cached_object",
-                        rights.getDeleteCachedObject(), sourceId));
+            if(Validate.isNonEmptyString(rights.getReason())) {
+                sa.assertTrue(Validate.asSongRightsReason(rights.getReason()), AssertionMsg.print(className, methodName,
+                        sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
+            }else {
+                sa.fail("Rights reason is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
+            }
+        } else {
+            sa.fail("Rights is null for sourceType - " + sourceType + " and source ID - " + sourceId);
+        }
 
-        sa.assertTrue(Validate.asString(rights.getReason()), AssertionMsg.print(className, methodName,
-                sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
 		log.info("Rights Validation done for "+sourceId+ "and "+sourceType);
 
     }

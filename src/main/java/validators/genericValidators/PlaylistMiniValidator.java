@@ -40,8 +40,20 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asNum(moreInfo.getFollower_count()), AssertionMsg.print(className, methodName, "playlist.more_info.follower_count", moreInfo.getFollower_count()));
         }
 
-        sa.assertTrue(Validate.asNum(moreInfo.getSong_count()), AssertionMsg.print(className, methodName, "playlist.more_info.song_count", moreInfo.getSong_count()));
+        if(Validate.isNonEmptyString(moreInfo.getSong_count()))
+            sa.assertTrue(Validate.asNum(moreInfo.getSong_count()), AssertionMsg.print(className, methodName, "playlist.more_info.song_count", moreInfo.getSong_count()));
 
+        if(Validate.isNonEmptyString(moreInfo.getFan_count())) {
+            sa.assertTrue(Validate.asNum(moreInfo.getFan_count()), AssertionMsg.print(className, methodName, "playlist.more_info.fan_count", moreInfo.getFan_count()));
+        }
+
+        if(Validate.isNonEmptyString(moreInfo.getLast_updated())) {
+            sa.assertTrue(Validate.asTimeStamp(moreInfo.getLast_updated()), AssertionMsg.print(className, methodName, "playlist.more_info.last_updated", moreInfo.getLast_updated()));
+        }
+
+        if(Validate.isNonEmptyString(moreInfo.getUid())) {
+            sa.assertTrue(Validate.asId(moreInfo.getUid()), AssertionMsg.print(className, methodName, "playlist.more_info.uid", moreInfo.getUid()));
+        }
 
     }
 }

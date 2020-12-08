@@ -17,4 +17,8 @@ public class ModulesDataShowMore {
     private String type;
     @JsonProperty("source")
     private String source;
+    @JsonProperty("params")
+    private Params params;
+    @JsonProperty("title")
+    private String title;
 }
