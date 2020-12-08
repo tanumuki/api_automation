@@ -18,7 +18,10 @@ public class CheckSongsRightsValidator {
             String[] songs = pids.split(",");
             for(String pid : songs) {
                 Rights songRights = rights.getSongRights().get(pid);
-                new RightsValidator().validate(songRights, sa, "song", pids);
+                if(songRights != null)
+                    new RightsValidator().validate(songRights, sa, "song", pids);
+                else
+                    sa.fail(className + " - " + methodName + " - missing rights for pid - " + pid );
             }
         }
 
