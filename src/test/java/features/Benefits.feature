@@ -1,4 +1,3 @@
-@WIP
 Feature: Validation of Benefits list and count API.
 
   Background:
