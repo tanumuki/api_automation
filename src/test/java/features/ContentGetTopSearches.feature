@@ -3,7 +3,7 @@ Feature: Validation of user get profile API
   Background:
     Given I have the cookie for the following user
       | username | password |
-      | sun@s.in | saavn123 |
+      | sun@s.in | Saavn123 |
 
   Scenario: Verify content get top searches API
     Given I have the endpoint for "ContentGetTopSearches"
