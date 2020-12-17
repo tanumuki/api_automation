@@ -97,7 +97,7 @@ public class User extends Util {
         {
             ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
             UserChangePasswordFailure changePasswordFailure = objectMapper.readValue(GenericSteps.resp.asString(), UserChangePasswordFailure.class);
-            Assert.assertEquals(responseMessage, changePasswordFailure.getError().getErrorMsg());
+            Assert.assertEquals(responseMessage, changePasswordFailure.getError().getMsg());
         }
 
     }

@@ -16,5 +16,5 @@ public class UserChangePasswordFailure {
     @JsonProperty("status")
     private String status;
     @JsonProperty("error")
-    private FailureMessageJson error;
+    private ResponseMessageJson error;
 }

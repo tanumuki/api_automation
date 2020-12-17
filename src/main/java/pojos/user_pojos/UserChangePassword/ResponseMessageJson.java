@@ -11,7 +11,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class FailureMessageJson {
+public class ResponseMessageJson {
     @JsonProperty("msg")
-    private String errorMsg;
+    private String msg;
 }

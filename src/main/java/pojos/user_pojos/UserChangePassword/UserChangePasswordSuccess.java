@@ -16,5 +16,5 @@ public class UserChangePasswordSuccess {
     @JsonProperty("status")
     private String status;
     @JsonProperty("success")
-    private SuccessMessageJson success;
+    private ResponseMessageJson success;
 }
