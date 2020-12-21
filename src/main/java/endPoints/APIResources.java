@@ -68,7 +68,8 @@ public enum APIResources {
 	BenefitsListApi("benefits.list"),
 	AppGetLaunchDataJioPhone("app.getLaunchDataJioPhone"),
 	SearchGetResultsFromEntities("search.getResultsFromEntities"),
-	ContentGetTopSearches("content.getTopSearches");
+	ContentGetTopSearches("content.getTopSearches"),
+	UserChangePasswordApi("user.changePassword");
 
 
 	private String resource;
