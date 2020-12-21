@@ -46,6 +46,9 @@ public class EpisodeValidator extends EntityValidator {
         if(Validate.isNonEmptyString(mi.getReleaseDate()))
             sa.assertTrue(Validate.asDateTime(mi.getReleaseDate()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.releaseDate", mi.getReleaseDate(), episode.getId()));
 
+        if(Validate.isNonEmptyString(mi.getEntity_title_exact_match()))
+            sa.assertTrue(Validate.asString(mi.getEntity_title_exact_match()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.entity_title_exact_match", mi.getEntity_title_exact_match(), episode.getId()));
+
         if(Validate.isNonEmptyString(mi.getDescription()))
             sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.description", mi.getDescription(), episode.getId()));
 
@@ -92,6 +95,9 @@ public class EpisodeValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(mi.getAdBreaks()))
             sa.assertTrue(Validate.asNum(mi.getAdBreaks()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.ad_breaks", mi.getAdBreaks(), episode.getId()));
+
+        if(Validate.isNonEmptyString(mi.getMultiBr()))
+            sa.assertTrue(Validate.asBoolean(mi.getMultiBr()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.multi_br", mi.getMultiBr(), episode.getId()));
 
         if(Validate.isNonEmptyString(mi.getStarred()))
             sa.assertTrue(Validate.asNum(mi.getStarred()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.starred", mi.getStarred(), episode.getId()));

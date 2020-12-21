@@ -7,7 +7,8 @@ import pojos.content.ListeningHistoryMedia;
 import validators.AssertionMsg;
 import validators.Validate;
 import validators.genericValidators.EntityValidator;
-import validators.genericValidators.SongValidator;
+
+import java.util.LinkedHashMap;
 
 /**
  * @author ashwinsriv
@@ -27,14 +28,14 @@ public class ListeningHistoryValidator extends EntityValidator {
                 AssertionMsg.print(className, methodName, "endReach", String.valueOf(lHistory.isEndReach()) ));
 
         for (ListeningHistoryMedia lhm : lHistory.getResults()) {
-            //        Validate song objects
+//          Validate history metadata "playcount" and "ts"
             sa.assertTrue(Validate.asNum(lhm.getPlayCount()),
                     AssertionMsg.print(className, methodName, "song playcount", Integer.toString(lhm.getPlayCount())));
             sa.assertTrue(Validate.asUnixEpochTime(String.valueOf(lhm.getTs())),
                     AssertionMsg.print(className, methodName, "last played ts", String.valueOf(lhm.getTs())));
 
-            System.out.println("Checking listening history item: " + lhm.getMedia().getId() + "\t" + lhm.getMedia().getTitle());
-            new SongValidator().validate(lhm.getMedia(), sa, lhm.getMedia().getId(),"listening history song object");
+//          Checking for both episode and song objects using AssortedEntity
+            Validate.asAssortedEntity((LinkedHashMap)lhm.getMedia(), sa);
         }
     }
 

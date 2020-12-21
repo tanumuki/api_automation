@@ -23,6 +23,8 @@ public class EpisodeMoreInfo {
     private String labelId;
     @JsonProperty("release_date")
     private String releaseDate;
+    @JsonProperty("entity_title_exact_match")
+    private String entity_title_exact_match;
     @JsonProperty("description")
     private String description;
     @JsonProperty("season_no")

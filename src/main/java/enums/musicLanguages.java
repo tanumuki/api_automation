@@ -13,6 +13,7 @@ public enum musicLanguages {
 	BHOJPURI,
 	MALAYALAM,
 	URDU,
+	SANSKRIT,
 	HARYANVI,
 	RAJASTHANI,
 	ODIA,
