@@ -138,6 +138,32 @@ public class SongValidator extends EntityValidator {
                     songObj.getType(), "more_info.triller_available", String.valueOf(moreInfo.getTriller_available()), songObj.getId()));
         }
 
+        if(moreInfo.getVideo_thumbnail() != null){
+            sa.assertTrue(Validate.asCDNURL(moreInfo.getVideo_thumbnail()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.video_thumbnail", moreInfo.getVideo_thumbnail(), songObj.getId()));
+        }
+
+//            verify shortie metadata if shortie is present for a song
+        if (moreInfo.getShortie() != null) {
+
+//        duration must be present. So no null checks
+            sa.assertTrue(Validate.asNum(moreInfo.getShortie().getDuration()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.shortie.duration", String.valueOf(moreInfo.getShortie().getDuration()), songObj.getId()));
+
+//        is_primary must be present. So no null checks
+            sa.assertTrue(Validate.asBoolean(moreInfo.getShortie().getIs_primary()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.shortie.is_primary", String.valueOf(moreInfo.getShortie().getIs_primary()), songObj.getId()));
+
+//        media_url must be present. So no null checks
+            sa.assertTrue(Validate.asCDNURL(moreInfo.getShortie().getMedia_url()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.shortie.media_url", moreInfo.getShortie().getMedia_url(), songObj.getId()));
+
+//        image must be present. So no null checks
+            sa.assertTrue(Validate.asCDNURL(moreInfo.getShortie().getImage()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.shortie.image", moreInfo.getShortie().getImage(), songObj.getId()));
+
+        }
+
 		log.info("More Info Validation done!");
 
 	}

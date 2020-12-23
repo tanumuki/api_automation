@@ -97,4 +97,8 @@ public class SongMoreInfo {
 	private Boolean video_available;
 	@JsonProperty("triller_available")
 	private Boolean triller_available;
+	@JsonProperty("video_thumbnail")
+	private String video_thumbnail;
+	@JsonProperty("shortie")
+	private Shortie shortie;
 }
