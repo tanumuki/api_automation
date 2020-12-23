@@ -8,7 +8,7 @@ import java.util.List;
 @Slf4j
 public class PaginationValidator {
 
-    private boolean hasDuplicateItems(List<String> items) {
+    private static boolean hasDuplicateItems(List<String> items) {
         List<String> temp = new ArrayList<String>();
 
         for (String item : items) {
@@ -24,7 +24,7 @@ public class PaginationValidator {
         return true;
     }
 
-    public boolean paginationDuplicateValidator(List<String> items) {
+    public static boolean paginationDuplicateValidator(List<String> items) {
         return hasDuplicateItems(items);
     }
 }
