@@ -16,7 +16,7 @@ public class UserStateValidator {
             sa.assertTrue(Validate.asString(us.getUsername()), AssertionMsg.print(className, methodName, "user_state.username", us.getUsername()));
 
         if(Validate.isNonEmptyString(us.getDob()))
-            sa.assertTrue(Validate.asDate(us.getDob()), AssertionMsg.print(className, methodName, "user_state.dob", us.getUsername()));
+            sa.assertTrue(Validate.asDate(us.getDob()), AssertionMsg.print(className, methodName, "user_state.dob", us.getDob()));
 
         if(Validate.isNonEmptyString(us.getUid()))
             sa.assertTrue(Validate.asId(us.getUid()), AssertionMsg.print(className, methodName, "user_state.uid", us.getUid()));
