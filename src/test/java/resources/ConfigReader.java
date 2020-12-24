@@ -79,8 +79,8 @@ public class ConfigReader {
 				} else if (app_version.equalsIgnoreCase("6.1")) {
 					properties.setProperty("app_version", "6.1");
 				}
-				else if (app_version.equalsIgnoreCase("7.5")) {
-					properties.setProperty("app_version", "7.5");
+				else if (app_version.equalsIgnoreCase("7.5.1")) {
+					properties.setProperty("app_version", "7.5.1");
 				}
 			}
 
