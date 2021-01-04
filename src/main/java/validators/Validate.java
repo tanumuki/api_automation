@@ -127,7 +127,7 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin)?.(saavn|saavncdn|jiosaavn).com/(s|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
                 "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.png)");
