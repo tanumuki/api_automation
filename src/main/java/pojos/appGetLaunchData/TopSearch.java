@@ -3,6 +3,7 @@ package pojos.appGetLaunchData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.Song;
+import entities.SongMoreInfo;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +36,7 @@ public class TopSearch {
     @JsonProperty("perma_url")
     private String perma_url;
     @JsonProperty("more_info")
-    private Song more_info;
+    private SongMoreInfo moreInfo;
     @JsonProperty("explicit_content")
     private String explicit_content;
     @JsonProperty("mini_obj")
