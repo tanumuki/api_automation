@@ -41,4 +41,8 @@ public class ModulesData {
     private String featuredText;
     @JsonProperty("showMore")
     private ModulesDataShowMore showMore;
+    @JsonProperty("image_url")
+    private String image_url;
+    @JsonProperty("image_type")
+    private String image_type;
 }

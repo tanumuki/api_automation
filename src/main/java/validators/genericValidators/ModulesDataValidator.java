@@ -91,6 +91,16 @@ public class ModulesDataValidator {
                 System.out.println("featured text: " + md.getFeaturedText());
                 sa.assertTrue(Validate.asString(md.getFeaturedText()), AssertionMsg.print(className, methodName, "module.hideMeta", md.getFeaturedText()));
             }
+
+            if(Validate.isNonEmptyString(md.getImage_url())) {
+                System.out.println("image url: " + md.getImage_url());
+                sa.assertTrue(Validate.asCDNURL(md.getImage_url()), AssertionMsg.print(className, methodName, "module.image_url", md.getImage_url()));
+            }
+
+            if(Validate.isNonEmptyString(md.getImage_type())) {
+                System.out.println("image type: " + md.getImage_type());
+                sa.assertTrue(Validate.asImageType(md.getImage_type()), AssertionMsg.print(className, methodName, "module.image_type", md.getImage_type()));
+            }
         }
 
     }
