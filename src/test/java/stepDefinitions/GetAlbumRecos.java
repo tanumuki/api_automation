@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.AlbumMiniObject;
+import entities.AlbumReco;
 import entities.Channel;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -66,9 +67,10 @@ public class GetAlbumRecos extends Util {
     public void user_should_see_the_recommendations_response_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        List<AlbumMiniObject> channels = mapper.readValue(resp.asString(), new TypeReference<List<AlbumMiniObject>>() {});
+
+        AlbumReco albumReco = mapper.readValue(resp.asString(), AlbumReco.class);
         SoftAssert sa = new SoftAssert();
-        for(AlbumMiniObject album : channels) {
+        for(AlbumMiniObject album : albumReco.getData()) {
             new AlbumMiniValidator().validate(album, sa);
         }
         sa.assertAll();
