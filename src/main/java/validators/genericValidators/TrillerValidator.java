@@ -36,7 +36,7 @@ public class TrillerValidator {
             }
 
 //        image should always be present, so no null checks required
-            sa.assertTrue(Validate.asPermaURL(trillerObj.getImage()), AssertionMsg.print(className, methodName,
+            sa.assertTrue(Validate.asCDNURL(trillerObj.getImage()), AssertionMsg.print(className, methodName,
                     "triller.image", trillerObj.getImage()));
 
 //        triller ID should always be present, so no null checks required
