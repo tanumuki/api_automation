@@ -142,7 +142,7 @@ public class GetLaunchDataValidator {
 
     }
 
-    void validateTopSearches(TopSearch ts, SoftAssert sa) {
+    public void validateTopSearches(TopSearch ts, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         if(Validate.isNonEmptyString(ts.getEntityId()))
