@@ -365,7 +365,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season");
     }
 
     public static boolean asCategoryType(String categoryType) {

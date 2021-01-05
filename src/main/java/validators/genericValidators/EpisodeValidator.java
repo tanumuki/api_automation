@@ -100,7 +100,7 @@ public class EpisodeValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getOrigin()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.origin", mi.getOrigin(), episode.getId()));
 
         if(Validate.isNonEmptyString(mi.getAdBreaks()))
-            sa.assertTrue(Validate.asNum(mi.getAdBreaks()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.ad_breaks", mi.getAdBreaks(), episode.getId()));
+            sa.assertTrue(Validate.asString(mi.getAdBreaks()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.ad_breaks", mi.getAdBreaks(), episode.getId()));
 
         if(Validate.isNonEmptyString(mi.getMultiBr()))
             sa.assertTrue(Validate.asBoolean(mi.getMultiBr()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.multi_br", mi.getMultiBr(), episode.getId()));
