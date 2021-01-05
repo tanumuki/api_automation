@@ -70,6 +70,9 @@ public class GetAlbumRecos extends Util {
 
         AlbumReco albumReco = mapper.readValue(resp.asString(), AlbumReco.class);
         SoftAssert sa = new SoftAssert();
+
+//        Validators
+        sa.assertTrue(albumReco.getStatus().equalsIgnoreCase("success"));
         for(AlbumMiniObject album : albumReco.getData()) {
             new AlbumMiniValidator().validate(album, sa);
         }
