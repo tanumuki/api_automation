@@ -20,6 +20,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
+import validators.Validate;
 import validators.genericValidators.EpisodeValidator;
 
 import java.io.IOException;
@@ -68,6 +69,10 @@ public class ShowGetAllEpisodes extends Util {
         TypeFactory typeFactory = mapper.getTypeFactory();
         EpisodeContainer episodes = mapper.readValue(resp.asString(), EpisodeContainer.class);
         SoftAssert sa = new SoftAssert();
+
+//        Validators
+        sa.assertTrue(episodes.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + episodes.getStatus() + "\"");
         for(Episode episode : episodes.getData()) {
             new EpisodeValidator().validate(episode, sa);
         }
