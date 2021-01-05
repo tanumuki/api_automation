@@ -41,7 +41,7 @@ public class RightsValidator {
             if((Integer.parseInt(rights.getCode()) == 1) || (Integer.parseInt(rights.getCode()) == 2)) {
 //              reason should be present IFF the rights are not 0, i.e. if it's 1 or 2, else it's blank
                 sa.assertTrue(Validate.asSongRightsReason(rights.getReason()), AssertionMsg.print(className, methodName,
-                        sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
+                        sourceType, "more_info.rights.reason.unavailable", rights.getReason(), sourceId));
             }
             if(Integer.parseInt(rights.getCode()) == 0) {
 //              in case it's 0, validating that the field is present

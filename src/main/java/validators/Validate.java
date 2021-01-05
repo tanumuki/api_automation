@@ -30,7 +30,7 @@ public class Validate {
     public static String API_STATUS_SUCCESS = "success";
 
     public static boolean asSongRightsReason(String str) {
-        return str.matches("Unavailable|unavailable|Pro only");
+        return str.matches("Unavailable|unavailable|Pro Only");
     }
 
     public static boolean asSearchTabType(String str) {
