@@ -204,10 +204,7 @@ public class Validate {
     }
 
     public static boolean asDateTime(String str) {
-        boolean result = false;
-        if (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\sIST)?"))
-            result = true;
-        return result;
+        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\sIST)?");
 
     }
 
@@ -476,5 +473,10 @@ public class Validate {
 
     public static boolean asTrillerMediaURL(String str) {
         return str.matches("^(http|https):\\/\\/uploads.cdn.triller.co\\/v1\\/jiosaavn\\/[0-9]+.mp4");
+    }
+
+    public static boolean asHexColour(String str) {
+        log.debug("Testing as hex colour: \"" + str + "\"");
+        return str.matches("^#[a-zA-Z0-9]{6}$");
     }
 }

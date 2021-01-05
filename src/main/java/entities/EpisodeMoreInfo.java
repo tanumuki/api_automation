@@ -27,6 +27,8 @@ public class EpisodeMoreInfo {
     private String entity_title_exact_match;
     @JsonProperty("description")
     private String description;
+    @JsonProperty("bg_color")
+    private String bg_color;
     @JsonProperty("season_no")
     private String seasonNo;
     @JsonProperty("season_number")

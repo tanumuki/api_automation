@@ -15,6 +15,9 @@ public class EpisodeValidator extends EntityValidator {
      */
     public void validate(Episode episode, SoftAssert sa) {
         super.validate(episode, sa);
+        if(episode.getMoreInfo()!=null) {
+            validateMoreInfo(episode, sa);
+        }
     }
 
     /**
@@ -44,10 +47,13 @@ public class EpisodeValidator extends EntityValidator {
             sa.assertTrue(Validate.asNum(mi.getLabelId()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.label_id", mi.getLabelId(), episode.getId()));
 
         if(Validate.isNonEmptyString(mi.getReleaseDate()))
-            sa.assertTrue(Validate.asDateTime(mi.getReleaseDate()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.releaseDate", mi.getReleaseDate(), episode.getId()));
+            sa.assertTrue(Validate.asDate(mi.getReleaseDate()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.releaseDate", mi.getReleaseDate(), episode.getId()));
 
         if(Validate.isNonEmptyString(mi.getEntity_title_exact_match()))
             sa.assertTrue(Validate.asString(mi.getEntity_title_exact_match()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.entity_title_exact_match", mi.getEntity_title_exact_match(), episode.getId()));
+
+        if(Validate.isNonEmptyString(mi.getBg_color()))
+            sa.assertTrue(Validate.asHexColour(mi.getBg_color()),AssertionMsg.print(className, methodName, "episode", "episode.more_info.bg_color", mi.getBg_color(), episode.getId()));
 
         if(Validate.isNonEmptyString(mi.getDescription()))
             sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.description", mi.getDescription(), episode.getId()));
