@@ -27,6 +27,7 @@ import java.util.Map;
 @Slf4j
 public class Validate {
 
+    public static String API_STATUS_SUCCESS = "success";
 
     public static boolean asSongRightsReason(String str) {
         return str.matches("Unavailable|unavailable|Pro only");

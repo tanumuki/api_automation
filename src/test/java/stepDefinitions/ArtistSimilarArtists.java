@@ -21,6 +21,7 @@ import pojos.Artist.SimilarArtistsContainer;
 import resources.ConfigReader;
 import resources.Util;
 import validators.Artist.ArtistPageValidator;
+import validators.Validate;
 
 import java.io.IOException;
 import java.util.List;
@@ -65,7 +66,8 @@ public class ArtistSimilarArtists extends Util {
         SoftAssert sa = new SoftAssert();
 
 //        Validators
-        sa.assertTrue(similarArtistContainerObj.getStatus().equalsIgnoreCase("success"));
+        sa.assertTrue(similarArtistContainerObj.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + similarArtistContainerObj.getStatus() + "\"");
         for (SimilarArtists sm_art : similarArtistContainerObj.getData()) {
             new ArtistPageValidator().validateSimilarArtists(sm_art, sa);
         }

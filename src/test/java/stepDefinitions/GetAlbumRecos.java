@@ -21,6 +21,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
+import validators.Validate;
 import validators.genericValidators.AlbumMiniValidator;
 import validators.genericValidators.ChannelValidator;
 
@@ -72,7 +73,8 @@ public class GetAlbumRecos extends Util {
         SoftAssert sa = new SoftAssert();
 
 //        Validators
-        sa.assertTrue(albumReco.getStatus().equalsIgnoreCase("success"));
+        sa.assertTrue(albumReco.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + albumReco.getStatus() + "\"");
         for(AlbumMiniObject album : albumReco.getData()) {
             new AlbumMiniValidator().validate(album, sa);
         }
