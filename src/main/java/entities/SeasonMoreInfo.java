@@ -26,4 +26,6 @@ public class SeasonMoreInfo {
     private String seasonNumber;
     @JsonProperty("artistMap")
     private ArtistMap artistMap;
+    @JsonProperty("entity_title_exact_match")
+    private String entity_title_exact_match;
 }

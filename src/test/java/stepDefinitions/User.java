@@ -4,20 +4,33 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import endPoints.APIResources;
 import entities.Song;
 import entities.UserProfilePlaylists;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import pojos.user_pojos.UserChangePassword.UserChangePasswordFailure;
+import pojos.user_pojos.UserChangePassword.UserChangePasswordSuccess;
 import pojos.user_pojos.UserGetProfile;
 import pojos.user_pojos.UserProfileUpdate;
+import resources.ConfigReader;
 import resources.Util;
 import validators.UserPofileDataValidator;
+import validators.Validate;
 import validators.genericValidators.PlaylistValidator;
 import validators.genericValidators.SongValidator;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+
+import static cookieManager.GetCookies.initCookies;
+import static io.restassured.RestAssured.given;
 
 @Slf4j
 public class User extends Util {
@@ -69,5 +82,53 @@ public class User extends Util {
         Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
         Assert.assertEquals(expectedStatus, GenericSteps.resp.jsonPath().get("status"), "Status validation failed for user update API");
         sa.assertAll();
+    }
+
+    @Then("The User Change Password API returns {string} with status code {int} and response message as {string}")
+    public void theUserChangePasswordAPIReturnsResponseWithStatusCode(String expectedStatus, int expectedStatusCode, String responseMessage) throws JsonProcessingException {
+        SoftAssert sa = new SoftAssert();
+
+
+        Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
+        if (expectedStatus.equalsIgnoreCase(Validate.API_STATUS_SUCCESS)) {
+            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+            UserChangePasswordSuccess changePasswordSuccess = objectMapper.readValue(GenericSteps.resp.asString(), UserChangePasswordSuccess.class);
+            Assert.assertEquals(responseMessage, changePasswordSuccess.getSuccess().getMsg());
+        } else
+        {
+            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+            UserChangePasswordFailure changePasswordFailure = objectMapper.readValue(GenericSteps.resp.asString(), UserChangePasswordFailure.class);
+            Assert.assertEquals(responseMessage, changePasswordFailure.getError().getMsg());
+        }
+
+    }
+
+    @And("I change {string} back to {string}")
+    public void iChangeTheBackTo(String currentPassword, String newPassword) throws IOException {
+        RequestSpecification request = null;
+        Response resp;
+        String apiResource = APIResources.valueOf("UserChangePasswordApi").getResource();
+        HashMap<String, String> user = new HashMap<String, String>();
+        user.put("username", "sun@s.in");
+        user.put("password", currentPassword);
+
+        String cookie = initCookies(user.get("username"), user.get("password"));
+
+        request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
+
+        request.queryParam("oldpassword", currentPassword);
+        request.queryParam("password", newPassword);
+        resp = request.given()
+                .log()
+                .all()
+                .when()
+                .get("/api.php")
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        logResponseTime(resp);
+        System.out.println(resp.asString());
     }
 }

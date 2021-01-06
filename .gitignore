@@ -5,3 +5,4 @@ Backend_Automation.iml
 Output.txt
 test-output/
 .settings/
+/src/test/java/resources/global.properties

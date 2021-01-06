@@ -25,6 +25,8 @@ public class MixMoreInfo {
     private String lastUpdated;
     @JsonProperty("reward")
     private String reward;
+    @JsonProperty("timestamp")
+    private String timestamp;
     @JsonProperty("position")
     private String position;
     @JsonProperty("list")

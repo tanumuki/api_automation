@@ -142,14 +142,11 @@ public class GetLaunchDataValidator {
 
     }
 
-    void validateTopSearches(TopSearch ts, SoftAssert sa) {
+    public void validateTopSearches(TopSearch ts, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         if(Validate.isNonEmptyString(ts.getEntityId()))
             sa.assertTrue(Validate.asString(ts.getEntityId()), AssertionMsg.print(className, methodName, "top_searches.entity_id", ts.getEntityId()));
-
-        if(Validate.isNonEmptyString(ts.getImage()))
-            sa.assertTrue(Validate.asCDNURL(ts.getImage()), AssertionMsg.print(className, methodName, "top_searches.image", ts.getImage()));
 
         if(Validate.isNonEmptyString(ts.getEntityName()))
             sa.assertTrue(Validate.asString(ts.getEntityName()), AssertionMsg.print(className, methodName, "top_searches.entity_name", ts.getEntityName()));
@@ -157,6 +154,23 @@ public class GetLaunchDataValidator {
         if(Validate.isNonEmptyString(ts.getEntityType()))
             sa.assertTrue(Validate.asEntityType(ts.getEntityType()), AssertionMsg.print(className, methodName, "top_searches.entity_type", ts.getEntityType()));
 
+//        ID must be present. So no null checks
+        sa.assertTrue(Validate.asNum(ts.getId()), AssertionMsg.print(className, methodName, "top_searches.id", ts.getId()));
+
+//        title must be present. So no null checks
+        sa.assertTrue(Validate.asString(ts.getTitle()), AssertionMsg.print(className, methodName, "top_searches.title", ts.getTitle()));
+
+//        type must be present. So no null checks
+        sa.assertTrue(Validate.asEntityType(ts.getType()), AssertionMsg.print(className, methodName, "top_searches.type", ts.getType()));
+
+//        image must be present. So no null checks
+        sa.assertTrue(Validate.asCDNURL(ts.getImage()), AssertionMsg.print(className, methodName, "top_searches.image", ts.getImage()));
+
+        if(Validate.isNonEmptyString(ts.getExplicit_content()))
+            sa.assertTrue(Validate.asNum(ts.getExplicit_content()), AssertionMsg.print(className, methodName, "top_searches.explicit_content", ts.getExplicit_content()));
+
+        if(Validate.isNonEmptyString(ts.getMini_obj()))
+            sa.assertTrue(Validate.asBoolean(ts.getMini_obj()), AssertionMsg.print(className, methodName, "top_searches.mini_obj", ts.getMini_obj()));
 
 
     }
