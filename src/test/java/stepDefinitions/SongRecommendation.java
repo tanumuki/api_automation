@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.Channel;
 import entities.Song;
+import entities.SongContainer;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,6 +21,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
+import validators.Validate;
 import validators.genericValidators.ChannelValidator;
 import validators.genericValidators.SongValidator;
 
@@ -66,9 +68,13 @@ public class SongRecommendation extends Util {
     public void get_song_reco_api_response_is_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        List<Song> songs = mapper.readValue(resp.asString(), new TypeReference<List<Song>>() {});
+        SongContainer songs = mapper.readValue(resp.asString(), SongContainer.class);
         SoftAssert sa = new SoftAssert();
-        for(Song song : songs) {
+
+//        Validators
+        sa.assertTrue(songs.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + songs.getStatus() + "\"");
+        for(Song song : songs.getData()) {
             new SongValidator().validate(song, sa);
         }
         sa.assertAll();

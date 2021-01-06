@@ -26,6 +26,7 @@ public enum musicLanguages {
 	INSTRUMENTAL,
 	CROATIAN,
 	KOREAN,
+	CHINESE,
 	UNKNOWN;
 }
 

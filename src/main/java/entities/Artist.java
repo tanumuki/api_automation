@@ -75,10 +75,22 @@ public class Artist extends Entity{
 	private List<String> availableLanguages;
 	@JsonProperty("artistPlaylists")
 	private List<Playlist> artistPlaylists;
+	@JsonProperty("dedicated_artist_playlist")
+	private List<PlaylistMini> dedicatedArtistPlaylist;
+	@JsonProperty("featured_artist_playlist")
+	private List<PlaylistMini> featuredArtistPlaylist;
+	@JsonProperty("singles")
+	private List<Album> singles;
+	@JsonProperty("latest_release")
+	private List<Album> latestReleases;
+	@JsonProperty("modules")
+	private ArtistModules modules;
 	@JsonProperty("fan_count")
 	private String fan_count;
 	@JsonProperty("topEpisodes")
 	private List<String> topEpisodes;
 	@JsonProperty("is_followed")
 	private boolean is_followed;
+	@JsonProperty("triller")
+	private List<Song> triller;
 }

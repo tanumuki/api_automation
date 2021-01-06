@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author aswingokulachandran
  *
@@ -101,4 +103,6 @@ public class SongMoreInfo {
 	private String video_thumbnail;
 	@JsonProperty("shortie")
 	private Shortie shortie;
+	@JsonProperty("triller")
+	private List<Triller> triller;
 }

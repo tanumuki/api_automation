@@ -57,6 +57,9 @@ public class AlbumValidator extends EntityValidator {
 		if(modules != null)
 			new ModulesDataValidator().validate(modules, sa);
 
+		if(Validate.isNonEmptyString(album.getDescription())) {
+			sa.assertTrue(Validate.asString(album.getDescription()), AssertionMsg.print(methodName, methodName, "album.description", album.getDescription()));
+		}
 
 	}
 

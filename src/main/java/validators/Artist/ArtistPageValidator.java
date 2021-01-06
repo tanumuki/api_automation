@@ -6,11 +6,8 @@ import org.testng.asserts.SoftAssert;
 import pojos.Artist.SimilarArtists;
 import validators.AssertionMsg;
 import validators.Validate;
-import validators.genericValidators.AlbumMiniValidator;
-import validators.genericValidators.EntityValidator;
+import validators.genericValidators.*;
 import enums.musicLanguages;
-import validators.genericValidators.PlaylistMiniValidator;
-import validators.genericValidators.SongValidator;
 
 import java.util.List;
 
@@ -39,6 +36,31 @@ public class ArtistPageValidator extends EntityValidator {
 //        Validate similar artists
         validateSimilarArtists(artistObj, sa);
 
+//        Validate dedicated artist playlist if available
+        if(artistObj.getDedicatedArtistPlaylist()!=null) {
+            for (PlaylistMini dedicatedPlaylist : artistObj.getDedicatedArtistPlaylist()) {
+                new PlaylistMiniValidator().validate(dedicatedPlaylist, sa);
+            }
+        }
+//        Validate featured artist playlist if available
+        if(artistObj.getFeaturedArtistPlaylist()!=null) {
+            for (PlaylistMini featuredPlaylist : artistObj.getFeaturedArtistPlaylist()) {
+                new PlaylistMiniValidator().validate(featuredPlaylist, sa);
+            }
+        }
+//        Validate artist singles if available
+        if(artistObj.getSingles()!=null) {
+            for (Album artistSingles : artistObj.getSingles()) {
+                new AlbumValidator().validate(artistSingles, sa);
+            }
+        }
+//        Validate latest releases if available
+        if(artistObj.getLatestReleases()!=null) {
+            for (Album latestRelease : artistObj.getLatestReleases()) {
+                new AlbumValidator().validate(latestRelease, sa);
+            }
+        }
+
 //        Validate urls
         validateURLs(artistObj, sa);
 
@@ -48,6 +70,18 @@ public class ArtistPageValidator extends EntityValidator {
 //        Validate artist playlists
         if(artistObj.getArtistPlaylists() != null) {
             validateArtistPlaylists(artistObj, sa);
+        }
+
+//        Validate artist page modules
+        if (artistObj.getModules() != null) {
+            validateArtistModules(artistObj, sa);
+        }
+
+//        Validate artist triller objects
+        if(artistObj.getTriller()!=null) {
+            for (Song song : artistObj.getTriller()) {
+                new SongValidator().validate(song, sa,artistObj.getArtistId(),"artist page details triller");
+            }
         }
 
 
@@ -127,8 +161,6 @@ public class ArtistPageValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(artistObj.getTwitter())) {
             sa.assertTrue(Validate.asExternalURL(artistObj.getTwitter()), AssertionMsg.print(className, methodName, "twitter", artistObj.getTwitter()));
-        }else{
-            sa.fail(className+"--"+ methodName + "Artist twitter is null/empty");
         }
 
         if(Validate.isNonEmptyString(artistObj.getWiki())) {
@@ -312,6 +344,35 @@ public class ArtistPageValidator extends EntityValidator {
                 new PlaylistMiniValidator().validate(pl, sa);
             }
         }
+    }
+
+    void validateArtistModules(Artist artistObj, SoftAssert sa) {
+        if(artistObj.getModules().getTopSongs()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getTopSongs(), sa);
+
+        if(artistObj.getModules().getArtistPlaylists()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getArtistPlaylists(), sa);
+
+        if(artistObj.getModules().getDedicated_artist_playlist()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getDedicated_artist_playlist(), sa);
+
+        if(artistObj.getModules().getFeatured_artist_playlist()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getFeatured_artist_playlist(), sa);
+
+        if(artistObj.getModules().getLatest_release()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getLatest_release(), sa);
+
+        if(artistObj.getModules().getSimilarArtists()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getSimilarArtists(), sa);
+
+        if(artistObj.getModules().getSingles()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getSingles(), sa);
+
+        if(artistObj.getModules().getTopAlbums()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getTopAlbums(), sa);
+
+        if(artistObj.getModules().getTriller()!=null)
+            new ModulesDataValidator().validate(artistObj.getModules().getTriller(), sa);
     }
 
 }

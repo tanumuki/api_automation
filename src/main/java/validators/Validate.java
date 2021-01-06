@@ -27,9 +27,10 @@ import java.util.Map;
 @Slf4j
 public class Validate {
 
+    public static String API_STATUS_SUCCESS = "success";
 
     public static boolean asSongRightsReason(String str) {
-        return str.matches("Unavailable|unavailable|Pro only");
+        return str.matches("Unavailable|unavailable|Pro Only");
     }
 
     public static boolean asSearchTabType(String str) {
@@ -127,8 +128,9 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
+                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
                 "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
                 "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.png)");
 
@@ -202,10 +204,7 @@ public class Validate {
     }
 
     public static boolean asDateTime(String str) {
-        boolean result = false;
-        if (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\sIST)?"))
-            result = true;
-        return result;
+        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\sIST)?");
 
     }
 
@@ -217,7 +216,10 @@ public class Validate {
     }
 
     public static boolean asSubtitleArtist(String str) {
-        return str.matches("Artist.*[0-9]+.Fans");
+//        Example strings:
+//        "Artist <middle dot separator> 100K Fans" for pre-7.x
+//        "30.9M Listeners" for post-7.x
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]+.[0-9](K|M|B) Listeners)");
     }
 
     /**
@@ -286,7 +288,10 @@ public class Validate {
     }
 
     public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]+");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending" +
+                "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release" +
+                "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
+                "|podcast_home_module_[0-9]+|data_[0-9]+");
     }
 
     public static boolean asModulesPosition(int pos) {
@@ -294,7 +299,7 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER");
     }
 
     public static boolean asProStatusType(String type) {
@@ -360,7 +365,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season");
     }
 
     public static boolean asCategoryType(String categoryType) {
@@ -455,6 +460,23 @@ public class Validate {
     public static boolean asAlphaNumericWithUnderscoreHyphen(String str){
         log.debug("Testing as API: \"" + str + "\"");
         return str.matches("^[a-zA-Z0-9_\\-]*$");
+    }
 
+    public static boolean asImageType(String str) {
+        log.debug("Testing as image type: \"" + str + "\"");
+        return str.matches("^(round|square)$");
+    }
+
+    public static boolean asTrillerAppStoreURL(String str) {
+        return str.matches("^https:\\/\\/play.google.com\\/store\\/apps\\/details\\?id=co.triller.droid&fbclid=.*");
+    }
+
+    public static boolean asTrillerMediaURL(String str) {
+        return str.matches("^(http|https):\\/\\/uploads.cdn.triller.co\\/v1\\/jiosaavn\\/[0-9]+.mp4");
+    }
+
+    public static boolean asHexColour(String str) {
+        log.debug("Testing as hex colour: \"" + str + "\"");
+        return str.matches("^#[a-zA-Z0-9]{6}$");
     }
 }

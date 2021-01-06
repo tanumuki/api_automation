@@ -3,13 +3,9 @@
  */
 package validators.genericValidators;
 
+import entities.*;
 import org.testng.asserts.SoftAssert;
 
-import entities.Artist;
-import entities.ArtistMap;
-import entities.Rights;
-import entities.Song;
-import entities.SongMoreInfo;
 import lombok.extern.slf4j.Slf4j;
 import validators.AssertionMsg;
 import validators.Validate;
@@ -40,8 +36,6 @@ public class SongValidator extends EntityValidator {
         if(artistMap != null){
             new ArtistMapValidator().validate(artistMap, sa, sourceType, sourceEntity);
         }
-
-
     }
 
 
@@ -162,6 +156,13 @@ public class SongValidator extends EntityValidator {
             sa.assertTrue(Validate.asCDNURL(moreInfo.getShortie().getImage()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.shortie.image", moreInfo.getShortie().getImage(), songObj.getId()));
 
+        }
+
+        if (moreInfo.getTriller() != null) {
+            System.out.println("Validating triller details...");
+            for (Triller trillerObj : moreInfo.getTriller()) {
+                new TrillerValidator().validate(trillerObj, sa);
+            }
         }
 
 		log.info("More Info Validation done!");
