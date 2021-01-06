@@ -2,6 +2,8 @@ package endPoints;
 
 public enum APIResources {
 
+	SEOgetMetaResponse("seo.getMetaResponse"),
+	ContentGetReplay("content.getReplay"),
 	SubscriptionCheckRights("subscription.checkRights"),
 	GetUserCurrSubscription("subscription.getUserCurrentSubscription"),
 	SubscriptionGetStatus("subscription.getStatus"),

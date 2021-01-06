@@ -9,6 +9,7 @@ import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -69,6 +70,7 @@ public class Login extends Util {
 			System.out.println("toto" + table.asList().toString());
 			res.queryParam("username", cells.get(1).get(2));
 			res.queryParam("password", cells.get(1).get(3));
+//			System.out.println("aswin: " + RestAssured.baseURI+":"+RestAssured.port + RestAssured.basePath);
 			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 			logResponseTime(resp);
 
