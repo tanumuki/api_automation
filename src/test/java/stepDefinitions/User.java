@@ -21,6 +21,7 @@ import pojos.user_pojos.UserProfileUpdate;
 import resources.ConfigReader;
 import resources.Util;
 import validators.UserPofileDataValidator;
+import validators.Validate;
 import validators.genericValidators.PlaylistValidator;
 import validators.genericValidators.SongValidator;
 
@@ -89,7 +90,7 @@ public class User extends Util {
 
 
         Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
-        if (expectedStatus.equalsIgnoreCase("success")) {
+        if (expectedStatus.equalsIgnoreCase(Validate.API_STATUS_SUCCESS)) {
             ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
             UserChangePasswordSuccess changePasswordSuccess = objectMapper.readValue(GenericSteps.resp.asString(), UserChangePasswordSuccess.class);
             Assert.assertEquals(responseMessage, changePasswordSuccess.getSuccess().getMsg());
