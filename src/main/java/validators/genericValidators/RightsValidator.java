@@ -38,12 +38,18 @@ public class RightsValidator {
                 sa.fail("Rights delete cached obj is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
             }
 
-            if(Validate.isNonEmptyString(rights.getReason())) {
+            if((Integer.parseInt(rights.getCode()) == 1) || (Integer.parseInt(rights.getCode()) == 2)) {
+//              reason should be present IFF the rights are not 0, i.e. if it's 1 or 2, else it's blank
                 sa.assertTrue(Validate.asSongRightsReason(rights.getReason()), AssertionMsg.print(className, methodName,
-                        sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
-            }else {
-                sa.fail("Rights reason is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId);
+                        sourceType, "more_info.rights.reason.unavailable", rights.getReason(), sourceId));
             }
+            if(Integer.parseInt(rights.getCode()) == 0) {
+//              in case it's 0, validating that the field is present
+                sa.assertTrue(Validate.asString(rights.getReason()), AssertionMsg.print(className, methodName,
+                        sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
+            }
+
+
         } else {
             sa.fail("Rights is null for sourceType - " + sourceType + " and source ID - " + sourceId);
         }

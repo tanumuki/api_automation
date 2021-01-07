@@ -26,6 +26,8 @@ public class UserState {
     private String firstname;
     @JsonProperty("lastname")
     private String lastname;
+    @JsonProperty("dob")
+    private String dob;
     @JsonProperty("network")
     private String network;
     @JsonProperty("fbid")

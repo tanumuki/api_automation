@@ -53,10 +53,14 @@ public class PlaylistMoreInfo {
     private String isFY;
     @JsonProperty("description")
     private String description;
-
     @JsonProperty("fan_count")
     private String fan_count;
-
     @JsonProperty("playlist_type")
     private String playlist_type;
+
+//    values of H2 and subheading are null at this time (Jan 2021), so not creating any validators
+    @JsonProperty("H2")
+    private String H2;
+    @JsonProperty("subheading")
+    private String subheading;
 }

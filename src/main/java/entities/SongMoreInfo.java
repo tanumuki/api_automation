@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author aswingokulachandran
  *
@@ -93,6 +95,14 @@ public class SongMoreInfo {
 	private String primary_artists;
 	@JsonProperty("singers")
 	private String singers;
+	@JsonProperty("video_available")
+	private Boolean video_available;
 	@JsonProperty("triller_available")
 	private Boolean triller_available;
+	@JsonProperty("video_thumbnail")
+	private String video_thumbnail;
+	@JsonProperty("shortie")
+	private Shortie shortie;
+	@JsonProperty("triller")
+	private List<Triller> triller;
 }

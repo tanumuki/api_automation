@@ -29,5 +29,7 @@ public class Album extends Entity {
 	private AlbumMoreInfo moreInfo;
 	@JsonProperty("modules")
 	private Modules modules;
+	@JsonProperty("description")
+	private String description;
 
 }

@@ -105,8 +105,8 @@ public class ArtistMoreSongs extends Util {
             }
 
 //            Pass the list as an argument to the validator
-            PaginationValidator pgv = new PaginationValidator();
-            sa.assertTrue(pgv.paginationDuplicateValidator(paginatedList),
+            sa.assertTrue(paginatedList.size() > 0);
+            sa.assertTrue(PaginationValidator.paginationDuplicateValidator(paginatedList),
                     "Found duplicate entities in paginated responses for Top Songs for artist " + this.artistID);
 
             sa.assertAll();

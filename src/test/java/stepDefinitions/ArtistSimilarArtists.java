@@ -17,9 +17,11 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import pojos.Artist.SimilarArtists;
+import pojos.Artist.SimilarArtistsContainer;
 import resources.ConfigReader;
 import resources.Util;
 import validators.Artist.ArtistPageValidator;
+import validators.Validate;
 
 import java.io.IOException;
 import java.util.List;
@@ -60,10 +62,13 @@ public class ArtistSimilarArtists extends Util {
     @And("User should see the similar artists response validated")
     public void userShouldSeeTheArtistPageResponseValidated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        List <SimilarArtists> similarArtistObj = mapper.readValue(resp.asString(), new TypeReference<List<SimilarArtists>>() {});
+        SimilarArtistsContainer similarArtistContainerObj = mapper.readValue(resp.asString(), SimilarArtistsContainer.class);
         SoftAssert sa = new SoftAssert();
 
-        for (SimilarArtists sm_art : similarArtistObj) {
+//        Validators
+        sa.assertTrue(similarArtistContainerObj.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + similarArtistContainerObj.getStatus() + "\"");
+        for (SimilarArtists sm_art : similarArtistContainerObj.getData()) {
             new ArtistPageValidator().validateSimilarArtists(sm_art, sa);
         }
         sa.assertAll();

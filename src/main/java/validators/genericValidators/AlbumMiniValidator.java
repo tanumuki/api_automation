@@ -41,7 +41,6 @@ public class AlbumMiniValidator extends EntityValidator {
 
 		
 		ArtistMap artistMap = moreInfo.getArtistMap();
-		
 		new ArtistMapValidator().validate(artistMap, sa, "album", albumMini.getId());
 	}
 

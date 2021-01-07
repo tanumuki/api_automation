@@ -16,29 +16,44 @@ public class SeasonValidator extends EntityValidator {
 
     public void validate(Season season, SoftAssert sa, String sourceEntity, String sourceType) {
         super.validate(season, sa, sourceEntity, sourceType);
+        if(season.getMoreInfo()!=null) {
+            validateMoreInfo(season.getMoreInfo(),sa,season.getId());
+        }
     }
 
     public void validateMoreInfo(SeasonMoreInfo mi, SoftAssert sa, String seasonid) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "season", "season.more_info.description", mi.getDescription(), seasonid));
 
-        sa.assertTrue(Validate.asString(mi.getSongInfo()), AssertionMsg.print(className, methodName, "season", "season.more_info.song_info", mi.getSongInfo(), seasonid));
+        if(Validate.isNonEmptyString(mi.getEntity_title_exact_match()))
+            sa.assertTrue(Validate.asString(mi.getEntity_title_exact_match()), AssertionMsg.print(className, methodName, "season", "season.more_info.entity_title_exact_match", mi.getEntity_title_exact_match(), seasonid));
 
-        sa.assertTrue(Validate.asNum(mi.getShowId()), AssertionMsg.print(className, methodName, "season", "season.more_info.showId", mi.getShowId(), seasonid));
+        if(Validate.isNonEmptyString(mi.getDescription()))
+            sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "season", "season.more_info.description", mi.getDescription(), seasonid));
 
-        sa.assertTrue(Validate.asString(mi.getShowTitle()), AssertionMsg.print(className, methodName, "season", "season.more_info.show_title", mi.getShowTitle(), seasonid));
+        if(Validate.isNonEmptyString(mi.getSongInfo()))
+            sa.assertTrue(Validate.asString(mi.getSongInfo()), AssertionMsg.print(className, methodName, "season", "season.more_info.song_info", mi.getSongInfo(), seasonid));
 
-        sa.assertTrue(Validate.asString(mi.getNumEpisodes()), AssertionMsg.print(className, methodName, "season", "season.more_info.numEpisodes", mi.getNumEpisodes(), seasonid));
+        if(Validate.isNonEmptyString(mi.getShowId()))
+            sa.assertTrue(Validate.asNum(mi.getShowId()), AssertionMsg.print(className, methodName, "season", "season.more_info.showId", mi.getShowId(), seasonid));
 
-        sa.assertTrue(Validate.asString(mi.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName, "season", "season.more_info.encrypted_media_url", mi.getEncryptedMediaUrl(), seasonid));
+        if(Validate.isNonEmptyString(mi.getShowTitle()))
+            sa.assertTrue(Validate.asString(mi.getShowTitle()), AssertionMsg.print(className, methodName, "season", "season.more_info.show_title", mi.getShowTitle(), seasonid));
 
-        sa.assertTrue(Validate.asString(mi.getSeasonNumber()), AssertionMsg.print(className, methodName, "season", "season.more_info.season_number", mi.getSeasonNumber(), seasonid));
+        if(Validate.isNonEmptyString(mi.getNumEpisodes()))
+            sa.assertTrue(Validate.asString(mi.getNumEpisodes()), AssertionMsg.print(className, methodName, "season", "season.more_info.numEpisodes", mi.getNumEpisodes(), seasonid));
 
-        sa.assertTrue(Validate.asString(mi.getSongInfo()), AssertionMsg.print(className, methodName, "season", "season.more_info.song_info", mi.getSongInfo(), seasonid));
+        if(Validate.isNonEmptyString(mi.getEncryptedMediaUrl()))
+            sa.assertTrue(Validate.asString(mi.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName, "season", "season.more_info.encrypted_media_url", mi.getEncryptedMediaUrl(), seasonid));
+
+        if(Validate.isNonEmptyString(mi.getSeasonNumber()))
+            sa.assertTrue(Validate.asString(mi.getSeasonNumber()), AssertionMsg.print(className, methodName, "season", "season.more_info.season_number", mi.getSeasonNumber(), seasonid));
+
+        if(Validate.isNonEmptyString(mi.getSongInfo()))
+            sa.assertTrue(Validate.asString(mi.getSongInfo()), AssertionMsg.print(className, methodName, "season", "season.more_info.song_info", mi.getSongInfo(), seasonid));
 
         ArtistMap artistMap = mi.getArtistMap();
-
-        new ArtistMapValidator().validate(artistMap, sa, "season", seasonid);
+        if(artistMap!=null)
+            new ArtistMapValidator().validate(artistMap, sa, "season", seasonid);
     }
 }
 

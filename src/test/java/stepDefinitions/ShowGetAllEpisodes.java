@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.Episode;
+import entities.EpisodeContainer;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,6 +20,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
+import validators.Validate;
 import validators.genericValidators.EpisodeValidator;
 
 import java.io.IOException;
@@ -65,9 +67,13 @@ public class ShowGetAllEpisodes extends Util {
     public void get_all_episodes_api_response_must_be_valided_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        List<Episode> episodes = mapper.readValue(resp.asString(), new TypeReference<List<Episode>>() {});
+        EpisodeContainer episodes = mapper.readValue(resp.asString(), EpisodeContainer.class);
         SoftAssert sa = new SoftAssert();
-        for(Episode episode : episodes) {
+
+//        Validators
+        sa.assertTrue(episodes.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + episodes.getStatus() + "\"");
+        for(Episode episode : episodes.getData()) {
             new EpisodeValidator().validate(episode, sa);
         }
         sa.assertAll();
