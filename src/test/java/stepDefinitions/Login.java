@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
+import endPoints.Context;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,12 +17,11 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import pojos.login_pojos.UserLogin;
-import resources.APIConstants;
-import resources.ConfigReader;
-import resources.Util;
+import resources.*;
 import validators.UserLoginValidator;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -32,14 +32,29 @@ public class Login extends Util {
 	RequestSpecification res;
 	ResponseSpecification resspec;
 	Response resp;
+	String cookie="";
+	public ScenarioContext scenarioContext;
+	String username;
+	String password;
 	
 
 	@Given("Add payload with login endpoint {string}")
-	public void add_payload_with_login_endpoint(String endPoint) throws IOException {
+	public void add_payload_with_login_endpoint(String endPoint) throws Exception {
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		String resource = resourceAPI.getResource();
-		System.out.println("respurce api " + resourceAPI.getResource());
-		res = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
+		UserGenerator user = UserGenerator.getInstance();
+		HashMap<String, String> userMap = user.generateNewUserCookie();
+		cookie= userMap.get("cookie");
+		//appending cookie with device_id
+		//String device= "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+		//cookie=cookie+device;
+		System.out.println("cookie2 is " +cookie);
+		username = userMap.get("username");
+		password = userMap.get("password");
+		testContext.scenarioContext.setContext(Context.USERNAME, username);
+		testContext.scenarioContext.setContext(Context.PASSWORD, password);
+		System.out.println("resource api " + resourceAPI.getResource());
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
 	}
 
 
@@ -49,8 +64,11 @@ public class Login extends Util {
 				.expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
 
 		String method="";
-		
-		
+
+		String username = (String) testContext.scenarioContext.getContext(Context.USERNAME);
+		String password = (String) testContext.scenarioContext.getContext(Context.PASSWORD);
+		System.out.println("ussername is " +username + "and" +password);
+
 		method = table.cell(1, 0);
 		System.out.println("method is "+method);
 		 System.out.println("The value is : " + table.cell(1, 0));
@@ -60,15 +78,15 @@ public class Login extends Util {
 
 	        System.out.println("The value is : " + cells.get(1).get(0));
 	        System.out.println("The value is : " + cells.get(1).get(1));
-	        System.out.println("The username is : " + cells.get(1).get(2));
-	        System.out.println("The password is : " + cells.get(1).get(3));
+	        System.out.println("The username is : " + username);
+	        System.out.println("The password is : " + password);
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 			System.out.println("tan3 " + resspec);
 
 			System.out.println("toto" + table.asList().toString());
-			res.queryParam("username", cells.get(1).get(2));
-			res.queryParam("password", cells.get(1).get(3));
+			res.queryParam("username", username);
+			res.queryParam("password", password);
 			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 			logResponseTime(resp);
 
@@ -93,7 +111,7 @@ public class Login extends Util {
 
 				
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
-	
+		System.out.println("userlogin2 "+login.toString());
 		new UserLoginValidator().validate(login, sa);
 
 	}

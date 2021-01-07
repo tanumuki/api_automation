@@ -51,11 +51,13 @@ public class Util {
 
 
         PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
-
+        String device= "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+        cookie=cookie+device;
         request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
                 .addFilter(RequestLoggingFilter.logRequestTo(log))
                 .addFilter(ResponseLoggingFilter.logResponseTo(log))
                 .addCookie(cookie)
+                //.addHeader("device_id=","8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D")
                 .addHeader("User-Agent", ConfigReader.getInstance().getUserAgent())
                 .addQueryParam("__call", endPoint)
                 .addQueryParam("api_version", "4")
