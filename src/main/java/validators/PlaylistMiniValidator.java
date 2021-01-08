@@ -58,6 +58,14 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getEntity_type()), AssertionMsg.print(className, methodName, "chart", "more_info.entity_type", mi.getEntity_type()));
         }
 
+        if(Validate.isNonEmptyString(mi.getEntity_sub_type())){
+            sa.assertTrue(Validate.asString(mi.getEntity_sub_type()), AssertionMsg.print(className, methodName, "chart", "more_info.entity_sub_type", mi.getEntity_sub_type()));
+        }
+
+        if(Validate.isNonEmptyString(mi.getVideo_available())){
+            sa.assertTrue(Validate.asBoolean(mi.getVideo_available()), AssertionMsg.print(className, methodName, "chart", "more_info.video_available", mi.getVideo_available()));
+        }
+
         if(Validate.isNonEmptyString(mi.getShare())){
             sa.assertTrue(Validate.asString(mi.getShare()), AssertionMsg.print(className, methodName, "chart", "more_info.share", mi.getShare()));
         }

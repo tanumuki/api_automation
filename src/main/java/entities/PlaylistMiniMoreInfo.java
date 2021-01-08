@@ -32,6 +32,10 @@ public class PlaylistMiniMoreInfo {
     private List<String> artist_name;
     @JsonProperty("entity_type")
     private String entity_type;
+    @JsonProperty("entity_sub_type")
+    private String entity_sub_type;
+    @JsonProperty("video_available")
+    private String video_available;
     @JsonProperty("lastname")
     private String lastname;
     @JsonProperty("share")
