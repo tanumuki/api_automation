@@ -479,4 +479,9 @@ public class Validate {
         log.debug("Testing as hex colour: \"" + str + "\"");
         return str.matches("^#[a-zA-Z0-9]{6}$");
     }
+
+    public static boolean asUserAge(String str) {
+//        age should be between 0 and 150
+        return Integer.parseInt(str) > 0 && Integer.parseInt(str) < 150;
+    }
 }
