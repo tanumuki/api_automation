@@ -105,6 +105,15 @@ public class UserPofileDataValidator {
             sa.assertTrue(Validate.asUserAge(age), className + "." + "validate age failed - ");
         }
 
+        System.out.println("Detecting music_identity as:" + userGetProfile.getMusic_identity().getClass());
+        if (userGetProfile.getMusic_identity() instanceof java.lang.String) {
+            sa.assertTrue(Validate.asBoolean((Boolean)userGetProfile.getMusic_identity()), className + "." + "validate music_identity failed - ");
+        }
+
+        if (userGetProfile.getMusic_identity() instanceof java.util.ArrayList) {
+            System.out.println("TODO: music_identity when sent as an array is usually empty. Add an assertion when we figure out the possible values.");
+        }
+
 //        Email verified state is mandatory, so no need of null checks
         String email_verified_status = userGetProfile.getEmail_verified_status();
         sa.assertTrue(Validate.asEmailVerifiedStatus(email_verified_status), className + "." + "validate email_verified_status failed - ");

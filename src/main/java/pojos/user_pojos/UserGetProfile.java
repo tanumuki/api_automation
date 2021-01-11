@@ -61,5 +61,5 @@ public class UserGetProfile {
     @JsonProperty("status")
     private String status;
     @JsonProperty("music_identity")
-    private String [] music_identity;
+    private Object music_identity; // Sometimes a JSON array, sometimes a JSON object
 }
