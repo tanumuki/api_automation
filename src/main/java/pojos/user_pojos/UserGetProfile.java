@@ -44,6 +44,10 @@ public class UserGetProfile {
     private String gender;
     @JsonProperty("dob")
     private String dob;
+    @JsonProperty("age")
+    private String age;
+    @JsonProperty("email_verified_status")
+    private String email_verified_status;
     @JsonProperty("following")
     private UserGetProfileFollowingData following;
     @JsonProperty("followed_by")
