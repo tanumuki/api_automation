@@ -14,7 +14,7 @@ Feature: Validating Library APIs
            
   	Scenario: Verify get album details for the user 
      Given Add payload with get library endpoint "ContentGetAlbumDetails" 
-     When User calls method with album id as param 
+     When User calls method with album id as param
        | method |albumid| 
        | GET    |3118021|
      Then The Library API returns success with status code "OK"
