@@ -45,10 +45,11 @@ public class PlaylistOps extends Util {
 
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		resource = resourceAPI.getResource();
-		System.out.println("respurce api " + resourceAPI.getResource());
+		System.out.println("resource api " + resourceAPI.getResource());
 		UserGenerator user = UserGenerator.getInstance();
 		HashMap<String, String> userMap = user.generateNewUserCookie();
 		cookie = userMap.get("cookie");
+		System.out.println("my cookie = " +cookie);
 		testContext.scenarioContext.setContext(Context.COOKIE, cookie);
 		//System.setProperty("cookie", cookie);
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
@@ -78,8 +79,8 @@ public class PlaylistOps extends Util {
 
 	}
 
-	@Then("The Playlist API returns success with status code {string}")
-	public void the_Playlist_API_returns_success_with_status_code(String statusCode) {
+	@Then("The playlist API returns success with status code {string}")
+	public void the_playlist_api_returns_success_with_status_code(String statusCode) {
 
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();

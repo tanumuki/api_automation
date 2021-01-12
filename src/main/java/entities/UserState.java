@@ -38,6 +38,8 @@ public class UserState {
     private String lastname;
     @JsonProperty("dob")
     private String dob;
+    @JsonProperty("age")
+    private String age;
     @JsonProperty("network")
     private String network;
     @JsonProperty("fbid")

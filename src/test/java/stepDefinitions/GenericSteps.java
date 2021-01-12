@@ -19,7 +19,7 @@ import java.util.Map;
 import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
 
-public class GenericSteps extends Util{
+public class GenericSteps extends Util {
     static RequestSpecification request = null;
     static Response resp;
     static String apiResource;

@@ -100,6 +100,15 @@ public class UserPofileDataValidator {
             log.info("LOG response dob in user get profile is NULL or empty");
         }
 
+        if (Validate.isNonEmptyString(userGetProfile.getAge())) {
+            String age = userGetProfile.getAge();
+            sa.assertTrue(Validate.asUserAge(age), className + "." + "validate age failed - ");
+        }
+
+//        Email verified state is mandatory, so no need of null checks
+        String email_verified_status = userGetProfile.getEmail_verified_status();
+        sa.assertTrue(Validate.asEmailVerifiedStatus(email_verified_status), className + "." + "validate email_verified_status failed - ");
+
         String following_usersCount = userGetProfile.getFollowing().getUsersCount();
         sa.assertTrue(Validate.asNum(following_usersCount), className + "." + "validate following users count failed - ");
         log.info("LOG response following users count in user get profile is " + following_usersCount);
