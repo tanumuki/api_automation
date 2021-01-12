@@ -21,6 +21,7 @@ public class SongValidator extends EntityValidator {
     // Will be sending album as sourceType & album id as sourceEntity
     public void validate(Song songObj, SoftAssert sa, String sourceEntity, String sourceType) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        boolean isMiniObject = songObj.getMini_obj();
 
         super.validate(songObj, sa, sourceEntity, sourceType);
 
@@ -29,7 +30,9 @@ public class SongValidator extends EntityValidator {
         if (songObj.getType().equals("episode"))
         	validateEpisodeDetails(songObj, sa);
 
-        validateRights(songObj, sa);
+        if(!isMiniObject) {
+            validateRights(songObj, sa);
+        }
 
         ArtistMap artistMap = songObj.getMoreInfo().getArtistMap();
 
@@ -42,6 +45,7 @@ public class SongValidator extends EntityValidator {
     void validateMoreInfo(Song songObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         SongMoreInfo moreInfo = songObj.getMoreInfo();
+        boolean isMiniObject = songObj.getMini_obj();
 
         if(Validate.isNonEmptyString(moreInfo.getMusic())){
             sa.assertTrue(Validate.asString(moreInfo.getMusic()), AssertionMsg.print(className, methodName,
@@ -72,7 +76,8 @@ public class SongValidator extends EntityValidator {
         if(Validate.isNonEmptyString(moreInfo.getEncryptedMediaUrl())) {
             sa.assertTrue(Validate.asString(moreInfo.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.encrypted_media_url", moreInfo.getEncryptedMediaUrl(), songObj.getId()));
-        }else {
+        }else if(!isMiniObject){
+            //encrypted media URLs don't show up for mini objects
             sa.fail("Song More Info Encrypted Media URL is null/empty for song with ID - " + songObj.getId());
         }
 
