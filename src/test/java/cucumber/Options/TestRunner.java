@@ -7,9 +7,8 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"stepDefinitions"},
-        plugin = {"cucumber.Options.customReportListener"},
-        monochrome = true
+        plugin = {"pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "json:target/jsonReport.json", "timeline:target/timelineReport"}
+
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 }
-
