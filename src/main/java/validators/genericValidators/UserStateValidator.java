@@ -27,6 +27,14 @@ public class UserStateValidator {
         if(Validate.isNonEmptyString(us.getEncUid()))
             sa.assertTrue(Validate.asString(us.getEncUid()), AssertionMsg.print(className, methodName, "user_state.enc_uid", us.getEncUid()));
 
+        if(Validate.isNonEmptyString(us.getGender())){
+            sa.assertTrue(Validate.asGender(us.getGender()), AssertionMsg.print(className, methodName,"user_state.gender", us.getGender()));
+        }
+
+        if(us.getAge() != null){
+            sa.assertTrue(Validate.asNum(us.getAge()), AssertionMsg.print(className, methodName, "user_state.age", String.valueOf(us.getAge())));
+        }
+
         if(Validate.isNonEmptyString(us.getFirstname()))
             sa.assertTrue(Validate.asString(us.getFirstname()), AssertionMsg.print(className, methodName, "user_state.firstname", us.getFirstname()));
 
