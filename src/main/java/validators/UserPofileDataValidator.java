@@ -5,6 +5,8 @@ import org.testng.asserts.SoftAssert;
 import pojos.user_pojos.UserGetProfile;
 import pojos.user_pojos.UserProfileUpdate;
 
+import java.util.ArrayList;
+
 @Slf4j
 public class UserPofileDataValidator {
     String className = getClass().getName();
@@ -106,12 +108,13 @@ public class UserPofileDataValidator {
         }
 
         System.out.println("Detecting music_identity as:" + userGetProfile.getMusic_identity().getClass());
-        if (userGetProfile.getMusic_identity() instanceof java.lang.String) {
+        if (userGetProfile.getMusic_identity() instanceof java.lang.Boolean) {
             sa.assertTrue(Validate.asBoolean((Boolean)userGetProfile.getMusic_identity()), className + "." + "validate music_identity failed - ");
         }
 
         if (userGetProfile.getMusic_identity() instanceof java.util.ArrayList) {
-            System.out.println("TODO: music_identity when sent as an array is usually empty. Add an assertion when we figure out the possible values.");
+            sa.assertTrue(((ArrayList)userGetProfile.getMusic_identity()).size() == 0);
+//          TODO: music_identity when sent as an array is usually empty. Add an assertion when we figure out the possible values.
         }
 
 //        Email verified state is mandatory, so no need of null checks
