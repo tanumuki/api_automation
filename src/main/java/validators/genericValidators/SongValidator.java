@@ -29,7 +29,10 @@ public class SongValidator extends EntityValidator {
         if (songObj.getType().equals("episode"))
         	validateEpisodeDetails(songObj, sa);
 
-        validateRights(songObj, sa);
+        if(songObj.getMini_obj() == null) {
+//            If it's not a mini object, but the full song object, then verify rights, else don't
+            validateRights(songObj, sa);
+        }
 
         ArtistMap artistMap = songObj.getMoreInfo().getArtistMap();
 
@@ -72,7 +75,8 @@ public class SongValidator extends EntityValidator {
         if(Validate.isNonEmptyString(moreInfo.getEncryptedMediaUrl())) {
             sa.assertTrue(Validate.asString(moreInfo.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.encrypted_media_url", moreInfo.getEncryptedMediaUrl(), songObj.getId()));
-        }else {
+        }else if(songObj.getMini_obj() == null){
+            //encrypted media URLs don't show up for mini objects
             sa.fail("Song More Info Encrypted Media URL is null/empty for song with ID - " + songObj.getId());
         }
 
