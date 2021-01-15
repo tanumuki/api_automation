@@ -3,16 +3,14 @@
  */
 package pojos.search;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * @author aswingokulachandran
@@ -94,8 +92,4 @@ public class MoreInfo {
 	
 	@JsonProperty("season_number")
 	private int season_number;
-	
-	
-
-	
 }

@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import pojos.appGetLaunchData.TopSearch;
+import resources.ConfigReader;
 import validators.AppGetLaunchData.GetLaunchDataValidator;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ContentGetTopSearchesSteps {
         for (TopSearch contentGetTopSearchesPojo : contentGetTopSearchesObj)
         {
             System.out.println("Validating response for entity: "+ ++i);
-            new GetLaunchDataValidator().validateTopSearches(contentGetTopSearchesPojo,sa);
+            new GetLaunchDataValidator().validateTopSearches(contentGetTopSearchesPojo,sa, ConfigReader.getInstance().getAppVersion());
         }
         sa.assertAll();
     }
