@@ -134,10 +134,13 @@ public class AppGetLaunchDataGlobalConfig {
     private Boolean lib_img_cache;
     @JsonProperty("first_time_user_ad")
     private Boolean first_time_user_ad;
-
-
-
-
-
+    @JsonProperty("force_https")
+    private Boolean forceHttps;
+    @JsonProperty("juspay_payment_flow")
+    private Boolean juspayPaymentFlow;
+    @JsonProperty("show_demographic_modal")
+    private Boolean showDemographicModal;
+    @JsonProperty("show_language_selection_screen")
+    private Boolean showLanguageSelectionScreen;
 
 }

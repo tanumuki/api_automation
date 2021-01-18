@@ -74,7 +74,7 @@ public class AppGetLaunchData extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         pojos.appGetLaunchData.AppGetLaunchData agld = mapper.readValue(resp.asString(), pojos.appGetLaunchData.AppGetLaunchData.class);
         SoftAssert sa  = new SoftAssert();
-        new GetLaunchDataValidator().validate(agld, sa);
+        new GetLaunchDataValidator().validate(agld, sa, ConfigReader.getInstance().getAppVersion());
         sa.assertAll();
     }
 }

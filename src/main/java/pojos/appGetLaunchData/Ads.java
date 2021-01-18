@@ -20,4 +20,6 @@ public class Ads {
     private String gender;
     @JsonProperty("cohort")
     private String cohort;
+    @JsonProperty("referee")
+    private AdRefree referee;
 }
