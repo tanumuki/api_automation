@@ -6,6 +6,7 @@ import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.hamcrest.collection.HasItemInArray;
 import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
@@ -118,12 +119,17 @@ public class LibraryValidator {
 		Album album = new ObjectMapper().readValue(albumResponse, Album.class);
 		Set<String> albumObjectSet = new HashSet<String>();
 
-		System.out.println("al res" +albumResponse);
-		List<Song> albums = (List<Song>) (List<?>)album.getList();
-		for(int i=0;i<albums.size(); i++) {
-				albumObjectSet.add(albums.get(i).getId());
-			}
-			//Adding the song to album's object
+		System.out.println("album response" +albumResponse);
+		List<Song> albums = (List<Song>) album.getList();
+		System.out.println("printing a " +albums.toString());
+
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		for (int i = 0; i < albums.size(); i++) {
+			Song song = mapper.convertValue(albums.get(i), Song.class);
+			albumObjectSet.add(song.getId());
+		}
+
+		//Adding the song to album's object
 		albumObjectSet.add(seed_song_id);
 		System.out.println("=======printing sets============" );
 		log.info(" libraryObjectSet " +libraryObjectSet.toString());
