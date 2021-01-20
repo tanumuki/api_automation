@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ArtistResultObj {
+    //ArtistResultObj
     @JsonProperty("artists_id")
     private String artists_id;
     @JsonProperty("artists_name")

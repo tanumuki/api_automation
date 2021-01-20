@@ -43,7 +43,7 @@ public class ShowDetails extends Entity{
     private String square_image_url;
 
 
-
+// Should be ArtistResultObj not String
     @JsonProperty("artists")
     private List<ArtistResultObj> artists;
     @JsonProperty("primary_artists")
