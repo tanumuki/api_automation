@@ -56,6 +56,9 @@ public class UserStateValidator {
         if(us.getProstatus() != null)
             new LoginProStatusValidator().validate(us.getProstatus(), sa);
 
+        if(Validate.isNonEmptyString(us.getEmail_verified_status()))
+            sa.assertTrue(Validate.asEmailVerifiedStatus(us.getEmail_verified_status()), AssertionMsg.print(className, methodName, "user_state.email_verified_status", us.getEmail_verified_status()));
+
     }
 
 }
