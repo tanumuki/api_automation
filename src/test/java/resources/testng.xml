@@ -4,9 +4,6 @@
     <test name="RestAssured Tests">
         <classes>
             <class name="cucumber.Options.TestRunner">
-                <methods>
-                    <include name="scenario"/>
-                </methods>
             </class>
         </classes>
     </test> <!-- Test -->

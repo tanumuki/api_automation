@@ -11,7 +11,7 @@ Feature: Validation of Benefits list and count API.
     Then The Benefits Count API returns response with status code 200
 
 
-  Scenario: Verify user is able to fetch the benefits list
-    Given I have the endpoint for "BenefitsListApi"
-    When I make the "GET" request
-    Then The Benefits List API returns response with status code 200
+#  Scenario: Verify user is able to fetch the benefits list
+#    Given I have the endpoint for "BenefitsListApi"
+#    When I make the "GET" request
+#    Then The Benefits List API returns response with status code 200
