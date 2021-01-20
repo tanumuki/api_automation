@@ -1,4 +1,4 @@
-Feature: Validation of user get profile API
+Feature: Validation of Search Get Results API
 
   Background:
     Given I have the cookie for the following user

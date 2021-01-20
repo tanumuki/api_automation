@@ -18,7 +18,7 @@ import java.util.List;
 public class GetLaunchDataValidator {
     final String className = getClass().getName();
 
-    public void validate(AppGetLaunchData obj, SoftAssert sa) {
+    public void validate(AppGetLaunchData obj, SoftAssert sa, String appVersion) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         sa.assertTrue(Validate.asNum(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
@@ -28,7 +28,7 @@ public class GetLaunchDataValidator {
         //TODO: ab_test check
 
         //Validate ef
-        for(String item : obj.getEf()){
+        for (String item : obj.getEf()) {
             sa.assertTrue(Validate.asString(item), AssertionMsg.print(className, methodName, "ef", item));
         }
 
@@ -48,7 +48,7 @@ public class GetLaunchDataValidator {
         Validate.asChartsAndPlaylists(obj.getTopPlaylists(), sa);
 
         //Validate new albums
-        for(AlbumMiniObject album : obj.getNewAlbums()){
+        for (AlbumMiniObject album : obj.getNewAlbums()) {
             new AlbumMiniValidator().validate(album, sa);
         }
 
@@ -62,20 +62,19 @@ public class GetLaunchDataValidator {
         Validate.asFeaturedStations(obj.getRadio(), sa);
 
         //Validate top searches
-        for(TopSearch ts : obj.getTopSearches()){
-            validateTopSearches(ts, sa);
+        for (TopSearch ts : obj.getTopSearches()) {
+            validateTopSearches(ts, sa, appVersion);
         }
 
         //TODO: Validate global_config
 
 
-
         //Validate loginwall
-        if(Validate.isNonEmptyString(obj.getLoginwall()))
+        if (Validate.isNonEmptyString(obj.getLoginwall()))
             sa.assertTrue(Validate.asBoolean(obj.getLoginwall()), AssertionMsg.print(className, methodName, "loginwall", obj.getLoginwall()));
 
         //Validate jiologinwall
-        if(Validate.isNonEmptyString(obj.getJiologinwall()))
+        if (Validate.isNonEmptyString(obj.getJiologinwall()))
             sa.assertTrue(Validate.asBoolean(obj.getJiologinwall()), AssertionMsg.print(className, methodName, "jiologinwall", obj.getJiologinwall()));
 
         //Validate charts
@@ -114,25 +113,25 @@ public class GetLaunchDataValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         System.out.println("=======Validate Ads=========");
         System.out.println("ads null? " + ads == null);
-        if(ads != null) {
+        if (ads != null) {
             System.out.println("----Not Null----");
-            if(Validate.isNonEmptyString(ads.getCarrier())){
+            if (Validate.isNonEmptyString(ads.getCarrier())) {
                 sa.assertTrue(Validate.asString(ads.getCarrier()), AssertionMsg.print(className, methodName, "ads.carrier", ads.getCarrier()));
                 System.out.println("carrier: " + ads.getCarrier());
             }
 
 
-            if(Validate.isNonEmptyString(ads.getSegmentIds()))
+            if (Validate.isNonEmptyString(ads.getSegmentIds()))
                 sa.assertTrue(Validate.asString(ads.getSegmentIds()), AssertionMsg.print(className, methodName, "ads.segment_ids", ads.getSegmentIds()));
 
             System.out.println("gender: " + ads.getGender());
-            if(Validate.isNonEmptyString(ads.getGender())){
+            if (Validate.isNonEmptyString(ads.getGender())) {
                 sa.assertTrue(Validate.asString(ads.getGender()), AssertionMsg.print(className, methodName, "ads.gender", ads.getGender()));
                 System.out.println("gender: " + ads.getGender());
             }
 
 
-            if(Validate.isNonEmptyString(ads.getCohort())) {
+            if (Validate.isNonEmptyString(ads.getCohort())) {
                 sa.assertTrue(Validate.asString(ads.getCohort()), AssertionMsg.print(className, methodName, "ads.cohort", ads.getCohort()));
                 System.out.println("cohort: " + ads.getCohort());
             }
@@ -142,16 +141,16 @@ public class GetLaunchDataValidator {
 
     }
 
-    public void validateTopSearches(TopSearch ts, SoftAssert sa) {
+    public void validateTopSearches(TopSearch ts, SoftAssert sa, String appVersion) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        if(Validate.isNonEmptyString(ts.getEntityId()))
+        if (Validate.isNonEmptyString(ts.getEntityId()))
             sa.assertTrue(Validate.asString(ts.getEntityId()), AssertionMsg.print(className, methodName, "top_searches.entity_id", ts.getEntityId()));
 
-        if(Validate.isNonEmptyString(ts.getEntityName()))
+        if (Validate.isNonEmptyString(ts.getEntityName()))
             sa.assertTrue(Validate.asString(ts.getEntityName()), AssertionMsg.print(className, methodName, "top_searches.entity_name", ts.getEntityName()));
 
-        if(Validate.isNonEmptyString(ts.getEntityType()))
+        if (Validate.isNonEmptyString(ts.getEntityType()))
             sa.assertTrue(Validate.asEntityType(ts.getEntityType()), AssertionMsg.print(className, methodName, "top_searches.entity_type", ts.getEntityType()));
 
 //        ID must be present. So no null checks
@@ -166,12 +165,14 @@ public class GetLaunchDataValidator {
 //        image must be present. So no null checks
         sa.assertTrue(Validate.asCDNURL(ts.getImage()), AssertionMsg.print(className, methodName, "top_searches.image", ts.getImage()));
 
-        if(Validate.isNonEmptyString(ts.getExplicit_content()))
+        if (Validate.isNonEmptyString(ts.getExplicit_content()))
             sa.assertTrue(Validate.asNum(ts.getExplicit_content()), AssertionMsg.print(className, methodName, "top_searches.explicit_content", ts.getExplicit_content()));
 
-        if(Validate.isNonEmptyString(ts.getMini_obj()))
-            sa.assertTrue(Validate.asBoolean(ts.getMini_obj()), AssertionMsg.print(className, methodName, "top_searches.mini_obj", ts.getMini_obj()));
+        if (ts.getMini_obj()=="false")
+        {
+            System.out.println(ts.getMoreInfo());
 
+        }
 
     }
 
@@ -179,7 +180,7 @@ public class GetLaunchDataValidator {
     void validateUpdateConfig(UpdateConfig uc, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        if(Validate.isNonEmptyString(uc.getUrl()))
+        if (Validate.isNonEmptyString(uc.getUrl()))
             sa.assertTrue(Validate.asUpdateUrl(uc.getUrl()), AssertionMsg.print(className, methodName, "update_config.url", uc.getUrl()));
 
         sa.assertTrue(Validate.asNum(uc.getFrequency()), AssertionMsg.print(className, methodName, "update_config.frequency", String.valueOf(uc.getFrequency())));

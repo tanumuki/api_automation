@@ -12,6 +12,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -20,6 +21,7 @@ import pojos.login_pojos.UserLogin;
 import resources.*;
 import validators.UserLoginValidator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -42,15 +44,15 @@ public class Login extends Util {
 	public void add_payload_with_login_endpoint(String endPoint) throws Exception {
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		String resource = resourceAPI.getResource();
-		UserGenerator user = UserGenerator.getInstance();
-		HashMap<String, String> userMap = user.generateNewUserCookie();
-		cookie= userMap.get("cookie");
+		//UserGenerator user = UserGenerator.getInstance();
+		//HashMap<String, String> userMap = user.generateNewUserCookie();
+		//cookie= userMap.get("cookie");
 		//appending cookie with device_id
-		//String device= "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
-		//cookie=cookie+device;
+		String device= "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+		cookie=cookie+device;
 		System.out.println("cookie2 is " +cookie);
-		username = userMap.get("username");
-		password = userMap.get("password");
+		//username = userMap.get("username");
+		//password = userMap.get("password");
 		testContext.scenarioContext.setContext(Context.USERNAME, username);
 		testContext.scenarioContext.setContext(Context.PASSWORD, password);
 		System.out.println("resource api " + resourceAPI.getResource());
@@ -71,22 +73,22 @@ public class Login extends Util {
 
 		method = table.cell(1, 0);
 		System.out.println("method is "+method);
-		 System.out.println("The value is : " + table.cell(1, 0));
-	        System.out.println("The value is : " + table.cell(1, 1));
+		 System.out.println("The value1 is : " + table.cell(1, 0));
+	        System.out.println("The value2 is : " + table.cell(1, 1));
 
 	        List<List<String>> cells = table.cells();
 
-	        System.out.println("The value is : " + cells.get(1).get(0));
-	        System.out.println("The value is : " + cells.get(1).get(1));
-	        System.out.println("The username is : " + username);
-	        System.out.println("The password is : " + password);
+	        System.out.println("The value3 is : " + cells.get(1).get(2));
+	        System.out.println("The value4 is : " + cells.get(1).get(3));
+	        //System.out.println("The username is : " + username);
+	        //System.out.println("The password is : " + password);
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 			System.out.println("tan3 " + resspec);
 
 			System.out.println("toto" + table.asList().toString());
-			res.queryParam("username", username);
-			res.queryParam("password", password);
+			res.queryParam("username", cells.get(1).get(2));
+			res.queryParam("password", cells.get(1).get(3));
 			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 			logResponseTime(resp);
 
@@ -115,6 +117,31 @@ public class Login extends Util {
 		new UserLoginValidator().validate(login, sa);
 
 	}
+	@Then("The Login API returns success with status code {string} for invalid credentials")
+	public void the_login_api_returns_success_with_status_code_for_invalid_credentials(String statusCode) throws JsonProcessingException {
+		// Write code here that turns the phrase above into concrete actions
 
+		SoftAssert sa = new SoftAssert();
+
+		StatusCode code = StatusCode.valueOf(statusCode);
+		int resource = code.getResource();
+		System.out.println("the code is  " + resource);
+
+		//System.out.println("the response is  " + resp.body().asString());
+		JsonPath path = new JsonPath( resp.body().asString());
+	   String error = path.getString("error");
+       System.out.println("server error is "+error);
+		assertEquals(resp.getStatusCode(), resource);
+
+		String errorString = "[msg:Incorrect username/password. Please try again.]";
+		System.out.println("errorString is "+errorString);
+		sa.assertTrue(error.equals(errorString), "Error message doesn't match" );
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+
+		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
+		sa.assertAll();
+	}
 
 }

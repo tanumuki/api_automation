@@ -43,10 +43,14 @@ public class RightsValidator {
                 sa.assertTrue(Validate.asSongRightsReason(rights.getReason()), AssertionMsg.print(className, methodName,
                         sourceType, "more_info.rights.reason.unavailable", rights.getReason(), sourceId));
             }
-            if(Integer.parseInt(rights.getCode()) == 0) {
+            else if(Integer.parseInt(rights.getCode()) == 0) {
 //              in case it's 0, validating that the field is present
                 sa.assertTrue(Validate.asString(rights.getReason()), AssertionMsg.print(className, methodName,
                         sourceType, "more_info.rights.reason", rights.getReason(), sourceId));
+            }
+            else {
+                sa.fail("Rights reason is null/empty for sourceType - " + sourceType + " and source ID - " + sourceId
+                + " rights.code - " + rights.getCode() + " rights.reason - " + rights.getReason());
             }
 
 
