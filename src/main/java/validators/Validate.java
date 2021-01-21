@@ -369,9 +369,10 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink");
     }
 
+    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^jiosaavn:\\/\\/(open|view)\\/[a-z]+\\/[0-9]+");}
     public static boolean asCategoryType(String categoryType) {
         return categoryType.matches("static|user_defined");
     }
@@ -487,6 +488,11 @@ public class Validate {
     public static boolean asUserAge(String str) {
 //        age should be between 0 and 150
         return Integer.parseInt(str) > 0 && Integer.parseInt(str) < 150;
+    }
+
+    public static boolean asUserAge(Integer age) {
+//        age should be between 0 and 150
+        return age > 0 && age <= 150;
     }
 
     public static boolean asEmailVerifiedStatus(String str) {
