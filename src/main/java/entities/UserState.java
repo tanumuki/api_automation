@@ -27,9 +27,9 @@ public class UserState {
     @JsonProperty("email_verified_status")
     private String email_verified_status;
     @JsonProperty("require_otp")
-    private String require_otp;
+    private Boolean require_otp;
     @JsonProperty("mandatory_verify")
-    private String mandatory_verify;
+    private Boolean mandatory_verify;
     @JsonProperty("enc_uid")
     private String encUid;
     @JsonProperty("firstname")
