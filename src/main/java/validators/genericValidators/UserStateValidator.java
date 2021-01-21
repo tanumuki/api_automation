@@ -35,7 +35,7 @@ public class UserStateValidator {
         }
 
         if(us.getAge() != null){
-            sa.assertTrue(Validate.asNum(us.getAge()), AssertionMsg.print(className, methodName, "user_state.age", String.valueOf(us.getAge())));
+            sa.assertTrue(Validate.asUserAge(us.getAge()), AssertionMsg.print(className, methodName, "user_state.age", String.valueOf(us.getAge())));
         }
 
         if(Validate.isNonEmptyString(us.getFirstname()))

@@ -46,7 +46,7 @@ public class ShowDetailsValidator extends EntityValidator {
         }
 
         if(Validate.isNonEmptyString(sd.getBackground_color())){
-            sa.assertTrue(Validate.asString(sd.getBackground_color()), AssertionMsg.print(className, methodName, "show_details.background_color", sd.getBackground_color()));
+            sa.assertTrue(Validate.asHexColour(sd.getBackground_color()), AssertionMsg.print(className, methodName, "show_details.background_color", sd.getBackground_color()));
         }
 
         if(Validate.isNonEmptyString(sd.getLabel_name())){
