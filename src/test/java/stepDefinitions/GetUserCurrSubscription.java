@@ -18,6 +18,7 @@ import org.testng.asserts.SoftAssert;
 import pojos.SubsGetUserCurrSubs.GetUserCurrSubs;
 import resources.ConfigReader;
 import resources.Util;
+import validators.GetUserCurrSubscription.GetUserCurrSubsValidator;
 import validators.SubsGetStatus.SubsGetStatusValidator;
 
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class GetUserCurrSubscription extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         GetUserCurrSubs ps = mapper.readValue(resp.asString(), GetUserCurrSubs.class);
         SoftAssert sa  = new SoftAssert();
+        new GetUserCurrSubsValidator().validate(ps,sa);
         sa.assertAll();
     }
 }
