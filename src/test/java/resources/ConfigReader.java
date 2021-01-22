@@ -69,7 +69,8 @@ public class ConfigReader {
 				}
 			}
 			else {
-				baseUrl= "https://staging.saavn.com";
+				baseUrl= "https://www.saavn.com";
+				System.out.println("Aswin baseurl: " + baseUrl);
 			}
 		
 

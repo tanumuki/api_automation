@@ -11,7 +11,7 @@ Feature: Get Details of a Mix with given Id
 
     Examples:
       | listid |
-      | 933ba3f82b090689f63440945fe5c463 |
-#      | 7f2069a7158f3a63203f2f62cb76658b |
+#      | 933ba3f82b090689f63440945fe5c463 |
+      | 7f2069a7158f3a63203f2f62cb76658b |
 
   

@@ -35,6 +35,7 @@ public class HomepageDataValidator {
         validateTagMixes(hd, sa);
         validateArtistRecos(hd, sa);
         validateCityMod(hd, sa);
+        validateUserState(hd, sa);
     }
 
     void validateCityMod(HomePageDataV2 hd, SoftAssert sa) {

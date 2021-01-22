@@ -40,7 +40,7 @@ public class HomePageDataV2 {
     @JsonProperty("user_state")
     private UserState userState;
     @JsonProperty("suggests")
-    private List<Suggests> suggests = null;
+    private Suggests suggests = null;
     @JsonProperty("mixes")
     private List<Mix> mixes = null; //mix type
     @JsonProperty("tag_mixes")

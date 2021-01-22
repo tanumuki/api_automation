@@ -47,6 +47,10 @@ public class Validate {
         return (number >=0 || number < 0);
     }
 
+    public static boolean asLong(Long num) {
+        return num >= Long.MIN_VALUE && num <= Long.MAX_VALUE;
+    }
+
     /**
      * Use this to verify floating point numbers.
      * @param floatingPtNumber
@@ -163,7 +167,7 @@ public class Validate {
      */
     public static boolean asBoolean(String str) {
         log.debug("Testing as string boolean: \"" + str + "\"");
-        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No|Success|success|Failure|failure");
+        return str.matches("^$|true|false|0|1|True|False|yes|no|Yes|No|Success|success|Failure|failure|None");
     }
 
     /*
@@ -365,9 +369,10 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink");
     }
 
+    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^jiosaavn:\\/\\/(open|view)\\/[a-z]+\\/[0-9]+");}
     public static boolean asCategoryType(String categoryType) {
         return categoryType.matches("static|user_defined");
     }
@@ -483,6 +488,11 @@ public class Validate {
     public static boolean asUserAge(String str) {
 //        age should be between 0 and 150
         return Integer.parseInt(str) > 0 && Integer.parseInt(str) < 150;
+    }
+
+    public static boolean asUserAge(Integer age) {
+//        age should be between 0 and 150
+        return age > 0 && age <= 150;
     }
 
     public static boolean asEmailVerifiedStatus(String str) {
