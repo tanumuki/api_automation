@@ -144,6 +144,7 @@ public class Validate {
         return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
+                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
                 "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
                 "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.png)");
 
@@ -293,7 +294,7 @@ public class Validate {
     }
 
     public static boolean asChannelSubtype(String str) {
-        return str.matches("genre|mood|music_plus");
+        return str.matches("genre|mood|music_plus|brand");
     }
 
     public static boolean isNonEmptyString(String str) {
@@ -306,6 +307,8 @@ public class Validate {
                 "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
                 "|podcast_home_module_[0-9]+|data_[0-9]+");
     }
+
+
 
     public static boolean asModulesPosition(int pos) {
         return pos <= 15;
@@ -491,7 +494,7 @@ public class Validate {
 
     public static boolean asHexColour(String str) {
         log.debug("Testing as hex colour: \"" + str + "\"");
-        return str.matches("^#[a-zA-Z0-9]{6}$");
+        return str.matches("^(#)?[a-zA-Z0-9]{6}$");
     }
 
     public static boolean asUserAge(String str) {

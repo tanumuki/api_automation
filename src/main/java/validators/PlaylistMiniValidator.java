@@ -1,5 +1,7 @@
 package validators;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.PlaylistMini;
 import entities.PlaylistMiniMoreInfo;
 import org.testng.asserts.SoftAssert;
@@ -33,13 +35,13 @@ public class PlaylistMiniValidator extends EntityValidator {
             //TODO: Add validation for numsongs, for now it's coming up as null
         }
 
-        if(ch.getMoreInfo() instanceof PlaylistMiniMoreInfo){
-            PlaylistMiniMoreInfo mi = (PlaylistMiniMoreInfo) ch.getMoreInfo();
-            validatePlaylistMiniMoreInfo(mi, sa);
-        }else if(ch.getMoreInfo() instanceof List){
+        if(ch.getMoreInfo() instanceof List){
             sa.assertTrue(((List<?>) ch.getMoreInfo()).size() == 0, "Playlist Mini more_info of type list has contents");
         } else {
-            sa.fail("Unsupported type for Playlist mini more_info - " + ch.getMoreInfo().getClass().getName());
+            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+
+            PlaylistMiniMoreInfo mi = mapper.convertValue(ch.getMoreInfo(), PlaylistMiniMoreInfo.class);
+            validatePlaylistMiniMoreInfo(mi, sa);
         }
 
 
@@ -102,6 +104,12 @@ public class PlaylistMiniValidator extends EntityValidator {
         if(Validate.isNonEmptyString(mi.getLanguage())){
             sa.assertTrue(Validate.asMusicLanguages(mi.getLanguage()), AssertionMsg.print(className, methodName, "chart", "more_info.language", mi.getEntity_type()));
         }
+
+        if(Validate.isNonEmptyString(mi.getRelease_date()))
+            sa.assertTrue(Validate.asDate(mi.getRelease_date()), AssertionMsg.print(className, methodName, "playlist.more_info.release_date", mi.getRelease_date()));
+
+        if(Validate.isNonEmptyString(mi.getDescription()))
+            sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "playlist.more_info.description", mi.getDescription()));
     }
 
 

@@ -22,13 +22,13 @@ public class TagsValidator {
         }
 
         if(tags.getSituation() != null) {
-            for(String situation : tags.getMood()) {
+            for(String situation : tags.getSituation()) {
                 sa.assertTrue(Validate.asString(situation), AssertionMsg.print(className, methodName, entityType, "more_info.tags.situation", situation, entityId));
             }
         }
 
         if(tags.getSeasonality() != null) {
-            for(String seasonality : tags.getMood()) {
+            for(String seasonality : tags.getSeasonality()) {
                 sa.assertTrue(Validate.asString(seasonality), AssertionMsg.print(className, methodName, entityType, "more_info.tags.seasonality", seasonality, entityId));
             }
         }
