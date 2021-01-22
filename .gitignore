@@ -8,3 +8,4 @@ test-output/
 /src/test/java/resources/global.properties
 ExtentReportResults.html
 pdf-report
+STDOUt

@@ -10,7 +10,7 @@ Scenario: Verify if user is able to login with valid credentials
 
 Scenario: Verify if user is able to login with invalid credentails
 
-		Given Add payload with login endpoint  "UserLoginAPI"
+		Given Add payload with login endpoint "UserLoginAPI"
 		When User calls with method with below params
 		|method|endPoint|username|password|
 		|GET|UserLoginAPI|tanu@saavn.com|Saavn1234|
