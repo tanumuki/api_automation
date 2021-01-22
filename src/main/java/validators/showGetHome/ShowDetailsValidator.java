@@ -30,6 +30,9 @@ public class ShowDetailsValidator extends EntityValidator {
         else
             sa.fail(className+"."+ methodName+"-more_info is null");
 
+        if(Validate.isNonEmptyString(sd.getDescription()))
+            sa.assertTrue(Validate.asString(sd.getDescription()), AssertionMsg.print(className, methodName, "show_details.description", sd.getDescription()));
+
         //Validate mini_obj
         if(sd.getMini_obj() != null){
             sa.assertTrue(Validate.asBoolean(sd.getMini_obj()), AssertionMsg.print(className, methodName, "show_details.mini_obj", String.valueOf(sd.getMini_obj())));

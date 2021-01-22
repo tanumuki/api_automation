@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @Getter
 @Setter
@@ -23,4 +25,6 @@ public class ChannelMoreInfo {
     private String videoUrl;
     @JsonProperty("video_thumbnail")
     private String videoThumbnail;
+    @JsonProperty("language")
+    private List<String> language;
 }

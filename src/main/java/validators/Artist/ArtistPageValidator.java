@@ -36,16 +36,18 @@ public class ArtistPageValidator extends EntityValidator {
 //        Validate similar artists
         validateSimilarArtists(artistObj, sa);
 
+
+
 //        Validate dedicated artist playlist if available
         if(artistObj.getDedicatedArtistPlaylist()!=null) {
             for (PlaylistMini dedicatedPlaylist : artistObj.getDedicatedArtistPlaylist()) {
-                new PlaylistMiniValidator().validate(dedicatedPlaylist, sa);
+                new validators.PlaylistMiniValidator().validate(dedicatedPlaylist, sa);
             }
         }
 //        Validate featured artist playlist if available
         if(artistObj.getFeaturedArtistPlaylist()!=null) {
             for (PlaylistMini featuredPlaylist : artistObj.getFeaturedArtistPlaylist()) {
-                new PlaylistMiniValidator().validate(featuredPlaylist, sa);
+                new validators.PlaylistMiniValidator().validate(featuredPlaylist, sa);
             }
         }
 //        Validate artist singles if available
@@ -89,6 +91,18 @@ public class ArtistPageValidator extends EntityValidator {
 
     public void validateArtistFields(Artist artistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+        if(Validate.isNonEmptyString(artistObj.getExtra())){
+            sa.assertTrue(Validate.asArtistType(artistObj.getExtra()), AssertionMsg.print(className, methodName, "artist.extra", artistObj.getExtra()));
+        }
+
+        if(Validate.isNonEmptyString(artistObj.getDescription())){
+            sa.assertTrue(Validate.asString(artistObj.getDescription()), AssertionMsg.print(className, methodName, "artist.description", artistObj.getDescription()));
+        }
+
+        if(artistObj.getPosition() != null){
+            sa.assertTrue(Validate.asNum(artistObj.getPosition()), AssertionMsg.print(className, methodName, "artist.position", String.valueOf(artistObj.getPosition())));
+        }
 
         if(Validate.isNonEmptyString(artistObj.getArtistId())){
             sa.assertTrue(Validate.asNum(artistObj.getArtistId()), AssertionMsg.print(className, methodName, "artistID", artistObj.getArtistId()));
@@ -338,10 +352,10 @@ public class ArtistPageValidator extends EntityValidator {
     }
 
     void validateArtistPlaylists(Artist artistObj, SoftAssert sa) {
-        List<Playlist> plv = artistObj.getArtistPlaylists();
+        List<PlaylistMini> plv = artistObj.getArtistPlaylists();
         if(plv != null && plv.size() > 0) {
-            for (Playlist pl : plv) {
-                new PlaylistMiniValidator().validate(pl, sa);
+            for (PlaylistMini pl : plv) {
+                new validators.PlaylistMiniValidator().validate(pl, sa);
             }
         }
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pojos.SearchGetEntityResults.ArtistResultObj;
 
 import java.util.List;
 @Data
@@ -69,6 +70,9 @@ public class EpisodeMoreInfo {
     private List<String> seasonality_tags;
     @JsonProperty("multi_br")
     private String multiBr;
-
+    @JsonProperty("album")
+    private String album;
+    @JsonProperty("primary_artists")
+    private List<ArtistResultObj> primary_artists;
 
 }

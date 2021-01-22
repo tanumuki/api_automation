@@ -9,6 +9,7 @@ public enum artistTypes {
 	LYRICIST,
 	REMIXER,
 	PRODUCER,
-	DIRECTOR;
+	DIRECTOR,
+	HOST;
 }
 

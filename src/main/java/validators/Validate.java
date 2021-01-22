@@ -42,6 +42,15 @@ public class Validate {
         return str.matches("^$|^[0-9]\\d*(\\.\\d+)?$|\\d+");
     }
 
+    public static boolean asSongPids(String songs) {
+        String[] songsList = songs.split(",");
+        for(String song : songsList){
+            if(!asId(song))
+                return false;
+        }
+        return true;
+    }
+
     public static boolean asNum(int number) {
         log.debug("Testing as integer: " + number);
         return (number >=0 || number < 0);
@@ -317,7 +326,7 @@ public class Validate {
         switch (type) {
             case "playlist":
                 PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
-                new PlaylistValidator().validate(playlist, sa);
+                new validators.PlaylistMiniValidator().validate(playlist, sa);
                 break;
             case "album":
                 AlbumMiniObject album = mapper.convertValue(entity, AlbumMiniObject.class);
@@ -497,5 +506,13 @@ public class Validate {
 
     public static boolean asEmailVerifiedStatus(String str) {
         return str.matches("new_unverified|existing_unverified|existing_verified");
+    }
+
+    public static boolean asCountryCode(String str){
+        return str.matches("\\+[0-9-]{5}");
+    }
+
+    public static boolean asProvider(String str) {
+        return str.equalsIgnoreCase("jio");
     }
 }

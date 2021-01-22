@@ -15,5 +15,5 @@ Examples:
   | Arijit Singh |
   | Kabir Singh |
   | Hariharan Hits|
-  #| Jazz |
+  | Jazz |
     

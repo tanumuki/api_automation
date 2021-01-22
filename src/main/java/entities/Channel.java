@@ -28,5 +28,7 @@ public class Channel extends Entity {
     private List<String> primary_artists;
     @JsonProperty("featured_artists")
     private List<String> featured_artists;
+    @JsonProperty("description")
+    private String description;
 
 }
