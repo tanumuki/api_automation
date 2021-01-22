@@ -20,6 +20,16 @@ public class UserState {
     private String uid;
     @JsonProperty("encrypted_uid")
     private String encryptedUid;
+    @JsonProperty("gender")
+    private String gender;
+    @JsonProperty("age")
+    private Integer age;
+    @JsonProperty("email_verified_status")
+    private String email_verified_status;
+    @JsonProperty("require_otp")
+    private Boolean require_otp;
+    @JsonProperty("mandatory_verify")
+    private Boolean mandatory_verify;
     @JsonProperty("enc_uid")
     private String encUid;
     @JsonProperty("firstname")
@@ -28,8 +38,8 @@ public class UserState {
     private String lastname;
     @JsonProperty("dob")
     private String dob;
-    @JsonProperty("age")
-    private String age;
+//    @JsonProperty("age")
+//    private String age;
     @JsonProperty("network")
     private String network;
     @JsonProperty("fbid")
