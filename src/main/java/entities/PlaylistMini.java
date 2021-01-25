@@ -13,7 +13,7 @@ import java.util.List;
 public class PlaylistMini extends Entity {
 
     @JsonProperty("more_info")
-    private PlaylistMiniMoreInfo moreInfo;
+    private Object moreInfo;
     @JsonProperty("list")
     private String list;
     @JsonProperty("mini_obj")
@@ -26,4 +26,6 @@ public class PlaylistMini extends Entity {
     private String explicit_content;
     @JsonProperty("numsongs")
     private Object numsongs;
+    @JsonProperty("description")
+    private String description;
 }

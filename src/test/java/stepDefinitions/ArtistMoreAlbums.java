@@ -56,6 +56,7 @@ public class ArtistMoreAlbums extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         reqSpec.queryParam("artistId", artistID);
         resp = reqSpec.given().when().get("/api.php").then().extract().response();
+        System.out.println("REsponse: " + resp.asString());
         logResponseTime(resp);
     }
 

@@ -3,47 +3,34 @@
  */
 package validators;
 
+import entities.ModulesData;
 import org.testng.asserts.SoftAssert;
 
 import pojos.search.DataMini;
 import pojos.search.MoreInfo;
 import pojos.search.SearchResponse;
 import pojos.search.SearchResultEntity;
+import validators.genericValidators.ModulesDataValidator;
 
 /**
  * @author aswingokulachandran
  *
  */
 public class SearchResponseValidator {
-	String className = pojos.search.SearchResponse.class.getName();
+	final String className = getClass().getName();
 
 	public void validate(SearchResponse response, SoftAssert sa) {
-		System.out.println("------SearchResponse Validation starts....------");
-		SearchResultEntity albums = response.getAlbums();
-		this.validateEntity(albums, sa);
-
-		SearchResultEntity playlists = response.getPlaylists();
-		this.validateEntity(playlists, sa);
-
-		SearchResultEntity artists = response.getArtists();
-		this.validateEntity(artists, sa);
-
-		SearchResultEntity episodes = response.getEpisodes();
-		this.validateEntity(episodes, sa);
-
-		SearchResultEntity radios = response.getRadios();
-		this.validateEntity(radios, sa);
-
-		SearchResultEntity shows = response.getShows();
-		this.validateEntity(shows, sa);
-
-		SearchResultEntity songs = response.getSongs();
-		this.validateEntity(songs, sa);
-
-		SearchResultEntity topquery = response.getTopquery();
-		this.validateEntity(topquery, sa);
-
-		sa.assertAll();
+		Validate.asAssortedEntity(response.getData_0(), sa);
+		Validate.asAssortedEntity(response.getData_1(), sa);
+		Validate.asAssortedEntity(response.getData_2(), sa);
+		Validate.asAssortedEntity(response.getData_3(), sa);
+		Validate.asAssortedEntity(response.getData_4(), sa);
+		Validate.asAssortedEntity(response.getData_5(), sa);
+		Validate.asAssortedEntity(response.getData_6(), sa);
+		Validate.asAssortedEntity(response.getData_7(), sa);
+		for(ModulesData md : response.getModules()){
+			new ModulesDataValidator().validate(md, sa);
+		}
 	}
 
 	String assertionMsg(String methodName, String entityType, String fieldName, String value) {

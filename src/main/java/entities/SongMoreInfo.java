@@ -105,4 +105,6 @@ public class SongMoreInfo {
 	private Shortie shortie;
 	@JsonProperty("triller")
 	private List<Triller> triller;
+	@JsonProperty("language")
+	private String language;
 }

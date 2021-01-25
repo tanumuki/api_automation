@@ -56,6 +56,7 @@ public class ArtistMoreSongs extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         reqSpec.queryParam("artistId", artistID);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
+        System.out.println(resp.asString());
         logResponseTime(resp);
     }
 

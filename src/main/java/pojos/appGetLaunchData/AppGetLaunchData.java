@@ -30,7 +30,7 @@ public class AppGetLaunchData {
     @JsonProperty("ab_test_exp")
     private List<String> abTestExp = null;
     @JsonProperty("suggests")
-    private List<Suggests> suggests = null;
+    private Object suggests = null;
     @JsonProperty("ping_server")
     private String pingServer;
     @JsonProperty("new_trending")
@@ -45,6 +45,10 @@ public class AppGetLaunchData {
     private TopShows topShows;
     @JsonProperty("browse_discover")
     private List<Channel> browseDiscover = null;
+    @JsonProperty("most_popular_trillers")
+    private List<Song> most_popular_trillers;
+    @JsonProperty("most_popular_artist_trillers")
+    private List<Song> most_popular_artist_trillers;
     @JsonProperty("radio")
     private Radio radio;
     @JsonProperty("top_searches")
@@ -73,6 +77,9 @@ public class AppGetLaunchData {
     private String deviceStatus;
     @JsonProperty("global_config")
     private AppGetLaunchDataGlobalConfig global_config;
+
+    @JsonProperty("deferred_login_config")
+    private DeferredLoginConfigWrapper deferred_login_config;
 
 
     private Map<String, List<Object>> topicPromos = new LinkedHashMap<>();
