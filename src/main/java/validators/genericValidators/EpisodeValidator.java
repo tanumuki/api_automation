@@ -2,6 +2,7 @@ package validators.genericValidators;
 
 import entities.*;
 import org.testng.asserts.SoftAssert;
+import pojos.SearchGetEntityResults.ArtistResultObj;
 import validators.AssertionMsg;
 import validators.Validate;
 
@@ -135,6 +136,16 @@ public class EpisodeValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(mi.getMultiBr()))
             sa.assertTrue(Validate.asBoolean(mi.getMultiBr()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.multi_br", mi.getMultiBr(), episode.getId()));
+
+        if(Validate.isNonEmptyString(mi.getAlbum()))
+            sa.assertTrue(Validate.asString(mi.getAlbum()), AssertionMsg.print(className, methodName, "episode.more_info.album", mi.getAlbum()));
+
+        if(mi.getPrimary_artists() != null) {
+            for(ArtistResultObj artist : mi.getPrimary_artists()){
+                new ArtistResultObjValidator().validate(artist, sa);
+            }
+        }
+
     }
 
     /**
@@ -154,6 +165,9 @@ public class EpisodeValidator extends EntityValidator {
         sa.assertTrue(Validate.asString(mi.getSeasonTitle()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.season_title", mi.getSeasonTitle(), epMini.getId()));
         sa.assertTrue(Validate.asString(mi.getEncryptedMediaUrl()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.encrypted_media_url", mi.getEncryptedMediaUrl(), epMini.getId()));
         sa.assertTrue(Validate.asNum(mi.getEpisodeNumber()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.episode_number", mi.getEpisodeNumber(), epMini.getId()));
+
+        if(Validate.isNonEmptyString(epMini.getDescription()))
+            sa.assertTrue(Validate.asString(epMini.getDescription()), AssertionMsg.print(className, methodName, "episode.description", epMini.getDescription()));
 
         Rights rights = mi.getRights();
         new RightsValidator().validate(rights, sa, "episode", epMini.getId());

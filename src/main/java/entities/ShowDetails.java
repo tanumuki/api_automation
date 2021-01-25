@@ -50,4 +50,7 @@ public class ShowDetails extends Entity{
     private List<ArtistResultObj> primary_artists;
     @JsonProperty("featured_artists")
     private List<ArtistResultObj> featured_artists;
+
+    @JsonProperty("description")
+    private String description;
 }

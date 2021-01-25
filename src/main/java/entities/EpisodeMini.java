@@ -16,4 +16,6 @@ public class EpisodeMini extends Entity{
     private EpisodeMoreInfo moreInfo;
     @JsonProperty("modules")
     private Object modules;
+    @JsonProperty("description")
+    private String description;
 }

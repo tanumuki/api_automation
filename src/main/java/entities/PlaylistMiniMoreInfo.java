@@ -42,6 +42,9 @@ public class PlaylistMiniMoreInfo {
     private String share;
     @JsonProperty("language")
     private String language;
-
+    @JsonProperty("release_date")
+    private String release_date;
+    @JsonProperty("description")
+    private String description;
 
 }

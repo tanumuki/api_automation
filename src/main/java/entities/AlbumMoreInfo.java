@@ -36,5 +36,14 @@ public class AlbumMoreInfo {
 	private String release_date;
 	@JsonProperty("mini_obj")
 	private String miniObj;
-
+	@JsonProperty("ctr")
+	private Integer ctr;
+	@JsonProperty("year")
+	private String year;
+	@JsonProperty("is_movie")
+	private String isMovie;
+	@JsonProperty("language")
+	private String language;
+	@JsonProperty("song_pids")
+	private String songPids;
 }

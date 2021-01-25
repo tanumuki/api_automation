@@ -42,6 +42,15 @@ public class Validate {
         return str.matches("^$|^[0-9]\\d*(\\.\\d+)?$|\\d+");
     }
 
+    public static boolean asSongPids(String songs) {
+        String[] songsList = songs.split(",");
+        for(String song : songsList){
+            if(!asId(song))
+                return false;
+        }
+        return true;
+    }
+
     public static boolean asNum(int number) {
         log.debug("Testing as integer: " + number);
         return (number >=0 || number < 0);
@@ -132,9 +141,10 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties|s)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
+                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
                 "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).png)" +
                 "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.png)");
 
@@ -284,7 +294,7 @@ public class Validate {
     }
 
     public static boolean asChannelSubtype(String str) {
-        return str.matches("genre|mood|music_plus");
+        return str.matches("genre|mood|music_plus|brand");
     }
 
     public static boolean isNonEmptyString(String str) {
@@ -297,6 +307,8 @@ public class Validate {
                 "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
                 "|podcast_home_module_[0-9]+|data_[0-9]+");
     }
+
+
 
     public static boolean asModulesPosition(int pos) {
         return pos <= 15;
@@ -317,7 +329,7 @@ public class Validate {
         switch (type) {
             case "playlist":
                 PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
-                new PlaylistValidator().validate(playlist, sa);
+                new validators.PlaylistMiniValidator().validate(playlist, sa);
                 break;
             case "album":
                 AlbumMiniObject album = mapper.convertValue(entity, AlbumMiniObject.class);
@@ -482,7 +494,7 @@ public class Validate {
 
     public static boolean asHexColour(String str) {
         log.debug("Testing as hex colour: \"" + str + "\"");
-        return str.matches("^#[a-zA-Z0-9]{6}$");
+        return str.matches("^(#)?[a-zA-Z0-9]{6}$");
     }
 
     public static boolean asUserAge(String str) {
@@ -497,5 +509,13 @@ public class Validate {
 
     public static boolean asEmailVerifiedStatus(String str) {
         return str.matches("new_unverified|existing_unverified|existing_verified");
+    }
+
+    public static boolean asCountryCode(String str){
+        return str.matches("^(\\+?\\d{1,3}|\\d{1,4})$");
+    }
+
+    public static boolean asProvider(String str) {
+        return str.equalsIgnoreCase("jio");
     }
 }

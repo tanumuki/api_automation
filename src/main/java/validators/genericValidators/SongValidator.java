@@ -39,6 +39,9 @@ public class SongValidator extends EntityValidator {
         if(artistMap != null){
             new ArtistMapValidator().validate(artistMap, sa, sourceType, sourceEntity);
         }
+
+        if(Validate.isNonEmptyString(songObj.getDescription()))
+            sa.assertTrue(Validate.asString(songObj.getDescription()), AssertionMsg.print(className, methodName, "song.description", songObj.getDescription()));
     }
 
 
@@ -168,6 +171,9 @@ public class SongValidator extends EntityValidator {
                 new TrillerValidator().validate(trillerObj, sa);
             }
         }
+
+        if(Validate.isNonEmptyString(moreInfo.getLanguage()))
+            sa.assertTrue(Validate.asMusicLanguages(moreInfo.getLanguage()), AssertionMsg.print(className, methodName, "song.more_info.language", moreInfo.getLanguage()));
 
 		log.info("More Info Validation done!");
 

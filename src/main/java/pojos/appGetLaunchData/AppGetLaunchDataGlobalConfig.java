@@ -142,5 +142,9 @@ public class AppGetLaunchDataGlobalConfig {
     private Boolean showDemographicModal;
     @JsonProperty("show_language_selection_screen")
     private Boolean showLanguageSelectionScreen;
+    @JsonProperty("show_app_language_modal")
+    private Boolean show_app_language_modal;
+    @JsonProperty("skip_limit")
+    private Integer skip_limit;
 
 }
