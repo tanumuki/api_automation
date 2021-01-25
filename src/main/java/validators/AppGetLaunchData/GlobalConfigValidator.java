@@ -5,11 +5,22 @@ import pojos.appGetLaunchData.*;
 import validators.AssertionMsg;
 import validators.Validate;
 
+import java.util.Map;
+
 public class GlobalConfigValidator {
     final String className = getClass().getName();
 
-    public void validate(AppGetLaunchDataGlobalConfig gc, SoftAssert sa) {
+    public void validate(AppGetLaunchData data, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        AppGetLaunchDataGlobalConfig gc = data.getGlobal_config();
+        sa.assertTrue(Validate.asBoolean(gc.getShowDemographicModal()), AssertionMsg.print(className, methodName, "global_config.show_demographic_modal", String.valueOf(gc.getShowDemographicModal())));
+
+        sa.assertTrue(Validate.asBoolean(gc.getShowLanguageSelectionScreen()), AssertionMsg.print(className, methodName, "global_config.show_language_selection_screen_modal", String.valueOf(gc.getShowLanguageSelectionScreen())));
+
+        sa.assertTrue(Validate.asBoolean(gc.getShow_app_language_modal()), AssertionMsg.print(className, methodName, "global_config.show_demoapp_language_modal", String.valueOf(gc.getShow_app_language_modal())));
+
+        sa.assertTrue(Validate.asBoolean(gc.getForceHttps()), AssertionMsg.print(className, methodName, "global_config.force_https", String.valueOf(gc.getShowDemographicModal())));
+
         sa.assertTrue(Validate.asNum(gc.getSpotlight_image_width()), AssertionMsg.print(className, methodName, "global_config.spotlight_image_width", gc.getSpotlight_image_width()));
 
         sa.assertTrue(Validate.asNum(gc.getSpotlight_image_height()), AssertionMsg.print(className, methodName, "global_config.spotlight_image_height", gc.getSpotlight_image_height()));
@@ -50,7 +61,8 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asNum(gc.getNotification_duration()), AssertionMsg.print(className, methodName, "global_config.notification_duration", String.valueOf(gc.getNotification_duration())));
 
-        sa.assertTrue(Validate.asNum(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
+        if(gc.getApp_version() != null)
+            sa.assertTrue(Validate.asNum(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
 
         sa.assertTrue(Validate.asString(gc.getRadio_spotlight_action()), AssertionMsg.print(className, methodName, "global_config.radio_spotlight_action", gc.getRadio_spotlight_action()));
 
@@ -100,7 +112,7 @@ public class GlobalConfigValidator {
         //Validate cache config
         validateCacheConfig(gc.getCacheConfig(), sa);
 
-        sa.assertTrue(Validate.asBoolean(gc.getMigration()), AssertionMsg.print(className, methodName, "global_config.mingration", gc.getMigration()));
+        sa.assertTrue(Validate.asBoolean(gc.getMigration()), AssertionMsg.print(className, methodName, "global_config.migration", gc.getMigration()));
 
         sa.assertTrue(Validate.asBoolean(gc.getJioanalytics()), AssertionMsg.print(className, methodName, "global_config.jio_analytics", gc.getJioanalytics()));
 
@@ -116,10 +128,11 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asBoolean(gc.getClevertap()), AssertionMsg.print(className, methodName, "global_config.clevertap", gc.getClevertap()));
 
-        //TODO: Validate phn_otp_providers
+        validateOtpProviders(gc.getPhn_otp_providers(), sa);
 
         //product details
-        validateProductDetails(gc.getProduct_details(), sa);
+        if(gc.getProduct_details() != null)
+            validateProductDetails(gc.getProduct_details(), sa);
 
         // trial
         validateTrial(gc.getTrial(), sa);
@@ -138,6 +151,19 @@ public class GlobalConfigValidator {
         sa.assertTrue(Validate.asNum(gc.getServer_ts()), AssertionMsg.print(className, methodName, "global_config.server_ts", String.valueOf(gc.getServer_ts())));
 
         sa.assertTrue(Validate.asBoolean(gc.getLib_img_cache()), AssertionMsg.print(className, methodName, "global_config.lib_img_cache", String.valueOf(gc.getLib_img_cache())));
+
+        if(data.getUser_state().getUserLoggedIn() == 1)
+            sa.assertTrue(Validate.asBoolean(gc.getFirst_time_user_ad()), AssertionMsg.print(className, methodName, "global_config.first_time_user_ad", String.valueOf(gc.getFirst_time_user_ad())));
+
+        sa.assertTrue(Validate.asBoolean(gc.getJuspayPaymentFlow()), AssertionMsg.print(className, methodName, "global_config.juspay_payment_flow", String.valueOf(gc.getJuspayPaymentFlow())));
+    }
+
+    void validateOtpProviders(OTPProviders op, SoftAssert sa){
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        for(Map.Entry<String, String> entry : op.getProviders().entrySet()){
+            sa.assertTrue(Validate.asCountryCode(entry.getKey()), AssertionMsg.print(className, methodName, "global_config.phn_otp_providers", entry.getKey()));
+            sa.assertTrue(Validate.asProvider(entry.getValue()), AssertionMsg.print(className, methodName, "global_config.phn_otp_providers", entry.getValue()));
+        }
     }
 
     void validateProductDetails(ProductDetails pd, SoftAssert sa) {

@@ -141,7 +141,7 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties|s)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
@@ -512,7 +512,7 @@ public class Validate {
     }
 
     public static boolean asCountryCode(String str){
-        return str.matches("\\+[0-9-]{5}");
+        return str.matches("^(\\+?\\d{1,3}|\\d{1,4})$");
     }
 
     public static boolean asProvider(String str) {
