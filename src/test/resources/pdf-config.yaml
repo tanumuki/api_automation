@@ -1,0 +1,62 @@
+passColor: 007100
+failColor: ff0000
+skipColor: ffbf00
+displayFeature: true
+displayScenario: true
+displayDetailed: true
+
+summaryConfig:
+  title: Backend Automation Report
+  dataBackgroundColor: 000000
+  titleColor: FF0000
+  dateColor: 969696
+  startTimeColor: 000000
+  endTimeColor: 000000
+  durationColor: 000000
+  dial:
+    featureRanges: 60 95
+    scenarioRanges: 70 90
+    stepRanges: 75 85
+    badColor: 007100
+    averageColor: ffbf00
+    goodColor: ff0000
+
+featureConfig:
+  itemcount: 10
+  totalColor: 000000
+  durationColor: 000000
+
+scenarioConfig:
+  itemcount: 12
+  totalColor: FF0000
+  durationColor: FFFFFF
+
+detailedFeatureConfig:
+  featureNameColor: FF0000
+  startEndTimeColor: 000000
+  tagColor: 404040
+  dataHeaderColor: FFFFFF
+  dataBackgroundColor: 000000
+  totalColor: 9fddeb
+  durationColor: FFFFFF
+  durationBackgroundColor: 000000
+
+detailedScenarioConfig:
+  featureNameColor: C0C0C0
+  scenarioNameColor: FF0000
+  startEndTimeColor: 000000
+  tagColor: 404040
+  dataHeaderColor: FFFFFF
+  dataBackgroundColor: 000000
+  totalColor: 9fddeb
+  durationColor: FFFFFF
+  durationBackgroundColor: 000000
+  stepChartBarColor: 7f32a8
+
+detailedStepHookConfig:
+  stepTextColor: 0000FF
+  hookTextColor: cb7a1f
+  durationColor: FFFFF
+  errorMsgColor: 000000
+  logMsgColor: 000000
+  mediaMsgColor: FF0000
