@@ -28,4 +28,6 @@ public class PlaylistMini extends Entity {
     private Object numsongs;
     @JsonProperty("description")
     private String description;
+    @JsonProperty("disabled_topic_module")
+    private String disabled_topic_module;
 }

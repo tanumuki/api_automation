@@ -16,9 +16,13 @@ public class ShowDetails extends Entity{
     @JsonProperty("list")
     private String list;
 
+    @JsonProperty("name")
+    private String name;
     @JsonProperty("more_info")
     private ShowMoreInfo moreInfo;
 
+    @JsonProperty("season_number")
+    private String season_number;
     @JsonProperty("mini_obj")
     private Boolean mini_obj;
 
@@ -41,6 +45,8 @@ public class ShowDetails extends Entity{
     private Integer latest_season_sequence;
     @JsonProperty("square_image_url")
     private String square_image_url;
+    @JsonProperty("square_image")
+    private String square_image;
 
 
 // Should be ArtistResultObj not String

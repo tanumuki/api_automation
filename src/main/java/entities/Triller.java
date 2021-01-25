@@ -21,6 +21,8 @@ public class Triller {
 
 	@JsonProperty("user_url")
 	private String userURL;
+	@JsonProperty("pid")
+	private String pid;
 	@JsonProperty("Media_url")
 	private String Media_url;
 	@JsonProperty("user_image")
@@ -33,5 +35,6 @@ public class Triller {
 	private String user_name;
 	@JsonProperty("language")
 	private String language;
-
+	@JsonProperty("artist_id")
+	private String artist_id;
 }

@@ -397,16 +397,7 @@ public class Validate {
         }
     }
 
-    public static void asTopicsPromos(Map<String, List<Object>> map, SoftAssert sa) {
-        for (String key : map.keySet()) {
-            System.out.println("key: " + key);
-            for (Object entity : map.get(key)) {
-                LinkedHashMap entityMap = (LinkedHashMap) entity;
-                Validate.asAssortedEntity(entityMap, sa);
-            }
 
-        }
-    }
 
     public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
         if (artistRecos != null && artistRecos.size() > 0) {

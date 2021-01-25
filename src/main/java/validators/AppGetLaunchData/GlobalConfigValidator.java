@@ -152,7 +152,7 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asBoolean(gc.getLib_img_cache()), AssertionMsg.print(className, methodName, "global_config.lib_img_cache", String.valueOf(gc.getLib_img_cache())));
 
-        if(data.getUser_state().getUserLoggedIn() == 1)
+        if(data.getUserState().getUserLoggedIn() == 1)
             sa.assertTrue(Validate.asBoolean(gc.getFirst_time_user_ad()), AssertionMsg.print(className, methodName, "global_config.first_time_user_ad", String.valueOf(gc.getFirst_time_user_ad())));
 
         sa.assertTrue(Validate.asBoolean(gc.getJuspayPaymentFlow()), AssertionMsg.print(className, methodName, "global_config.juspay_payment_flow", String.valueOf(gc.getJuspayPaymentFlow())));

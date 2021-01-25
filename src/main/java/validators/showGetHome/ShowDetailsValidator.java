@@ -37,11 +37,23 @@ public class ShowDetailsValidator extends EntityValidator {
         if(sd.getMini_obj() != null){
             sa.assertTrue(Validate.asBoolean(sd.getMini_obj()), AssertionMsg.print(className, methodName, "show_details.mini_obj", String.valueOf(sd.getMini_obj())));
         }
+
+        if(Validate.isNonEmptyString(sd.getSeason_number())){
+            sa.assertTrue(Validate.asNum(sd.getSeason_number()), AssertionMsg.print(className, methodName, "show.season_number", sd.getSeason_number()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getName())){
+            sa.assertTrue(Validate.asString(sd.getName()), AssertionMsg.print(className, methodName, "show.name", sd.getName()));
+        }
 //        else
 //            sa.fail(className+"."+ methodName+"-mini_obj is null");
 
         if(Validate.isNonEmptyString(sd.getImageFileUrl())){
             sa.assertTrue(Validate.asCDNURL(sd.getImageFileUrl()), AssertionMsg.print(className, methodName, "show_details.image_file_url", sd.getImageFileUrl()));
+        }
+
+        if(Validate.isNonEmptyString(sd.getSquare_image())){
+            sa.assertTrue(Validate.asCDNURL(sd.getSquare_image()), AssertionMsg.print(className, methodName, "show.square_image", sd.getSquare_image()));
         }
 //        else
 //            sa.fail(className+"."+ methodName+"-image_file_url is null/empty");

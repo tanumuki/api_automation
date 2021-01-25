@@ -44,6 +44,10 @@ public class PlaylistMiniValidator extends EntityValidator {
             validatePlaylistMiniMoreInfo(mi, sa);
         }
 
+        if(Validate.isNonEmptyString(ch.getDisabled_topic_module())){
+            sa.assertTrue(Validate.asString(ch.getDisabled_topic_module()),
+                    AssertionMsg.print(className, methodName, "playlist.disabled_topic_module", ch.getDisabled_topic_module()));
+        }
 
     }
 

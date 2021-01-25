@@ -8,6 +8,7 @@ import pojos.appGetLaunchData.*;
 import pojos.getHomePageDataV2.HomePageDataModules;
 import validators.AssertionMsg;
 import validators.HomepageDataV2.HomePageDataModuleValidator;
+import validators.HomepageDataV2.HomepageDataValidator;
 import validators.Validate;
 import validators.genericValidators.*;
 
@@ -15,11 +16,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GetLaunchDataValidator {
+public class GetLaunchDataValidator extends HomepageDataValidator {
     final String className = getClass().getName();
 
     public void validate(AppGetLaunchData obj, SoftAssert sa, String appVersion) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+        super.validate(obj, sa);
 
         if(obj.getAppVersion() != null)
             sa.assertTrue(Validate.asNum(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
@@ -34,48 +37,10 @@ public class GetLaunchDataValidator {
             sa.assertTrue(Validate.asString(item), AssertionMsg.print(className, methodName, "ef", item));
         }
 
-
-        //Validate ab_test
-
-        //Validate suggest
-        if(obj.getSuggests() instanceof List){
-            sa.assertTrue(((List<?>) obj.getSuggests()).size() == 0, "GetLaunchDataValidator: Suggests coming up as array and is not empty");
-        }else {
-            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-            Suggests suggests = mapper.convertValue(obj.getSuggests(), Suggests.class);
-            validateSuggests(suggests, sa);
-        }
+        //TODO:Validate ab_test
 
         //Validate ping_server
         sa.assertTrue(Validate.asString(obj.getPingServer()), AssertionMsg.print(className, methodName, "ping_server", obj.getPingServer()));
-
-
-        //Validate new trending
-        Validate.asAssortedEntity(obj.getNewTrending(), sa);
-
-        //Validate top playlists
-        Validate.asChartsAndPlaylists(obj.getTopPlaylists(), sa);
-
-        //Validate new albums
-        for (AlbumMiniObject album : obj.getNewAlbums()) {
-            new AlbumMiniValidator().validate(album, sa);
-        }
-
-        //Validate top shows
-        new TopShowsValidator().validate(obj.getTopShows(), sa);
-
-        //Validate browse & discover
-        Validate.asBrowseAndDiscover(obj.getBrowseDiscover(), sa);
-
-        //Validate most_popular_trillers
-        validateTrillers(obj.getMost_popular_trillers(), sa);
-
-        //Validate most_popular_artist_trillers
-        validateTrillers(obj.getMost_popular_artist_trillers(), sa);
-
-
-        //Validate radio
-        Validate.asFeaturedStations(obj.getRadio(), sa);
 
         //Validate top searches
         for (TopSearch ts : obj.getTopSearches()) {
@@ -92,46 +57,20 @@ public class GetLaunchDataValidator {
         //Validate jiologinwall
         if (Validate.isNonEmptyString(obj.getJiologinwall()))
             sa.assertTrue(Validate.asBoolean(obj.getJiologinwall()), AssertionMsg.print(className, methodName, "jiologinwall", obj.getJiologinwall()));
-/*
+
         //Validate deferred login config
         if(obj.getDeferred_login_config() != null)
             validateDeferredLoginConfig(obj.getDeferred_login_config().getConfig(), sa);
-*/
-        //Validate charts
-        Validate.asChartsAndPlaylists(obj.getCharts(), sa);
-
-        new UserStateValidator().validate(obj.getUser_state(), sa);
 
         //Validate ads
         validateAds(obj.getAds(), sa);
 
-        //Validate mix & tag_mixes
-        Validate.asMixes(obj.getTagMixes(), sa);
-
-        //Validate artist recos
-        Validate.asArtistRecos(obj.getArtistRecos(), sa);
-
-        //Validate City Modules
-        validateCityModules(obj.getCityMod(), sa);
-
         //Validate saavn_pro
         validateSaavnpro(obj.getSaavn_pro(), sa);
 
-        //Validate Topics & promos
-        if(obj.getTopicPromos() != null) {
-            for(Map.Entry<String, List<LinkedHashMap>> entry : obj.getTopicPromos().entrySet()){
-                if(entry.getKey().matches("(promo|topic)*")){
-                    Validate.asAssortedEntity(entry.getValue(), sa);
-                }
-            }
-        }
+        //TODO: Validation for artist_recos
 
-
-        validateModules(obj.getModules(), sa);
-
-        sa.assertTrue(Validate.asString(obj.getGreeting()), AssertionMsg.print(className, methodName, "greeting", obj.getGreeting()));
-
-        sa.assertTrue(Validate.asBoolean(obj.getLastPage()), AssertionMsg.print(className, methodName, "last_page", String.valueOf(obj.getLastPage())));
+        //TODO: Validation for favorites
 
     }
 
@@ -155,7 +94,7 @@ public class GetLaunchDataValidator {
             sa.assertTrue(Validate.asString(dl.getLogged_in()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".logged_in", dl.getLogged_in()));
 
         if(Validate.isNonEmptyString(dl.getPro_Feature()))
-            sa.assertTrue(Validate.asString(dl.getType()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".pro_feature", dl.getPro_Feature()));
+            sa.assertTrue(Validate.asString(dl.getPro_Feature()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".pro_feature", dl.getPro_Feature()));
     }
 
     void validateDeferredLoginConfig(DeferredLoginConfigObj con, SoftAssert sa) {
@@ -167,15 +106,9 @@ public class GetLaunchDataValidator {
         validateDeferredLoginConfigObj(con.getSwipe_landing_skippable(), "swipe_landing_skippable", sa);
     }
 
-    void validateTrillers(List<Song> trillers, SoftAssert sa) {
-        for(Song song : trillers){
-            new SongValidator().validate(song, sa, song.getId(), "song");
-        }
-    }
 
-    void validateModules(HomePageDataModules modules, SoftAssert sa) {
-        new HomePageDataModuleValidator().validate(modules, sa);
-    }
+
+
 
 
     public void validateAds(Ads ads, SoftAssert sa) {
@@ -210,14 +143,7 @@ public class GetLaunchDataValidator {
 
     }
 
-    void validateSuggests(Suggests suggests, SoftAssert sa) {
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        sa.assertTrue(Validate.asString(suggests.getHeadline()), AssertionMsg.print(className, methodName, "suggests.headline", suggests.getHeadline()));
 
-        sa.assertTrue(Validate.asString(suggests.getBadge()), AssertionMsg.print(className, methodName, "suggests.badge", suggests.getBadge()));
-
-        Validate.asAssortedEntity(suggests.getItems(), sa);
-    }
 
     public void validateTopSearches(TopSearch ts, SoftAssert sa, String appVersion) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
@@ -264,10 +190,6 @@ public class GetLaunchDataValidator {
 
         sa.assertTrue(Validate.asNum(uc.getFrequency()), AssertionMsg.print(className, methodName, "update_config.frequency", String.valueOf(uc.getFrequency())));
 
-    }
-
-    void validateCityModules(List<LinkedHashMap> cityMods, SoftAssert sa) {
-        Validate.asAssortedEntity(cityMods, sa);
     }
 
 

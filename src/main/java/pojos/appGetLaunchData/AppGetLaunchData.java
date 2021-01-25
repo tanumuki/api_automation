@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import pojos.getHomePageDataV2.HomePageDataModules;
+import pojos.getHomePageDataV2.HomePageDataV2;
 import pojos.getTopShows.TopShows;
 
 import java.util.LinkedHashMap;
@@ -18,7 +19,7 @@ import java.util.Map;
 @Data
 @Getter
 @Setter
-public class AppGetLaunchData {
+public class AppGetLaunchData extends HomePageDataV2 {
     @JsonProperty("app_version")
     private String appVersion;
     @JsonProperty("update_config")
@@ -29,64 +30,25 @@ public class AppGetLaunchData {
     private List<String> ef = null;
     @JsonProperty("ab_test_exp")
     private List<String> abTestExp = null;
-    @JsonProperty("suggests")
-    private Object suggests = null;
     @JsonProperty("ping_server")
     private String pingServer;
-    @JsonProperty("new_trending")
-    private List<LinkedHashMap> newTrending = null;
-    @JsonProperty("charts")
-    private List<PlaylistMini> charts = null;
-    @JsonProperty("new_albums")
-    private List<AlbumMiniObject> newAlbums = null;
-    @JsonProperty("top_playlists")
-    private List<PlaylistMini> topPlaylists = null;
-    @JsonProperty("top_shows")
-    private TopShows topShows;
-    @JsonProperty("browse_discover")
-    private List<Channel> browseDiscover = null;
-    @JsonProperty("most_popular_trillers")
-    private List<Song> most_popular_trillers;
-    @JsonProperty("most_popular_artist_trillers")
-    private List<Song> most_popular_artist_trillers;
-    @JsonProperty("radio")
-    private Radio radio;
     @JsonProperty("top_searches")
     private List<TopSearch> topSearches;
     @JsonProperty("loginwall")
     private String loginwall;
     @JsonProperty("jiologinwall")
     private String jiologinwall;
-    @JsonProperty("user_state")
-    private UserState user_state;
     @JsonProperty("ads")
     private Ads ads;
-    @JsonProperty("tag_mixes")
-    private List<Mix> tagMixes = null;
-    @JsonProperty("artist_recos")
-    private List<RadioStation> artistRecos = null;
-    @JsonProperty("city_mod")
-    private List<LinkedHashMap> cityMod = null;
-    @JsonProperty("greeting")
-    private String greeting;
-    @JsonProperty("last_page")
-    private Boolean lastPage;
     @JsonProperty("modules")
     private HomePageDataModules modules;
     @JsonProperty("device_status")
     private String deviceStatus;
     @JsonProperty("global_config")
     private AppGetLaunchDataGlobalConfig global_config;
-
     @JsonProperty("deferred_login_config")
     private DeferredLoginConfigWrapper deferred_login_config;
     @JsonProperty("saavn_pro")
     private List<Deeplink> saavn_pro;
-
-    private Map<String, List<LinkedHashMap>> topicPromos = new LinkedHashMap<>();
-    @JsonAnySetter
-    public void setTopicPromos(String key, List<LinkedHashMap> val){
-        topicPromos.put(key,val);
-    }
 
 }

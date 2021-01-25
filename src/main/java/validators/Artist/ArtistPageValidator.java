@@ -189,6 +189,10 @@ public class ArtistPageValidator extends EntityValidator {
             sa.fail(className+"--"+ methodName + "Artist fan count is null/empty");
         }
 
+        if(Validate.isNonEmptyString(artistObj.getImage_url())){
+            sa.assertTrue(Validate.asCDNURL(artistObj.getImage_url()), AssertionMsg.print(className, methodName, "image_url", artistObj.getImage_url()));
+        }
+
         sa.assertTrue(Validate.asBoolean(artistObj.is_followed()), AssertionMsg.print(className, methodName, "is_followed", Boolean.toString(artistObj.is_followed())));
 
     }
