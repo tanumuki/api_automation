@@ -17,9 +17,9 @@ summaryConfig:
     featureRanges: 60 95
     scenarioRanges: 70 90
     stepRanges: 75 85
-    badColor: ff0000
+    badColor: 007100
     averageColor: ffbf00
-    goodColor: 05a167
+    goodColor: ff0000
 
 featureConfig:
   itemcount: 10
