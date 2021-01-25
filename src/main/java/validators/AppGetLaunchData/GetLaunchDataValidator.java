@@ -13,6 +13,7 @@ import validators.genericValidators.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GetLaunchDataValidator {
     final String className = getClass().getName();
@@ -113,8 +114,18 @@ public class GetLaunchDataValidator {
         //Validate City Modules
         validateCityModules(obj.getCityMod(), sa);
 
+        //Validate saavn_pro
+        validateSaavnpro(obj.getSaavn_pro(), sa);
 
-        //TODO: Validate Promos
+        //Validate Topics & promos
+        if(obj.getTopicPromos() != null) {
+            for(Map.Entry<String, List<LinkedHashMap>> entry : obj.getTopicPromos().entrySet()){
+                if(entry.getKey().matches("(promo|topic)*")){
+                    Validate.asAssortedEntity(entry.getValue(), sa);
+                }
+            }
+        }
+
 
         validateModules(obj.getModules(), sa);
 
@@ -123,6 +134,8 @@ public class GetLaunchDataValidator {
         sa.assertTrue(Validate.asBoolean(obj.getLastPage()), AssertionMsg.print(className, methodName, "last_page", String.valueOf(obj.getLastPage())));
 
     }
+
+
 
     void validateDeferredLoginConfigObj(DeferredLoginConfigObjParams dl, String configName, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
@@ -257,7 +270,7 @@ public class GetLaunchDataValidator {
         Validate.asAssortedEntity(cityMods, sa);
     }
 
-    /*
+
     void validateSaavnpro(List<Deeplink> deeplinks, SoftAssert sa) {
         for(Deeplink dl : deeplinks){
             validateDeeplink(dl, sa);
@@ -269,5 +282,5 @@ public class GetLaunchDataValidator {
         new EntityValidator().validate(deeplink, sa);
         sa.assertTrue(Validate.asDeeplink(deeplink.getDeeplink()), AssertionMsg.print(className, methodName, "deeplink.deeplink", deeplink.getDeeplink()));
     }
-*/
+
 }

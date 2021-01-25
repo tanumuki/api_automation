@@ -384,7 +384,7 @@ public class Validate {
         return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink");
     }
 
-    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^jiosaavn:\\/\\/(open|view)\\/[a-z]+\\/[0-9]+");}
+    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^(jiosaavn|saavn):\\/\\/(open|view)\\S+\\S+");}
     public static boolean asCategoryType(String categoryType) {
         return categoryType.matches("static|user_defined");
     }

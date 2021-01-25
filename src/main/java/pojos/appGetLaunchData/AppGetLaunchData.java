@@ -80,11 +80,12 @@ public class AppGetLaunchData {
 
     @JsonProperty("deferred_login_config")
     private DeferredLoginConfigWrapper deferred_login_config;
+    @JsonProperty("saavn_pro")
+    private List<Deeplink> saavn_pro;
 
-
-    private Map<String, List<Object>> topicPromos = new LinkedHashMap<>();
+    private Map<String, List<LinkedHashMap>> topicPromos = new LinkedHashMap<>();
     @JsonAnySetter
-    public void setTopicPromos(String key, List<Object> val){
+    public void setTopicPromos(String key, List<LinkedHashMap> val){
         topicPromos.put(key,val);
     }
 
