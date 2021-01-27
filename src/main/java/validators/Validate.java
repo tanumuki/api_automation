@@ -157,7 +157,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
         } else
 //          perma_url is empty, just verify it as a string and return it
             return asString(url);
@@ -305,7 +305,7 @@ public class Validate {
         return source.matches("list|reco.getAlbumReco|client|charts|new_trending" +
                 "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release" +
                 "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
-                "|podcast_home_module_[0-9]+|data_[0-9]+");
+                "|podcast_home_module_[0-9]+|data_[0-9]+|jiotune.jioTuneRequestStatus");
     }
 
 

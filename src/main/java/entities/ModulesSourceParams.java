@@ -15,5 +15,9 @@ import java.util.List;
 public class ModulesSourceParams {
     @JsonProperty("albumid")
     private String albumid;
+    @JsonProperty("p")
+    private Integer page;
+    @JsonProperty("n")
+    private Integer numItems;
 
 }

@@ -47,4 +47,18 @@ public class PlaylistMiniMoreInfo {
     @JsonProperty("description")
     private String description;
 
+    //Jiophone fields
+    @JsonProperty("primary_artists")
+    private String primaryArtists;
+    @JsonProperty("singers")
+    private String singers;
+    @JsonProperty("ctr")
+    private Integer ctr;
+    @JsonProperty("score")
+    private Double score;
+    @JsonProperty("vcode")
+    private String vcode;
+    @JsonProperty("vlink")
+    private String vlink;
+
 }

@@ -47,8 +47,10 @@ public class HomepageDataValidator {
         validateCityMod(hd, sa);
         validateUserState(hd, sa);
 
-        validateTrillers(hd.getMost_popular_trillers(), sa);
-        validateTrillers(hd.getMost_popular_artist_trillers(), sa);
+        if(hd.getMost_popular_trillers() != null)
+            validateTrillers(hd.getMost_popular_trillers(), sa);
+        if(hd.getMost_popular_artist_trillers() != null)
+            validateTrillers(hd.getMost_popular_artist_trillers(), sa);
 
         new UserStateValidator().validate(hd.getUserState(), sa);
 

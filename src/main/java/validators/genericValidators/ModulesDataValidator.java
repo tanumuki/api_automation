@@ -2,6 +2,8 @@ package validators.genericValidators;
 
 import entities.Modules;
 import entities.ModulesData;
+import entities.ModulesDataShowMore;
+import entities.ModulesSourceParams;
 import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
@@ -100,6 +102,49 @@ public class ModulesDataValidator {
             if(Validate.isNonEmptyString(md.getImage_type())) {
                 System.out.println("image type: " + md.getImage_type());
                 sa.assertTrue(Validate.asImageType(md.getImage_type()), AssertionMsg.print(className, methodName, "module.image_type", md.getImage_type()));
+            }
+
+            if(md.getShowMore() != null){
+                ModulesDataShowMore mds = md.getShowMore();
+
+                if(Validate.isNonEmptyString(mds.getType()))
+                    sa.assertTrue(Validate.asString(mds.getType()), AssertionMsg.print(className, methodName, "module.show_more.type", mds.getType()));
+
+                if(Validate.isNonEmptyString(mds.getSource()))
+                    sa.assertTrue(Validate.asModulesSource(mds.getSource()), AssertionMsg.print(className, methodName, "module.show_more.source", mds.getSource()));
+
+                if(Validate.isNonEmptyString(mds.getTitle()))
+                    sa.assertTrue(Validate.asString(mds.getTitle()), AssertionMsg.print(className, methodName, "module.show_more.title", mds.getTitle()));
+
+                if(Validate.isNonEmptyString(mds.getPage_param()))
+                    sa.assertTrue(Validate.asString(mds.getPage_param()), AssertionMsg.print(className, methodName, "module.show_more.page_param", mds.getPage_param()));
+
+                if(Validate.isNonEmptyString(mds.getSize_param()))
+                    sa.assertTrue(Validate.asString(mds.getSize_param()), AssertionMsg.print(className, methodName, "module.show_more.size_param", mds.getSize_param()));
+
+                if(mds.getDefault_size() != null)
+                    sa.assertTrue(Validate.asNum(mds.getDefault_size()), AssertionMsg.print(className, methodName, "module.show_more.default_size", String.valueOf(mds.getDefault_size())));
+
+                if(Validate.isNonEmptyString(mds.getScroll_type()))
+                    sa.assertTrue(Validate.asModulesScrollType(mds.getScroll_type()), AssertionMsg.print(className, methodName, "module.show_more.scroll_type", mds.getScroll_type()));
+
+                if(mds.getParams() != null) {
+                    if(Validate.isNonEmptyString(mds.getParams().getType()))
+                        sa.assertTrue(Validate.asString(mds.getParams().getType()), AssertionMsg.print(className, methodName, "module.show_more.param.type", mds.getParams().getType()));
+                }
+            }
+
+            if(md.getSourceParams() != null){
+                ModulesSourceParams msp = md.getSourceParams();
+                if(Validate.isNonEmptyString(msp.getAlbumid()))
+                    sa.assertTrue(Validate.asString(msp.getAlbumid()), AssertionMsg.print(className, methodName, "module.source_param.albumid", msp.getAlbumid()));
+
+                if(msp.getPage() != null)
+                    sa.assertTrue(Validate.asNum(msp.getPage()), AssertionMsg.print(className, methodName, "module.source_param.p", String.valueOf(msp.getPage())));
+
+                if(msp.getNumItems() != null)
+                    sa.assertTrue(Validate.asNum(msp.getNumItems()), AssertionMsg.print(className, methodName, "module.source_param.n", String.valueOf(msp.getNumItems())));
+
             }
         }
 

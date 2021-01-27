@@ -21,4 +21,14 @@ public class ModulesDataShowMore {
     private Params params;
     @JsonProperty("title")
     private String title;
+    @JsonProperty("page_param")
+    private String page_param;
+    @JsonProperty("size_param")
+    private String size_param;
+    @JsonProperty("default_size")
+    private Integer default_size;
+    @JsonProperty("scroll_type")
+    private String scroll_type;
+
+
 }
