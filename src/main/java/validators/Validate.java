@@ -303,9 +303,10 @@ public class Validate {
 
     public static boolean asModulesSource(String source) {
         return source.matches("list|reco.getAlbumReco|client|charts|new_trending" +
-                "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release" +
+                "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles" +
+                "|similarArtists|artistPlaylists|triller|latest_release|show" +
                 "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
-                "|podcast_home_module_[0-9]+|data_[0-9]+|jiotune.jioTuneRequestStatus");
+                "|podcast_home_module_[0-9]+|data_[0-9]+|jiotune.jioTuneRequestStatus|artist");
     }
 
 
@@ -485,7 +486,7 @@ public class Validate {
 
     public static boolean asHexColour(String str) {
         log.debug("Testing as hex colour: \"" + str + "\"");
-        return str.matches("^(#)?[a-zA-Z0-9]{6}$");
+        return str.matches("^(#)?[a-zA-Z0-9]{6,8}$");
     }
 
     public static boolean asUserAge(String str) {

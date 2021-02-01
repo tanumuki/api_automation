@@ -196,14 +196,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 
     void validateSaavnpro(List<Deeplink> deeplinks, SoftAssert sa) {
         for(Deeplink dl : deeplinks){
-            validateDeeplink(dl, sa);
+            new DeeplinkValidator().validate(dl, sa);
         }
     }
-
-    void validateDeeplink(Deeplink deeplink, SoftAssert sa) {
-        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        new EntityValidator().validate(deeplink, sa);
-        sa.assertTrue(Validate.asDeeplink(deeplink.getDeeplink()), AssertionMsg.print(className, methodName, "deeplink.deeplink", deeplink.getDeeplink()));
-    }
-
 }

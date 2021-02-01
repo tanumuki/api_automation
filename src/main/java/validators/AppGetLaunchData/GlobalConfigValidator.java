@@ -4,6 +4,7 @@ import org.testng.asserts.SoftAssert;
 import pojos.appGetLaunchData.*;
 import validators.AssertionMsg;
 import validators.Validate;
+import validators.genericValidators.DeeplinkValidator;
 
 import java.util.Map;
 
@@ -156,7 +157,13 @@ public class GlobalConfigValidator {
             sa.assertTrue(Validate.asBoolean(gc.getFirst_time_user_ad()), AssertionMsg.print(className, methodName, "global_config.first_time_user_ad", String.valueOf(gc.getFirst_time_user_ad())));
 
         sa.assertTrue(Validate.asBoolean(gc.getJuspayPaymentFlow()), AssertionMsg.print(className, methodName, "global_config.juspay_payment_flow", String.valueOf(gc.getJuspayPaymentFlow())));
+
+        //Validate pro_cta
+        new DeeplinkValidator().validate(gc.getPro_cta(), sa);
+
     }
+
+
 
     void validateOtpProviders(OTPProviders op, SoftAssert sa){
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();

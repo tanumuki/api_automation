@@ -146,5 +146,6 @@ public class AppGetLaunchDataGlobalConfig {
     private Boolean show_app_language_modal;
     @JsonProperty("skip_limit")
     private Integer skip_limit;
-
+    @JsonProperty("pro_cta")
+    private Deeplink pro_cta;
 }

@@ -13,15 +13,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Deeplink extends Entity {
-    @JsonProperty("title")
-    private String title;
-    @JsonProperty("subtitle")
-    private String subtitle;
-    @JsonProperty("type")
-    private String type;
     @JsonProperty("deeplink")
     private String deeplink;
-    @JsonProperty("image")
-    private String image;
-
+    @JsonProperty("color")
+    private String color;
 }
