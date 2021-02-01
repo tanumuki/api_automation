@@ -29,7 +29,7 @@ public class HomepageDataValidator {
         validatePlaylistsCharts(hd, sa);
         validateRadio(hd, sa);
         validateTopShows(hd, sa);
-//        validateFavorites(hd, sa);
+        validateFavorites(hd, sa);
         validateSuggests(hd, sa);
 
         if(hd.getTopicPromos() != null) {
@@ -66,9 +66,14 @@ public class HomepageDataValidator {
     }
 
     void validateNewAlbums(HomePageDataV2 hd, SoftAssert sa) {
-        for (AlbumMiniObject album : hd.getNewAlbums()) {
-            new AlbumMiniValidator().validate(album, sa);
+        if(hd.getNewAlbums().size() > 6) {
+            for (AlbumMiniObject album : hd.getNewAlbums()) {
+                new AlbumMiniValidator().validate(album, sa);
+            }
+        }else {
+            sa.fail("GetHomepageData Validator: New Albums list size <= 6");
         }
+
     }
 
     void validateCityMod(HomePageDataV2 hd, SoftAssert sa) {

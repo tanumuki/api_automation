@@ -127,11 +127,10 @@ public class PlaylistMiniValidator extends EntityValidator {
         if(mi.getScore() != null)
             sa.assertTrue(mi.getScore() instanceof Double, AssertionMsg.print(className, methodName, "playlist.more_info.score", String.valueOf(mi.getScore())));
 
-        if(Validate.isNonEmptyString(mi.getVcode()))
+        if(Validate.isNonEmptyString(mi.getVcode())){
             sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "playlist.more_info.vcode", mi.getVcode()));
-
-        if(Validate.isNonEmptyString(mi.getVlink()))
             sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
+        }
     }
 
 
