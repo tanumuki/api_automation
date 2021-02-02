@@ -62,8 +62,8 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asNum(gc.getNotification_duration()), AssertionMsg.print(className, methodName, "global_config.notification_duration", String.valueOf(gc.getNotification_duration())));
 
-        if(gc.getApp_version() != null)
-            sa.assertTrue(Validate.asNum(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
+        String appVersion = System.getProperty("app_version");
+        sa.assertTrue(appVersion.equals(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
 
         sa.assertTrue(Validate.asString(gc.getRadio_spotlight_action()), AssertionMsg.print(className, methodName, "global_config.radio_spotlight_action", gc.getRadio_spotlight_action()));
 

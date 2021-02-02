@@ -19,13 +19,15 @@ import java.util.Map;
 public class GetLaunchDataValidator extends HomepageDataValidator {
     final String className = getClass().getName();
 
-    public void validate(AppGetLaunchData obj, SoftAssert sa, String appVersion) {
+    public void validate(AppGetLaunchData obj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         super.validate(obj, sa);
 
-        sa.assertTrue(Validate.asString(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
-        System.out.println("app_version: " + System.getProperty("app_version"));
+        String appVersion = System.getProperty("app_version");
+        sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
+
+
 
 
         if(obj.getUpdateConfig() != null)

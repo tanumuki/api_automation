@@ -34,7 +34,7 @@ public class HomepageDataValidator {
 
         if(hd.getTopicPromos() != null) {
             for(Map.Entry<String, List<LinkedHashMap>> entry : hd.getTopicPromos().entrySet()){
-                if(entry.getKey().matches("(promo|topic)*")){
+                if(Validate.asTopicPromosField(entry.getKey())){
                     Validate.asAssortedEntity(entry.getValue(), sa);
                 }else{
                     sa.fail("Found key - " + entry.getKey() + " ,while validating topics & promos ");

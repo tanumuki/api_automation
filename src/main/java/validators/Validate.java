@@ -310,6 +310,9 @@ public class Validate {
     }
 
 
+    public static boolean asTopicPromosField(String key) {
+        return key.matches("(promo|topic|nrtplaylist| topics & promos)[a-zA-z0-9_\\^:-]*");
+    }
 
     public static boolean asModulesPosition(int pos) {
         return pos <= 15;
