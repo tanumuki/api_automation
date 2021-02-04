@@ -1,7 +1,10 @@
 package validators.genericValidators;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.Channel;
 import entities.ChannelMoreInfo;
+import entities.PlaylistMiniMoreInfo;
 import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
@@ -50,33 +53,47 @@ public class ChannelValidator extends EntityValidator {
 
     void validateMoreInfo(Channel chObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        ChannelMoreInfo moreInfo = chObj.getMore_info();
-        if(Validate.isNonEmptyString(moreInfo.getBadge()))
-            sa.assertTrue(Validate.asString(moreInfo.getBadge()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.badge", moreInfo.getBadge(), chObj.getId()));
 
-        sa.assertTrue(Validate.asChannelSubtype(moreInfo.getSubType()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.sub_type", moreInfo.getSubType(), chObj.getId()));
+        if(chObj.getMore_info() instanceof List){
+            sa.assertTrue(((List<?>) chObj.getMore_info()).size() == 0, " Channel more_info of type list has contents");
+        } else if(chObj.getMore_info() instanceof ChannelMoreInfo){
+            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
-        if(Validate.isNonEmptyString(moreInfo.getAvailable()))
-            sa.assertTrue(Validate.asNum(moreInfo.getAvailable()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.available", moreInfo.getAvailable(), chObj.getId()));
+            ChannelMoreInfo moreInfo = mapper.convertValue(chObj.getMore_info(), ChannelMoreInfo.class);
 
-        if(Validate.isNonEmptyString(moreInfo.getIsFeatured()))
-            sa.assertTrue(Validate.asNum(moreInfo.getIsFeatured()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.is_featured", moreInfo.getIsFeatured(), chObj.getId()));
+            if(Validate.isNonEmptyString(moreInfo.getBadge()))
+                sa.assertTrue(Validate.asString(moreInfo.getBadge()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.badge", moreInfo.getBadge(), chObj.getId()));
 
-        if(Validate.isNonEmptyString(moreInfo.getVideoUrl()))
-            sa.assertTrue(Validate.asCDNURL(moreInfo.getVideoUrl()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_url", moreInfo.getVideoUrl(), chObj.getId()));
+            sa.assertTrue(Validate.asChannelSubtype(moreInfo.getSubType()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.sub_type", moreInfo.getSubType(), chObj.getId()));
 
-        if(Validate.isNonEmptyString(moreInfo.getVideoThumbnail()))
-            sa.assertTrue(Validate.asCDNURL(moreInfo.getVideoThumbnail()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_thumbnail", moreInfo.getVideoThumbnail(), chObj.getId()));
+            if(Validate.isNonEmptyString(moreInfo.getAvailable()))
+                sa.assertTrue(Validate.asNum(moreInfo.getAvailable()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.available", moreInfo.getAvailable(), chObj.getId()));
 
-        if(moreInfo.getLanguage() != null) {
-            for(String lang : moreInfo.getLanguage()){
-                sa.assertTrue(Validate.asMusicLanguages(lang), AssertionMsg.print(className, methodName, "channel.more_info.languages", lang));
+            if(Validate.isNonEmptyString(moreInfo.getIsFeatured()))
+                sa.assertTrue(Validate.asNum(moreInfo.getIsFeatured()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.is_featured", moreInfo.getIsFeatured(), chObj.getId()));
+
+            if(Validate.isNonEmptyString(moreInfo.getVideoUrl()))
+                sa.assertTrue(Validate.asCDNURL(moreInfo.getVideoUrl()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_url", moreInfo.getVideoUrl(), chObj.getId()));
+
+            if(Validate.isNonEmptyString(moreInfo.getVideoThumbnail()))
+                sa.assertTrue(Validate.asCDNURL(moreInfo.getVideoThumbnail()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.video_thumbnail", moreInfo.getVideoThumbnail(), chObj.getId()));
+
+            if(moreInfo.getLanguage() != null) {
+                for(String lang : moreInfo.getLanguage()){
+                    sa.assertTrue(Validate.asMusicLanguages(lang), AssertionMsg.print(className, methodName, "channel.more_info.languages", lang));
+                }
             }
+
+
+            if(moreInfo.getTags() != null)
+                new TagsValidator().validate(moreInfo.getTags(), sa, "channel", chObj.getId());
+
+        } else {
+            sa.fail("Channel more_info type is not supported");
         }
 
 
-        if(moreInfo.getTags() != null)
-            new TagsValidator().validate(moreInfo.getTags(), sa, "channel", chObj.getId());
+
     }
 
 

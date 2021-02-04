@@ -25,6 +25,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         super.validate(obj, sa);
 
         String appVersion = System.getProperty("app_version");
+//        System.out.println("appVersion1: " + appVersion);
         sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
 
 
