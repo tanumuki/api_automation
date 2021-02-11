@@ -4,6 +4,7 @@ import org.testng.asserts.SoftAssert;
 import pojos.appGetLaunchData.*;
 import validators.AssertionMsg;
 import validators.Validate;
+import validators.genericValidators.DeeplinkValidator;
 
 import java.util.Map;
 
@@ -61,8 +62,8 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asNum(gc.getNotification_duration()), AssertionMsg.print(className, methodName, "global_config.notification_duration", String.valueOf(gc.getNotification_duration())));
 
-        if(gc.getApp_version() != null)
-            sa.assertTrue(Validate.asNum(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
+        String appVersion = System.getProperty("app_version");
+        sa.assertTrue(appVersion.equals(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
 
         sa.assertTrue(Validate.asString(gc.getRadio_spotlight_action()), AssertionMsg.print(className, methodName, "global_config.radio_spotlight_action", gc.getRadio_spotlight_action()));
 
@@ -152,11 +153,17 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asBoolean(gc.getLib_img_cache()), AssertionMsg.print(className, methodName, "global_config.lib_img_cache", String.valueOf(gc.getLib_img_cache())));
 
-        if(data.getUser_state().getUserLoggedIn() == 1)
+        if(data.getUserState().getUserLoggedIn() == 1)
             sa.assertTrue(Validate.asBoolean(gc.getFirst_time_user_ad()), AssertionMsg.print(className, methodName, "global_config.first_time_user_ad", String.valueOf(gc.getFirst_time_user_ad())));
 
         sa.assertTrue(Validate.asBoolean(gc.getJuspayPaymentFlow()), AssertionMsg.print(className, methodName, "global_config.juspay_payment_flow", String.valueOf(gc.getJuspayPaymentFlow())));
+
+        //Validate pro_cta
+        new DeeplinkValidator().validate(gc.getPro_cta(), sa);
+
     }
+
+
 
     void validateOtpProviders(OTPProviders op, SoftAssert sa){
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();

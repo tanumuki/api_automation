@@ -99,4 +99,6 @@ public class Artist extends Entity{
 	private String description;
 	@JsonProperty("position")
 	private Integer position;
+	@JsonProperty("image_url")
+	private String image_url;
 }

@@ -8,6 +8,9 @@ import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
 /**
  * @author ashwinsriv
  *
@@ -25,6 +28,11 @@ public class AlbumMiniValidator extends EntityValidator {
 //		TODO Ashwin: getTrending doesn't have query, text, music, but artistMoreTopAlbums has it. Need to figure out a way to remove the null check so that both APIs can be validated correctly
 		if(Validate.isNonEmptyString(moreInfo.getQuery())) {
 			sa.assertTrue(Validate.asString(moreInfo.getQuery()), AssertionMsg.print(methodName, methodName, "album.more_info.query", moreInfo.getQuery()));
+		}
+
+		if(albumMini.getList() instanceof List){
+			List<LinkedHashMap> songList = (List<LinkedHashMap>) albumMini.getList();
+			Validate.asAssortedEntity(songList, sa);
 		}
 
 		if(Validate.isNonEmptyString(moreInfo.getText())) {

@@ -39,7 +39,7 @@ public class HomePageDataModules {
     @JsonProperty("tag_mixes")
     private ModuleWithViewMoreArray tagMixes;
     @JsonProperty("radio")
-    private ModuleWithViewMoreArray radio;
+    private ModulesWithViewMoreObj radio;
     @JsonProperty("new_albums")
     private ModulesWithViewMoreObj newAlbums;
     @JsonProperty("charts")

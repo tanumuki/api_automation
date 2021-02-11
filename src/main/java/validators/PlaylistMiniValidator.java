@@ -44,6 +44,10 @@ public class PlaylistMiniValidator extends EntityValidator {
             validatePlaylistMiniMoreInfo(mi, sa);
         }
 
+        if(Validate.isNonEmptyString(ch.getDisabled_topic_module())){
+            sa.assertTrue(Validate.asString(ch.getDisabled_topic_module()),
+                    AssertionMsg.print(className, methodName, "playlist.disabled_topic_module", ch.getDisabled_topic_module()));
+        }
 
     }
 
@@ -110,6 +114,23 @@ public class PlaylistMiniValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(mi.getDescription()))
             sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "playlist.more_info.description", mi.getDescription()));
+
+        if(Validate.isNonEmptyString(mi.getPrimaryArtists()))
+            sa.assertTrue(Validate.asString(mi.getPrimaryArtists()), AssertionMsg.print(className, methodName, "playlist.more_info.primary_artist", mi.getPrimaryArtists()));
+
+        if(Validate.isNonEmptyString(mi.getSingers()))
+            sa.assertTrue(Validate.asString(mi.getSingers()), AssertionMsg.print(className, methodName, "playlist.more_info.singers", mi.getSingers()));
+
+        if(mi.getCtr() != null)
+            sa.assertTrue(Validate.asNum(mi.getCtr()), AssertionMsg.print(className, methodName, "playlist.more_info.ctr", String.valueOf(mi.getCtr())));
+
+        if(mi.getScore() != null)
+            sa.assertTrue(mi.getScore() instanceof Double, AssertionMsg.print(className, methodName, "playlist.more_info.score", String.valueOf(mi.getScore())));
+
+        if(Validate.isNonEmptyString(mi.getVcode())){
+            sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "playlist.more_info.vcode", mi.getVcode()));
+            sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
+        }
     }
 
 

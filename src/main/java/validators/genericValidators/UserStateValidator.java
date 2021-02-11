@@ -64,7 +64,7 @@ public class UserStateValidator {
 
         if (us.getProstatus() != null)
             new LoginProStatusValidator().validate(us.getProstatus(), sa);
-        else
+        else if(us.getUserLoggedIn() == 1)
             sa.fail(className + "." + methodName + "-pro_status is null");
 
     }

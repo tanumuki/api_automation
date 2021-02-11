@@ -157,7 +157,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
         } else
 //          perma_url is empty, just verify it as a string and return it
             return asString(url);
@@ -303,12 +303,16 @@ public class Validate {
 
     public static boolean asModulesSource(String source) {
         return source.matches("list|reco.getAlbumReco|client|charts|new_trending" +
-                "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release" +
+                "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles" +
+                "|similarArtists|artistPlaylists|triller|latest_release|show" +
                 "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
-                "|podcast_home_module_[0-9]+|data_[0-9]+");
+                "|podcast_home_module_[0-9]+|data_[0-9]+|jiotune.jioTuneRequestStatus|artist");
     }
 
 
+    public static boolean asTopicPromosField(String key) {
+        return key.matches("(promo|topic|nrtplaylist| topics & promos)[a-zA-z0-9_\\^:-]*");
+    }
 
     public static boolean asModulesPosition(int pos) {
         return pos <= 15;
@@ -384,7 +388,7 @@ public class Validate {
         return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink");
     }
 
-    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^jiosaavn:\\/\\/(open|view)\\/[a-z]+\\/[0-9]+");}
+    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^(jiosaavn|saavn):\\/\\/(open|view)\\S+\\S+");}
     public static boolean asCategoryType(String categoryType) {
         return categoryType.matches("static|user_defined");
     }
@@ -397,16 +401,7 @@ public class Validate {
         }
     }
 
-    public static void asTopicsPromos(Map<String, List<Object>> map, SoftAssert sa) {
-        for (String key : map.keySet()) {
-            System.out.println("key: " + key);
-            for (Object entity : map.get(key)) {
-                LinkedHashMap entityMap = (LinkedHashMap) entity;
-                Validate.asAssortedEntity(entityMap, sa);
-            }
 
-        }
-    }
 
     public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
         if (artistRecos != null && artistRecos.size() > 0) {
@@ -494,7 +489,7 @@ public class Validate {
 
     public static boolean asHexColour(String str) {
         log.debug("Testing as hex colour: \"" + str + "\"");
-        return str.matches("^(#)?[a-zA-Z0-9]{6}$");
+        return str.matches("^(#)?[a-zA-Z0-9]{6,8}$");
     }
 
     public static boolean asUserAge(String str) {

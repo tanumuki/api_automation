@@ -35,5 +35,4 @@ public class MixMoreInfo {
     private String type;
 
 
-
 }

@@ -11,9 +11,9 @@ Feature: View all results for the given query and entity type
 
     Examples:
     | query | type  |
-    | A | albums  |
-    | A | playlists  |
-    | A | songs  |
-    | A | channels  |
+#    | A | albums  |
+#    | A | playlists  |
+#    | A | songs  |
+#    | A | channels  |
     | A | podcasts  |
-    | A | artists  |
+#    | A | artists  |

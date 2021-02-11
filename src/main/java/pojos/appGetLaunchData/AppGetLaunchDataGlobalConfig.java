@@ -86,7 +86,7 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("notification_duration")
     private Integer notification_duration;
     @JsonProperty("app_version")
-    private Integer app_version;
+    private String app_version;
     @JsonProperty("radio_spotlight_action")
     private String radio_spotlight_action;
     @JsonProperty("show_radio_roadblock")
@@ -146,5 +146,6 @@ public class AppGetLaunchDataGlobalConfig {
     private Boolean show_app_language_modal;
     @JsonProperty("skip_limit")
     private Integer skip_limit;
-
+    @JsonProperty("pro_cta")
+    private Deeplink pro_cta;
 }

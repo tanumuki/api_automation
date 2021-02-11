@@ -162,7 +162,7 @@ public class ConfigReader {
     	 */
     	else {
         	
-			baseUrl="https://staging.saavn.com";
+			baseUrl="https://staging.jiosaavn.com";
 			properties.setProperty("baseUrl", baseUrl);
 			password="Saavn123";
 			properties.setProperty("password", password);

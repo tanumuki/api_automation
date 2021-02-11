@@ -19,7 +19,7 @@ public class Channel extends Entity {
     @JsonProperty("mini_obj")
     private boolean mini_obj;
     @JsonProperty("more_info")
-    private ChannelMoreInfo more_info;
+    private Object more_info;
     @JsonProperty("channel_language")
     private List<String> channel_language;
     @JsonProperty("artists")

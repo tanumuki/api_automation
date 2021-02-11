@@ -43,6 +43,8 @@ public class AppGetLaunchData extends Util {
         APIResources resourceAPI = APIResources.valueOf(endpoint);
         String username = ConfigReader.getInstance().getUsername();
         String password = ConfigReader.getInstance().getPassword();
+//        System.out.println("from config appversion: " + ConfigReader.getInstance().getAppVersion());
+
         cookie = GetCookies.initCookies(username, password);
         String resource = resourceAPI.getResource();
         System.out.println("resource: " + resource);
@@ -74,7 +76,9 @@ public class AppGetLaunchData extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         pojos.appGetLaunchData.AppGetLaunchData agld = mapper.readValue(resp.asString(), pojos.appGetLaunchData.AppGetLaunchData.class);
         SoftAssert sa  = new SoftAssert();
-        new GetLaunchDataValidator().validate(agld, sa, ConfigReader.getInstance().getAppVersion());
+        System.out.println("from config appversion2: " + ConfigReader.getInstance().getAppVersion());
+        System.setProperty("app_version", ConfigReader.getInstance().getAppVersion());
+        new GetLaunchDataValidator().validate(agld, sa);
         sa.assertAll();
     }
 }

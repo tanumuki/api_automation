@@ -22,18 +22,21 @@ public class JTHomePageDataValidator {
             new SongValidator().validate(song, sa, song.getId(), "Trending Jiotunes");
         }
 
+        //validate data_1
+        Validate.asAssortedEntity(hd.getData_1(), sa);
+
         //validate data_2
-        for(JiotunePlaylistObj pl : hd.getData_2()) {
-            new JiotunePlaylistObjValidator().validate(pl, sa);
-        }
+        Validate.asAssortedEntity(hd.getData_2(), sa);
 
-        for(JiotunePlaylistObj pl : hd.getData_3()) {
-            new JiotunePlaylistObjValidator().validate(pl, sa);
-        }
+        //Validate data_3
+        Validate.asAssortedEntity(hd.getData_3(), sa);
 
-        for(JiotunePlaylistObj pl : hd.getData_4()) {
-            new JiotunePlaylistObjValidator().validate(pl, sa);
-        }
+
+        //Validate data_4
+        Validate.asAssortedEntity(hd.getData_4(), sa);
+
+        //Validate data_5
+        Validate.asAssortedEntity(hd.getData_5(), sa);
 
         //Validate modules
         for(ModulesData md : hd.getModules()){
