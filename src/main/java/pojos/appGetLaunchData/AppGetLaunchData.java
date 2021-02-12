@@ -48,7 +48,6 @@ public class AppGetLaunchData extends HomePageDataV2 {
     private AppGetLaunchDataGlobalConfig global_config;
     @JsonProperty("deferred_login_config")
     private DeferredLoginConfigWrapper deferred_login_config;
-    @JsonProperty("saavn_pro")
-    private List<Deeplink> saavn_pro;
+
 
 }

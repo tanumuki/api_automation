@@ -45,5 +45,7 @@ public class MixValidator extends EntityValidator {
         if(Validate.isNonEmptyString(mi.getTimestamp()))
             sa.assertTrue(Validate.asString(mi.getTimestamp()), AssertionMsg.print(className, methodName, "mix.more_info.timestamp", mi.getTimestamp()));
 
+        if(Validate.isNonEmptyString(mi.getList_identity()))
+            sa.assertTrue(Validate.asString(mi.getList_identity()), AssertionMsg.print(className, methodName, "mix.more_info.list_identity", mi.getList_identity()));
     }
 }

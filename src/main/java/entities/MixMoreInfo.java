@@ -33,6 +33,8 @@ public class MixMoreInfo {
     private String list;
     @JsonProperty("type")
     private String type;
+    @JsonProperty("list_identity")
+    private String list_identity;
 
 
 }

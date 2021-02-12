@@ -161,6 +161,11 @@ public class GlobalConfigValidator {
         //Validate pro_cta
         new DeeplinkValidator().validate(gc.getPro_cta(), sa);
 
+
+        //Validate juspay_paypal_flow
+        sa.assertTrue(Validate.asBoolean(gc.getJuspay_paypal_flow()), AssertionMsg.print(className, methodName, "global_config.juspay_paypal_flow", String.valueOf(gc.getJuspay_paypal_flow())));
+
+
     }
 
 
