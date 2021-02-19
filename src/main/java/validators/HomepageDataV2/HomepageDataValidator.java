@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.*;
 import org.testng.asserts.SoftAssert;
+import pojos.appGetLaunchData.Deeplink;
 import pojos.getHomePageDataV2.HomePageDataModules;
 import pojos.getHomePageDataV2.HomePageDataV2;
 import pojos.getTopShows.TopShows;
@@ -48,6 +49,7 @@ public class HomepageDataValidator {
         validateArtistRecos(hd, sa);
         validateCityMod(hd, sa);
         validateUserState(hd, sa);
+        validateSaavnpro(hd.getSaavn_pro(), sa);
 
         if(hd.getMost_popular_trillers() != null)
             validateTrillers(hd.getMost_popular_trillers(), sa);
@@ -164,5 +166,11 @@ public class HomepageDataValidator {
 
     public void validateNewTrending(HomePageDataV2 hd, SoftAssert sa) {
         Validate.asAssortedEntity(hd.getNewTrending(), sa);
+    }
+
+    void validateSaavnpro(List<Deeplink> deeplinks, SoftAssert sa) {
+        for(Deeplink dl : deeplinks){
+            new DeeplinkValidator().validate(dl, sa);
+        }
     }
 }

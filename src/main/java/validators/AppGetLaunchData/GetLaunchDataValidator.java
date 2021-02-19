@@ -70,7 +70,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         validateAds(obj.getAds(), sa);
 
         //Validate saavn_pro
-        validateSaavnpro(obj.getSaavn_pro(), sa);
+
 
         //TODO: Validation for artist_recos
 
@@ -197,9 +197,5 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
     }
 
 
-    void validateSaavnpro(List<Deeplink> deeplinks, SoftAssert sa) {
-        for(Deeplink dl : deeplinks){
-            new DeeplinkValidator().validate(dl, sa);
-        }
-    }
+
 }

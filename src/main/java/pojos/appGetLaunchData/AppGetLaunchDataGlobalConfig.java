@@ -148,4 +148,9 @@ public class AppGetLaunchDataGlobalConfig {
     private Integer skip_limit;
     @JsonProperty("pro_cta")
     private Deeplink pro_cta;
+
+    @JsonProperty("juspay_paypal_flow")
+    private Boolean juspay_paypal_flow;
+
+
 }

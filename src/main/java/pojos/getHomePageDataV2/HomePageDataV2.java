@@ -7,6 +7,7 @@ import entities.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pojos.appGetLaunchData.Deeplink;
 import pojos.getTopShows.TopShows;
 
 import java.util.LinkedHashMap;
@@ -78,11 +79,15 @@ public class HomePageDataV2 {
     @JsonProperty("most_popular_artist_trillers")
     private List<Song> most_popular_artist_trillers;
 
+    @JsonProperty("saavn_pro")
+    private List<Deeplink> saavn_pro;
+
     private Map<String, List<LinkedHashMap>> topicPromos = new LinkedHashMap<>();
     @JsonAnySetter
     public void setTopicPromos(String key, List<LinkedHashMap> val){
         topicPromos.put(key,val);
     }
+
 
 
 

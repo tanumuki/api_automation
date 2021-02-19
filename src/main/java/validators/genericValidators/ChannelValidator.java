@@ -56,7 +56,7 @@ public class ChannelValidator extends EntityValidator {
 
         if(chObj.getMore_info() instanceof List){
             sa.assertTrue(((List<?>) chObj.getMore_info()).size() == 0, " Channel more_info of type list has contents");
-        } else if(chObj.getMore_info() instanceof ChannelMoreInfo){
+        } else { //if(chObj.getMore_info() instanceof ChannelMoreInfo){
             ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
             ChannelMoreInfo moreInfo = mapper.convertValue(chObj.getMore_info(), ChannelMoreInfo.class);
@@ -88,9 +88,10 @@ public class ChannelValidator extends EntityValidator {
             if(moreInfo.getTags() != null)
                 new TagsValidator().validate(moreInfo.getTags(), sa, "channel", chObj.getId());
 
-        } else {
-            sa.fail("Channel more_info type is not supported");
         }
+//        else {
+//            sa.fail("Channel more_info type is not supported for channel id: " + chObj.getId() );
+//        }
 
 
 
