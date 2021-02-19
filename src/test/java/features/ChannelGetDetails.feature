@@ -12,4 +12,4 @@ Feature: Get details of the channel for the given channel id
     Examples:
     | channel_id  |
     |     27      |
-    #|     29      |
+    |     29      |

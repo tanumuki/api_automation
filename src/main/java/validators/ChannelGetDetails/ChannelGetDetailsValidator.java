@@ -2,12 +2,11 @@ package validators.ChannelGetDetails;
 
 import org.testng.asserts.SoftAssert;
 import pojos.channelGetDetailsPojos.ChannelGetDetails;
+import pojos.channelGetDetailsPojos.ChannelGetDetailsModules;
 import pojos.channelGetDetailsPojos.ChannelGetDetailsMoreInfo;
 import validators.AssertionMsg;
 import validators.Validate;
-import validators.genericValidators.EditorsNoteValidator;
-import validators.genericValidators.EntityValidator;
-import validators.genericValidators.TagsValidator;
+import validators.genericValidators.*;
 
 public class ChannelGetDetailsValidator extends EntityValidator {
     final String className = getClass().getName();
@@ -18,6 +17,21 @@ public class ChannelGetDetailsValidator extends EntityValidator {
         super.validate(channelDetails, sa);
         channelId = channelDetails.getId();
         validateMoreInfo(channelDetails.getMoreInfo(), sa);
+        validateModules(channelDetails.getModules(), sa);
+    }
+
+    void validateModules(ChannelGetDetailsModules modules, SoftAssert sa) {
+        if(modules.getEditorsNote() != null)
+            ModulesDataValidator.validate(modules.getEditorsNote(), sa);
+
+        if(modules.getQuickStations() != null)
+            ModulesDataValidator.validate(modules.getQuickStations(), sa);
+
+        if(modules.getTopPlaylists() != null)
+            ModulesDataValidator.validate(modules.getTopPlaylists(), sa);
+
+        if(modules.getTopSongs() != null)
+            ModulesDataValidator.validate(modules.getTopSongs(), sa);
     }
 
     public void validateMoreInfo(ChannelGetDetailsMoreInfo mi, SoftAssert sa) {
