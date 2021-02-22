@@ -77,7 +77,8 @@ public enum APIResources {
 	SearchGetResultsFromEntities("search.getResultsFromEntities"),
 	ContentGetTopSearches("content.getTopSearches"),
 	UserChangePasswordApi("user.changePassword"),
-	SongGetParamsApi("song.getParam");
+	SongGetParamsApi("song.getParam"),
+	ContentDecodeTokenAndFetchResults("content.decodeTokenAndFetchResults");
 
 
 	private String resource;

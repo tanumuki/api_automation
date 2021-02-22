@@ -1,9 +1,11 @@
 package pojos.channelGetDetailsPojos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import entities.*;
+import entities.Entity;
+import entities.PlaylistMini;
+import entities.RadioStation;
+import entities.Song;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,9 +30,8 @@ public class ChannelGetDetails extends Entity {
     private String list;
     @JsonProperty("more_info")
     private ChannelGetDetailsMoreInfo moreInfo;
-
     @JsonProperty("modules")
     private ChannelGetDetailsModules modules;
-
-
+    @JsonProperty("whats_hot")
+    private String[] whats_hot;
 }

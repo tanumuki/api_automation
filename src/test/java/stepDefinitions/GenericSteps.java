@@ -13,6 +13,7 @@ import resources.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,6 +60,23 @@ public class GenericSteps extends Util {
 
     @When("I make the {string} request")
     public void iMakeTheRequest(String method) {
+        resp = request.given()
+                .log()
+                .all()
+                .when()
+                .get("/api.php")
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        logResponseTime(resp);
+        System.out.println(resp.asString());
+    }
+
+
+    public static void  iMakeTheRequestWithParameterPassedInMethod(HashMap<String, String> params) {
+        request.queryParams(params);
         resp = request.given()
                 .log()
                 .all()
