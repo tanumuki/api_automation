@@ -107,4 +107,6 @@ public class SongMoreInfo {
 	private List<Triller> triller;
 	@JsonProperty("language")
 	private String language;
+	@JsonProperty("is_dolby_content")
+	private Boolean is_dolby_content;
 }

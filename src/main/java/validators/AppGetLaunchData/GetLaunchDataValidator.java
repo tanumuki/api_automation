@@ -28,20 +28,16 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 //        System.out.println("appVersion1: " + appVersion);
         sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
 
-
-
-
         if(obj.getUpdateConfig() != null)
             validateUpdateConfig(obj.getUpdateConfig(), sa);
-
-        //TODO: ab_test check, For now it's coming up as null obj
 
         //Validate ef
         for (String item : obj.getEf()) {
             sa.assertTrue(Validate.asString(item), AssertionMsg.print(className, methodName, "ef", item));
         }
 
-        //TODO:Validate ab_test
+        //Validate ab_test
+        sa.assertTrue(obj.getAbTest() == null, AssertionMsg.print(className, methodName, "ab_test", String.valueOf(obj.getAbTest())));
 
         //Validate ping_server
         sa.assertTrue(Validate.asString(obj.getPingServer()), AssertionMsg.print(className, methodName, "ping_server", obj.getPingServer()));
@@ -68,13 +64,6 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 
         //Validate ads
         validateAds(obj.getAds(), sa);
-
-        //Validate saavn_pro
-
-
-        //TODO: Validation for artist_recos
-
-        //TODO: Validation for favorites
 
     }
 

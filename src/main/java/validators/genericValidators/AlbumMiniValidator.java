@@ -51,6 +51,11 @@ public class AlbumMiniValidator extends EntityValidator {
 		
 		ArtistMap artistMap = moreInfo.getArtistMap();
 		new ArtistMapValidator().validate(artistMap, sa, "album", albumMini.getId());
+
+		//Validate is_dolby_content
+		if(moreInfo.getIs_dolby_content() != null){
+			sa.assertTrue(Validate.asBoolean(moreInfo.getIs_dolby_content()), AssertionMsg.print(className, methodName, "album.more_info.is_dolby_content", String.valueOf(moreInfo.getIs_dolby_content())));
+		}
 	}
 
 }
