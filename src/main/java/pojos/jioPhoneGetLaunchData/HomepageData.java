@@ -23,4 +23,6 @@ public class HomepageData {
     private Styles styles;
     @JsonProperty("action")
     private Action action;
+    @JsonProperty("position")
+    private Integer position;
 }

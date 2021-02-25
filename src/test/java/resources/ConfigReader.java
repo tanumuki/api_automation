@@ -139,19 +139,16 @@ public class ConfigReader {
 			try {
 				fileOut = new FileOutputStream(file);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				properties.store(fileOut, "properties");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				fileOut.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -184,19 +181,16 @@ public class ConfigReader {
 			try {
 				fileOut = new FileOutputStream(file);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				properties.store(fileOut, "properties");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				fileOut.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}

@@ -32,4 +32,5 @@ public class Song extends Entity {
 	private Boolean mini_obj;
 	@JsonProperty("description")
 	private String description;
+
 }

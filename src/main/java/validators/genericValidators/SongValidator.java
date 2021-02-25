@@ -42,6 +42,8 @@ public class SongValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(songObj.getDescription()))
             sa.assertTrue(Validate.asString(songObj.getDescription()), AssertionMsg.print(className, methodName, "song.description", songObj.getDescription()));
+
+
     }
 
 
@@ -175,6 +177,10 @@ public class SongValidator extends EntityValidator {
         if(Validate.isNonEmptyString(moreInfo.getLanguage()))
             sa.assertTrue(Validate.asMusicLanguages(moreInfo.getLanguage()), AssertionMsg.print(className, methodName, "song.more_info.language", moreInfo.getLanguage()));
 
+        //Validate is_dolby_content
+        if(moreInfo.getIs_dolby_content() != null){
+            sa.assertTrue(Validate.asBoolean(moreInfo.getIs_dolby_content()), AssertionMsg.print(className, methodName, "song.more_info.is_dolby_content", String.valueOf(moreInfo.getIs_dolby_content())));
+        }
 		log.info("More Info Validation done!");
 
 	}
