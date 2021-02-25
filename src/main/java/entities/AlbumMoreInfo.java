@@ -48,4 +48,7 @@ public class AlbumMoreInfo {
 	private String songPids;
 	@JsonProperty("is_dolby_content")
 	private Boolean is_dolby_content;
+	@JsonProperty("release_year")
+	private Integer release_year;
+
 }

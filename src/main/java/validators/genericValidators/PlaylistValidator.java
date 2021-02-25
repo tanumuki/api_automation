@@ -86,7 +86,7 @@ public class PlaylistValidator extends EntityValidator {
         //Validate subtype
         if(moreInfo.getSubtype() instanceof List){
             sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents");
-        } else {
+        } else if(moreInfo.getSubtype() != null){
             sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
         }
         /*
