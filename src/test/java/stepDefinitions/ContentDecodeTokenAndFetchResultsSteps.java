@@ -14,6 +14,7 @@ import pojos.channelGetDetailsPojos.ChannelGetDetails;
 import validators.Artist.ArtistPageValidator;
 import validators.ChannelGetDetails.ChannelGetDetailsValidator;
 import validators.genericValidators.AlbumValidator;
+import validators.genericValidators.EpisodeDetailsValidator;
 import validators.genericValidators.MixDetailsValidator;
 import validators.genericValidators.SongValidator;
 import validators.showGetHome.ShowGetHomeValidator;
@@ -103,6 +104,11 @@ public class ContentDecodeTokenAndFetchResultsSteps {
             case "Shows":
                 contentDecodeTokenAndFetchResultsPojo= objectMapper.readValue(GenericSteps.resp.asString(), ShowGetHome.class);
                 new ShowGetHomeValidator().validate((ShowGetHome)contentDecodeTokenAndFetchResultsPojo, sa);
+                sa.assertAll();
+                break;
+            case "Episodes":
+                contentDecodeTokenAndFetchResultsPojo=objectMapper.readValue(GenericSteps.resp.asString(), EpisodeDetails.class);
+                new EpisodeDetailsValidator().validate((EpisodeDetails) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
         }
