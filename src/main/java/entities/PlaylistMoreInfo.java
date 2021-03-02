@@ -63,4 +63,10 @@ public class PlaylistMoreInfo {
     private String H2;
     @JsonProperty("subheading")
     private String subheading;
+
+    @JsonProperty("is_dolby_content")
+    private Boolean is_dolby_content;
+
+    @JsonProperty("subtype")
+    private Object subtype;
 }

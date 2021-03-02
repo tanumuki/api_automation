@@ -16,5 +16,7 @@ public class GetUserCurrSubs {
     @JsonProperty("status")
     private String status;
     @JsonProperty("data")
-    private Object data; //TODO: create a subscription object and assign it as the data type of "data"
+    private Object data;
+    //TODO: create a subscription object and assign it as the data type of "data". So far, we are getting only empty/null data
+
 }
