@@ -1,5 +1,7 @@
 package validators.genericValidators;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.*;
 import org.testng.asserts.SoftAssert;
 
@@ -7,6 +9,8 @@ import entities.Playlist;
 import entities.Song;
 import validators.AssertionMsg;
 import validators.Validate;
+
+import java.util.List;
 
 public class PlaylistValidator extends EntityValidator {
 
@@ -73,6 +77,25 @@ public class PlaylistValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(moreInfo.getShare()))
             sa.assertTrue(Validate.asString(moreInfo.getShare()), AssertionMsg.print(className, methodName, "playlist.more_info.share", moreInfo.getShare()));
+
+        //Validate is_dolby_content
+        if(moreInfo.getIs_dolby_content() != null){
+            sa.assertTrue(Validate.asBoolean(moreInfo.getIs_dolby_content()), AssertionMsg.print(className, methodName, "playlist.more_info.is_dolby_content", String.valueOf(moreInfo.getIs_dolby_content())));
+        }
+
+        //Validate subtype
+        if(moreInfo.getSubtype() instanceof List){
+            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents");
+        } else if(moreInfo.getSubtype() != null){
+            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
+        }
+        /*
+        else {
+            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+
+            PlaylistMiniMoreInfo mi = mapper.convertValue(ch.getMoreInfo(), PlaylistMiniMoreInfo.class);
+            validatePlaylistMiniMoreInfo(mi, sa);
+        }*/
     }
 
 }

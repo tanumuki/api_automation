@@ -25,19 +25,10 @@ public class AppGetLaunchDataGlobalConfig {
     private List<String> radioSupportedLanguages;
     @JsonProperty("label_info")
     private LabelInfo labelInfo;
-
-    //TODO: Weekly_top_songs_listid
-
     @JsonProperty("weekly_top_songs_listid")
     private WT15Lists weekly_top_songs_listid;
-
-
-
-    //TODO: random_songs_listid
-
     @JsonProperty("random_songs_listid")
     private RandomSongsLists random_songs_listid;
-
     @JsonProperty("product_details")
     private ProductDetails product_details;
     @JsonProperty("cache_config")

@@ -13,6 +13,7 @@ public class GetLaunchDataJioPhoneValidator {
     public void validate(JioPhoneGetLaunchData jioPhoneGetLaunchData, SoftAssert sa) {
         int i = 1;
         JsonObject config = jioPhoneGetLaunchData.getConfig();
+        //TODO: @tanu Please recheck the validation for config object
         sa.assertTrue(config.size()>0, className + "." + "validate config failed for entity");
         log.info(("LOG response config in JioPhone get launch API is: " + config));
 
@@ -56,6 +57,10 @@ public class GetLaunchDataJioPhoneValidator {
             String default_count = homepageData.getAction().getPagination().getDefault_count();
             sa.assertTrue(Validate.asNum(default_count), className + "." + "validate default_count failed for entity - " + i);
             log.info(("LOG response default_count for the entity" + i + " in JioPhone get launch API is: " + default_count));
+
+            Integer position = homepageData.getPosition();
+            sa.assertTrue(Validate.asNum(position), className + "." + "validate position failed for entity - " + i);
+            log.info(("LOG response position for the entity" + i + " in JioPhone get launch API is: " + default_count));
 
             i += 1;
         }

@@ -83,6 +83,8 @@ public class AlbumValidator extends EntityValidator {
 		if(Validate.isNonEmptyString(mi.getSongPids()))
 			sa.assertTrue(Validate.asSongPids(mi.getSongPids()), AssertionMsg.print(className, methodName, "album.more_info.song_pids", mi.getSongPids()));
 
+		if(mi.getRelease_year() != null)
+			sa.assertTrue(mi.getRelease_year() > 1900 && mi.getRelease_year() < 3100, AssertionMsg.print(className, methodName, "album.more_info.release_year", String.valueOf(mi.getRelease_year())));
 	}
 
 	public void validate(AlbumWithSongsList album, SoftAssert sa) {
