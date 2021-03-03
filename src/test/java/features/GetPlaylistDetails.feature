@@ -8,5 +8,14 @@ Feature: Get playlist details of the given playlist id
 
     Examples: 
       | playlistid |
-      |    81853229 |
-      |    82859880 |
+      | 81853229 |
+      | 82859880 |
+      | 802204672 |
+      | 802204674 |
+      | 802204675 |
+      | 802204668 |
+#  |   802204672 | Sample Video Playlist  |
+#  |   802204673 | Another Video Playlist |
+#  |   802204674 | Audio Video Playlist   |
+#  |   802204675 | Test Pro Playlist      |
+#  |   802204668 | Test Video Playlist

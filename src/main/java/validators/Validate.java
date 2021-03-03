@@ -513,4 +513,8 @@ public class Validate {
     public static boolean asProvider(String str) {
         return str.equalsIgnoreCase("jio");
     }
+
+    public static boolean asPlaylistSubtype(String str) {
+        return str.matches("|JioTuneArtist| JioTuneDecade| JioTuneActivity| VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
+    }
 }

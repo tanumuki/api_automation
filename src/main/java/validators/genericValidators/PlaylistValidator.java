@@ -10,21 +10,28 @@ import entities.Song;
 import validators.AssertionMsg;
 import validators.Validate;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class PlaylistValidator extends EntityValidator {
 
     final String className = PlaylistValidator.class.getName();
-
+    ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
     public void validate(Playlist playlistObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(playlistObj, sa);
 
         if(playlistObj != null) {
-            if(playlistObj.getList() != null && playlistObj.getList().size() > 0) {
-                for (Song song : playlistObj.getList()) {
-                    new SongValidator().validate(song, sa, playlistObj.getId(), "playlist");
-                }
+            if(playlistObj.getList() instanceof String){
+                String listVal = mapper.convertValue(playlistObj.getList(), String.class);
+                sa.assertTrue(listVal.equals(""), AssertionMsg.print(className, methodName, "playlist.list", listVal));
+            }else if(playlistObj.getList() instanceof ArrayList<?>) {
+                List<LinkedHashMap> songlist = mapper.convertValue(playlistObj.getList(), ArrayList.class);
+                Validate.asAssortedEntity(songlist, sa);
+            }else{
+                sa.fail("Unsupported type for playlist.list field");
             }
 
             validateMoreInfo(playlistObj, sa);
@@ -42,6 +49,7 @@ public class PlaylistValidator extends EntityValidator {
 
     public void validateMoreInfo(Entity plObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         PlaylistMoreInfo moreInfo;
 
         try {
@@ -84,11 +92,20 @@ public class PlaylistValidator extends EntityValidator {
         }
 
         //Validate subtype
-        if(moreInfo.getSubtype() instanceof List){
-            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents");
-        } else if(moreInfo.getSubtype() != null){
-            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
+
+        if(moreInfo.getSubtype() != null || moreInfo.getSubtype().size() > 0){
+            for(String subtype : moreInfo.getSubtype()){
+                sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName, "playlist.more_info.subtype", subtype));
+            }
         }
+
+//        if(moreInfo.getSubtype() instanceof List){
+//            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents");
+//        } else if(moreInfo.getSubtype() != null){
+//            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
+//        }
+
+
         /*
         else {
             ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
