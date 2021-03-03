@@ -12,7 +12,7 @@ Feature: Validation of Content Decode Token and Fetch Results API
       | <types> | <tokens> |
     Then The Content Decode and Fetch Token API returns response with status code 200 for entity type "<entity_type>"
     Examples:
-      | types    | tokens          | entity_type |
+      | types    | tokens         | entity_type    |
       | channel  | 0iLyYIH5zO8_    | Shorties    |
       | artist   | LlRWpHzy3Hk_    | Artists     |
       | song     | QSFZZBUAREE     | Songs       |
@@ -21,4 +21,5 @@ Feature: Validation of Content Decode Token and Fetch Results API
       | show     | LT7jKx2kHgw_    | Shows       |
       | channel  | SqI6f167Uoo_    | Channels    |
       | episode  | lGDDkbquims_    | Episodes    |
+      | playlist | AARQAEYBBgtYRg | User Playslist |
 
