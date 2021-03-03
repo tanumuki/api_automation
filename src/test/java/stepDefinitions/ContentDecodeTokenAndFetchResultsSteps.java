@@ -108,8 +108,8 @@ public class ContentDecodeTokenAndFetchResultsSteps {
                 sa.assertAll();
                 break;
             case "User Playlist":
-                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), UserProfilePlaylists.class);
-                new PlaylistValidator().validate((UserProfilePlaylists) contentDecodeTokenAndFetchResultsPojo, sa);
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), MixDetails.class);
+                new PlaylistValidator().validate((MixDetails) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
 
