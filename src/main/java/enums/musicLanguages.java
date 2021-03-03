@@ -11,6 +11,7 @@ public enum musicLanguages {
 	BENGALI,
 	KANNADA,
 	BHOJPURI,
+	DUTCH,
 	MALAYALAM,
 	URDU,
 	SANSKRIT,
@@ -27,6 +28,7 @@ public enum musicLanguages {
 	CROATIAN,
 	KOREAN,
 	CHINESE,
+	FARSI,
 	UNKNOWN;
 }
 
