@@ -13,10 +13,7 @@ import org.testng.asserts.SoftAssert;
 import pojos.channelGetDetailsPojos.ChannelGetDetails;
 import validators.Artist.ArtistPageValidator;
 import validators.ChannelGetDetails.ChannelGetDetailsValidator;
-import validators.genericValidators.AlbumValidator;
-import validators.genericValidators.EpisodeDetailsValidator;
-import validators.genericValidators.MixDetailsValidator;
-import validators.genericValidators.SongValidator;
+import validators.genericValidators.*;
 import validators.showGetHome.ShowGetHomeValidator;
 
 import java.util.HashMap;
@@ -80,37 +77,42 @@ public class ContentDecodeTokenAndFetchResultsSteps {
                 break;
             case "Artists":
                 contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Artist.class);
-                new ArtistPageValidator().validate((Artist)contentDecodeTokenAndFetchResultsPojo, sa);
+                new ArtistPageValidator().validate((Artist) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
             case "Songs":
                 contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Song.class);
-                for (Song song : ((Song) contentDecodeTokenAndFetchResultsPojo).getSongs())
-                {
+                for (Song song : ((Song) contentDecodeTokenAndFetchResultsPojo).getSongs()) {
                     new SongValidator().validate(song, sa);
                 }
                 sa.assertAll();
                 break;
             case "Albums":
-                contentDecodeTokenAndFetchResultsPojo= objectMapper.readValue(GenericSteps.resp.asString(), Album.class);
-                new AlbumValidator().validate((Album)contentDecodeTokenAndFetchResultsPojo, sa);
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Album.class);
+                new AlbumValidator().validate((Album) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
             case "Playlists":
-                contentDecodeTokenAndFetchResultsPojo= objectMapper.readValue(GenericSteps.resp.asString(), MixDetails.class);
-                new MixDetailsValidator().validate((MixDetails) contentDecodeTokenAndFetchResultsPojo,sa);
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), MixDetails.class);
+                new MixDetailsValidator().validate((MixDetails) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
             case "Shows":
-                contentDecodeTokenAndFetchResultsPojo= objectMapper.readValue(GenericSteps.resp.asString(), ShowGetHome.class);
-                new ShowGetHomeValidator().validate((ShowGetHome)contentDecodeTokenAndFetchResultsPojo, sa);
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), ShowGetHome.class);
+                new ShowGetHomeValidator().validate((ShowGetHome) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
             case "Episodes":
-                contentDecodeTokenAndFetchResultsPojo=objectMapper.readValue(GenericSteps.resp.asString(), EpisodeDetails.class);
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), EpisodeDetails.class);
                 new EpisodeDetailsValidator().validate((EpisodeDetails) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
+            case "User Playlist":
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), UserProfilePlaylists.class);
+                new PlaylistValidator().validate((UserProfilePlaylists) contentDecodeTokenAndFetchResultsPojo, sa);
+                sa.assertAll();
+                break;
+
         }
     }
 
