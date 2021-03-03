@@ -512,4 +512,9 @@ public class Validate {
     public static boolean asProvider(String str) {
         return str.equalsIgnoreCase("jio");
     }
+
+    public static boolean asEmptyArray(String [] arr)
+    {
+        return arr.length==0;
+    }
 }
