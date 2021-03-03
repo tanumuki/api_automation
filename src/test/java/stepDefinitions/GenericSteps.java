@@ -29,7 +29,10 @@ public class GenericSteps extends Util {
     @Given("I have the endpoint for {string}")
     public void iHaveTheEndopointFor(String endPoint) throws FileNotFoundException {
         apiResource = APIResources.valueOf(endPoint).getResource();
-        request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
+        if (cookie != null)
+            request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
+        else
+            request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource));
     }
 
     @When("I make the {string} request with the following query parameters")
@@ -75,7 +78,7 @@ public class GenericSteps extends Util {
     }
 
 
-    public static void  iMakeTheRequestWithParameterPassedInMethod(HashMap<String, String> params) {
+    public static void iMakeTheRequestWithParameterPassedInMethod(HashMap<String, String> params) {
         request.queryParams(params);
         resp = request.given()
                 .log()
