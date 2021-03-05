@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"stepDefinitions"},
-        plugin = {"json:target/report/cucumber-json.json",
+        plugin = {"json:target/report/cucumber.json",
                 "html:target/htmlReport/cucumber.html",
                 "rerun:target/rerun.txt",
                 "pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "timeline:target/timelineReport"},
