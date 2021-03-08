@@ -21,5 +21,6 @@ public class JioTuneLimitValidator {
         log.info("LOG response total in jio tune limit API is " + total);
 
         sa.assertTrue(left<=total, className+"."+ " number of left jiotunes is greater than the total available");
+        sa.assertEquals( total,1, className+"."+ " number of total jiotunes assigned to a free user is not equal to 1");
     }
 }
