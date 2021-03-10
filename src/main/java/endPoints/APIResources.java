@@ -80,7 +80,8 @@ public enum APIResources {
 	SongGetParamsApi("song.getParam"),
 	ContentDecodeTokenAndFetchResults("content.decodeTokenAndFetchResults"),
 	JioSendOtpApi("jio.sendOtp"),
-	JioTuneLimitApi("jiotune.jioTuneLimit");
+	JioTuneLimitApi("jiotune.jioTuneLimit"),
+	MatchingMatchApi("matching.match");
 
 
 	private String resource;

@@ -5,7 +5,7 @@ Feature: Validation of Content Decode Token and Fetch Results API
       | username | password |
       | sun@s.in | Saavn123 |
 
-  Scenario Outline: Verify Content Decode Token and Fetch Results API for shorties
+  Scenario Outline: Verify response of Content Decode Token and Fetch Results API
     Given I have the endpoint for "ContentDecodeTokenAndFetchResults"
     And I make the "GET" request with the following query parameters
       | type    | token    |
