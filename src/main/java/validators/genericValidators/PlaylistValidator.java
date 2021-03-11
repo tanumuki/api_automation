@@ -93,7 +93,7 @@ public class PlaylistValidator extends EntityValidator {
 
         //Validate subtype
 
-        if(moreInfo.getSubtype() != null || moreInfo.getSubtype().size() > 0){
+        if(moreInfo.getSubtype() != null && moreInfo.getSubtype().size() > 0){
             for(String subtype : moreInfo.getSubtype()){
                 sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName, "playlist.more_info.subtype", subtype));
             }
