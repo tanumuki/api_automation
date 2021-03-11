@@ -18,6 +18,9 @@ public class ChannelGetDetailsValidator extends EntityValidator {
         channelId = channelDetails.getId();
         validateMoreInfo(channelDetails.getMoreInfo(), sa);
         validateModules(channelDetails.getModules(), sa);
+        if (channelDetails.getWhats_hot()!=null) {
+            sa.assertTrue(Validate.asEmptyArray(channelDetails.getWhats_hot()));
+        }
     }
 
     void validateModules(ChannelGetDetailsModules modules, SoftAssert sa) {

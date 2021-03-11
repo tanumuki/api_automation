@@ -2,14 +2,14 @@ Feature: Validation of User Change Password API
 
   Background:
     Given I have the cookie for the following user
-      | username        | password  |
+      | username        | password |
       | user1@saavn.com | Saavn123 |
 
   Scenario: Verify user is able to change account password
     Given I have the endpoint for "UserChangePasswordApi"
     When I make the "GET" request with the following query parameters
-      | oldpassword | password |
-      | Saavn123   | Saavn@123 |
+      | oldpassword | password  |
+      | Saavn123    | Saavn@123 |
     Then The User Change Password API returns "success" with status code 200 and response message as "Your password has been changed."
 #    to change password back to original password
     And I have the cookie for the following user

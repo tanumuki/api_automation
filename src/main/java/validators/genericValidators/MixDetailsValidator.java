@@ -10,6 +10,7 @@ public class MixDetailsValidator extends PlaylistValidator {
 
     public void validate(MixDetails md, SoftAssert sa) {
         super.validate(md, sa);
+        validateModules(md, sa);
     }
 
     public void validateModules(MixDetails md, SoftAssert sa) {

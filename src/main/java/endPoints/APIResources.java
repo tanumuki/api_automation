@@ -78,7 +78,9 @@ public enum APIResources {
 	ContentGetTopSearches("content.getTopSearches"),
 	UserChangePasswordApi("user.changePassword"),
 	SongGetParamsApi("song.getParam"),
-	ContentDecodeTokenAndFetchResults("content.decodeTokenAndFetchResults");
+	ContentDecodeTokenAndFetchResults("content.decodeTokenAndFetchResults"),
+	JioSendOtpApi("jio.sendOtp"),
+	JioTuneLimitApi("jiotune.jioTuneLimit");
 
 
 	private String resource;
