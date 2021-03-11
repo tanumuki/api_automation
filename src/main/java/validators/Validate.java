@@ -521,4 +521,21 @@ public class Validate {
     public static boolean asStatus(String str){return str.matches("success|error");}
 
     public static boolean asCorrelationId(String str){return str.matches("^([a-zA-Z0-9_-]){8}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){12}");}
+
+
+    public static boolean asPlaylistSubtype(String str) {
+        return str.matches("|JioTuneArtist| JioTuneDecade| JioTuneActivity| VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
+
+    }
+
+    public static boolean asQuickActions(String str){ return str.matches("download|add to library|none"); }
+
+    public static boolean asHomepageTabOrder(List<String> tabs) {
+        for(String tab : tabs) {
+            if(!tab.matches("music|jiotunes|podcasts"))
+                return false;
+        }
+        return true;
+    }
+
 }
