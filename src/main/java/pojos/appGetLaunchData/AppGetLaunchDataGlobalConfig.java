@@ -143,5 +143,14 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("juspay_paypal_flow")
     private Boolean juspay_paypal_flow;
 
+    //Web release 4-Mar-2021
+    @JsonProperty("quick_action")
+    private String quick_action;
+    @JsonProperty("homepage_tab_order")
+    private List<String> homepage_tab_order;
+
+    //Web release 11-Mar-2021
+    @JsonProperty("dolby_enabled")
+    private String dolby_enabled;
 
 }
