@@ -35,12 +35,6 @@ public class Validate {
     public static boolean asSearchTabType(String str) {
         return str.matches("standard|23left|23right");
     }
-    public static boolean asNum(String str) {
-        //return str.matches("\\d+|^$");
-        log.debug("Testing as number: \"" + str + "\"");
-        return str.matches("^$|^[0-9]\\d*(\\.\\d+)?$|\\d+");
-    }
-
     public static boolean asSongPids(String songs) {
         String[] songsList = songs.split(",");
         for(String song : songsList){
@@ -48,6 +42,12 @@ public class Validate {
                 return false;
         }
         return true;
+    }
+
+    public static boolean asNum(String str) {
+        //return str.matches("\\d+|^$");
+        log.debug("Testing as number: \"" + str + "\"");
+        return str.matches("^$|^[0-9]\\d*(\\.\\d+)?$|\\d+");
     }
 
     public static boolean asNum(int number) {
@@ -515,5 +515,16 @@ public class Validate {
 
     public static boolean asPlaylistSubtype(String str) {
         return str.matches("|JioTuneArtist| JioTuneDecade| JioTuneActivity| VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
+
+    }
+
+    public static boolean asQuickActions(String str){ return str.matches("download|add to library|none"); }
+
+    public static boolean asHomepageTabOrder(List<String> tabs) {
+        for(String tab : tabs) {
+            if(!tab.matches("music|jiotunes|podcasts"))
+                return false;
+        }
+        return true;
     }
 }
