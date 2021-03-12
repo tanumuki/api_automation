@@ -538,4 +538,24 @@ public class Validate {
         return true;
     }
 
+    public static boolean asProFeatures(String str){
+        return str.matches("jtune|unlimited_skip");
+    }
+
+    public static boolean asProStatusTierId(String str){
+        return str.matches("^$|jtune_tier");
+    }
+
+    public static boolean asProType(String str){
+        return str.matches("transactional|subscription");
+    }
+
+    public static boolean asProPeriodUnit(String str) {
+        str = str.toLowerCase();
+        return str.matches("day|month|year|annual");
+    }
+
+    public static boolean asProVendors(String str){
+        return str.matches("google|apple|paytm");
+    }
 }

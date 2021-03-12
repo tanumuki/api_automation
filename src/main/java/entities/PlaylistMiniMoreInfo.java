@@ -60,5 +60,6 @@ public class PlaylistMiniMoreInfo {
     private String vcode;
     @JsonProperty("vlink")
     private String vlink;
-
+    @JsonProperty("is_dolby_content")
+    private Boolean is_dolby_content;
 }
