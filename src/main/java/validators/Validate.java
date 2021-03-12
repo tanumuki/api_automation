@@ -513,12 +513,7 @@ public class Validate {
         return str.equalsIgnoreCase("jio");
     }
 
-    public static boolean asEmptyArray(String [] arr)
-    {
-        return arr.length==0;
+    public static boolean asPlaylistSubtype(String str) {
+        return str.matches("|JioTuneArtist| JioTuneDecade| JioTuneActivity| VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
     }
-
-    public static boolean asStatus(String str){return str.matches("success|error");}
-
-    public static boolean asCorrelationId(String str){return str.matches("^([a-zA-Z0-9_-]){8}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){12}");}
 }
