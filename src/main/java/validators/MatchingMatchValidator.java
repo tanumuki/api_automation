@@ -19,8 +19,14 @@ public class MatchingMatchValidator {
 
             for (MatchingMatchData matchingMatchData : data.getValue()) {
                 String id = matchingMatchData.getId();
-                sa.assertTrue(Validate.asString(id), className + ": validate id for entity " + entityType + " failed");
+                if (entityType != "songs") {
+                    if (id != "")
+                        sa.assertTrue(Validate.asNum(Integer.parseInt(id)), className + ": validate id for entity " + entityType + " failed");
+                } else {
+                    sa.assertTrue(Validate.asString(id), className + ": validate id for entity " + entityType + " failed");
+                }
                 log.info(className + ": LOG response id in Matching match API for " + entityType + " is " + id);
+
 
                 if (matchingMatchData.getLanguage() != null) {
                     String language = matchingMatchData.getLanguage();
@@ -35,6 +41,12 @@ public class MatchingMatchValidator {
                 String deeplink = matchingMatchData.getDeeplink();
                 sa.assertTrue(Validate.asMatchingMatchDeeplink(deeplink), className + ": validate deeplink for entity " + entityType + " failed");
                 log.info(className + ": LOG response deeplink in Matching match API for " + entityType + " is " + deeplink);
+
+                if (matchingMatchData.getSeason_number() != 0) {
+                    int season_no = matchingMatchData.getSeason_number();
+                    sa.assertTrue(Validate.asNum(season_no), className + ": validate season number entity " + entityType + " failed");
+                    log.info(className + ": LOG response season number in Matching match API for " + entityType + " is " + season_no);
+                }
 
             }
         }

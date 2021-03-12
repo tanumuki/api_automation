@@ -473,11 +473,6 @@ public class Validate {
         return str.matches("(^$|\\s+|\\/api.php\\?__call=(channel|content|webradio)\\.(getDetails|getAlbums|getFeaturedPlaylists|getFeaturedStations|getTrending|getCharts)?(&channel_id=[0-9]+)??(&entity_type=playlists)?&api_version=4&_format=json&_marker=0?(&entity_type=playlists)?)");
     }
 
-    public static boolean asAlphaNumericWithUnderscoreHyphen(String str) {
-        log.debug("Testing as API: \"" + str + "\"");
-        return str.matches("^[a-zA-Z0-9_\\-]*$");
-    }
-
     public static boolean asImageType(String str) {
         log.debug("Testing as image type: \"" + str + "\"");
         return str.matches("^(round|square)$");

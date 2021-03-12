@@ -19,5 +19,5 @@ public class MatchingMatchData {
     @JsonProperty("deeplink")
     private String deeplink;
     @JsonProperty("season_number")
-    private String season_number;
+    private int season_number;
 }
