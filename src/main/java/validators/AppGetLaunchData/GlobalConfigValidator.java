@@ -166,18 +166,6 @@ public class GlobalConfigValidator {
         sa.assertTrue(Validate.asBoolean(gc.getJuspay_paypal_flow()), AssertionMsg.print(className, methodName, "global_config.juspay_paypal_flow", String.valueOf(gc.getJuspay_paypal_flow())));
 
 
-        //Web Release 4-Mar-2021
-        if(Validate.isNonEmptyString(gc.getQuick_action()))
-            sa.assertTrue(Validate.asQuickActions(gc.getQuick_action()), AssertionMsg.print(className, methodName, "global_config.quick_action", gc.getQuick_action()));
-        if(gc.getHomepage_tab_order() != null)
-            sa.assertTrue(Validate.asHomepageTabOrder(gc.getHomepage_tab_order()), AssertionMsg.print(className, methodName, "global_config.homepage_tab_order", gc.getHomepage_tab_order().toString()));
-
-        //Web Release 11-Mar-2021
-        if(Validate.isNonEmptyString(gc.getDolby_enabled())){
-            sa.assertTrue(Validate.asBoolean(gc.getDolby_enabled()), AssertionMsg.print(className, methodName, "global_config.dolby_enabled", gc.getDolby_enabled()));
-        }else{
-            sa.fail("global_config.dolby_enabled is empty/null");
-        }
     }
 
 
