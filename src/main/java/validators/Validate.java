@@ -526,6 +526,14 @@ public class Validate {
     }
 
     public static boolean asMatchingMatchDeeplink(String str) {
-        return str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;");
+        boolean flag = false;
+        if (System.getProperty("ctx").equalsIgnoreCase("Android")) {
+            if (str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;"))
+                flag = true;
+        } else if (System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
+            if (str.matches("saavn:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/([0-9]{2,})?\\/?([0-9]{1,})?\\/?(featured)?\\/?(english)?\\/?([A-Za-z0-9_-]{10,})?"))
+                flag = true;
+        }
+        return flag;
     }
 }
