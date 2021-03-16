@@ -527,4 +527,38 @@ public class Validate {
         }
         return true;
     }
+
+    public static boolean asEmptyArray(String [] arr ){
+        return arr.length == 0;
+    }
+
+    public static boolean asStatus(String str){
+        return str.matches("success|error");
+    }
+
+    public static boolean asCorrelationId(String str){
+        return str.matches("^([a-zA-Z0-9_-]){8}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){12}");
+    }
+
+    public static boolean asProFeatures(String str){
+        return str.matches("jtune|unlimited_skip");
+    }
+
+    public static boolean asProStatusTierId(String str){
+        return str.matches("^$|jtune_tier");
+    }
+
+    public static boolean asProType(String str){
+        return str.matches("transactional|subscription");
+    }
+
+    public static boolean asProPeriodUnit(String str) {
+        str = str.toLowerCase();
+        return str.matches("day|month|year|annual");
+    }
+
+    public static boolean asProVendors(String str){
+        return str.matches("google|apple|paytm");
+    }
+
 }

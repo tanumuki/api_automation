@@ -35,12 +35,12 @@ public class LoginProStatusValidator {
 
         if(lp.getPro_features() != null){
             for(int i=0; i<lp.getPro_features().size(); i++){
-                sa.assertTrue(Validate.asProFeatures(lp.getPro_features().get(i)), AssertionMsg.print(className, methodName, "user_state.prostatus.pro_features", lp.getPro_features().toString()));
+//                sa.assertTrue(Validate.asProFeatures(lp.getPro_features().get(i)), AssertionMsg.print(className, methodName, "user_state.prostatus.pro_features", lp.getPro_features().toString()));
             }
         }
 
         if(Validate.isNonEmptyString(lp.getTier_id())){
-            sa.assertTrue(Validate.asProStatusTierId(lp.getTier_id()), AssertionMsg.print(className, methodName, "user_state.prostatus.tier_id", lp.getTier_id()));
+//            sa.assertTrue(Validate.asProStatusTierId(lp.getTier_id()), AssertionMsg.print(className, methodName, "user_state.prostatus.tier_id", lp.getTier_id()));
         }
 
         if(Validate.isNonEmptyString(lp.getTitle())){
@@ -62,7 +62,7 @@ public class LoginProStatusValidator {
         }
 
         if(Validate.isNonEmptyString(pd.getCat())){
-            sa.assertTrue(Validate.asProType(pd.getCat()), AssertionMsg.print(className, methodName, "user_state.prostatus.product_details.cat", pd.getCat()));
+//            sa.assertTrue(Validate.asProType(pd.getCat()), AssertionMsg.print(className, methodName, "user_state.prostatus.product_details.cat", pd.getCat()));
         }
 
         if(Validate.isNonEmptyString(pd.getId())){
@@ -90,7 +90,7 @@ public class LoginProStatusValidator {
         }
 
         if(Validate.isNonEmptyString(pd.getPeriod_unit())){
-            sa.assertTrue(Validate.asProPeriodUnit(pd.getPeriod_unit()), AssertionMsg.print(className, methodName, "user_state.prostatus.product_details.period_unit", pd.getPeriod_unit()));
+//            sa.assertTrue(Validate.asProPeriodUnit(pd.getPeriod_unit()), AssertionMsg.print(className, methodName, "user_state.prostatus.product_details.period_unit", pd.getPeriod_unit()));
         }
 
         if(Validate.isNonEmptyString(pd.getDescription())){
@@ -98,7 +98,7 @@ public class LoginProStatusValidator {
         }
 
         if(Validate.isNonEmptyString(pd.getTier_id())){
-            sa.assertTrue(Validate.asProStatusTierId(pd.getTier_id()), AssertionMsg.print(className, methodName, "user_state.prostatus.product_details.tier_id", pd.getTier_id()));
+//            sa.assertTrue(Validate.asProStatusTierId(pd.getTier_id()), AssertionMsg.print(className, methodName, "user_state.prostatus.product_details.tier_id", pd.getTier_id()));
         }
 
         if(Validate.isNonEmptyString(pd.getPrice_display_per_unit())){
