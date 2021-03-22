@@ -35,10 +35,11 @@ public class Validate {
     public static boolean asSearchTabType(String str) {
         return str.matches("standard|23left|23right");
     }
+
     public static boolean asSongPids(String songs) {
         String[] songsList = songs.split(",");
-        for(String song : songsList){
-            if(!asId(song))
+        for (String song : songsList) {
+            if (!asId(song))
                 return false;
         }
         return true;
@@ -52,7 +53,7 @@ public class Validate {
 
     public static boolean asNum(int number) {
         log.debug("Testing as integer: " + number);
-        return (number >=0 || number < 0);
+        return (number >= 0 || number < 0);
     }
 
     public static boolean asLong(Long num) {
@@ -224,6 +225,7 @@ public class Validate {
     public static boolean asUnixEpochTime(String str) {
         return str.matches("^\\d{10}$");//epoch ts is 10 digits
     }
+
     public static boolean asGender(String str) {
         return str.matches("m|f|u");
     }
@@ -387,7 +389,10 @@ public class Validate {
         return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink");
     }
 
-    public static boolean asDeeplink(String deeplink){ return deeplink.matches("^(jiosaavn|saavn):\\/\\/(open|view)\\S+\\S+");}
+    public static boolean asDeeplink(String deeplink) {
+        return deeplink.matches("^(jiosaavn|saavn):\\/\\/(open|view)\\S+\\S+");
+    }
+
     public static boolean asCategoryType(String categoryType) {
         return categoryType.matches("static|user_defined");
     }
@@ -399,7 +404,6 @@ public class Validate {
             }
         }
     }
-
 
 
     public static void asArtistRecos(List<RadioStation> artistRecos, SoftAssert sa) {
@@ -452,6 +456,7 @@ public class Validate {
         return str.matches("^(available|expired|redeemed)$");
 
     }
+
     public static boolean asBenefitSection(String str) {
         log.debug("Testing as section: \"" + str + "\"");
         return str.matches("^(Old|New)$");
@@ -468,7 +473,7 @@ public class Validate {
         return str.matches("(^$|\\s+|\\/api.php\\?__call=(channel|content|webradio)\\.(getDetails|getAlbums|getFeaturedPlaylists|getFeaturedStations|getTrending|getCharts)?(&channel_id=[0-9]+)??(&entity_type=playlists)?&api_version=4&_format=json&_marker=0?(&entity_type=playlists)?)");
     }
 
-    public static boolean asAlphaNumericWithUnderscoreHyphen(String str){
+    public static boolean asAlphaNumericWithUnderscoreHyphen(String str) {
         log.debug("Testing as API: \"" + str + "\"");
         return str.matches("^[a-zA-Z0-9_\\-]*$");
     }
@@ -505,7 +510,7 @@ public class Validate {
         return str.matches("new_unverified|existing_unverified|existing_verified");
     }
 
-    public static boolean asCountryCode(String str){
+    public static boolean asCountryCode(String str) {
         return str.matches("^(\\+?\\d{1,3}|\\d{1,4})$");
     }
 
@@ -518,37 +523,39 @@ public class Validate {
 
     }
 
-    public static boolean asQuickActions(String str){ return str.matches("download|add to library|none"); }
+    public static boolean asQuickActions(String str) {
+        return str.matches("download|add to library|none");
+    }
 
     public static boolean asHomepageTabOrder(List<String> tabs) {
-        for(String tab : tabs) {
-            if(!tab.matches("music|jiotunes|podcasts"))
+        for (String tab : tabs) {
+            if (!tab.matches("music|jiotunes|podcasts"))
                 return false;
         }
         return true;
     }
 
-    public static boolean asEmptyArray(String [] arr ){
+    public static boolean asEmptyArray(String[] arr) {
         return arr.length == 0;
     }
 
-    public static boolean asStatus(String str){
+    public static boolean asStatus(String str) {
         return str.matches("success|error");
     }
 
-    public static boolean asCorrelationId(String str){
+    public static boolean asCorrelationId(String str) {
         return str.matches("^([a-zA-Z0-9_-]){8}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){4}-([a-zA-Z0-9_-]){12}");
     }
 
-    public static boolean asProFeatures(String str){
+    public static boolean asProFeatures(String str) {
         return str.matches("jtune|unlimited_skip");
     }
 
-    public static boolean asProStatusTierId(String str){
+    public static boolean asProStatusTierId(String str) {
         return str.matches("^$|jtune_tier");
     }
 
-    public static boolean asProType(String str){
+    public static boolean asProType(String str) {
         return str.matches("transactional|subscription");
     }
 
@@ -557,8 +564,22 @@ public class Validate {
         return str.matches("day|month|year|annual");
     }
 
-    public static boolean asProVendors(String str){
+    public static boolean asProVendors(String str) {
         return str.matches("google|apple|paytm");
     }
 
+    public static boolean asMatchingMatchDeeplink(String str) {
+        boolean flag = false;
+        if (System.getProperty("ctx").equalsIgnoreCase("Android")) {
+
+            if (str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;"))
+                flag = true;
+
+        } else if (System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
+
+            if (str.matches("saavn:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/([0-9]{2,})?\\/?([0-9]{1,})?\\/?(featured)?\\/?(english)?\\/?([A-Za-z0-9_-]{10,})?"))
+                flag = true;
+        }
+        return flag;
+    }
 }
