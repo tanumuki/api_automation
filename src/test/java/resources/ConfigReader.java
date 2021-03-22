@@ -83,6 +83,9 @@ public class ConfigReader {
 				else if (app_version.equalsIgnoreCase("7.5.1")) {
 					properties.setProperty("app_version", "7.5.1");
 				}
+				else if (app_version.equalsIgnoreCase("7.4.0")){
+					properties.setProperty("app_version", "7.4.0");
+				}
 			}
 
 			if (version != null) {
@@ -94,6 +97,9 @@ public class ConfigReader {
 				}
 				else if (version.equalsIgnoreCase("258")) {
 					properties.setProperty("v", "258");
+				}
+				else if (version.equalsIgnoreCase("740.1")){
+					properties.setProperty("v", "740.1");
 				}
 			}
 
@@ -158,7 +164,6 @@ public class ConfigReader {
     	 * If the values are not available from terminal then retrieving the values by hardcoding it
     	 */
     	else {
-        	
 			baseUrl="https://staging.jiosaavn.com";
 			properties.setProperty("baseUrl", baseUrl);
 			password="Saavn123";

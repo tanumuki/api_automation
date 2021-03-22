@@ -20,8 +20,8 @@
         <version.cucumber>6.8.1</version.cucumber>
         <version.CucumberDataTable>3.5.0</version.CucumberDataTable>
         <version.json>20200518</version.json>
-        <version.slf4j>1.7.30</version.slf4j>
-        <version.lombok>1.18.12.0</version.lombok>
+        <version.slf4j>2.0.0-alpha1</version.slf4j>
+        <version.lombok>1.18.18.0</version.lombok>
     </properties>
     <dependencies>
         <dependency>
@@ -69,6 +69,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${version.slf4j}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${version.slf4j}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
