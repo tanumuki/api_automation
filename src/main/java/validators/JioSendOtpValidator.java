@@ -10,12 +10,12 @@ public class JioSendOtpValidator {
 
     public void validate(JioSendOtpPojo jioSendOtpPojo, SoftAssert sa) {
         String status = jioSendOtpPojo.getStatus();
-//        sa.assertTrue(Validate.asStatus(status), className + "." + "validate status failed");
+        sa.assertTrue(Validate.asStatus(status), className + "." + "validate status failed");
         log.info("LOG response status in jio send otp API is " + status);
 
         if (status.equalsIgnoreCase("success")) {
             String correlation_id = jioSendOtpPojo.getData().getCorrelation_id();
-//            sa.assertTrue(Validate.asCorrelationId(correlation_id), className + "." + "validate correlation id failed");
+            sa.assertTrue(Validate.asCorrelationId(correlation_id), className + "." + "validate correlation id failed");
             log.info("LOG response status in jio send otp API is " + correlation_id);
         } else if (status.equalsIgnoreCase("error")) {
             String msg = jioSendOtpPojo.getMsg();
