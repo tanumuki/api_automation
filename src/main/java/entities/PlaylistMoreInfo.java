@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
@@ -68,5 +69,5 @@ public class PlaylistMoreInfo {
     private Boolean is_dolby_content;
 
     @JsonProperty("subtype")
-    private Object subtype;
+    private List<String> subtype;
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 public class Playlist extends Entity{
     @JsonProperty("list")
-    private List<Song> list;
+    private Object list;
     @JsonProperty("more_info")
     private PlaylistMoreInfo more_info;
     @JsonProperty("mini_obj")

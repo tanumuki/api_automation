@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "type", "offer_trial", "product", "expiration_timestamp", "slots_used", "vendor" })
+//@JsonPropertyOrder({ "type", "offer_trial", "product", "expiration_timestamp", "slots_used", "vendor" })
 
 
 @Data
@@ -19,9 +19,9 @@ import lombok.Setter;
 public class LoginProstatus {
 
 
-	public LoginProstatus() {
-		super();
-	}
+//	public LoginProstatus() {
+//		super();
+//	}
 	
 	
 	@JsonProperty("type")
@@ -36,6 +36,14 @@ public class LoginProstatus {
 	private List<SlotsUsed> slotsUsed = null;
 	@JsonProperty("vendor")
 	private String vendor;
-
-
+	@JsonProperty("pro_features")
+	private List<String> pro_features;
+	@JsonProperty("tier_id")
+	private String tier_id;
+	@JsonProperty("title")
+	private String title;
+	@JsonProperty("subtitle")
+	private String subtitle;
+	@JsonProperty("product_details")
+	private ProductDetails product_details;
 }

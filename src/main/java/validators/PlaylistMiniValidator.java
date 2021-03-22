@@ -131,6 +131,10 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "playlist.more_info.vcode", mi.getVcode()));
             sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
         }
+
+        //WEb release 11-Mar-21
+        if(mi.getIs_dolby_content() != null)
+            sa.assertTrue(Validate.asBoolean(mi.getIs_dolby_content()), AssertionMsg.print(className, methodName, "playlist.more_info.is_dolby_content", String.valueOf(mi.getIs_dolby_content())));
     }
 
 
