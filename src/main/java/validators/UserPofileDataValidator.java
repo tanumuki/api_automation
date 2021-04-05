@@ -107,16 +107,16 @@ public class UserPofileDataValidator {
             sa.assertTrue(Validate.asUserAge(age), className + "." + "validate age failed - ");
         }
 
-        System.out.println("Detecting music_identity as:" + userGetProfile.getMusic_identity().getClass());
-        if (userGetProfile.getMusic_identity() instanceof java.lang.Boolean) {
-            sa.assertTrue(Validate.asBoolean((Boolean)userGetProfile.getMusic_identity()), className + "." + "validate music_identity failed - ");
-        }
-        else if (userGetProfile.getMusic_identity() instanceof java.util.ArrayList) {
-            sa.assertTrue(((ArrayList)userGetProfile.getMusic_identity()).size() == 0);
+        if (System.getProperty("ctx").equalsIgnoreCase("android")) {
+            System.out.println("Detecting music_identity as:" + userGetProfile.getMusic_identity().getClass());
+            if (userGetProfile.getMusic_identity() instanceof java.lang.Boolean) {
+                sa.assertTrue(Validate.asBoolean((Boolean) userGetProfile.getMusic_identity()), className + "." + "validate music_identity failed - ");
+            } else if (userGetProfile.getMusic_identity() instanceof java.util.ArrayList) {
+                sa.assertTrue(((ArrayList) userGetProfile.getMusic_identity()).size() == 0);
 //          TODO: music_identity when sent as an array is usually empty. Add an assertion when we figure out the possible values.
-        }
-        else {
-            sa.fail("Unsupported type for music_identity:" + userGetProfile.getMusic_identity().getClass() + ". Please update the test assertions.");
+            } else {
+                sa.fail("Unsupported type for music_identity:" + userGetProfile.getMusic_identity().getClass() + ". Please update the test assertions.");
+            }
         }
 
 //        Email verified state is mandatory, so no need of null checks

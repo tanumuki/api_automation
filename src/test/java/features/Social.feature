@@ -3,7 +3,7 @@ Feature: Validation of Social follow/Unfollow API.
   Background:
     Given I have the cookie for the following user
       | username | password |
-      | sun@s.in | Saavn123 |
+      | paypaltest7@saavn.com | Saavn@1234 |
 
   Scenario: Verify user is able to follow an artist
     Given I have the endpoint for "SocialFollowAPI"

@@ -3,7 +3,7 @@
 #  Background:
 #    Given I have the cookie for the following user for web release
 #      | username | password |
-#      | sun@s.in | Saavn123 |
+#      | paypaltest7@saavn.com | Saavn@1234 |
 #
 #  Scenario Outline: Verify user is able to play artist radio
 #    Given I have the endpoint for "CreateArtistStation" for web release

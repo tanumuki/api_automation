@@ -3,7 +3,7 @@ Feature: Validating Jio Send OTP API
   Background:
     Given I have the cookie for the following user
       | username | password |
-      | sun@s.in | Saavn123 |
+      | paypaltest7@saavn.com | Saavn@1234 |
 
   Scenario: Verify the functionality of Jio tune limite API
 

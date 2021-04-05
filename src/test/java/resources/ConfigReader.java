@@ -113,7 +113,7 @@ public class ConfigReader {
 
 			if (username != null) {
 				if (username.equalsIgnoreCase("prodAccount")) {
-					properties.setProperty("username", "tanu@saavn.com");
+					properties.setProperty("username", "paypaltest7@saavn.com");
 				} else if (username.equalsIgnoreCase("QAAccount")) {
 					properties.setProperty("username", "tanu.muk2009@gmail.com");
 				}
@@ -122,7 +122,7 @@ public class ConfigReader {
 
 			if (password != null) {
 				if (password.equalsIgnoreCase("prodPassword")) {
-					properties.setProperty("password", "Tanu1234");
+					properties.setProperty("password", "Saavn@1234");
 				}
 				else if (password.equalsIgnoreCase("QAPassword")) {
 					properties.setProperty("username", "tanu.muk2009@gmail.com");
@@ -166,7 +166,7 @@ public class ConfigReader {
     	else {
 			baseUrl="https://staging.jiosaavn.com";
 			properties.setProperty("baseUrl", baseUrl);
-			password="Saavn123";
+			password="Saavn@1234";
 			properties.setProperty("password", password);
 			app_version="7.5.1";
 			properties.setProperty("app_version", app_version);
@@ -176,9 +176,9 @@ public class ConfigReader {
 			properties.setProperty("ctx", ctx);
 			userAgent="Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36";
 			properties.setProperty("userAgent", userAgent);
-			username="tanu@saavn.com";
+			username="paypaltest7@saavn.com";
 			properties.setProperty("username", username);
-			password="Tanu1234";
+			password="Saavn@1234";
 			properties.setProperty("password", password);
 
 			File file = new File("src/test/java/resources/global.properties");

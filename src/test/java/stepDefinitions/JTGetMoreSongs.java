@@ -14,11 +14,9 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
-import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import resources.ConfigReader;
 import resources.Util;
 import validators.JTGetMoreSongs.JTGetMoreSongsValidator;
-import validators.JiotuneHomepageData.JTHomePageDataValidator;
 
 import java.io.IOException;
 

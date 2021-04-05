@@ -2,19 +2,13 @@ package validators.AppGetLaunchData;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.*;
 import org.testng.asserts.SoftAssert;
 import pojos.appGetLaunchData.*;
-import pojos.getHomePageDataV2.HomePageDataModules;
 import validators.AssertionMsg;
-import validators.HomepageDataV2.HomePageDataModuleValidator;
 import validators.HomepageDataV2.HomepageDataValidator;
 import validators.Validate;
-import validators.genericValidators.*;
 
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 public class GetLaunchDataValidator extends HomepageDataValidator {
     final String className = getClass().getName();
@@ -27,6 +21,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 
         String appVersion = System.getProperty("app_version");
 //        System.out.println("appVersion1: " + appVersion);
+        System.out.println("App_version is: "+obj.getAppVersion());
         sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
 
         if(obj.getUpdateConfig() != null)
@@ -147,6 +142,11 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
                 System.out.println("cohort: " + ads.getCohort());
             }
 
+            if (ads.getAdproduct_abtest()!=null)
+            {
+                sa.assertTrue(Validate.asString(ads.getAdproduct_abtest()), AssertionMsg.print(className, methodName, "ads.adproduct_abtest", ads.getAdproduct_abtest()));
+                System.out.println("adproduct_abtest: "+ ads.getAdproduct_abtest());
+            }
 
         }
 

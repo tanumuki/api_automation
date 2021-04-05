@@ -14,4 +14,11 @@ import lombok.Setter;
 public class ModulesWithViewMoreObj extends ModulesData {
     @JsonProperty("view_more")
     private ModuleViewMore viewMore;
+    @JsonProperty("total_count")
+    private int total_count;
+    @JsonProperty("scroll_limit")
+    private int scroll_limit;
+    @JsonProperty("type")
+    private String type;
+
 }

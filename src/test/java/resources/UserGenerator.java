@@ -47,7 +47,7 @@ public class UserGenerator {
 		String randoms = String.valueOf(time);
 		String domain = "@saavn.com";
 		String username = randoms + domain;
-		String password = "Saavn123";
+		String password = "Saavn@1234";
 		System.out.println(username);
 		String url = baseurl+"/api.php?__call=user.createV2&username="+username+"&email="+username+"&password="+password+"&api_version=4&_format=json&_marker=0&ctx=android";	
 		

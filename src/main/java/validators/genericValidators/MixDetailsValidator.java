@@ -14,7 +14,9 @@ public class MixDetailsValidator extends PlaylistValidator {
     }
 
     public void validateModules(MixDetails md, SoftAssert sa) {
-        ModuleWithViewMoreArray mod = md.getModules().getList();
-        new ModulesDataValidator().validate(mod, sa);
+        if (md.getModules()!=null) {
+            ModuleWithViewMoreArray mod = md.getModules().getList();
+            new ModulesDataValidator().validate(mod, sa);
+        }
     }
 }

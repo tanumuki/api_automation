@@ -22,4 +22,6 @@ public class Ads {
     private String cohort;
     @JsonProperty("referee")
     private AdRefree referee;
+    @JsonProperty("adproduct_abtest")
+    private String adproduct_abtest;
 }

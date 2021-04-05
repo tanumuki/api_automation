@@ -1,4 +1,3 @@
-
 Feature: Get Homepage data
 
   Scenario: Get Homepage data when user is in logged out state

@@ -234,7 +234,7 @@ public class Validate {
 //        Example strings:
 //        "Artist <middle dot separator> 100K Fans" for pre-7.x
 //        "30.9M Listeners" for post-7.x
-        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]+.[0-9](K|M|B) Listeners)");
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{2,}(.[0-9])?(K|M|B) Listeners)|([0-9]{1,} Followers)");
     }
 
     /**
@@ -442,7 +442,11 @@ public class Validate {
     }
 
     public static boolean asReceiptInvoiceId(String invoiceId) {
-        return invoiceId.matches("PRO\\/[0-9]{4}\\/[0-9]{6}");
+        Boolean flag = false;
+        if (invoiceId.matches("PRO\\/[0-9]{4}\\/[0-9]{6,}") || invoiceId.matches("PRJ\\/[0-9]{4}\\/[0-9]{6,}")) {
+            flag = true;
+        }
+        return flag;
     }
 
     public static boolean asBenefitsAccess(String str) {
@@ -581,5 +585,9 @@ public class Validate {
                 flag = true;
         }
         return flag;
+    }
+
+    public static boolean asPastState(String str) {
+        return str.matches("pro|free|trial");
     }
 }

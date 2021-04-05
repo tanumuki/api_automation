@@ -109,7 +109,7 @@ public class User extends Util {
         Response resp;
         String apiResource = APIResources.valueOf("UserChangePasswordApi").getResource();
         HashMap<String, String> user = new HashMap<String, String>();
-        user.put("username", "sun@s.in");
+        user.put("username", "paypaltest7@saavn.com");
         user.put("password", currentPassword);
 
         String cookie = initCookies(user.get("username"), user.get("password"));
