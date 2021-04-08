@@ -1,4 +1,6 @@
-{
-  "text": "Hello, World!",
-  "msg": "this is from Jenkins"
-}
+[
+  {
+    "text": "Hello, World!",
+    "msg": "this is from Jenkins"
+  }
+]

@@ -5,6 +5,7 @@ Feature: Validation of user logout API.
       | username | password |
       | sun@s.in | Saavn123 |
 
+    @WIP
   Scenario: Verify user is able to logout
     Given I have the endpoint for "UserLogoutAPI"
     When I make the "GET" request with the following query parameters
