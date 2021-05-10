@@ -54,5 +54,6 @@ public class ProductDetails {
     private String currency;
     @JsonProperty("autorenew_text")
     private String autorenew_text;
-
+    @JsonProperty("discount")
+    private String discount;
 }

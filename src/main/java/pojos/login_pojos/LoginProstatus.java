@@ -1,13 +1,12 @@
 package pojos.login_pojos;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 //@JsonPropertyOrder({ "type", "offer_trial", "product", "expiration_timestamp", "slots_used", "vendor" })
@@ -46,4 +45,6 @@ public class LoginProstatus {
 	private String subtitle;
 	@JsonProperty("product_details")
 	private ProductDetails product_details;
+	@JsonProperty("past_state")
+	private String past_state;
 }

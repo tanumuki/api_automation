@@ -1,5 +1,6 @@
 Feature: Get Artist More Albums
 
+
 	Scenario Outline: Get Artist More Albums for an Artist
 
 		Given Payload with artist more albums endpoint "GetArtistMoreAlbums"
@@ -10,7 +11,7 @@ Feature: Get Artist More Albums
 
 		Examples:
 			| artistid |
-			| 459320   |
+			| 881158   |
 			| 565534   |
 			| 458135   |
 

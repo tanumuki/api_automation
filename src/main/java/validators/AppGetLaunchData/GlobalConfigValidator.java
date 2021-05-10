@@ -65,22 +65,24 @@ public class GlobalConfigValidator {
         String appVersion = System.getProperty("app_version");
         sa.assertTrue(appVersion.equals(gc.getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(gc.getApp_version())));
 
-        sa.assertTrue(Validate.asString(gc.getRadio_spotlight_action()), AssertionMsg.print(className, methodName, "global_config.radio_spotlight_action", gc.getRadio_spotlight_action()));
+        if (System.getProperty("ctx").equalsIgnoreCase("Android"))
+            sa.assertTrue(Validate.asString(gc.getRadio_spotlight_action()), AssertionMsg.print(className, methodName, "global_config.radio_spotlight_action", gc.getRadio_spotlight_action()));
 
-        sa.assertTrue(Validate.asBoolean(gc.getShow_radio_roadblock()), AssertionMsg.print(className, methodName, "global_config.show_radio_roadblock", String.valueOf(gc.getShow_radio_roadblock())));
+        if (System.getProperty("ctx").equalsIgnoreCase("Android"))
+            sa.assertTrue(Validate.asBoolean(gc.getShow_radio_roadblock()), AssertionMsg.print(className, methodName, "global_config.show_radio_roadblock", String.valueOf(gc.getShow_radio_roadblock())));
 
         //Validate ad_config
-        for(String str : gc.getAdConfig().getNetworks()){
+        for (String str : gc.getAdConfig().getNetworks()) {
             sa.assertTrue(Validate.asString(str), AssertionMsg.print(className, methodName, "global_config.ad_config.networks", str));
         }
 
         //Validate supported languages
-        for(String lang : gc.getSupportedLanguages()){
+        for (String lang : gc.getSupportedLanguages()) {
             sa.assertTrue(Validate.asMusicLanguages(lang), AssertionMsg.print(className, methodName, "global_config.supported_languages", lang));
         }
 
         //Validate radio supported languages
-        for(String lang : gc.getRadioSupportedLanguages()){
+        for (String lang : gc.getRadioSupportedLanguages()) {
             sa.assertTrue(Validate.asMusicLanguages(lang), AssertionMsg.print(className, methodName, "global_config.radio_supported_languages", lang));
         }
 
@@ -132,14 +134,14 @@ public class GlobalConfigValidator {
         validateOtpProviders(gc.getPhn_otp_providers(), sa);
 
         //product details
-        if(gc.getProduct_details() != null)
+        if (gc.getProduct_details() != null)
             validateProductDetails(gc.getProduct_details(), sa);
 
         // trial
         validateTrial(gc.getTrial(), sa);
 
         // upi providers
-        for(String up : gc.getUpiProviders()){
+        for (String up : gc.getUpiProviders()) {
             sa.assertTrue(Validate.asString(up), AssertionMsg.print(className, methodName, "global_config.upi_providers", up));
         }
 
@@ -153,38 +155,39 @@ public class GlobalConfigValidator {
 
         sa.assertTrue(Validate.asBoolean(gc.getLib_img_cache()), AssertionMsg.print(className, methodName, "global_config.lib_img_cache", String.valueOf(gc.getLib_img_cache())));
 
-        if(data.getUserState().getUserLoggedIn() == 1)
+        if (data.getUserState().getUserLoggedIn() == 1)
             sa.assertTrue(Validate.asBoolean(gc.getFirst_time_user_ad()), AssertionMsg.print(className, methodName, "global_config.first_time_user_ad", String.valueOf(gc.getFirst_time_user_ad())));
 
-        sa.assertTrue(Validate.asBoolean(gc.getJuspayPaymentFlow()), AssertionMsg.print(className, methodName, "global_config.juspay_payment_flow", String.valueOf(gc.getJuspayPaymentFlow())));
+        if (System.getProperty("ctx").equalsIgnoreCase("Android"))
+            sa.assertTrue(Validate.asBoolean(gc.getJuspayPaymentFlow()), AssertionMsg.print(className, methodName, "global_config.juspay_payment_flow", String.valueOf(gc.getJuspayPaymentFlow())));
 
         //Validate pro_cta
         new DeeplinkValidator().validate(gc.getPro_cta(), sa);
 
 
         //Validate juspay_paypal_flow
-        sa.assertTrue(Validate.asBoolean(gc.getJuspay_paypal_flow()), AssertionMsg.print(className, methodName, "global_config.juspay_paypal_flow", String.valueOf(gc.getJuspay_paypal_flow())));
+        if (System.getProperty("ctx").equalsIgnoreCase("Android"))
+            sa.assertTrue(Validate.asBoolean(gc.getJuspay_paypal_flow()), AssertionMsg.print(className, methodName, "global_config.juspay_paypal_flow", String.valueOf(gc.getJuspay_paypal_flow())));
 
 
         //Web Release 4-Mar-2021
-        if(Validate.isNonEmptyString(gc.getQuick_action()))
+        if (Validate.isNonEmptyString(gc.getQuick_action()))
             sa.assertTrue(Validate.asQuickActions(gc.getQuick_action()), AssertionMsg.print(className, methodName, "global_config.quick_action", gc.getQuick_action()));
-        if(gc.getHomepage_tab_order() != null)
+        if (gc.getHomepage_tab_order() != null)
             sa.assertTrue(Validate.asHomepageTabOrder(gc.getHomepage_tab_order()), AssertionMsg.print(className, methodName, "global_config.homepage_tab_order", gc.getHomepage_tab_order().toString()));
 
         //Web Release 11-Mar-2021
-        if(Validate.isNonEmptyString(gc.getDolby_enabled())){
+        if (Validate.isNonEmptyString(gc.getDolby_enabled())) {
             sa.assertTrue(Validate.asBoolean(gc.getDolby_enabled()), AssertionMsg.print(className, methodName, "global_config.dolby_enabled", gc.getDolby_enabled()));
-        }else{
+        } else {
             sa.fail("global_config.dolby_enabled is empty/null");
         }
     }
 
 
-
-    void validateOtpProviders(OTPProviders op, SoftAssert sa){
+    void validateOtpProviders(OTPProviders op, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        for(Map.Entry<String, String> entry : op.getProviders().entrySet()){
+        for (Map.Entry<String, String> entry : op.getProviders().entrySet()) {
             sa.assertTrue(Validate.asCountryCode(entry.getKey()), AssertionMsg.print(className, methodName, "global_config.phn_otp_providers", entry.getKey()));
             sa.assertTrue(Validate.asProvider(entry.getValue()), AssertionMsg.print(className, methodName, "global_config.phn_otp_providers", entry.getValue()));
         }
@@ -193,7 +196,7 @@ public class GlobalConfigValidator {
     void validateProductDetails(ProductDetails pd, SoftAssert sa) {
 
         //Validate products
-        for(Product prod : pd.getProducts()){
+        for (Product prod : pd.getProducts()) {
             validateProduct(prod, sa);
         }
 
@@ -227,19 +230,19 @@ public class GlobalConfigValidator {
     void validateProductCycle(ProductCycle pc, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        if(Validate.isNonEmptyString(pc.getId()))
+        if (Validate.isNonEmptyString(pc.getId()))
             sa.assertTrue(Validate.asString(pc.getId()), AssertionMsg.print(className, methodName, "global_config.product_details.mapping.prodType.prodCycle.id", pc.getId()));
 
-        if(Validate.isNonEmptyString(pc.getRenewal_cycle()))
+        if (Validate.isNonEmptyString(pc.getRenewal_cycle()))
             sa.assertTrue(Validate.asNum(pc.getRenewal_cycle()), AssertionMsg.print(className, methodName, "global_config.product_details.mapping.prodType.prodCycle.renewal_cycle", pc.getRenewal_cycle()));
 
-        if(Validate.isNonEmptyString(pc.getPrice_display()))
+        if (Validate.isNonEmptyString(pc.getPrice_display()))
             sa.assertTrue(Validate.asString(pc.getPrice_display()), AssertionMsg.print(className, methodName, "global_config.product_details.mapping.prodType.prodCycle.price_display", pc.getPrice_display()));
 
-        if(Validate.isNonEmptyString(pc.getPrice_display_per_unit()))
+        if (Validate.isNonEmptyString(pc.getPrice_display_per_unit()))
             sa.assertTrue(Validate.asString(pc.getPrice_display_per_unit()), AssertionMsg.print(className, methodName, "global_config.product_details.mapping.prodType.prodCycle.price_display_per_unit", pc.getPrice_display_per_unit()));
 
-        if(Validate.isNonEmptyString(pc.getPrice()))
+        if (Validate.isNonEmptyString(pc.getPrice()))
             sa.assertTrue(Validate.asString(pc.getPrice()), AssertionMsg.print(className, methodName, "global_config.product_details.mapping.prodType.prodCycle.price", pc.getPrice()));
     }
 
@@ -287,7 +290,7 @@ public class GlobalConfigValidator {
 
     void validateLabelInfo(LabelInfo li, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        for(Overrides o : li.getOverridesList()){
+        for (Overrides o : li.getOverridesList()) {
             sa.assertTrue(Validate.asString(o.getName()), AssertionMsg.print(className, methodName, "global_config.labelInfo.overrides.name", o.getName()));
 
             sa.assertTrue(Validate.asFloat(o.getLimit()), AssertionMsg.print(className, methodName, "global_config.labelInfo.overrides.limit", o.getLimit()));

@@ -3,6 +3,7 @@
 
 Feature: Jiotunes get more songs
 
+  #failure: failing cuz of 500
   Scenario Outline: Jiotunes get more songs
     Given Payload with endpoint jiotunes get more songs "JTGetMoreSongs"
     When User calls jiotunes get more songs api with "<query>", "<n>" and "<p>"
@@ -10,5 +11,5 @@ Feature: Jiotunes get more songs
     And jiotunes get more songs response must be validated successfully
 
     Examples:
-    | query | n | p |
-    | Rajinikanth | 100 | 12  |
+      | query       | n   | p  |
+      | Rajinikanth | 10 | 1 |

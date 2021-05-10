@@ -62,4 +62,7 @@ public class PlaylistMiniMoreInfo {
     private String vlink;
     @JsonProperty("is_dolby_content")
     private Boolean is_dolby_content;
+     //TODO: add validation for subtypes
+    @JsonProperty("sub_types")
+    private String sub_types;
 }

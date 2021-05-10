@@ -3,7 +3,7 @@ Feature: Validation of song get param API.
   Background:
     Given I have the cookie for the following user
       | username | password |
-      | sun@s.in | Saavn123 |
+      | paypaltest7@saavn.com | Saavn@1234 |
 
 
   Scenario Outline: Verify user is able to get song param values

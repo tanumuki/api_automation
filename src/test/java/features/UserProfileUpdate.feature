@@ -2,12 +2,12 @@ Feature: Validation of user profile update API.
 
   Background:
     Given I have the cookie for the following user
-      | username | password |
-      | sun@s.in | Saavn123 |
+      | username              | password   |
+      | paypaltest7@saavn.com | Saavn@1234 |
 
   Scenario: Verify user is able to update profile information
     Given I have the endpoint for "UserProfileUpdateAPI"
     When I make the "GET" request with the following query parameters
-      | firstname | lastname | gender | dob        | email    | phonefbid | phonefbtoken | phone_number | idtoken | ct         |
-      | Test2     | User2    | f      | 1999-01-01 | sun@s.in |           |              |              |         | 2061221000 |
+      | firstname | lastname | gender | dob        | email                 | phonefbid | phonefbtoken | phone_number | idtoken | ct         |
+      | Test2     | User2    | f      | 1999-01-01 | paypaltest7@saavn.com |           |              |              |         | 2061221000 |
     Then The User Update API returns "success" with status code 200

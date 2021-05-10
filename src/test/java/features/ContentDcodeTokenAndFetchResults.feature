@@ -3,7 +3,7 @@ Feature: Validation of Content Decode Token and Fetch Results API
   Background:
     Given I have the cookie for the following user
       | username | password |
-      | sun@s.in | Saavn123 |
+      | paypaltest7@saavn.com | Saavn@1234 |
 
   Scenario Outline: Verify response of Content Decode Token and Fetch Results API
     Given I have the endpoint for "ContentDecodeTokenAndFetchResults"

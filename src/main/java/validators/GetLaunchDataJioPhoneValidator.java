@@ -14,7 +14,7 @@ public class GetLaunchDataJioPhoneValidator {
         int i = 1;
         JsonObject config = jioPhoneGetLaunchData.getConfig();
         //TODO: @tanu Please recheck the validation for config object
-        sa.assertTrue(config.size()>0, className + "." + "validate config failed for entity");
+        sa.assertTrue(config.size()==0, className + "." + "validate config failed for entity");
         log.info(("LOG response config in JioPhone get launch API is: " + config));
 
         for (HomepageData homepageData : jioPhoneGetLaunchData.getHomepageData()) {

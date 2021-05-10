@@ -1,6 +1,5 @@
 # new feature
 # Tags: optional
-
 Feature: Get Playlist Recommendation for a given playlist id
 
   Scenario Outline: Get playlist recommendations for a given playlist id
