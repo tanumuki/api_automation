@@ -153,4 +153,8 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("dolby_enabled")
     private String dolby_enabled;
 
+    //Web release 08-April-2021
+    @JsonProperty("zero_streamer")
+    private Boolean zero_streamer;
+
 }

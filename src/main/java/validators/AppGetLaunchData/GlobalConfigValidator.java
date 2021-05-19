@@ -182,6 +182,13 @@ public class GlobalConfigValidator {
         } else {
             sa.fail("global_config.dolby_enabled is empty/null");
         }
+
+        //Web release 08-April-2020
+        if (gc.getZero_streamer()!=null) {
+            sa.assertTrue(Validate.asBoolean(gc.getZero_streamer()), AssertionMsg.print(className, methodName, "global_config.zero_streamer", gc.getZero_streamer().toString()));
+        } else {
+            sa.fail("global_config.zero_streamer is empty/null");
+        }
     }
 
 

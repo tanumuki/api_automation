@@ -68,6 +68,6 @@ public class PlaylistMoreInfo {
     @JsonProperty("is_dolby_content")
     private Boolean is_dolby_content;
 
-    @JsonProperty("subtype")
-    private List<String> subtype;
+    @JsonProperty("sub_types")
+    private List<String> sub_types;
 }
