@@ -2,8 +2,10 @@ package validators;
 
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
+import pojos.benefits.BenefitsCarouselCTAMatrix;
 import pojos.benefits.BenefitsCount;
 import pojos.benefits.BenefitsList;
+import pojos.benefits.BenefitsUserProType;
 
 import java.util.Arrays;
 
@@ -18,6 +20,7 @@ public class BenefitsValidator {
     }
 
     public void validateList(BenefitsList benefitsList, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         for (int i = 0; i < benefitsList.getData().length; i++) {
             String benefits_id = benefitsList.getData()[i].getId();
             sa.assertTrue(Validate.asNum(benefits_id), className + "." + "validate benefits id failed for benefit id - "+(benefits_id));
@@ -127,8 +130,39 @@ public class BenefitsValidator {
             String monetary_value = benefitsList.getData()[i].getMonetary_value();
             sa.assertTrue(Validate.asNum(monetary_value), className + "." + "validate monetary_value failed for benefit id - "+(benefits_id));
             log.info(("LOG response monetary_value in benefits list for benefit " + (benefits_id) + " is " + monetary_value));
-
-
         }
+
+//        VALIDATE METADATA - FREE
+        sa.assertTrue(Validate.asBenefitMetadataTitle(benefitsList.getMetadata().getFree().getTitle()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.free.title", benefitsList.getMetadata().getFree().getTitle()));
+        sa.assertTrue(Validate.asHexColour(benefitsList.getMetadata().getFree().getColor()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.free.color", benefitsList.getMetadata().getFree().getColor()));
+        sa.assertTrue(Validate.asDeeplink(benefitsList.getMetadata().getFree().getDeeplink()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.free.deeplink", benefitsList.getMetadata().getFree().getDeeplink()));
+
+//        VALIDATE METADATA - EXPIRED
+        sa.assertTrue(Validate.asBenefitMetadataTitle(benefitsList.getMetadata().getExpired().getTitle()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.expired.title", benefitsList.getMetadata().getExpired().getTitle()));
+        sa.assertTrue(Validate.asHexColour(benefitsList.getMetadata().getExpired().getColor()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.expired.color", benefitsList.getMetadata().getExpired().getColor()));
+        sa.assertTrue(Validate.asDeeplink(benefitsList.getMetadata().getExpired().getDeeplink()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.expired.deeplink", benefitsList.getMetadata().getExpired().getDeeplink()));
+
+//        VALIDATE METADATA - TRIAL
+        sa.assertTrue(Validate.asBenefitMetadataTitle(benefitsList.getMetadata().getTrial().getTitle()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.trial.title", benefitsList.getMetadata().getTrial().getTitle()));
+        sa.assertTrue(Validate.asHexColour(benefitsList.getMetadata().getTrial().getColor()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.trial.color", benefitsList.getMetadata().getTrial().getColor()));
+        sa.assertTrue(Validate.asDeeplink(benefitsList.getMetadata().getTrial().getDeeplink()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.trial.deeplink", benefitsList.getMetadata().getTrial().getDeeplink()));
+
+//        VALIDATE METADATA - PLUS
+        sa.assertTrue(Validate.asBenefitMetadataTitle(benefitsList.getMetadata().getPlus().getTitle()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.plus.title", benefitsList.getMetadata().getPlus().getTitle()));
+        sa.assertTrue(Validate.asHexColour(benefitsList.getMetadata().getPlus().getColor()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.plus.color", benefitsList.getMetadata().getPlus().getColor()));
+        sa.assertTrue(Validate.asDeeplink(benefitsList.getMetadata().getPlus().getDeeplink()),
+                AssertionMsg.print(className, methodName,"metadata.carousel_cta_matrix.plus.deeplink", benefitsList.getMetadata().getPlus().getDeeplink()));
+
     }
 }

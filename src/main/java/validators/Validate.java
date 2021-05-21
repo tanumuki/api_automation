@@ -393,6 +393,21 @@ public class Validate {
         return deeplink.matches("^(jiosaavn|saavn):\\/\\/(open|view)\\S+\\S+");
     }
 
+    public static boolean asMatchingMatchDeeplink(String str) {
+        boolean flag = false;
+        if (System.getProperty("ctx").equalsIgnoreCase("Android")) {
+
+            if (str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;"))
+                flag = true;
+
+        } else if (System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
+
+            if (str.matches("saavn:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/([0-9]{2,})?\\/?([0-9]{1,})?\\/?(featured)?\\/?(english)?\\/?([A-Za-z0-9_-]{10,})?"))
+                flag = true;
+        }
+        return flag;
+    }
+
     public static boolean asCategoryType(String categoryType) {
         return categoryType.matches("static|user_defined");
     }
@@ -464,7 +479,11 @@ public class Validate {
     public static boolean asBenefitSection(String str) {
         log.debug("Testing as section: \"" + str + "\"");
         return str.matches("^(Old|New)$");
+    }
 
+    public static boolean asBenefitMetadataTitle(String str) {
+        log.debug("Testing as metadata title: \"" + str + "\"");
+        return str.matches("^(Go Pro|Renew|Upgrade)");
     }
 
     public static boolean asViewType(String str) {
@@ -570,21 +589,6 @@ public class Validate {
 
     public static boolean asProVendors(String str) {
         return str.matches("google|apple|paytm");
-    }
-
-    public static boolean asMatchingMatchDeeplink(String str) {
-        boolean flag = false;
-        if (System.getProperty("ctx").equalsIgnoreCase("Android")) {
-
-            if (str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;"))
-                flag = true;
-
-        } else if (System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
-
-            if (str.matches("saavn:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/([0-9]{2,})?\\/?([0-9]{1,})?\\/?(featured)?\\/?(english)?\\/?([A-Za-z0-9_-]{10,})?"))
-                flag = true;
-        }
-        return flag;
     }
 
     public static boolean asPastState(String str) {
