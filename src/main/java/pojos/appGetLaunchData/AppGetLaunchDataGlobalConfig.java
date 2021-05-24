@@ -157,4 +157,21 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("zero_streamer")
     private Boolean zero_streamer;
 
+    @JsonProperty("video_mapping_data_update")
+    private int video_mapping_data_update;
+
+    @JsonProperty("auto_play_exp")
+    private AutoPlayExp auto_play_exp;
+
+    @JsonProperty("RateCap_Applicable")
+    private Boolean rateCap_Applicable;
+
+    @JsonProperty("Video_Remaining")
+    private int video_Remaining;
+
+    @JsonProperty("Max_Video_Limit")
+    private int max_Video_Limit;
+
+    @JsonProperty("app_languages")
+    private AppLanguages app_languages;
 }

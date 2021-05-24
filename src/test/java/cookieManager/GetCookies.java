@@ -32,6 +32,7 @@ public class GetCookies {
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		msCookieManager = new java.net.CookieManager();
 		Map<String, List<String>> headerFields = connection.getHeaderFields();
+		System.out.println(headerFields.get(null));
 		List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
 		if (cookiesHeader != null) {
 			for (String cookie : cookiesHeader) {

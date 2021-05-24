@@ -28,6 +28,8 @@ public class SearchResponseValidator {
 		Validate.asAssortedEntity(response.getData_5(), sa);
 		Validate.asAssortedEntity(response.getData_6(), sa);
 		Validate.asAssortedEntity(response.getData_7(), sa);
+		Validate.asAssortedEntity(response.getData_8(), sa);
+
 		for(ModulesData md : response.getModules()){
 			new ModulesDataValidator().validate(md, sa);
 		}

@@ -40,6 +40,9 @@ public class SearchResponse {
 	private List<LinkedHashMap> data_6;
 	@JsonProperty("data_7")
 	private List<LinkedHashMap> data_7;
+	@JsonProperty("data_8")
+	private List<LinkedHashMap> data_8;
+
 
 	@JsonProperty("modules")
 	private List<ModulesData> modules;

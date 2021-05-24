@@ -33,9 +33,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         }
 
         //Validate ab_test
-//        System.out.println("23:"+obj.getAbTest().getClass().getName());
         if(obj.getAbTest() instanceof LinkedHashMap){
-//            System.out.println("tada");
             AB_test ab_testObj = mapper.convertValue(obj.getAbTest(), AB_test.class);
             sa.assertTrue(ab_testObj.getSplash().equals("single_artist"), AssertionMsg.print(className, methodName, "ab_test.splash", ab_testObj.getSplash()));
 

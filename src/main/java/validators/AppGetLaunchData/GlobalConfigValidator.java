@@ -189,7 +189,18 @@ public class GlobalConfigValidator {
         } else {
             sa.fail("global_config.zero_streamer is empty/null");
         }
+
+        sa.assertTrue(Validate.asNum(gc.getVideo_mapping_data_update()), AssertionMsg.print(className, methodName, "global_config.getVideo_mapping_data_update", String.valueOf(gc.getVideo_mapping_data_update())));
+        validateAutoPlayExp(gc.getAuto_play_exp(),sa);
+
+        sa.assertTrue(Validate.asBoolean(gc.getRateCap_Applicable()),AssertionMsg.print(className, methodName, "global_config.getRateCap_Applicable", String.valueOf(gc.getRateCap_Applicable())));
+        sa.assertTrue(Validate.asNum(gc.getVideo_Remaining()), AssertionMsg.print(className, methodName, "global_config.getVideo_Remaining", String.valueOf(gc.getVideo_Remaining())));
+        sa.assertTrue(Validate.asNum(gc.getMax_Video_Limit()), AssertionMsg.print(className, methodName, "global_config.getMax_Video_Limit", String.valueOf(gc.getMax_Video_Limit())));
+
+        validateAppLanguages(gc.getApp_languages(),sa);
+
     }
+
 
 
     void validateOtpProviders(OTPProviders op, SoftAssert sa) {
@@ -305,4 +316,33 @@ public class GlobalConfigValidator {
             sa.assertTrue(Validate.asString(o.getError()), AssertionMsg.print(className, methodName, "global_config.labelInfo.overrides.error", o.getError()));
         }
     }
+
+    void validateAutoPlayExp(AutoPlayExp autoPlayExp, SoftAssert sa)
+    {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        sa.assertTrue(Validate.asNum(autoPlayExp.getId()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getId", autoPlayExp.getId()));
+        sa.assertTrue(Validate.asString(autoPlayExp.getTitle()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getTitle", autoPlayExp.getTitle()));
+        sa.assertTrue(Validate.asEntityType(autoPlayExp.getType()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getType", autoPlayExp.getType()));
+        sa.assertTrue(Validate.asNum(autoPlayExp.getTime()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getTime", String.valueOf(autoPlayExp.getTime())));
+        sa.assertTrue(Validate.asCDNURL(autoPlayExp.getImage()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getImage", autoPlayExp.getImage()));
+
+    }
+
+    private void validateAppLanguages(AppLanguages app_languages, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        sa.assertEquals(app_languages.getDefault_selection(),"hindi", AssertionMsg.print(className, methodName, "global_config.app_languages.getDefault_selection()", app_languages.getDefault_selection()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getBengali(),"bengali", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBengali()", app_languages.getAppLanguagesList().getBengali()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getBhojpuri(),"bhojpuri", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBhojpuri()", app_languages.getAppLanguagesList().getBhojpuri()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getEnglish(),"english", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getEnglish()", app_languages.getAppLanguagesList().getEnglish()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getGujarati(),"gujarati", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getGujarati()", app_languages.getAppLanguagesList().getGujarati()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getHaryanvi(),"haryanvi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getHaryanvi()", app_languages.getAppLanguagesList().getHaryanvi()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getHindi(),"hindi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getHindi()", app_languages.getAppLanguagesList().getHindi()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getMalyalam(),"malayalam", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getMalyalam()", app_languages.getAppLanguagesList().getMalyalam()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getTamil(),"tamil", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getTamil()", app_languages.getAppLanguagesList().getTamil()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getTelugu(),"telugu", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getTelugu()", app_languages.getAppLanguagesList().getTelugu()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getMarathi(),"marathi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getMarathi()", app_languages.getAppLanguagesList().getMarathi()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getPunjabi(),"punjabi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getPunjabi()", app_languages.getAppLanguagesList().getPunjabi()));
+        sa.assertEquals(app_languages.getAppLanguagesList().getKannada(),"kannada", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getKannada()", app_languages.getAppLanguagesList().getKannada()));
+    }
+
 }

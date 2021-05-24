@@ -25,6 +25,7 @@ public class GenericSteps extends Util {
     static Response resp;
     static String apiResource;
     static String cookie;
+    static RequestSpecification respec;
 
     @Given("I have the endpoint for {string}")
     public void iHaveTheEndopointFor(String endPoint) throws FileNotFoundException {
@@ -41,6 +42,7 @@ public class GenericSteps extends Util {
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
         }
+
         resp = request.given()
                 .log()
                 .all()
