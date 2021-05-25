@@ -91,9 +91,6 @@ public class SongValidator extends EntityValidator {
         if(Validate.isNonEmptyString(moreInfo.getThumbnail_url())) {
             sa.assertTrue(Validate.asCDNURL(moreInfo.getThumbnail_url()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.thumbnail_url", moreInfo.getThumbnail_url(), songObj.getId()));
-        }else if(songObj.getMini_obj() == null){
-            //thumbnail URLs don't show up for mini objects
-            sa.fail("Song More Info Encrypted Media URL is null/empty for song with ID - " + songObj.getId());
         }
 
         if(Validate.isNonEmptyString(moreInfo.getEncryptedCacheUrl())) {
