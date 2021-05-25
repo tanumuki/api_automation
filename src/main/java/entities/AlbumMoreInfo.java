@@ -50,5 +50,7 @@ public class AlbumMoreInfo {
 	private Boolean is_dolby_content;
 	@JsonProperty("release_year")
 	private Integer release_year;
+	@JsonProperty("video_mappings")
+	private String [] video_mappings;
 
 }

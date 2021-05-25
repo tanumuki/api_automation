@@ -48,4 +48,14 @@ public class BenefitsListData {
     private String section;
     @JsonProperty("code")
     private String code;
+    @JsonProperty("category")
+    private String category;
+    @JsonProperty("category_id")
+    private String category_id;
+    @JsonProperty("top_reward")
+    private String top_reward;
+    @JsonProperty("highligter_tag")
+    private String highligter_tag;
+    @JsonProperty("monetary_value")
+    private String monetary_value;
 }

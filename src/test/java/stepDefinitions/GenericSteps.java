@@ -41,6 +41,7 @@ public class GenericSteps extends Util {
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
         }
+
         resp = request.given()
                 .log()
                 .all()

@@ -91,6 +91,10 @@ public class AlbumValidator extends EntityValidator {
 		for(Song song : album.getList()){
 			new SongValidator().validate(song, sa);
 		}
+
+		Modules modules = album.getModules();
+		if(modules != null)
+			new ModulesDataValidator().validate(modules, sa);
 	}
 
 }

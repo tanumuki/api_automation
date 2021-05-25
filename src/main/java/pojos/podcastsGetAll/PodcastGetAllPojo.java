@@ -26,7 +26,10 @@ public class PodcastGetAllPojo {
     private List<Episode> newAndTrending;
 
     Map<String, List<LinkedHashMap>> podcastHomeModule = new LinkedHashMap<>();
+
     @JsonAnySetter
-    public void setPodcastHomeModule(String key, List<LinkedHashMap> val) { podcastHomeModule.put(key, val); }
+    public void setPodcastHomeModule(String key, List<LinkedHashMap> val) {
+        podcastHomeModule.put(key, val);
+    }
 
 }

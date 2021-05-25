@@ -67,7 +67,13 @@ public class PlaylistMoreInfo {
 
     @JsonProperty("is_dolby_content")
     private Boolean is_dolby_content;
-
+    @JsonProperty("images")
+    private List<String> images;
     @JsonProperty("subtype")
     private List<String> subtype;
+    @JsonProperty("sub_types")
+    private List<String> sub_types;
+    @JsonProperty("video_count")
+    private String video_count;
+
 }

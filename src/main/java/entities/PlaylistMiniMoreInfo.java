@@ -65,4 +65,6 @@ public class PlaylistMiniMoreInfo {
      //TODO: add validation for subtypes
     @JsonProperty("sub_types")
     private String sub_types;
+    @JsonProperty("images")
+    private String images;
 }

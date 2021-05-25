@@ -32,7 +32,10 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(ch.getDescription()), AssertionMsg.print(className, methodName, "playlist.description", ch.getDescription()));
 
         if(ch.getNumsongs() != null){
-            //TODO: Add validation for numsongs, for now it's coming up as null
+            /*TODO: Add validation for numsongs, for now it's coming up as null
+            * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
+            * add the validations - Ashwin */
+            sa.fail();
         }
 
         if(ch.getMoreInfo() instanceof List){
@@ -130,6 +133,20 @@ public class PlaylistMiniValidator extends EntityValidator {
         if(Validate.isNonEmptyString(mi.getVcode())){
             sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "playlist.more_info.vcode", mi.getVcode()));
             sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
+        }
+
+        if(mi.getSub_types()!=null) {
+            /*TODO: Add validation for sub_types, for now it's coming up as null
+             * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
+             * add the validations - Ashwin */
+            sa.fail();
+        }
+
+        if(mi.getImages()!=null) {
+            /*TODO: Add validation for images, for now it's coming up as null
+             * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
+             * add the validations - Ashwin */
+            sa.fail();
         }
 
         //WEb release 11-Mar-21

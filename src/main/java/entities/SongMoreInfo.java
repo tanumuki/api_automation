@@ -109,4 +109,6 @@ public class SongMoreInfo {
 	private String language;
 	@JsonProperty("is_dolby_content")
 	private Boolean is_dolby_content;
+	@JsonProperty("video_mappings")
+	private String [] video_mappings;
 }

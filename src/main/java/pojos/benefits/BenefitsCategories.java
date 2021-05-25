@@ -7,15 +7,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
+@Data
 @Getter
 @Setter
-@Data
-public class BenefitsList {
-
-    @JsonProperty("status")
-    private String status;
-    @JsonProperty("data")
-    private BenefitsListData [] data;
-    @JsonProperty("metadata")
-    private Metadata metadata;
+public class BenefitsCategories {
+    @JsonProperty("category_title")
+    private String category_title;
+    @JsonProperty("category_id")
+    private String category_id;
+    @JsonProperty("position")
+    private String position;
 }

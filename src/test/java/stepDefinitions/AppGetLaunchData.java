@@ -43,7 +43,6 @@ public class AppGetLaunchData extends Util {
         APIResources resourceAPI = APIResources.valueOf(endpoint);
         String username = ConfigReader.getInstance().getUsername();
         String password = ConfigReader.getInstance().getPassword();
-//        System.out.println("from config appversion: " + ConfigReader.getInstance().getAppVersion());
 
         cookie = GetCookies.initCookies(username, password);
         String resource = resourceAPI.getResource();

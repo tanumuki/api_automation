@@ -93,26 +93,25 @@ public class PlaylistValidator extends EntityValidator {
 
         //Validate subtype
 
-        if(moreInfo.getSubtype() != null && moreInfo.getSubtype().size() > 0){
-            for(String subtype : moreInfo.getSubtype()){
+        if(moreInfo.getSub_types() != null && moreInfo.getSub_types().size() > 0){
+            for(String subtype : moreInfo.getSub_types()){
                 sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName, "playlist.more_info.subtype", subtype));
             }
         }
 
-//        if(moreInfo.getSubtype() instanceof List){
-//            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents");
-//        } else if(moreInfo.getSubtype() != null){
-//            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
-//        }
+//        Adding an empty assertion for now as this field is empty for all playlist API calls.
+//        If this assert fails, please check the JSON response and add the necessary validations - Ashwin
+        if(moreInfo.getImages()!=null) {
+            sa.assertTrue(moreInfo.getImages().isEmpty(), AssertionMsg.print(className, methodName, "playlist.more_info.images", moreInfo.getImages().toString()));
+        }
 
+        if(moreInfo.getSubtype() instanceof List){
+            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents. Test validations need to be added.");
+        } else if(moreInfo.getSubtype() != null){
+            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
+        }
 
-        /*
-        else {
-            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
-            PlaylistMiniMoreInfo mi = mapper.convertValue(ch.getMoreInfo(), PlaylistMiniMoreInfo.class);
-            validatePlaylistMiniMoreInfo(mi, sa);
-        }*/
+        sa.assertTrue(Validate.asNum(moreInfo.getVideo_count()), AssertionMsg.print(className, methodName, "playlist.more_info.video_count",moreInfo.getVideo_count()));
     }
 
 }

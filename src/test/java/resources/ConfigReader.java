@@ -75,32 +75,11 @@ public class ConfigReader {
 		
 
 			if (app_version != null) {
-				if (app_version.equalsIgnoreCase("5.1")) {
-					properties.setProperty("app_version", "5.1");
-				} else if (app_version.equalsIgnoreCase("6.1")) {
-					properties.setProperty("app_version", "6.1");
-				}
-				else if (app_version.equalsIgnoreCase("7.5.1")) {
-					properties.setProperty("app_version", "7.5.1");
-				}
-				else if (app_version.equalsIgnoreCase("7.4.0")){
-					properties.setProperty("app_version", "7.4.0");
-				}
+				properties.setProperty("app_version", app_version);
 			}
 
 			if (version != null) {
-				if (version.equalsIgnoreCase("190")) {
-					properties.setProperty("v", "190");
-				}
-				else if (version.equalsIgnoreCase("211")) {
-					properties.setProperty("v", "211");
-				}
-				else if (version.equalsIgnoreCase("258")) {
-					properties.setProperty("v", "258");
-				}
-				else if (version.equalsIgnoreCase("740.1")){
-					properties.setProperty("v", "740.1");
-				}
+					properties.setProperty("v", version);
 			}
 
 			if (ctx != null) {
@@ -166,11 +145,9 @@ public class ConfigReader {
     	else {
 			baseUrl="https://staging.jiosaavn.com";
 			properties.setProperty("baseUrl", baseUrl);
-			password="Saavn@1234";
-			properties.setProperty("password", password);
-			app_version="7.5.1";
+			app_version="8.0.1";
 			properties.setProperty("app_version", app_version);
-			version="258";
+			version="286";
 			properties.setProperty("v", version);
 			ctx="android";
 			properties.setProperty("ctx", ctx);
