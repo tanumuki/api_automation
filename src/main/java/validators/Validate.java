@@ -312,7 +312,7 @@ public class Validate {
 
 
     public static boolean asTopicPromosField(String key) {
-        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist)[a-zA-z0-9_\\^:-]*");
+        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist|surprise_me)[a-zA-z0-9_\\^:-]*");
     }
 
     public static boolean asModulesPosition(int pos) {
@@ -367,6 +367,11 @@ public class Validate {
                 Channel ch = mapper.convertValue(entity, Channel.class);
                 new ChannelValidator().validate(ch, sa);
                 break;
+            case "surprise_me":
+                Radio radio = mapper.convertValue(entity, Radio.class);
+                new RadioValidator().validate(radio, sa);
+                break;
+
         }
     }
 
