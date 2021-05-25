@@ -50,4 +50,6 @@ public class UserState {
     private LoginProstatus prostatus;
     @JsonProperty("device_status")
     private String deviceStatus;
+    @JsonProperty("email")
+    private String email;
 }

@@ -1,5 +1,6 @@
 Feature: Validation of Social follow/Unfollow API.
 
+
   Background:
     Given I have the cookie for the following user
       | username | password |

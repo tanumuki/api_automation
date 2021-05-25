@@ -1,8 +1,6 @@
 # new feature
 # Tags: optional
-
 Feature: Gets app get launch data for logged out user
-
   Scenario: Gets app get launch data
     Given Payload with endpoint for app get launch "AppGetLaunchData"
     When User calls app get launch api
