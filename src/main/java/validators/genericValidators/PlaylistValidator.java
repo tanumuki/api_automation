@@ -111,7 +111,10 @@ public class PlaylistValidator extends EntityValidator {
             sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
         }
 
-        sa.assertTrue(Validate.asNum(moreInfo.getVideo_count()), AssertionMsg.print(className, methodName, "playlist.more_info.video_count",moreInfo.getVideo_count()));
+        if(Validate.isNonEmptyString(moreInfo.getVideo_count())) {
+            sa.assertTrue(Validate.asNum(moreInfo.getVideo_count()),
+                    AssertionMsg.print(className, methodName, "playlist.more_info.video_count",moreInfo.getVideo_count()));
+        }
     }
 
 }
