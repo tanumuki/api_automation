@@ -25,7 +25,6 @@ public class GenericSteps extends Util {
     static Response resp;
     static String apiResource;
     static String cookie;
-    static RequestSpecification respec;
 
     @Given("I have the endpoint for {string}")
     public void iHaveTheEndopointFor(String endPoint) throws FileNotFoundException {
