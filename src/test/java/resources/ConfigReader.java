@@ -67,6 +67,12 @@ public class ConfigReader {
 				else if (baseUrl.equalsIgnoreCase("prod")) {
 					properties.setProperty("baseUrl", "https://www.saavn.com");
 				}
+				else if (baseUrl.equalsIgnoreCase("test1")) {
+					properties.setProperty("baseUrl", "https://imgtest.jiosaavn.com");
+				}
+				else if (baseUrl.equalsIgnoreCase("test2")) {
+					properties.setProperty("baseUrl", "https://imgtest.saavn.com");
+				}
 			}
 			else {
 				baseUrl= "https://www.saavn.com";
