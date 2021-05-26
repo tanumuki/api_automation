@@ -72,6 +72,7 @@ public class AppGetLaunchData extends Util {
 
     @Then("App get launch data response must be validated successfully")
     public void app_get_launch_data_response_must_be_validated_successfully() throws JsonProcessingException {
+        System.setProperty("ctx", ConfigReader.getInstance().getCtx());
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         pojos.appGetLaunchData.AppGetLaunchData agld = mapper.readValue(resp.asString(), pojos.appGetLaunchData.AppGetLaunchData.class);
         SoftAssert sa  = new SoftAssert();
