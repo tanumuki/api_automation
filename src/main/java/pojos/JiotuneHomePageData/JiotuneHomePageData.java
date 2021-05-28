@@ -2,8 +2,7 @@ package pojos.JiotuneHomePageData;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import entities.ModulesData;
-import entities.PlaylistMini;
+import entities.ModulesWithViewMoreObj;
 import entities.Song;
 import lombok.Data;
 import lombok.Getter;
@@ -30,6 +29,8 @@ public class JiotuneHomePageData {
     private List<LinkedHashMap> data_4;
     @JsonProperty("data_5")
     private List<LinkedHashMap> data_5;
+    @JsonProperty("data_6")
+    private List<LinkedHashMap> data_6;
     @JsonProperty("modules")
-    private List<ModulesData> modules;
+    private List<ModulesWithViewMoreObj> modules;
 }

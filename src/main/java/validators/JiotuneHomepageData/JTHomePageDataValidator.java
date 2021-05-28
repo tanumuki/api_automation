@@ -5,7 +5,6 @@ import entities.ModulesDataShowMore;
 import entities.Song;
 import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
-import pojos.JiotuneHomePageData.JiotunePlaylistObj;
 import validators.AssertionMsg;
 import validators.Validate;
 import validators.genericValidators.ModulesDataValidator;
@@ -37,6 +36,10 @@ public class JTHomePageDataValidator {
 
         //Validate data_5
         Validate.asAssortedEntity(hd.getData_5(), sa);
+
+        //Validate data_6
+        if (hd.getData_6()!=null)
+        Validate.asAssortedEntity(hd.getData_6(), sa);
 
         //Validate modules
         for(ModulesData md : hd.getModules()){

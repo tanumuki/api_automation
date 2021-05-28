@@ -52,7 +52,7 @@ public class SubscriptionGetStatus extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
     }
 
     @When("User calls subs get status api with the {string} flag")
@@ -62,7 +62,7 @@ public class SubscriptionGetStatus extends Util {
         System.out.println("resSpec: " + resSpec.toString());
         reqSpec.queryParam("include_receipt", includeReceipt);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
     }
 
     @Then("Subs get status api responds with the status code {string}")
