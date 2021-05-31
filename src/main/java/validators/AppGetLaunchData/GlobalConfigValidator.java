@@ -184,23 +184,26 @@ public class GlobalConfigValidator {
         }
 
         //Web release 08-April-2020
-        if (gc.getZero_streamer()!=null) {
+        if (gc.getZero_streamer() != null) {
             sa.assertTrue(Validate.asBoolean(gc.getZero_streamer()), AssertionMsg.print(className, methodName, "global_config.zero_streamer", gc.getZero_streamer().toString()));
         } else {
             sa.fail("global_config.zero_streamer is empty/null");
         }
 
         sa.assertTrue(Validate.asNum(gc.getVideo_mapping_data_update()), AssertionMsg.print(className, methodName, "global_config.getVideo_mapping_data_update", String.valueOf(gc.getVideo_mapping_data_update())));
-        validateAutoPlayExp(gc.getAuto_play_exp(),sa);
-
-        sa.assertTrue(Validate.asBoolean(gc.getRateCap_Applicable()),AssertionMsg.print(className, methodName, "global_config.getRateCap_Applicable", String.valueOf(gc.getRateCap_Applicable())));
+        if (gc.getAuto_play_exp() != null)
+            validateAutoPlayExp(gc.getAuto_play_exp(), sa);
+        sa.assertTrue(Validate.asBoolean(gc.getRateCap_Applicable()), AssertionMsg.print(className, methodName, "global_config.getRateCap_Applicable", String.valueOf(gc.getRateCap_Applicable())));
         sa.assertTrue(Validate.asNum(gc.getVideo_Remaining()), AssertionMsg.print(className, methodName, "global_config.getVideo_Remaining", String.valueOf(gc.getVideo_Remaining())));
         sa.assertTrue(Validate.asNum(gc.getMax_Video_Limit()), AssertionMsg.print(className, methodName, "global_config.getMax_Video_Limit", String.valueOf(gc.getMax_Video_Limit())));
+        sa.assertTrue(Validate.asNum(gc.getFeatureViewSpan()), AssertionMsg.print(className, methodName, "global_config.getFeatureViewSpan", String.valueOf(gc.getFeatureViewSpan())));
+        sa.assertTrue(Validate.asNum(gc.getWatchVideoSpan()), AssertionMsg.print(className, methodName, "global_config.getWatchVideoSpan", String.valueOf(gc.getWatchVideoSpan())));
 
-        validateAppLanguages(gc.getApp_languages(),sa);
+
+
+        validateAppLanguages(gc.getApp_languages(), sa);
 
     }
-
 
 
     void validateOtpProviders(OTPProviders op, SoftAssert sa) {
@@ -317,8 +320,7 @@ public class GlobalConfigValidator {
         }
     }
 
-    void validateAutoPlayExp(AutoPlayExp autoPlayExp, SoftAssert sa)
-    {
+    void validateAutoPlayExp(AutoPlayExp autoPlayExp, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         sa.assertTrue(Validate.asNum(autoPlayExp.getId()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getId", autoPlayExp.getId()));
         sa.assertTrue(Validate.asString(autoPlayExp.getTitle()), AssertionMsg.print(className, methodName, "global_config.autoPlayExp.getTitle", autoPlayExp.getTitle()));
@@ -330,19 +332,32 @@ public class GlobalConfigValidator {
 
     private void validateAppLanguages(AppLanguages app_languages, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        sa.assertEquals(app_languages.getDefault_selection(),"hindi", AssertionMsg.print(className, methodName, "global_config.app_languages.getDefault_selection()", app_languages.getDefault_selection()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getBengali(),"bengali", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBengali()", app_languages.getAppLanguagesList().getBengali()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getBhojpuri(),"bhojpuri", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBhojpuri()", app_languages.getAppLanguagesList().getBhojpuri()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getEnglish(),"english", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getEnglish()", app_languages.getAppLanguagesList().getEnglish()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getGujarati(),"gujarati", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getGujarati()", app_languages.getAppLanguagesList().getGujarati()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getHaryanvi(),"haryanvi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getHaryanvi()", app_languages.getAppLanguagesList().getHaryanvi()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getHindi(),"hindi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getHindi()", app_languages.getAppLanguagesList().getHindi()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getMalyalam(),"malayalam", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getMalyalam()", app_languages.getAppLanguagesList().getMalyalam()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getTamil(),"tamil", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getTamil()", app_languages.getAppLanguagesList().getTamil()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getTelugu(),"telugu", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getTelugu()", app_languages.getAppLanguagesList().getTelugu()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getMarathi(),"marathi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getMarathi()", app_languages.getAppLanguagesList().getMarathi()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getPunjabi(),"punjabi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getPunjabi()", app_languages.getAppLanguagesList().getPunjabi()));
-        sa.assertEquals(app_languages.getAppLanguagesList().getKannada(),"kannada", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getKannada()", app_languages.getAppLanguagesList().getKannada()));
+
+        sa.assertEquals(app_languages.getDefault_selection(), "english", AssertionMsg.print(className, methodName, "global_config.app_languages.getDefault_selection()", app_languages.getDefault_selection()));
+        if (app_languages.getAppLanguagesList().getBengali()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getBengali(), "bengali", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBengali()", app_languages.getAppLanguagesList().getBengali()));
+        if (app_languages.getAppLanguagesList().getBhojpuri()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getBhojpuri(), "bhojpuri", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBhojpuri()", app_languages.getAppLanguagesList().getBhojpuri()));
+        if (app_languages.getAppLanguagesList().getEnglish()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getEnglish(), "english", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getEnglish()", app_languages.getAppLanguagesList().getEnglish()));
+        if (app_languages.getAppLanguagesList().getGujarati()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getGujarati(), "gujarati", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getGujarati()", app_languages.getAppLanguagesList().getGujarati()));
+        if (app_languages.getAppLanguagesList().getHaryanvi()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getHaryanvi(), "haryanvi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getHaryanvi()", app_languages.getAppLanguagesList().getHaryanvi()));
+        if (app_languages.getAppLanguagesList().getHindi()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getHindi(), "hindi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getHindi()", app_languages.getAppLanguagesList().getHindi()));
+        if (app_languages.getAppLanguagesList().getMalyalam()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getMalyalam(), "malayalam", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getMalyalam()", app_languages.getAppLanguagesList().getMalyalam()));
+        if (app_languages.getAppLanguagesList().getTamil()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getTamil(), "tamil", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getTamil()", app_languages.getAppLanguagesList().getTamil()));
+        if (app_languages.getAppLanguagesList().getTelugu()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getTelugu(), "telugu", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getTelugu()", app_languages.getAppLanguagesList().getTelugu()));
+        if (app_languages.getAppLanguagesList().getMarathi()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getMarathi(), "marathi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getMarathi()", app_languages.getAppLanguagesList().getMarathi()));
+        if (app_languages.getAppLanguagesList().getPunjabi()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getPunjabi(), "punjabi", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getPunjabi()", app_languages.getAppLanguagesList().getPunjabi()));
+        if (app_languages.getAppLanguagesList().getKannada()!=null)
+            sa.assertEquals(app_languages.getAppLanguagesList().getKannada(), "kannada", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getKannada()", app_languages.getAppLanguagesList().getKannada()));
     }
 
 }
