@@ -8,13 +8,10 @@ import pojos.appGetLaunchData.Deeplink;
 import pojos.getHomePageDataV2.HomePageDataModules;
 import pojos.getHomePageDataV2.HomePageDataV2;
 import pojos.getTopShows.TopShows;
-import pojos.libraryOps.SongData;
 import validators.AssertionMsg;
-import validators.PlaylistMiniValidator;
 import validators.Validate;
 import validators.genericValidators.*;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,11 +30,11 @@ public class HomepageDataValidator {
         validateFavorites(hd, sa);
         validateSuggests(hd, sa);
 
-        if(hd.getTopicPromos() != null) {
-            for(Map.Entry<String, List<LinkedHashMap>> entry : hd.getTopicPromos().entrySet()){
-                if(Validate.asTopicPromosField(entry.getKey())){
+        if (hd.getTopicPromos() != null) {
+            for (Map.Entry<String, List<LinkedHashMap>> entry : hd.getTopicPromos().entrySet()) {
+                if (Validate.asTopicPromosField(entry.getKey())) {
                     Validate.asAssortedEntity(entry.getValue(), sa);
-                }else{
+                } else {
                     sa.fail("Found key - " + entry.getKey() + " ,while validating topics & promos ");
                 }
             }
@@ -49,11 +46,12 @@ public class HomepageDataValidator {
         validateArtistRecos(hd, sa);
         validateCityMod(hd, sa);
         validateUserState(hd, sa);
-        validateSaavnpro(hd.getSaavn_pro(), sa);
+        if (hd.getSaavn_pro() != null)
+            validateSaavnpro(hd.getSaavn_pro(), sa);
 
-        if(hd.getMost_popular_trillers() != null)
+        if (hd.getMost_popular_trillers() != null)
             validateTrillers(hd.getMost_popular_trillers(), sa);
-        if(hd.getMost_popular_artist_trillers() != null)
+        if (hd.getMost_popular_artist_trillers() != null)
             validateTrillers(hd.getMost_popular_artist_trillers(), sa);
 
         new UserStateValidator().validate(hd.getUserState(), sa);
@@ -70,11 +68,11 @@ public class HomepageDataValidator {
     }
 
     void validateNewAlbums(HomePageDataV2 hd, SoftAssert sa) {
-        if(hd.getNewAlbums().size() > 6) {
+        if (hd.getNewAlbums().size() > 6) {
             for (AlbumMiniObject album : hd.getNewAlbums()) {
                 new AlbumMiniValidator().validate(album, sa);
             }
-        }else {
+        } else {
             sa.fail("GetHomepageData Validator: New Albums list size <= 6");
         }
 
@@ -97,12 +95,11 @@ public class HomepageDataValidator {
     }
 
 
-
     void validateSuggests(HomePageDataV2 hd, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        if(hd.getSuggests() instanceof List){
+        if (hd.getSuggests() instanceof List) {
             sa.assertTrue(((List<?>) hd.getSuggests()).size() == 0, "GetLaunchDataValidator: Suggests coming up as array and is not empty");
-        }else {
+        } else {
             ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
             Suggests suggests = mapper.convertValue(hd.getSuggests(), Suggests.class);
 
@@ -125,7 +122,7 @@ public class HomepageDataValidator {
     }
 
     void validateTrillers(List<Song> trillers, SoftAssert sa) {
-        for(Song song : trillers){
+        for (Song song : trillers) {
             new SongValidator().validate(song, sa, song.getId(), "song");
         }
     }
@@ -169,7 +166,7 @@ public class HomepageDataValidator {
     }
 
     void validateSaavnpro(List<Deeplink> deeplinks, SoftAssert sa) {
-        for(Deeplink dl : deeplinks){
+        for (Deeplink dl : deeplinks) {
             new DeeplinkValidator().validate(dl, sa);
         }
     }

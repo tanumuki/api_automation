@@ -333,7 +333,7 @@ public class GlobalConfigValidator {
     private void validateAppLanguages(AppLanguages app_languages, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        sa.assertEquals(app_languages.getDefault_selection(), "english", AssertionMsg.print(className, methodName, "global_config.app_languages.getDefault_selection()", app_languages.getDefault_selection()));
+        sa.assertTrue(Validate.asDefaultSelection(app_languages.getDefault_selection()), AssertionMsg.print(className, methodName, "global_config.app_languages.getDefault_selection()", app_languages.getDefault_selection()));
         if (app_languages.getAppLanguagesList().getBengali()!=null)
             sa.assertEquals(app_languages.getAppLanguagesList().getBengali(), "bengali", AssertionMsg.print(className, methodName, "global_config.app_languages.getAppLanguagesList().getBengali()", app_languages.getAppLanguagesList().getBengali()));
         if (app_languages.getAppLanguagesList().getBhojpuri()!=null)
