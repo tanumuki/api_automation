@@ -599,4 +599,9 @@ public class Validate {
     public static boolean asPastState(String str) {
         return str.matches("pro|free|trial");
     }
+
+    public static boolean asDefaultSelection(String str){return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri"); }
+    
+
 }
+
