@@ -51,7 +51,7 @@ public class ShowGetAllEpisodes extends Util {
         reqSpec.queryParam("season_number", season_number);
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }

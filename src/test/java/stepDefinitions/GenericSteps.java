@@ -60,6 +60,7 @@ public class GenericSteps extends Util {
     public void iHaveTheCookieForTheFollowingUser(DataTable userDetails) throws IOException {
         List<Map<String, String>> user = userDetails.asMaps();
         cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
+        System.setProperty("ctx", ConfigReader.getInstance().getCtx());
     }
 
     @When("I make the {string} request")

@@ -1,6 +1,3 @@
-# new feature
-# Tags: optional
-
 Feature: Gets app get launch data for logged out user
 
   Scenario: Gets app get launch data

@@ -312,7 +312,7 @@ public class Validate {
 
 
     public static boolean asTopicPromosField(String key) {
-        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist)[a-zA-z0-9_\\^:-]*");
+        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist|surprise_me)[a-zA-z0-9_\\^:-]*");
     }
 
     public static boolean asModulesPosition(int pos) {
@@ -367,6 +367,11 @@ public class Validate {
                 Channel ch = mapper.convertValue(entity, Channel.class);
                 new ChannelValidator().validate(ch, sa);
                 break;
+            case "surprise_me":
+                Radio radio = mapper.convertValue(entity, Radio.class);
+                new RadioValidator().validate(radio, sa);
+                break;
+
         }
     }
 
@@ -386,7 +391,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video");
     }
 
     public static boolean asDeeplink(String deeplink) {
@@ -542,7 +547,7 @@ public class Validate {
     }
 
     public static boolean asPlaylistSubtype(String str) {
-        return str.matches("|JioTuneArtist| JioTuneDecade| JioTuneActivity| VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
+        return str.matches("JioTuneArtist| JioTuneDecade| JioTuneActivity|VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
 
     }
 
@@ -594,4 +599,9 @@ public class Validate {
     public static boolean asPastState(String str) {
         return str.matches("pro|free|trial");
     }
+
+    public static boolean asDefaultSelection(String str){return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri"); }
+    
+
 }
+

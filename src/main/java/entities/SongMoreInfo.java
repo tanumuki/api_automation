@@ -33,6 +33,8 @@ public class SongMoreInfo {
 	private String _320kbps;
 	@JsonProperty("encrypted_media_url")
 	private String encryptedMediaUrl;
+	@JsonProperty("thumbnail_url")
+	private String thumbnail_url;
 	@JsonProperty("encrypted_cache_url")
 	private String encryptedCacheUrl;
 	@JsonProperty("album_url")
@@ -55,10 +57,16 @@ public class SongMoreInfo {
 	private ArtistMap artistMap;
 	@JsonProperty("release_date")
 	private String releaseDate;
+	@JsonProperty("song_mappings")
+	private List<String> song_mappings;
 	@JsonProperty("vcode")
 	private String vcode;
 	@JsonProperty("vlink")
 	private String vlink;
+	@JsonProperty("video_rate_cap")
+	private String video_rate_cap;
+	@JsonProperty("preview_url")
+	private String preview_url;
 	@JsonProperty("lyrics_id")
 	private String lyricsId;
 	@JsonProperty("geo_rules")

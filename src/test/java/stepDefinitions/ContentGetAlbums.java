@@ -1,12 +1,11 @@
 package stepDefinitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
-import entities.Album;
+import entities.AlbumData;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,10 +18,9 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import validators.genericValidators.AlbumValidator;
+import validators.Content.ContentGetALbiumsValidator;
 
 import java.io.IOException;
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -46,7 +44,7 @@ public class ContentGetAlbums extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }
@@ -62,11 +60,10 @@ public class ContentGetAlbums extends Util {
     public void get_albums_api_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        List<Album> albums = mapper.readValue(resp.asString(), new TypeReference<List<Album>>() {});
+//        List<Album> albums = mapper.readValue(resp.asString(), new TypeReference<List<Album>>() {});
+        AlbumData albumData = mapper.readValue(resp.asString(), AlbumData.class);
         SoftAssert sa = new SoftAssert();
-        for(Album album : albums){
-            new AlbumValidator().validate(album, sa);
-        }
+        new ContentGetALbiumsValidator().validate(albumData,sa);
         sa.assertAll();
     }
 }

@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import validators.AssertionMsg;
 import validators.Validate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author aswingokulachandran
  *
@@ -85,6 +88,11 @@ public class SongValidator extends EntityValidator {
             sa.fail("Song More Info Encrypted Media URL is null/empty for song with ID - " + songObj.getId());
         }
 
+        if(Validate.isNonEmptyString(moreInfo.getThumbnail_url())) {
+            sa.assertTrue(Validate.asCDNURL(moreInfo.getThumbnail_url()), AssertionMsg.print(className, methodName,
+                    songObj.getType(), "more_info.thumbnail_url", moreInfo.getThumbnail_url(), songObj.getId()));
+        }
+
         if(Validate.isNonEmptyString(moreInfo.getEncryptedCacheUrl())) {
             sa.assertTrue(Validate.asString(moreInfo.getEncryptedCacheUrl()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.encrypted_cache_url", moreInfo.getEncryptedCacheUrl(), songObj.getId()));
@@ -130,6 +138,24 @@ public class SongValidator extends EntityValidator {
 					songObj.getType(), "more_info.release_date", moreInfo.getReleaseDate(), songObj.getId()));
 
 		}
+
+        if (moreInfo.getSong_mappings() != null) {
+            List<String> songList = new ArrayList<>(moreInfo.getSong_mappings());
+            for(String songID : songList) {
+                sa.assertTrue(Validate.asString(songID), AssertionMsg.print(className, methodName,
+                        songObj.getType(), "more_info.song_mappings", songID, songObj.getId()));
+            }
+        }
+
+        if(Validate.isNonEmptyString(moreInfo.getVideo_rate_cap())) {
+            sa.assertTrue(Validate.asNum(moreInfo.getVideo_rate_cap()),
+                    AssertionMsg.print(className, methodName, "more_info.video_rate_cap", moreInfo.getVideo_rate_cap()));
+        }
+
+        if(Validate.isNonEmptyString(moreInfo.getPreview_url())) {
+            sa.assertTrue(Validate.asCDNURL(moreInfo.getPreview_url()),
+                    AssertionMsg.print(className, methodName, "more_info.preview_url", moreInfo.getPreview_url()));
+        }
 
         if(moreInfo.getVideo_available() != null){
             sa.assertTrue(Validate.asBoolean(moreInfo.getVideo_available()), AssertionMsg.print(className, methodName,

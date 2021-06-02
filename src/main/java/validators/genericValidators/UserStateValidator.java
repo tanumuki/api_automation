@@ -59,6 +59,10 @@ public class UserStateValidator {
             sa.assertTrue(Validate.asBoolean(us.getMandatory_verify()), AssertionMsg.print(className, methodName, "user_state.mandatory_verify", String.valueOf(us.getMandatory_verify())));
 
             sa.assertTrue(Validate.asBoolean(us.getRequire_otp()), AssertionMsg.print(className, methodName, "user_state.require_otp", String.valueOf(us.getRequire_otp())));
+            if (us.getEmail()!=null)
+            {
+                sa.assertTrue(Validate.asEmail(us.getEmail()), AssertionMsg.print(className, methodName, "user_state.email", us.getEmail()));
+            }
         }
 
 

@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
                 "html:target/htmlReport/cucumber.html",
                 "rerun:target/rerun.txt",
                 "pretty", "html:target/aswinCukeReport.html", "rerun:target/rerun.txt", "timeline:target/timelineReport"},
-//        tags = "@WIP",
+        tags = "not @ignore",
         monochrome = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {

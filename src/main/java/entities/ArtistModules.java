@@ -8,12 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import pojos.Artist.ArtistURLs;
-import pojos.Artist.SimilarArtists;
-import pojos.Artist.TopAlbums;
-import pojos.Artist.TopSongs;
-
-import java.util.List;
 
 /**
  * @author ashwinsriv
@@ -44,4 +38,6 @@ public class ArtistModules {
 	private ModuleWithViewMoreArray similarArtists;
 	@JsonProperty("triller")
 	private ModuleWithViewMoreArray triller;
+	@JsonProperty("artist_videos")
+	private ModuleWithViewMoreArray artist_videos;
 }

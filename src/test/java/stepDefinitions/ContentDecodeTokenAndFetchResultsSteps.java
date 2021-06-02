@@ -112,6 +112,13 @@ public class ContentDecodeTokenAndFetchResultsSteps {
                 new PlaylistValidator().validate((MixDetails) contentDecodeTokenAndFetchResultsPojo, sa);
                 sa.assertAll();
                 break;
+            case "Videos":
+                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Song.class);
+                for (Song song : ((Song) contentDecodeTokenAndFetchResultsPojo).getSongs()) {
+                    new SongValidator().validate(song, sa);
+                }
+                sa.assertAll();
+                break;
 
         }
     }

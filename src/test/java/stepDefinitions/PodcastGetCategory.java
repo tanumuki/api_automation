@@ -46,7 +46,7 @@ public class PodcastGetCategory extends Util {
         reqSpec.queryParam("category_id", categoryId);
         reqSpec.queryParam("category_type", categoryType);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }

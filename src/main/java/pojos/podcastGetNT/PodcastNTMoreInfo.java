@@ -23,6 +23,8 @@ public class PodcastNTMoreInfo extends ShowMoreInfo {
     private PodcastIDClass _id;
     @JsonProperty("copyright_text")
     private String copyrightText;
+    @JsonProperty("m4a")
+    private String m4a;
     @JsonProperty("artist_map")
     private ArtistMap artist_map;
 
