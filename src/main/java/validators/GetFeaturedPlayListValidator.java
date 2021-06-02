@@ -1,5 +1,6 @@
 package validators;
 
+import entities.ChartsData;
 import entities.FeaturedPlaylistData;
 import entities.PlaylistMini;
 import org.testng.asserts.SoftAssert;
@@ -13,8 +14,19 @@ public class GetFeaturedPlayListValidator {
         {
             new PlaylistMiniValidator().validate(playlistMini, sa);
         }
-        sa.assertTrue(Validate.asNum(featuredPlaylistData.getCount()),className + "." + "validate count failed");
-        sa.assertTrue(Validate.asBoolean(featuredPlaylistData.getLast_page()),className + "." + "validate last_page failed");
+        sa.assertTrue(Validate.asNum(featuredPlaylistData.getCount()),className + "." + "validate count failed for entity type playlist");
+        sa.assertTrue(Validate.asBoolean(featuredPlaylistData.getLast_page()),className + "." + "validate last_page failed or entity type playlist");
+
+    }
+
+    public void validate(ChartsData chartsData, SoftAssert sa)
+    {
+        sa.assertEquals(Validate.API_STATUS_SUCCESS,chartsData.getStatus(),className + "." + "validate status failed for entity type charts");
+
+        for (PlaylistMini playlistMini: chartsData.getChatsList())
+        {
+            new PlaylistMiniValidator().validate(playlistMini, sa);
+        }
 
     }
 }

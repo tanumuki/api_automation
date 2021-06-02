@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
+import entities.ChartsData;
 import entities.FeaturedPlaylistData;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
@@ -62,10 +63,15 @@ public class GetContentMini extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         SoftAssert sa = new SoftAssert();
 
-        FeaturedPlaylistData featuredPlaylistData = mapper.readValue(resp.asString(), FeaturedPlaylistData.class);
-
-        new GetFeaturedPlayListValidator().validate(featuredPlaylistData, sa);
-
+        if (entityType.equalsIgnoreCase("playlist")) {
+            FeaturedPlaylistData featuredPlaylistData = mapper.readValue(resp.asString(), FeaturedPlaylistData.class);
+            new GetFeaturedPlayListValidator().validate(featuredPlaylistData, sa);
+        }
+        else if (entityType.equalsIgnoreCase("chart"))
+        {
+            ChartsData chartsData = mapper.readValue(resp.asString(), ChartsData.class);
+            new GetFeaturedPlayListValidator().validate(chartsData,sa);
+        }
         sa.assertAll();
     }
 
