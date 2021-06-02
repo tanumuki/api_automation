@@ -29,7 +29,7 @@ Feature: Validating Library APIs
 	|method|entity_ids|entity_type|
 	|GET|cd7s24ys|song|
 	|GET|3118021|album|
-	
+
 	Scenario: Verify the response by calling library get all method
 	
 	Given Validate the library data by calling endpoint "LibraryGetAllAPI" using same cookie
@@ -49,8 +49,8 @@ Feature: Validating Library APIs
 	|method|entity_ids|entity_type|
 	|GET|cd7s24ys|song|
 	|GET|3118021|album|
-	
-	Scenario: Verify the response by calling library get all method after deleting the song and album 
+
+	Scenario: Verify the response by calling library get all method after deleting the song and album
 	
 	Given Validate the library data by calling endpoint "LibraryGetAllAPI" using same cookie
 	When User calls method with below params
