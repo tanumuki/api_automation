@@ -32,10 +32,7 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(ch.getDescription()), AssertionMsg.print(className, methodName, "playlist.description", ch.getDescription()));
 
         if(ch.getNumsongs() != null){
-            /*TODO: Add validation for numsongs, for now it's coming up as null
-            * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
-            * add the validations - Ashwin */
-            sa.fail();
+            sa.assertTrue(Validate.asNum(ch.getNumsongs()), AssertionMsg.print(className, methodName, "numsongs", ch.getNumsongs()));
         }
 
         if(ch.getMoreInfo() instanceof List){
