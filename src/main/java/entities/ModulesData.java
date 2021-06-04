@@ -27,6 +27,8 @@ public class ModulesData {
     private Boolean simpleHeader;
     @JsonProperty("noHeader")
     private Boolean noHeader;
+    @JsonProperty("noheader") // used in JT Homepage for the THREETILE_MENU entity - ashwin
+    private Boolean no_header;
     @JsonProperty("hideMeta")
     private Boolean hideMeta;
     @JsonProperty("source_api")
