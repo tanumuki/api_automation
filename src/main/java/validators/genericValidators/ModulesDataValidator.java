@@ -64,10 +64,16 @@ public class ModulesDataValidator {
                 sa.assertTrue(Validate.asBoolean(md.getSimpleHeader()), AssertionMsg.print(className,methodName, "modules.list.simple_header", String.valueOf(md.getSimpleHeader())));
             }
 
-
+//          noHeader (uppercase H)
             if(md.getNoHeader() != null) {
                 System.out.println("no header: " + md.getNoHeader());
                 sa.assertTrue(Validate.asBoolean(md.getNoHeader()),AssertionMsg.print(className, methodName, "modules.list.noHeader", String.valueOf(md.getNoHeader())));
+            }
+
+//          noheader (lowercase h; used in JT Homepage for the THREETILE_MENU entity - ashwin)
+            if(md.getNoheader() != null) {
+                System.out.println("no header: " + md.getNoheader());
+                sa.assertTrue(Validate.asBoolean(md.getNoheader()),AssertionMsg.print(className, methodName, "modules.list.noheader", String.valueOf(md.getNoheader())));
             }
 
 
