@@ -330,7 +330,6 @@ public class Validate {
     public static void asAssortedEntity(LinkedHashMap entity, SoftAssert sa) {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         String type = entity.get("type").toString();
-        System.out.println("id: " + entity.get("id").toString());
         switch (type) {
             case "playlist":
                 PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
