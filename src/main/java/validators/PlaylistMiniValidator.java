@@ -136,14 +136,14 @@ public class PlaylistMiniValidator extends EntityValidator {
             /*TODO: Add validation for sub_types, for now it's coming up as null
              * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
              * add the validations - Ashwin */
-            sa.fail();
+            sa.fail("QA TODO: Add assertions for sub_types. Value found: " + mi.getSub_types());
         }
 
         if(mi.getImages()!=null) {
             /*TODO: Add validation for images, for now it's coming up as null
              * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
              * add the validations - Ashwin */
-            sa.fail();
+            sa.fail("QA TODO: Add assertions for images. Value found: " + mi.getImages());
         }
 
         //WEb release 11-Mar-21
