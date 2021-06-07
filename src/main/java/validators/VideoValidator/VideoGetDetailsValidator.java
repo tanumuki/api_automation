@@ -35,7 +35,7 @@ public class VideoGetDetailsValidator  extends EntityValidator {
             sa.assertTrue(Validate.API_STATUS_SUCCESS.matches(videoObj.status));
         }
         else{
-            sa.fail("Response failure message");
+            sa.fail("Response failed");
         }
 
         //Validating more info
@@ -152,8 +152,7 @@ public class VideoGetDetailsValidator  extends EntityValidator {
             for( String song : songDeque){
                 sa.assertTrue(Validate.asId(song), AssertionMsg.print(className, methodName, "album.more_info.song_mappings", song));
             }
-            //log.info("All the song mappings verified successfully!");
-            System.out.println("All the song mappings verified successfully");
+            log.info("All the song mappings verified successfully!");
         }
 
             //Validating rights
