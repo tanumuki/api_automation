@@ -1,5 +1,5 @@
 Feature: Get Artist Page Details
-
+  @wip
   Scenario Outline: Get Artist page details for an artist
 
     Given Payload with artist page details endpoint "GetArtistPageDetailsAPI"
@@ -9,9 +9,9 @@ Feature: Get Artist Page Details
 
     Examples:
       | artistid |
-      | 881158   |
+#      | 881158   |
       | 7531422  |
-      | 565534   |
-      | 458135   |
+#      | 565534   |
+#      | 458135   |
 
 
