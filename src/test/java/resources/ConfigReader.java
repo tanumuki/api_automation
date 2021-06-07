@@ -59,7 +59,7 @@ public class ConfigReader {
 			String password =  System.getProperty("password");
 			String userAgent =  System.getProperty("userAgent");
 
-			System.out.println("stuff works "+baseUrl+ " and " +app_version);
+			System.out.println("Runtime env: "+baseUrl+ " and " +app_version);
 			if (baseUrl != null) {
 				if (baseUrl.equalsIgnoreCase("staging")) {
 					properties.setProperty("baseUrl", "https://staging.saavn.com");
