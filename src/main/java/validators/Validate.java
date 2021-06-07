@@ -599,7 +599,7 @@ public class Validate {
         return str.matches("pro|free|trial");
     }
 
-    public static boolean asDefaultSelection(String str){return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri"); }
+    public static boolean asDefaultSelection(String str){return str.matches("english|hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri"); }
     
 
 }
