@@ -21,7 +21,8 @@ import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
 
 public class GenericSteps extends Util {
-    static RequestSpecification request = null;
+
+    //static RequestSpecification request = null;
     static Response resp;
     static String apiResource;
     static String cookie;
