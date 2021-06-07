@@ -234,7 +234,7 @@ public class Validate {
 //        Example strings:
 //        "Artist <middle dot separator> 100K Fans" for pre-7.x
 //        "30.9M Listeners" for post-7.x
-        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{2,}(.[0-9])?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
     }
 
     /**
