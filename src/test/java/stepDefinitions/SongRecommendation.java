@@ -52,7 +52,7 @@ public class SongRecommendation extends Util {
         reqSpec.queryParam("pid", song_id);
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }

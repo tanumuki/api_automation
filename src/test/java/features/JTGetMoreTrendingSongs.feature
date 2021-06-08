@@ -1,6 +1,8 @@
 # new feature
 # Tags: optional
-
+  #Ignoring this suite as jiotunepage.getMoreTrendingSongs is run on websocket arch and not on the http arch.
+  #This scenario will be covered when we create test suites for websocket APIs
+@ignore
 Feature: Jiotunes get more trending songs
 
   Scenario Outline: Jiotunes get more trending songs

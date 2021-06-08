@@ -93,7 +93,7 @@ public class EntityValidator {
 		if(adObj.getMiniObj() != null)
 			sa.assertTrue(Validate.asBoolean(adObj.getMiniObj()), AssertionMsg.print(className, methodName,adObj.getType(), "mini_obj", String.valueOf(adObj.getMiniObj()), adObj.getId()));
 
-		log.info("Entity Validation done for "+sourceEntity+ "and "+sourceType);
+		log.info("Entity Validation done for "+sourceEntity+ " and "+sourceType);
 	}
 
 }

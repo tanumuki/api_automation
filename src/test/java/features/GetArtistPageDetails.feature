@@ -10,8 +10,9 @@ Feature: Get Artist Page Details
     Examples:
       | artistid |
       | 881158   |
-      | 7531422  |
+      | 594917  |
       | 565534   |
       | 458135   |
+      | 459320   |
 
 

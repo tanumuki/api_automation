@@ -1,13 +1,11 @@
 package stepDefinitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
-import entities.PlaylistContainer;
-import entities.PlaylistMini;
+import entities.ChartsData;
+import entities.FeaturedPlaylistData;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,11 +18,9 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import validators.PlaylistMiniValidator;
-import validators.Validate;
+import validators.GetFeaturedPlayListValidator;
 
 import java.io.IOException;
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -49,7 +45,7 @@ public class GetContentMini extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }
@@ -63,34 +59,19 @@ public class GetContentMini extends Util {
 
     @Then("User should successfully validate the Get All contents response of type {string}")
     public void user_should_successfully_validate_the_Get_All_contents_response(String entityType) throws JsonProcessingException {
-//      Here we're using "type" because the response type of charts is different from playlists. Charts response has status and data fields,
-//        whereas playlist response has an array of playlist mini objects
 
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         SoftAssert sa = new SoftAssert();
 
-        if(entityType.equalsIgnoreCase("chart")) {
-            PlaylistContainer contentMinis = mapper.readValue(resp.asString(), PlaylistContainer.class);
-//        Validators
-            sa.assertTrue(contentMinis.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
-                    "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + contentMinis.getStatus() + "\"");
-            for(PlaylistMini ch : contentMinis.getData()) {
-                new PlaylistMiniValidator().validate(ch, sa);
-            }
+        if (entityType.equalsIgnoreCase("playlist")) {
+            FeaturedPlaylistData featuredPlaylistData = mapper.readValue(resp.asString(), FeaturedPlaylistData.class);
+            new GetFeaturedPlayListValidator().validate(featuredPlaylistData, sa);
         }
-
-        else if(entityType.equalsIgnoreCase("playlist")) {
-            List<PlaylistMini> contentMinis = mapper.readValue(resp.asString(), new TypeReference<List<PlaylistMini>>() {});
-            for(PlaylistMini ch : contentMinis) {
-                new PlaylistMiniValidator().validate(ch, sa);
-            }
+        else if (entityType.equalsIgnoreCase("chart"))
+        {
+            ChartsData chartsData = mapper.readValue(resp.asString(), ChartsData.class);
+            new GetFeaturedPlayListValidator().validate(chartsData,sa);
         }
-
-        else {
-//            purposefully fail the assertions for unhandled types. Specific types must be provided from the feature file
-            sa.assertTrue(0>1);
-        }
-
         sa.assertAll();
     }
 

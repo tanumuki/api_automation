@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
-import entities.MixDetails;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,7 +18,6 @@ import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import resources.ConfigReader;
 import resources.Util;
 import validators.JiotuneHomepageData.JTHomePageDataValidator;
-import validators.genericValidators.MixDetailsValidator;
 
 import java.io.IOException;
 
@@ -47,7 +45,7 @@ public class JiotuneGetHomepageData extends Util {
         System.out.println("resSpec: " + resSpec.toString());
 
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }

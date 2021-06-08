@@ -45,7 +45,7 @@ public class ContentGetTopShowsTest extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }
@@ -58,7 +58,7 @@ public class ContentGetTopShowsTest extends Util {
         reqSpec.queryParam("n", items_per_page);
         reqSpec.queryParam("p", page_no);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
     }
 
     @Then("Get top shows must respond with status code {string}")

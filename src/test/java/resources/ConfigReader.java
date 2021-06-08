@@ -59,7 +59,7 @@ public class ConfigReader {
 			String password =  System.getProperty("password");
 			String userAgent =  System.getProperty("userAgent");
 
-			System.out.println("stuff works "+baseUrl+ " and " +app_version);
+			System.out.println("Runtime env: "+baseUrl+ " and " +app_version);
 			if (baseUrl != null) {
 				if (baseUrl.equalsIgnoreCase("staging")) {
 					properties.setProperty("baseUrl", "https://staging.saavn.com");
@@ -67,10 +67,7 @@ public class ConfigReader {
 				else if (baseUrl.equalsIgnoreCase("prod")) {
 					properties.setProperty("baseUrl", "https://www.saavn.com");
 				}
-				else if (baseUrl.equalsIgnoreCase("test1")) {
-					properties.setProperty("baseUrl", "https://imgtest.jiosaavn.com");
-				}
-				else if (baseUrl.equalsIgnoreCase("test2")) {
+				else if (baseUrl.equalsIgnoreCase("test")){
 					properties.setProperty("baseUrl", "https://imgtest.saavn.com");
 				}
 			}

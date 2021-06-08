@@ -86,7 +86,7 @@ public class LibraryValidator {
 
 	}
 	public void validateLibraryForUserWithUpdatedData(LibraryData library, SoftAssert sa, String seed_album_id, String seed_song_id, String albumResponse) throws JsonMappingException, JsonProcessingException {
-		
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		log.info("Album " +seed_album_id);
 		log.info("song " +seed_song_id);
 		System.out.println("song id " +seed_song_id);
@@ -140,7 +140,7 @@ public class LibraryValidator {
 		 * comparing the objects
 		 */
 
-		sa.assertTrue(CompareSet.equals(libraryObjectSet, albumObjectSet));
+		sa.assertTrue(CompareSet.equals(libraryObjectSet, albumObjectSet),"Library set and album set did not match.");
 		log.info("All the objects are valdated in user's library!");
 		
 		
