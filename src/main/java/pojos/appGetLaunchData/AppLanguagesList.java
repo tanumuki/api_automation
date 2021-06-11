@@ -10,18 +10,6 @@ import lombok.Setter;
 @Setter
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-/* "English": "english",
-        "हिंदी": "hindi",
-        "বাংলা": "bengali",
-        "தமிழ்": "tamil",
-        "తెలుగు": "telugu",
-        "ಕನ್ನಡ": "kannada",
-        "ਪੰਜਾਬੀ": "punjabi",
-        "मराठी": "marathi",
-        "ગુજરાતી": "gujarati",
-        "മലയാളം": "malayalam",
-        "हरियाणवी": "haryanvi",
-        "भोजपुरी": "bhojpur*/
 public class AppLanguagesList {
 
     @JsonProperty("English")

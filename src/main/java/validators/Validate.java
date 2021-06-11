@@ -234,7 +234,7 @@ public class Validate {
 //        Example strings:
 //        "Artist <middle dot separator> 100K Fans" for pre-7.x
 //        "30.9M Listeners" for post-7.x
-        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{2,}(.[0-9])?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
     }
 
     /**
@@ -330,7 +330,6 @@ public class Validate {
     public static void asAssortedEntity(LinkedHashMap entity, SoftAssert sa) {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         String type = entity.get("type").toString();
-        System.out.println("id: " + entity.get("id").toString());
         switch (type) {
             case "playlist":
                 PlaylistMini playlist = mapper.convertValue(entity, PlaylistMini.class);
@@ -599,4 +598,9 @@ public class Validate {
     public static boolean asPastState(String str) {
         return str.matches("pro|free|trial");
     }
+
+    public static boolean asDefaultSelection(String str){return str.matches("english|hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri"); }
+    
+
 }
+

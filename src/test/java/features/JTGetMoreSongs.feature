@@ -13,5 +13,5 @@ Feature: Jiotunes get more songs
     And jiotunes get more songs response must be validated successfully
 
     Examples:
-      | query       | n   | p  |
-      | Rajinikanth | 10 | 1 |
+      | query  | n  | p |
+      | arijit | 10 | 1 |

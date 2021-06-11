@@ -174,4 +174,10 @@ public class AppGetLaunchDataGlobalConfig {
 
     @JsonProperty("app_languages")
     private AppLanguages app_languages;
+
+    @JsonProperty("featureViewSpan")
+    private int featureViewSpan;
+
+    @JsonProperty("watchVideoSpan")
+    private int watchVideoSpan;
 }
