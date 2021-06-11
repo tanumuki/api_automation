@@ -25,8 +25,6 @@ public class VideoGetDetailsValidator  extends EntityValidator {
 
     public void validate(VideoGetDetails videoObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
         //Validating common entities
         super.validate(videoObj, sa);
 
@@ -46,6 +44,8 @@ public class VideoGetDetailsValidator  extends EntityValidator {
 
 
     public  void validateVideoMoreInfo(VideoMoreInfo mi, SoftAssert sa, String videoPid) {
+
+
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         //Validating artist Map
