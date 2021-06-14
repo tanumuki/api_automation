@@ -1,22 +1,10 @@
 package validators;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import entities.*;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
 import validators.genericValidators.EntityValidator;
 import validators.genericValidators.SongValidator;
-
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @author snigdhamajee
@@ -57,30 +45,3 @@ public class GoogleAssistant extends EntityValidator {
     }
 
 }
-
-
-//Song song = new Song();
-////        new SongValidator().validate(song, sa, song.getId(), "song");
-////        System.out.println("came till the last");
-////        {
-//        for (Webradio playlistMini: webRadioDataPojo.getWebradioList())
-//        {
-//            new SongValidator().validate(song, sa, song.getId(), "song");
-//
-////                for(Song songPojo: webRadioDataPojo.getCount()) {
-////                }
-//        }
-////        sa.assertTrue(Validate.asNum(webRadioDataPojo.getCount()),className + "." + "validate count failed for entity type playlist");
-////        sa.assertTrue(Validate.asBoolean(webRadioDataPojo.getLast_page()),className + "." + "validate last_page failed or entity type playlist");
-//
-////        }
-
-//        for (Map.Entry<String, Song> data : webRadioDataSingle.getSongEntity().entrySet()) {
-//            System.out.println(webRadioDataSingle.getSongEntity().entrySet());
-//            String key_song = data.getKey();
-//            System.out.println(key_song);
-//            if(key_song.matches("song")) {
-//                new SongValidator().validate(key_song, sa, );
-//            }
-//        }
-//    }

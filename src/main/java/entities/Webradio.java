@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author aswingokulachandran
+ * @author snigdhamajee
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -24,12 +24,6 @@ import java.util.Map;
 public class Webradio extends Entity {
 
 	public Webradio(){}
-
-//	private Map<String, Song> songEntity = new HashMap<>();
-//	@JsonAnySetter
-//	public void setProviders(String key, Song val){
-//		songEntity.put(key, val);
-//	}
 
 	@JsonProperty("song")
 	public Song song;

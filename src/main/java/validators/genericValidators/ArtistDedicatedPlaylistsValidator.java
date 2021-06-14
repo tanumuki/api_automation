@@ -23,7 +23,7 @@ public class ArtistDedicatedPlaylistsValidator {
         for (Map.Entry<String, PlaylistMini[]> data : dedicatedArtistPlaylistPojo.getArtistID().entrySet()) {
             System.out.println(dedicatedArtistPlaylistPojo.getArtistID().entrySet());
             String key_artistid = data.getKey();
-            sa.assertEquals(key_artistid, artistID, AssertionMsg.print(className, methodName, "artistID", artistID));
+            sa.assertEquals(key_artistid, artistID, AssertionMsg.print(className, methodName, "artistid", artistID));
 
             for (PlaylistMini playlistMiniPojo : data.getValue()) {
                 new PlaylistMiniValidator().validate(playlistMiniPojo, sa);

@@ -85,7 +85,7 @@ public enum APIResources {
 	JioTuneLimitApi("jiotune.jioTuneLimit"),
 	MatchingMatchApi("matching.match"),
 	VideoGetDetails("video.getDetails"),
-	ArtistGetDedicatedArtistPlaylists("artist.getDedicatedArtistPlaylists"),
+	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
 	GoogleAssistantGet("google_assistant.get");
 
 	private String resource;

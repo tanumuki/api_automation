@@ -3,8 +3,6 @@ package stepDefinitions;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
-import com.mongodb.util.JSON;
 import endPoints.APIResources;
 import entities.WebRadioDataMultiple;
 import entities.WebRadioDataSingle;
@@ -23,7 +21,6 @@ import resources.ConfigReader;
 import resources.Util;
 import validators.GoogleAssistant;
 import java.io.IOException;
-import java.util.List;
 
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
