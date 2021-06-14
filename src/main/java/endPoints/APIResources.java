@@ -1,5 +1,7 @@
 package endPoints;
 
+import entities.GoogleAssistantGet;
+
 public enum APIResources {
 
 	SEOgetMetaResponse("seo.getMetaResponse"),
@@ -82,8 +84,9 @@ public enum APIResources {
 	JioSendOtpApi("jio.sendOtp"),
 	JioTuneLimitApi("jiotune.jioTuneLimit"),
 	MatchingMatchApi("matching.match"),
-	ArtistGetDedicatedArtistPlaylists("artist.getArtistDedicatedPlaylists");
-
+	VideoGetDetails("video.getDetails"),
+	ArtistGetDedicatedArtistPlaylists("artist.getDedicatedArtistPlaylists"),
+	GoogleAssistantGet("google_assistant.get");
 
 	private String resource;
 
