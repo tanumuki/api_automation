@@ -1,8 +1,10 @@
-package validators;
+package validators.GoogleAssistant;
 
 import entities.*;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
+import validators.AssertionMsg;
+import validators.Validate;
 import validators.genericValidators.EntityValidator;
 import validators.genericValidators.SongValidator;
 
@@ -12,7 +14,7 @@ import validators.genericValidators.SongValidator;
  */
 
 @Slf4j
-public class GoogleAssistant extends EntityValidator {
+public class GoogleAssistantValidator extends EntityValidator {
     final String className = getClass().getName();
 
     public void validate(GoogleAssistantGet googleAssistantPojo, SoftAssert sa) {

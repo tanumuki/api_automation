@@ -19,7 +19,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
-import validators.GoogleAssistant;
+import validators.GoogleAssistant.GoogleAssistantValidator;
 import java.io.IOException;
 
 import static io.restassured.RestAssured.*;
@@ -71,7 +71,7 @@ public class GoogleAssistantGet extends Util {
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         entities.GoogleAssistantGet googleAssistantGetPojo = objectMapper.readValue(resp.asString(), entities.GoogleAssistantGet.class);
         SoftAssert sa = new SoftAssert();
-        new GoogleAssistant().validate(googleAssistantGetPojo, sa);
+        new GoogleAssistantValidator().validate(googleAssistantGetPojo, sa);
         this.stationID = googleAssistantGetPojo.getStationid();
         sa.assertAll();
     }
@@ -120,10 +120,10 @@ public class GoogleAssistantGet extends Util {
         }
 
         if(webRadioDataSingle != null){
-            new GoogleAssistant().validateWebRadioSingle(webRadioDataSingle, sa, this.stationID);
+            new GoogleAssistantValidator().validateWebRadioSingle(webRadioDataSingle, sa, this.stationID);
         }
         else if(webRadioDataMultiple != null){
-            new GoogleAssistant().validateWebRadioMultiple(webRadioDataMultiple, sa, this.stationID);
+            new GoogleAssistantValidator().validateWebRadioMultiple(webRadioDataMultiple, sa, this.stationID);
         }
         sa.assertAll();
     }
