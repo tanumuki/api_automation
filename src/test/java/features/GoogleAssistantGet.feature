@@ -1,6 +1,5 @@
 Feature: Get Google Assistant results call with query
 
-  @wip
   Scenario Outline: Starts station with Get Google Assistant
     Given Payload with the GoogleAssistantGet endPoint "GoogleAssistantGet"
     When User calls the given request with "<query>"
