@@ -16,6 +16,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.login_pojos.UserLogin;
 import resources.APIConstants;
@@ -29,6 +30,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class Login extends Util {
 
 	RequestSpecification res;
