@@ -53,8 +53,6 @@ public class ChannelGetDetailsValidator extends EntityValidator {
         sa.assertTrue(Validate.asChannelSubtype(mi.getSubType()), AssertionMsg.print(className, methodName, "channel", "channel.more_info.sub_type", mi.getSubType(), channelId));
 
         sa.assertTrue(Validate.asNum(mi.getAvailable()), AssertionMsg.print(className, methodName, "channel", "channel.more_info.available", mi.getAvailable(), channelId));
-
-
     }
 
 }

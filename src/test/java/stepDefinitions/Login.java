@@ -19,12 +19,12 @@ import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.login_pojos.UserLogin;
-import resources.*;
+import resources.APIConstants;
+import resources.ConfigReader;
+import resources.ScenarioContext;
+import resources.Util;
 import validators.UserLoginValidator;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
