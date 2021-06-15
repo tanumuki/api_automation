@@ -2,19 +2,17 @@ package validators.genericValidators;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.*;
-import org.testng.asserts.SoftAssert;
-
+import entities.Entity;
 import entities.Playlist;
-import entities.Song;
+import entities.PlaylistMoreInfo;
+import entities.UserProfilePlaylists;
+import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 public class PlaylistValidator extends EntityValidator {
 
     final String className = PlaylistValidator.class.getName();
