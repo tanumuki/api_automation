@@ -566,7 +566,7 @@ public class Validate {
         return arr.length == 0;
     }
 
-    public static boolean asStatus(String str) {
+    public static boolean asJioOTPStatus(String str) {
         return str.matches("success|error");
     }
 
