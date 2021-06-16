@@ -2,8 +2,8 @@ passColor: 007100
 failColor: ff0000
 skipColor: ffbf00
 displayFeature: true
-displayScenario: true
-displayDetailed: true
+displayScenario: false
+displayDetailed: false
 
 summaryConfig:
   title: Backend Automation Report
@@ -22,7 +22,7 @@ summaryConfig:
     goodColor: ff0000
 
 featureConfig:
-  itemcount: 10
+  itemcount: 20
   totalColor: 000000
   durationColor: 000000
 

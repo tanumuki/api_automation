@@ -10,7 +10,7 @@ public class JioSendOtpValidator {
 
     public void validate(JioSendOtpPojo jioSendOtpPojo, SoftAssert sa) {
         String status = jioSendOtpPojo.getStatus();
-        sa.assertTrue(Validate.asStatus(status), className + "." + "validate status failed");
+        sa.assertTrue(Validate.asJioOTPStatus(status), className + "." + "validate status failed");
         log.info("LOG response status in jio send otp API is " + status);
 
         if (status.equalsIgnoreCase("success")) {
