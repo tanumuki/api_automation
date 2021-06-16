@@ -567,7 +567,7 @@ public class Validate {
     }
 
     public static boolean asStatus(String str) {
-        return str.matches("success");
+        return str.matches("success|error");
     }
 
     public static boolean asCorrelationId(String str) {
