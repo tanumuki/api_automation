@@ -13,16 +13,9 @@ summaryConfig:
   startTimeColor: 000000
   endTimeColor: 000000
   durationColor: 000000
-  dial:
-    featureRanges: 60 95
-    scenarioRanges: 70 90
-    stepRanges: 75 85
-    badColor: 007100
-    averageColor: ffbf00
-    goodColor: ff0000
 
 featureConfig:
-  itemcount: 10
+  itemcount: 20
   totalColor: 000000
   durationColor: 000000
 
