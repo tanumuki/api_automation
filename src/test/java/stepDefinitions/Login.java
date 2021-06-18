@@ -49,9 +49,6 @@ public class Login extends Util {
 		//UserGenerator user = UserGenerator.getInstance();
 		//HashMap<String, String> userMap = user.generateNewUserCookie();
 		//cookie= userMap.get("cookie");
-		//appending cookie with device_id
-		String device= "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
-		cookie=cookie+device;
 		System.out.println("cookie2 is " +cookie);
 		//username = userMap.get("username");
 		//password = userMap.get("password");
