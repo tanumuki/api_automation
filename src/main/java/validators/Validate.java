@@ -487,7 +487,7 @@ public class Validate {
 
     public static boolean asBenefitMetadataTitle(String str) {
         log.debug("Testing as metadata title: \"" + str + "\"");
-        return str.matches("^(Go Pro|Renew|Upgrade)");
+        return str.matches("^(Go Pro)\\s*(for Rs 33\\/month)?|Renew|Upgrade");
     }
 
     public static boolean asViewType(String str) {
