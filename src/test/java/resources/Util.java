@@ -51,8 +51,9 @@ public class Util {
 
 
         PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
-        String device = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+        String device_id = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
         cookie = updateGeoCookieToIndia(cookie);
+        cookie += device_id;
         request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
                 .addFilter(RequestLoggingFilter.logRequestTo(log))
                 .addFilter(ResponseLoggingFilter.logResponseTo(log))
