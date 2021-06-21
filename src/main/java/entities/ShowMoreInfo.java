@@ -67,6 +67,8 @@ public class ShowMoreInfo {
     private String year;
     @JsonProperty("badge")
     private String badge;
+    @JsonProperty("m4a")
+    private String m4a;
     @JsonProperty("category_tags")
     private List<String> category_tags;
     @JsonProperty("sub_category_tags")

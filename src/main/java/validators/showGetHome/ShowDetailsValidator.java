@@ -270,6 +270,9 @@ public class ShowDetailsValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getBadge()), AssertionMsg.print(className, methodName, "show", "getTopShows.more_info.badge", mi.getBadge()));
 //        else
 //            sa.fail(className+"."+ methodName+"-badge is null/empty");
+
+        sa.assertTrue(Validate.asBoolean(mi.getM4a()),
+                AssertionMsg.print(className, methodName, "getTopShows.more_info.m4a", mi.getM4a()));
     }
 
 
