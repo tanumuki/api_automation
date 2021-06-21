@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.benefits.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Slf4j
 public class BenefitsValidator {
@@ -21,8 +21,21 @@ public class BenefitsValidator {
     public void validateList(BenefitsList benefitsList, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         for (int i = 0; i < benefitsList.getData().length; i++) {
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date eventExpiryDate = null;
+            Date thresholdDate = null;
+            try {
+                eventExpiryDate = formatter.parse(benefitsList.getData()[i].getExpiry());
+//                16 June 2021 is the expiry date of the last event that doesn't have the pro rewards 2.0 fields populated.
+//                Don't change this date - Ashwin
+                thresholdDate = formatter.parse("2021-06-16");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             String benefits_id = benefitsList.getData()[i].getId();
-            sa.assertTrue(Validate.asNum(benefits_id), className + "." + "validate benefits id failed for benefit id - " + (benefits_id));
+            sa.assertTrue(Validate.asString(benefits_id), className + "." + "validate benefits id failed for benefit id - " + (benefits_id));
             log.info(("LOG response id in benefits list for benefit " + (benefits_id) + " is " + benefits_id));
 
             boolean show_raw_code = benefitsList.getData()[i].isShow_raw_code();
@@ -88,7 +101,7 @@ public class BenefitsValidator {
 
             if (Validate.isNonEmptyString(benefitsList.getData()[i].getCreated_at())) {
                 String created_at = benefitsList.getData()[i].getCreated_at();
-                sa.assertTrue(Validate.asDate(created_at), className + "." + "validate created at failed for benefit id - " + (benefits_id));
+                sa.assertTrue(Validate.asDateTime(created_at), className + "." + "validate created at failed for benefit id - " + (benefits_id));
                 log.info(("LOG response priority in benefits list for benefit " + (benefits_id) + " is " + created_at));
 
             } else {
@@ -110,25 +123,29 @@ public class BenefitsValidator {
                 log.info(("LOG response code in benefits list for benefit " + (benefits_id) + " is " + code));
             }
 
-            String category = benefitsList.getData()[i].getCategory();
-            sa.assertTrue(Validate.asString(category), className + "." + "validate category failed for benefit id - " + (benefits_id));
-            log.info(("LOG response category in benefits list for benefit " + (benefits_id) + " is " + category));
+            // some older events don't have these pro rewards 2.0 fields due to data inconsistencies, so adding a check to skip the test if
+            // the event is older than the threshold date
+            if(!eventExpiryDate.before(thresholdDate)) {
+                String category = benefitsList.getData()[i].getCategory();
+                sa.assertTrue(Validate.asString(category), className + "." + "validate category failed for benefit id - " + (benefits_id));
+                log.info(("LOG response category in benefits list for benefit " + (benefits_id) + " is " + category));
 
-            String category_id = benefitsList.getData()[i].getCategory_id();
-            sa.assertTrue(Validate.asString(category_id), className + "." + "validate category_id failed for benefit id - " + (benefits_id));
-            log.info(("LOG response category_id in benefits list for benefit " + (benefits_id) + " is " + category_id));
+                String category_id = benefitsList.getData()[i].getCategory_id();
+                sa.assertTrue(Validate.asString(category_id), className + "." + "validate category_id failed for benefit id - " + (benefits_id));
+                log.info(("LOG response category_id in benefits list for benefit " + (benefits_id) + " is " + category_id));
 
-            String top_reward = benefitsList.getData()[i].getTop_reward();
-            sa.assertTrue(Validate.asBoolean(top_reward), className + "." + "validate top_reward failed for benefit id - " + (benefits_id));
-            log.info(("LOG response top_reward in benefits list for benefit " + (benefits_id) + " is " + top_reward));
+                String top_reward = benefitsList.getData()[i].getTop_reward();
+                sa.assertTrue(Validate.asBoolean(top_reward), className + "." + "validate top_reward failed for benefit id - " + (benefits_id));
+                log.info(("LOG response top_reward in benefits list for benefit " + (benefits_id) + " is " + top_reward));
 
-            String highligter_tag = benefitsList.getData()[i].getHighligter_tag();
-            sa.assertTrue(Validate.asString(highligter_tag), className + "." + "validate highligter_tag failed for benefit id - " + (benefits_id));
-            log.info(("LOG response highligter_tag in benefits list for benefit " + (benefits_id) + " is " + highligter_tag));
+                String highligter_tag = benefitsList.getData()[i].getHighligter_tag();
+                sa.assertTrue(Validate.asString(highligter_tag), className + "." + "validate highligter_tag failed for benefit id - " + (benefits_id));
+                log.info(("LOG response highligter_tag in benefits list for benefit " + (benefits_id) + " is " + highligter_tag));
 
-            String monetary_value = benefitsList.getData()[i].getMonetary_value();
-            sa.assertTrue(Validate.asNum(monetary_value), className + "." + "validate monetary_value failed for benefit id - " + (benefits_id));
-            log.info(("LOG response monetary_value in benefits list for benefit " + (benefits_id) + " is " + monetary_value));
+                String monetary_value = benefitsList.getData()[i].getMonetary_value();
+                sa.assertTrue(Validate.asNum(monetary_value), className + "." + "validate monetary_value failed for benefit id - " + (benefits_id));
+                log.info(("LOG response monetary_value in benefits list for benefit " + (benefits_id) + " is " + monetary_value));
+            }
         }
 
 //        VALIDATE METADATA - FREE

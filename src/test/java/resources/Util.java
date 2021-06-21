@@ -51,8 +51,8 @@ public class Util {
 
 
         PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
-        String device = "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
-        cookie = cookie + device;
+        String device = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+        cookie = updateGeoCookieToIndia(cookie);
         request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
                 .addFilter(RequestLoggingFilter.logRequestTo(log))
                 .addFilter(ResponseLoggingFilter.logResponseTo(log))
@@ -72,6 +72,12 @@ public class Util {
 
     //https://www.baeldung.com/rest-assured-header-cookie-parameter
 
+    public static String updateGeoCookieToIndia(String cookie) {
+//        replace the country to IN in the geo cookie. Ex: geo=178.128.24.31%2CSG%2C%2C%2C62;
+//        This is needed in Jenkins, since our instance is based out of Singapore and all tests should run from
+//        India
+        return cookie.contains("%2CIN%2C") ? cookie : cookie.replaceAll("%2C[A-Z]{2}%2C", "%2CIN%2C");
+    }
 
     public static String getGlobalValue(String key) throws IOException {
 

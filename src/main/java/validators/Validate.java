@@ -399,7 +399,7 @@ public class Validate {
 
     public static boolean asMatchingMatchDeeplink(String str) {
         boolean flag = false;
-        if (System.getProperty("ctx").equalsIgnoreCase("Android")) {
+        if (System.getProperty("ctx").equalsIgnoreCase("Android")||System.getProperty("ctx").equalsIgnoreCase("AndroidGo")) {
 
             if (str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;"))
                 flag = true;
@@ -487,7 +487,7 @@ public class Validate {
 
     public static boolean asBenefitMetadataTitle(String str) {
         log.debug("Testing as metadata title: \"" + str + "\"");
-        return str.matches("^(Go Pro|Renew|Upgrade)");
+        return str.matches("^(Go Pro)\\s*(for Rs 33\\/month)?|Renew|Upgrade");
     }
 
     public static boolean asViewType(String str) {
@@ -599,7 +599,7 @@ public class Validate {
         return str.matches("pro|free|trial");
     }
 
-    public static boolean asDefaultSelection(String str){return str.matches("english|hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri"); }
+    public static boolean asDefaultSelection(String str){return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english"); }
     
 
 }
