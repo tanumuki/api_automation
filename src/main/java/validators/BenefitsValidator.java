@@ -40,7 +40,7 @@ public class BenefitsValidator {
 
             boolean show_raw_code = benefitsList.getData()[i].isShow_raw_code();
             sa.assertTrue(Validate.asBoolean(show_raw_code), className + "." + "validate show raw code failed for benefit id - " + (benefits_id));
-            log.info(("LOG response show raw code in benefits list for benefit " + (benefits_id) + " is " + benefits_id));
+            log.info(("LOG response show raw code in benefits list for benefit " + (benefits_id) + " is " + show_raw_code));
 
             String title = benefitsList.getData()[i].getTitle();
             sa.assertTrue(Validate.asString(title), className + "." + "validate title failed for benefit id - " + (benefits_id));
@@ -138,9 +138,12 @@ public class BenefitsValidator {
                 sa.assertTrue(Validate.asBoolean(top_reward), className + "." + "validate top_reward failed for benefit id - " + (benefits_id));
                 log.info(("LOG response top_reward in benefits list for benefit " + (benefits_id) + " is " + top_reward));
 
-                String highligter_tag = benefitsList.getData()[i].getHighligter_tag();
-                sa.assertTrue(Validate.asString(highligter_tag), className + "." + "validate highligter_tag failed for benefit id - " + (benefits_id));
-                log.info(("LOG response highligter_tag in benefits list for benefit " + (benefits_id) + " is " + highligter_tag));
+//                expired events won't have this field
+                if(!benefitsList.getData()[i].getStatus().equalsIgnoreCase("expired")){
+                    String highligter_tag = benefitsList.getData()[i].getHighligter_tag();
+                    sa.assertTrue(Validate.asString(highligter_tag), className + "." + "validate highligter_tag failed for benefit id - " + (benefits_id));
+                    log.info(("LOG response highligter_tag in benefits list for benefit " + (benefits_id) + " is " + highligter_tag));
+                }
 
                 String monetary_value = benefitsList.getData()[i].getMonetary_value();
                 sa.assertTrue(Validate.asNum(monetary_value), className + "." + "validate monetary_value failed for benefit id - " + (benefits_id));
