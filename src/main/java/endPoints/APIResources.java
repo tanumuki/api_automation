@@ -1,7 +1,5 @@
 package endPoints;
 
-import entities.GoogleAssistantGet;
-
 public enum APIResources {
 
 	SEOgetMetaResponse("seo.getMetaResponse"),
