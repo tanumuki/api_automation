@@ -1,6 +1,5 @@
 Feature: Validating Library APIs
 
-  @wip
   Scenario: Verify user library for new user
      Given Add payload with get library endpoint "LibraryGetAllAPI" and account credentials for cookie
      When User calls method with below params
@@ -60,8 +59,8 @@ Feature: Validating Library APIs
     Then The Library API returns success with status code "OK"
     And Verify if the song and album are not present in the response
 
-    @wip
-    Scenario Outline: Verify the response of the library get details by passing the params
+  Scenario Outline: Verify the response of the library get details by passing the params
+
     Given Validate the library details by calling endpoint "LibraryGetDetails" using same cookie
     When User calls the method "<method>" below params "<entity_ids>" and "<entity_type>"
     Then User validates "OK" status code
