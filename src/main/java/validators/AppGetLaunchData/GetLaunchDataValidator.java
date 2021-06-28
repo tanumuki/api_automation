@@ -21,10 +21,10 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 
         String appVersion = System.getProperty("app_version");
 //        System.out.println("appVersion1: " + appVersion);
-        System.out.println("App_version is: "+obj.getAppVersion());
+        System.out.println("App_version is: " + obj.getAppVersion());
         sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
 
-        if(obj.getUpdateConfig() != null)
+        if (obj.getUpdateConfig() != null)
             validateUpdateConfig(obj.getUpdateConfig(), sa);
 
         //Validate ef
@@ -33,19 +33,18 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         }
 
         //Validate ab_test
-        if(obj.getAbTest() instanceof LinkedHashMap){
+        if (obj.getAbTest() instanceof LinkedHashMap) {
             AB_test ab_testObj = mapper.convertValue(obj.getAbTest(), AB_test.class);
             sa.assertTrue(ab_testObj.getSplash().equals("single_artist"), AssertionMsg.print(className, methodName, "ab_test.splash", ab_testObj.getSplash()));
 
             sa.assertTrue(ab_testObj.getPaywall().equals("phone_green"), AssertionMsg.print(className, methodName, "ab_test.paywall", ab_testObj.getPaywall()));
 
             sa.assertTrue(ab_testObj.getFreemium().equals("b"), AssertionMsg.print(className, methodName, "ab_test.freemium", ab_testObj.getFreemium()));
-        }else if(obj.getAbTest() == null){
+        } else if (obj.getAbTest() == null) {
             sa.assertTrue(obj.getAbTest() == null, AssertionMsg.print(className, methodName, "ab_test", String.valueOf(obj.getAbTest())));
-        } else{
+        } else {
             sa.fail("Unsupported type for ab_test");
         }
-
 
 
         //Validate ping_server
@@ -68,7 +67,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
             sa.assertTrue(Validate.asBoolean(obj.getJiologinwall()), AssertionMsg.print(className, methodName, "jiologinwall", obj.getJiologinwall()));
 
         //Validate deferred login config
-        if(obj.getDeferred_login_config() != null)
+        if (obj.getDeferred_login_config() != null)
             validateDeferredLoginConfig(obj.getDeferred_login_config().getConfig(), sa);
 
         //Validate ads
@@ -77,25 +76,24 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
     }
 
 
-
     void validateDeferredLoginConfigObj(DeferredLoginConfigObjParams dl, String configName, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        if(Validate.isNonEmptyString(dl.getCopy()))
+        if (Validate.isNonEmptyString(dl.getCopy()))
             sa.assertTrue(Validate.asString(dl.getCopy()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".copy", dl.getCopy()));
 
-        if(Validate.isNonEmptyString(dl.getType()))
+        if (Validate.isNonEmptyString(dl.getType()))
             sa.assertTrue(Validate.asString(dl.getType()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".type", dl.getType()));
 
-        if(Validate.isNonEmptyString(dl.getTitle()))
+        if (Validate.isNonEmptyString(dl.getTitle()))
             sa.assertTrue(Validate.asString(dl.getTitle()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".title", dl.getTitle()));
 
-        if(Validate.isNonEmptyString(dl.getSubtitle()))
+        if (Validate.isNonEmptyString(dl.getSubtitle()))
             sa.assertTrue(Validate.asString(dl.getSubtitle()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".subtitle", dl.getSubtitle()));
 
-        if(Validate.isNonEmptyString(dl.getLogged_in()))
+        if (Validate.isNonEmptyString(dl.getLogged_in()))
             sa.assertTrue(Validate.asString(dl.getLogged_in()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".logged_in", dl.getLogged_in()));
 
-        if(Validate.isNonEmptyString(dl.getPro_Feature()))
+        if (Validate.isNonEmptyString(dl.getPro_Feature()))
             sa.assertTrue(Validate.asString(dl.getPro_Feature()), AssertionMsg.print(className, methodName, "deferred_login.config." + configName + ".pro_feature", dl.getPro_Feature()));
     }
 
@@ -107,10 +105,6 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         validateDeferredLoginConfigObj(con.getSwipe_landing(), "swipe_landing", sa);
         validateDeferredLoginConfigObj(con.getSwipe_landing_skippable(), "swipe_landing_skippable", sa);
     }
-
-
-
-
 
 
     public void validateAds(Ads ads, SoftAssert sa) {
@@ -140,16 +134,14 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
                 System.out.println("cohort: " + ads.getCohort());
             }
 
-            if (ads.getAdproduct_abtest()!=null)
-            {
+            if (ads.getAdproduct_abtest() != null) {
                 sa.assertTrue(Validate.asString(ads.getAdproduct_abtest()), AssertionMsg.print(className, methodName, "ads.adproduct_abtest", ads.getAdproduct_abtest()));
-                System.out.println("adproduct_abtest: "+ ads.getAdproduct_abtest());
+                System.out.println("adproduct_abtest: " + ads.getAdproduct_abtest());
             }
 
         }
 
     }
-
 
 
     public void validateTopSearches(TopSearch ts, SoftAssert sa, String appVersion) {
@@ -165,22 +157,24 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
             sa.assertTrue(Validate.asEntityType(ts.getEntityType()), AssertionMsg.print(className, methodName, "top_searches.entity_type", ts.getEntityType()));
 
 //        ID must be present. So no null checks
-        sa.assertTrue(Validate.asId(ts.getId()), AssertionMsg.print(className, methodName, "top_searches.id", ts.getId()));
+        if (!System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+            sa.assertTrue(Validate.asId(ts.getId()), AssertionMsg.print(className, methodName, "top_searches.id", ts.getId()));
 
 //        title must be present. So no null checks
-        sa.assertTrue(Validate.asString(ts.getTitle()), AssertionMsg.print(className, methodName, "top_searches.title", ts.getTitle()));
+        if (!System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+            sa.assertTrue(Validate.asString(ts.getTitle()), AssertionMsg.print(className, methodName, "top_searches.title", ts.getTitle()));
 
 //        type must be present. So no null checks
-        sa.assertTrue(Validate.asEntityType(ts.getType()), AssertionMsg.print(className, methodName, "top_searches.type", ts.getType()));
+        if (!System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+            sa.assertTrue(Validate.asEntityType(ts.getType()), AssertionMsg.print(className, methodName, "top_searches.type", ts.getType()));
 
 //        image must be present. So no null checks
         sa.assertTrue(Validate.asCDNURL(ts.getImage()), AssertionMsg.print(className, methodName, "top_searches.image", ts.getImage()));
 
-        if (Validate.isNonEmptyString(ts.getExplicit_content()))
+        if (Validate.isNonEmptyString(ts.getExplicit_content()) && !System.getProperty("ctx").equalsIgnoreCase("androidgo"))
             sa.assertTrue(Validate.asNum(ts.getExplicit_content()), AssertionMsg.print(className, methodName, "top_searches.explicit_content", ts.getExplicit_content()));
 
-        if (ts.getMini_obj()=="false")
-        {
+        if (ts.getMini_obj() == "false") {
             System.out.println(ts.getMoreInfo());
 
         }
@@ -198,7 +192,6 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         sa.assertTrue(Validate.asNum(uc.getFrequency()), AssertionMsg.print(className, methodName, "update_config.frequency", String.valueOf(uc.getFrequency())));
 
     }
-
 
 
 }

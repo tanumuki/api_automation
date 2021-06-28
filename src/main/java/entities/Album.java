@@ -5,7 +5,6 @@ package entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,10 +18,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Album extends Entity {
-
-	public Album(){}
-
-
 	@JsonProperty("list")
 	private Object list = null;
 	@JsonProperty("more_info")
@@ -31,5 +26,4 @@ public class Album extends Entity {
 	private Modules modules;
 	@JsonProperty("description")
 	private String description;
-
 }
