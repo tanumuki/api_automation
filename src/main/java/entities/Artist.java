@@ -103,4 +103,6 @@ public class Artist extends Entity{
 	private String image_url;
 	@JsonProperty("artist_videos")
 	private List<Song> artist_videos;
+	@JsonProperty("type")
+	private String type;
 }

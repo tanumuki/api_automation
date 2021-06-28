@@ -4,8 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.Album;
+import entities.AlbumMiniObject;
+import entities.AlbumReco;
 import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,11 +21,14 @@ import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.libraryOps.LibraryData;
+import pojos.libraryOps.LibraryEntities;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.UserGenerator;
 import resources.Util;
 import validators.LibraryValidator;
+import validators.Validate;
+import validators.genericValidators.AlbumMiniValidator;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -235,5 +241,56 @@ public class LibaryOps extends Util {
 		sa.assertAll();
 		
 	}
-	
+
+	@Given("Validate the library details by calling endpoint {string} using same cookie")
+	public void validateTheLibraryDetailsByCallingEndpointUsingSameCookie(String endPoint) throws FileNotFoundException {
+		APIResources resourceAPI = APIResources.valueOf(endPoint);
+		resource = resourceAPI.getResource();
+		cookie = System.getProperty("cookie");
+		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
+
+	}
+
+	@When("User calls the method {string} below params {string} and {string}")
+	public void userCallsTheMethodBelowParamsAnd(String method, String entity_ids, String entity_type) {
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
+
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			res.queryParam("entity_ids", entity_ids);
+			res.queryParam("entity_type", entity_type);
+//			if (entity_type.equals("song")) {
+//				seed_song_id = entity_ids;
+//				System.setProperty("seed_song_id", seed_song_id);
+//				log.info(seed_song_id);
+//			} else if (entity_type.equals("album")) {
+//				seed_album_id = entity_ids;
+//				System.setProperty("seed_album_id", seed_album_id);
+//				log.info(seed_album_id);
+//			}
+			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			System.out.println(resp.asString());
+		}
+
+	}
+
+	@Then("User validates {string} status code")
+	public void userValidatesStatusCode(String statusCode) {
+		StatusCode code = StatusCode.valueOf(statusCode);
+		int resource = code.getResource();
+		assertEquals(resp.getStatusCode(), resource);
+	}
+
+	@And("Validate the library details for the user against the params")
+	public void validateTheLibraryDetailsForTheUserAgainstTheParams() throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
+		SoftAssert sa = new SoftAssert();
+		sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+				"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
+		for(LibraryEntities libEntity : libraryData.getData()) {
+			new LibraryValidator().validateLibraryGetDetailsWithEntityCreds(libEntity, sa);
+		}
+		sa.assertAll();
+	}
 }
