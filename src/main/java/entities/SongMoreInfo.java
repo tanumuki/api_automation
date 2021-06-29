@@ -119,4 +119,6 @@ public class SongMoreInfo {
 	private Boolean is_dolby_content;
 	@JsonProperty("video_mappings")
 	private String [] video_mappings;
+	@JsonProperty("multiple_tunes")
+	private MultipleTunes multiPleTunes;
 }

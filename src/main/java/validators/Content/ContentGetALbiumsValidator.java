@@ -9,13 +9,12 @@ import validators.genericValidators.AlbumValidator;
 public class ContentGetALbiumsValidator {
     final String className = getClass().getName();
 
-    public void validate(AlbumData ad, SoftAssert sa)
-    {
-        for(Album album : ad.getAlbumList()){
-            new AlbumValidator().validate(album, sa);
-        }
+    public void validate(AlbumData ad, SoftAssert sa) {
+            for (Album album : ad.getAlbumList()) {
+                new AlbumValidator().validate(album, sa);
+            }
 
-        sa.assertTrue(Validate.asNum(ad.getCount()),className + "." + "validate count failed");
-        sa.assertTrue(Validate.asBoolean(ad.getLast_page()),className + "." + "validate last_page failed");
+            sa.assertTrue(Validate.asNum(ad.getCount()), className + "." + "validate count failed");
+            sa.assertTrue(Validate.asBoolean(ad.getLast_page()), className + "." + "validate last_page failed");
     }
 }

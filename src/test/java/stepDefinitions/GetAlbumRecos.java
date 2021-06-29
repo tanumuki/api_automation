@@ -4,11 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.AlbumMiniObject;
 import entities.AlbumReco;
-import entities.Channel;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,7 +21,6 @@ import resources.ConfigReader;
 import resources.Util;
 import validators.Validate;
 import validators.genericValidators.AlbumMiniValidator;
-import validators.genericValidators.ChannelValidator;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,7 +49,7 @@ public class GetAlbumRecos extends Util {
         System.out.println("resSpec: " + resSpec.toString());
         reqSpec.queryParam("albumid", albumid);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println( resp.asString());
+        System.out.println(resp.asString());
 
         logResponseTime(resp);
     }
@@ -67,16 +64,23 @@ public class GetAlbumRecos extends Util {
     @Then("User should see the recommendations response validated")
     public void user_should_see_the_recommendations_response_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        TypeFactory typeFactory = mapper.getTypeFactory();
-
-        AlbumReco albumReco = mapper.readValue(resp.asString(), AlbumReco.class);
         SoftAssert sa = new SoftAssert();
 
+        if (System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+            List<AlbumMiniObject> albumMiniObjects = mapper.readValue(resp.asString(), new TypeReference<List<AlbumMiniObject>>() {
+            });
+            for (AlbumMiniObject albumMiniObject : albumMiniObjects) {
+                new AlbumMiniValidator().validate(albumMiniObject, sa);
+            }
+        } else {
+            AlbumReco albumReco = mapper.readValue(resp.asString(), AlbumReco.class);
+
 //        Validators
-        sa.assertTrue(albumReco.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
-                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + albumReco.getStatus() + "\"");
-        for(AlbumMiniObject album : albumReco.getData()) {
-            new AlbumMiniValidator().validate(album, sa);
+            sa.assertTrue(albumReco.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                    "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + albumReco.getStatus() + "\"");
+            for (AlbumMiniObject album : albumReco.getData()) {
+                new AlbumMiniValidator().validate(album, sa);
+            }
         }
         sa.assertAll();
     }

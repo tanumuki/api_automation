@@ -91,6 +91,9 @@ public class ConfigReader {
 				} else if (ctx.equalsIgnoreCase("iphoneapp")) {
 					properties.setProperty("ctx", "iphoneapp");
 				}
+				else if (ctx.equalsIgnoreCase("androidgo")) {
+					properties.setProperty("ctx", "androidgo");
+				}
 			}
 
 			if (username != null) {
