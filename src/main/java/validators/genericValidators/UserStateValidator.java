@@ -71,6 +71,13 @@ public class UserStateValidator {
         else if(us.getUserLoggedIn() == 1)
             sa.fail(className + "." + methodName + "-pro_status is null");
 
+        if(us.getSecondary_information() != null) {
+            sa.assertNull(us.getSecondary_information().getEmail(), "TODO QA: Found possible values. Add assertions.");
+            sa.assertTrue(us.getSecondary_information().getPhone().length() == 0, "TODO QA: Found possible values. Add assertions.");
+            sa.assertNull(us.getSecondary_information().getEmail_verified(), "TODO QA: Found possible values. Add assertions.");
+            sa.assertNull(us.getSecondary_information().getPhone_verified(), "TODO QA: Found possible values. Add assertions.");
+        }
+
     }
 
 }

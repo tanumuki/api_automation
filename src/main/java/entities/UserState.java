@@ -48,6 +48,8 @@ public class UserState {
     private String registeredDate;
     @JsonProperty("prostatus")
     private LoginProstatus prostatus;
+    @JsonProperty("secondary_information")
+    private SecondaryInformation secondary_information;
     @JsonProperty("device_status")
     private String deviceStatus;
     @JsonProperty("email")
