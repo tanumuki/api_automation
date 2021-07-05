@@ -73,10 +73,14 @@ public class UserStateValidator {
 
         /*All fields are null now. Please add assertions as and when values are available - Ashwin*/
         if(us.getSecondary_information() != null) {
-            sa.assertNull(us.getSecondary_information().getEmail(), "TODO QA: Found possible values. Add assertions.");
-            sa.assertTrue(us.getSecondary_information().getPhone().length() == 0, "TODO QA: Found possible values. Add assertions.");
-            sa.assertNull(us.getSecondary_information().getEmail_verified(), "TODO QA: Found possible values. Add assertions.");
-            sa.assertNull(us.getSecondary_information().getPhone_verified(), "TODO QA: Found possible values. Add assertions.");
+            sa.assertNull(us.getSecondary_information().getEmail(),
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getEmail());
+            sa.assertTrue(us.getSecondary_information().getPhone().length() == 0,
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getPhone());
+            sa.assertNull(us.getSecondary_information().getEmail_verified(),
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getEmail_verified());
+            sa.assertNull(us.getSecondary_information().getPhone_verified(),
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getPhone_verified());
         }
 
     }
