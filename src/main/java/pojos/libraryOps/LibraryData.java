@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import entities.Entity;
+import entities.Song;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,7 @@ public class LibraryData extends Entity {
     public String status;
     @JsonProperty("data")
     public List<LibraryEntities> data;
-
+    @JsonProperty("song_data")
+    public Song song_data;
 
 }

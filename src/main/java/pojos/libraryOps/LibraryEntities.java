@@ -2,8 +2,7 @@ package pojos.libraryOps;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import entities.AlbumMoreInfo;
-import entities.Entity;
+import entities.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +20,7 @@ public class LibraryEntities extends Entity {
     @JsonProperty("list")
     private Object list;
     @JsonProperty("more_info")
-    private AlbumMoreInfo moreInfo;
+    private LibraryMoreInfo libraryMoreInfo;
     @JsonProperty("id")
     public String id;
     @JsonProperty("title")
@@ -38,7 +37,6 @@ public class LibraryEntities extends Entity {
     public String explicitContent;
     @JsonProperty("mini_obj")
     public Boolean miniObj;
-
 
 
 

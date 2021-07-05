@@ -4,6 +4,7 @@
 package validators.genericValidators;
 
 import entities.ArtistMap;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 
 import entities.Artist;
@@ -14,6 +15,8 @@ import validators.Validate;
  * @author aswingokulachandran
  *
  */
+
+@Slf4j
 public class ArtistMapValidator {
 	final String className = SongValidator.class.getName();
 
@@ -55,6 +58,8 @@ public class ArtistMapValidator {
 
 		sa.assertTrue(Validate.asPermaURL(artist.getPermaUrl()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.perma_url", artist.getPermaUrl(), sourceEntity));
+
+		log.info("Validation done for "+artistType);
 	}
 
 }

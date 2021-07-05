@@ -70,6 +70,10 @@ Feature: Validating Library APIs
     |method | entity_ids | entity_type |
     | GET   | 3118021    | album       |
     | GET   | 459320     | artist      |
+    | GET   | 9046       | show        |
+    | GET   | Szjbreaj   | song        |
+    | GET   | 158826102  | playlist    |
+    | GET   | JemPuqKI   | video       |
 
 
 
