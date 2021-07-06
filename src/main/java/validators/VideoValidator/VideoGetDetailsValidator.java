@@ -1,13 +1,9 @@
 package validators.VideoValidator;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.ArtistMap;
-import entities.Rights;
 import entities.VideoMoreInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
-import pojos.search.MoreInfo;
 import pojos.videoGetDetails.VideoGetDetails;
 import validators.AssertionMsg;
 import validators.Validate;
@@ -38,7 +34,7 @@ public class VideoGetDetailsValidator  extends EntityValidator {
 
         //Validating more info
 
-        validateVideoMoreInfo(videoObj.data.getVideoMoreInfo(), sa,videoObj.getId());
+        validateVideoMoreInfo(videoObj.videoData.getVideoMoreInfo(), sa,videoObj.getId());
     }
 
 

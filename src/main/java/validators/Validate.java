@@ -157,7 +157,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix|video)\\/.+$");
         } else
 //          perma_url is empty, just verify it as a string and return it
             return asString(url);

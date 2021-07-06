@@ -9,7 +9,7 @@ import lombok.Setter;
 @lombok.Data
 @Getter
 @Setter
-public class Data extends Entity {
+public class VideoData extends Entity {
 
     @JsonProperty("list")
     public String list;

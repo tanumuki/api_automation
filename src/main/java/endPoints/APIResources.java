@@ -84,7 +84,8 @@ public enum APIResources {
 	MatchingMatchApi("matching.match"),
 	VideoGetDetails("video.getDetails"),
 	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
-	GoogleAssistantGet("google_assistant.get");
+	GoogleAssistantGet("google_assistant.get"),
+	GetAlbumVideoList("video.getAlbumVideoList");
 
 	private String resource;
 
