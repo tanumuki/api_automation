@@ -9,6 +9,7 @@ import endPoints.APIResources;
 import entities.Album;
 import entities.AlbumMiniObject;
 import entities.AlbumReco;
+import entities.AssortedEntities;
 import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -281,16 +282,25 @@ public class LibaryOps extends Util {
 		assertEquals(resp.getStatusCode(), resource);
 	}
 
-	@And("Validate the library details for the user against the params")
-	public void validateTheLibraryDetailsForTheUserAgainstTheParams() throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
+//	@And("Validate the library details for the user against the params")
+//	public void validateTheLibraryDetailsForTheUserAgainstTheParams() throws JsonProcessingException {
+////		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+////		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
+////		SoftAssert sa = new SoftAssert();
+////		sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+////				"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
+////		for(LibraryEntities libEntity : libraryData.getData()) {
+////			new LibraryValidator().validateLibraryGetDetailsWithEntityCreds(libEntity, sa);
+////		}
+////		sa.assertAll();
+//
+//	}
+
+	@And("Validate the library details for the user against the params for {string}")
+	public void validateTheLibraryDetailsForTheUserAgainstTheParamsFor(String entity_type) {
 		SoftAssert sa = new SoftAssert();
-		sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
-				"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
-		for(LibraryEntities libEntity : libraryData.getData()) {
-			new LibraryValidator().validateLibraryGetDetailsWithEntityCreds(libEntity, sa);
-		}
+		System.out.println("this is the entity "+ entity_type);
+		AssortedEntities.readAndValidateAssortedEntity1(entity_type, resp, sa);
 		sa.assertAll();
 	}
 }

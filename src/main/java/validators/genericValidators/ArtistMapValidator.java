@@ -25,12 +25,22 @@ public class ArtistMapValidator {
 			for(Artist artist : artistMap.getPrimaryArtists()) {
 				new ArtistMapValidator().validate(artist, sa, "primary_artists", sourceType, sourceId);
 			}
-			for(Artist artist : artistMap.getFeaturedArtists()) {
-				new ArtistMapValidator().validate(artist, sa, "featured_artists", sourceType, sourceId);
+			if( artistMap.getFeaturedArtists() != null) {
+				for (Artist artist : artistMap.getFeaturedArtists()) {
+					new ArtistMapValidator().validate(artist, sa, "featured_artists", sourceType, sourceId);
+				}
+			}
+			else {
+				log.info("Albums doesn't have the featured artists");
 			}
 
-			for(Artist artist : artistMap.getArtists()) {
-				new ArtistMapValidator().validate(artist, sa, "artists", sourceType, sourceId);
+			if( artistMap.getFeaturedArtists() != null) {
+				for(Artist artist : artistMap.getArtists()) {
+					new ArtistMapValidator().validate(artist, sa, "artists", sourceType, sourceId);
+				}
+			}
+			else {
+				log.info("Albums doesn't have the artists");
 			}
 		}
 
