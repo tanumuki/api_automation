@@ -120,8 +120,10 @@ public class UserPofileDataValidator {
         }
 
 //        Email verified state is mandatory, so no need of null checks
-        String email_verified_status = userGetProfile.getEmail_verified_status();
-        sa.assertTrue(Validate.asEmailVerifiedStatus(email_verified_status), className + "." + "validate email_verified_status failed - ");
+        if (!System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+            String email_verified_status = userGetProfile.getEmail_verified_status();
+            sa.assertTrue(Validate.asEmailVerifiedStatus(email_verified_status), className + "." + "validate email_verified_status failed - ");
+        }
 
         String following_usersCount = userGetProfile.getFollowing().getUsersCount();
         sa.assertTrue(Validate.asNum(following_usersCount), className + "." + "validate following users count failed - ");

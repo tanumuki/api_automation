@@ -1,11 +1,13 @@
 package stepDefinitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
 import entities.ChartsData;
 import entities.FeaturedPlaylistData;
+import entities.PlaylistMini;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,8 +21,10 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import validators.GetFeaturedPlayListValidator;
+import validators.PlaylistMiniValidator;
 
 import java.io.IOException;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -45,7 +49,7 @@ public class GetContentMini extends Util {
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println( resp.asString());
+        System.out.println(resp.asString());
 
         logResponseTime(resp);
     }
@@ -63,14 +67,22 @@ public class GetContentMini extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         SoftAssert sa = new SoftAssert();
 
-        if (entityType.equalsIgnoreCase("playlist")) {
-            FeaturedPlaylistData featuredPlaylistData = mapper.readValue(resp.asString(), FeaturedPlaylistData.class);
-            new GetFeaturedPlayListValidator().validate(featuredPlaylistData, sa);
-        }
-        else if (entityType.equalsIgnoreCase("chart"))
-        {
-            ChartsData chartsData = mapper.readValue(resp.asString(), ChartsData.class);
-            new GetFeaturedPlayListValidator().validate(chartsData,sa);
+        if (System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+            if (entityType.equalsIgnoreCase("playlist")) {
+                List<PlaylistMini> playlistMiniList = mapper.readValue(resp.asString(), new TypeReference<List<PlaylistMini>>() {
+                });
+                for (PlaylistMini playlistMini : playlistMiniList) {
+                    new PlaylistMiniValidator().validate(playlistMini, sa);
+                }
+            }
+        } else {
+            if (entityType.equalsIgnoreCase("playlist")) {
+                FeaturedPlaylistData featuredPlaylistData = mapper.readValue(resp.asString(), FeaturedPlaylistData.class);
+                new GetFeaturedPlayListValidator().validate(featuredPlaylistData, sa);
+            } else if (entityType.equalsIgnoreCase("chart")) {
+                ChartsData chartsData = mapper.readValue(resp.asString(), ChartsData.class);
+                new GetFeaturedPlayListValidator().validate(chartsData, sa);
+            }
         }
         sa.assertAll();
     }
