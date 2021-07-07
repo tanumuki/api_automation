@@ -17,4 +17,6 @@ public class PrimaryArtist {
     @JsonProperty("perma_url")
     public String permaUrl;
 
+
+
 }

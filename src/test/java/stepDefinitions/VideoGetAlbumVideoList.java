@@ -9,11 +9,8 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import pojos.videoGetAlbumVideoList.GetAlbumVideoList;
 import validators.VideoValidator.VideoGetAlbumListValidator;
-import validators.VideoValidator.VideoGetDetailsValidator;
 
 public class VideoGetAlbumVideoList {
-
-
 
 
 
@@ -33,10 +30,7 @@ public class VideoGetAlbumVideoList {
 
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
-       // pojos.videoGetDetails.VideoGetDetails videoDetailsObject= mapper.readValue(GenericSteps.resp.asString(), pojos.videoGetDetails.VideoGetDetails.class);
         GetAlbumVideoList videoListObject = mapper.readValue(GenericSteps.resp.asString(), GetAlbumVideoList.class);
-
         new VideoGetAlbumListValidator().validate(videoListObject,sa);
 
         sa.assertAll();
