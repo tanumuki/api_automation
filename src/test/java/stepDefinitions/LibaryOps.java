@@ -300,7 +300,7 @@ public class LibaryOps extends Util {
 	public void validateTheLibraryDetailsForTheUserAgainstTheParamsFor(String entity_type) {
 		SoftAssert sa = new SoftAssert();
 		System.out.println("this is the entity "+ entity_type);
-		AssortedEntities.readAndValidateAssortedEntity1(entity_type, resp, sa);
+		AssortedEntities.readAndValidateAssortedEntity(resp, sa);
 		sa.assertAll();
 	}
 }

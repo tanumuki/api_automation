@@ -68,12 +68,12 @@ Feature: Validating Library APIs
 
     Examples:
     |method | entity_ids | entity_type | entity |
-#    | GET   | 3118021    | album       | album  |
-#    | GET   | 459320     | artist      | artist |
-#    | GET   | 9046       | show        | show   |
-#    | GET   | Szjbreaj   | song        | song   |
+    | GET   | 3118021    | album       | album  |
+    | GET   | 459320     | artist      | artist |
+    | GET   | 9046       | show        | show   |
+    | GET   | Szjbreaj   | song        | song   |
 #    | GET   | 158826102  | playlist    | playlist |
-    | GET   | JemPuqKI   | video       | video  |
+#    | GET   | JemPuqKI   | video       | video  |
 
 
 
