@@ -2,6 +2,7 @@ package validators.JiotuneHomepageData;
 
 import entities.ModulesData;
 import entities.ModulesDataShowMore;
+import entities.ModulesWithViewMoreObj;
 import entities.Song;
 import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
@@ -9,6 +10,9 @@ import validators.AssertionMsg;
 import validators.Validate;
 import validators.genericValidators.ModulesDataValidator;
 import validators.genericValidators.SongValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JTHomePageDataValidator {
     final String className = getClass().getName();
@@ -42,7 +46,26 @@ public class JTHomePageDataValidator {
         Validate.asAssortedEntity(hd.getData_6(), sa);
 
         //Validate modules
-        for(ModulesData md : hd.getModules()){
+        List<ModulesWithViewMoreObj> mdo = new ArrayList<>();
+
+//        There should be atleast one module always
+        sa.assertNotNull(hd.getModules().getData_0(), "Test failed: There should be atleast one module.");
+        mdo.add(hd.getModules().getData_0());
+
+        if(hd.getModules().getData_1() != null)
+            mdo.add(hd.getModules().getData_0());
+        if(hd.getModules().getData_2() != null)
+            mdo.add(hd.getModules().getData_0());
+        if(hd.getModules().getData_3() != null)
+            mdo.add(hd.getModules().getData_0());
+        if(hd.getModules().getData_4() != null)
+            mdo.add(hd.getModules().getData_0());
+        if(hd.getModules().getData_5() != null)
+            mdo.add(hd.getModules().getData_0());
+        if(hd.getModules().getData_6() != null)
+            mdo.add(hd.getModules().getData_0());
+
+        for(ModulesWithViewMoreObj md : mdo){
             new ModulesDataValidator().validate(md, sa);
 
             ModulesDataShowMore sm = md.getShowMore();
