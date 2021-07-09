@@ -69,7 +69,7 @@ Feature: Validating Library APIs
     Examples:
     |method | entity_ids | entity_type | entity | n  | p |
     | GET   | 3118021    | album       | album  | 10 | 1 |
-    | GET   | 459320     | artist      | artist | 10 | 2 |
+    | GET   | 459320     | artist      | artist | 10 | 1 |
     | GET   | 9046       | show        | show   | 5  | 1 |
     | GET   | Szjbreaj   | song        | song   | 10 | 1 |
 #    | GET   | 158826102  | playlist    | playlist |
