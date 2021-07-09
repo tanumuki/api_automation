@@ -380,6 +380,21 @@ public class Validate {
         }
     }
 
+    public static void asAssortedEntityForLibraryDetails(String chosenEntity, Response response, SoftAssert sa) {
+//        This is to select the jsonpath according to the chosen entity. The response structure varies for different entities
+        String field;
+        if(!chosenEntity.equals("song")){
+            field = "data";
+        }
+        else{
+            field = "songs";
+        }
+        List<LinkedHashMap> entityList = response.jsonPath().getJsonObject(field);
+        for (LinkedHashMap entity : entityList) {
+            Validate.asAssortedEntity(entity, sa);
+        }
+    }
+
     public static void asAssortedEntity(List<LinkedHashMap> entityList, SoftAssert sa) {
         if (entityList != null && entityList.size() > 0) {
             for (LinkedHashMap entity : entityList) {

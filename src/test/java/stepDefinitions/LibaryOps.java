@@ -282,25 +282,18 @@ public class LibaryOps extends Util {
 		assertEquals(resp.getStatusCode(), resource);
 	}
 
-//	@And("Validate the library details for the user against the params")
-//	public void validateTheLibraryDetailsForTheUserAgainstTheParams() throws JsonProcessingException {
-////		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-////		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
-////		SoftAssert sa = new SoftAssert();
-////		sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
-////				"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
-////		for(LibraryEntities libEntity : libraryData.getData()) {
-////			new LibraryValidator().validateLibraryGetDetailsWithEntityCreds(libEntity, sa);
-////		}
-////		sa.assertAll();
-//
-//	}
 
 	@And("Validate the library details for the user against the params for {string}")
-	public void validateTheLibraryDetailsForTheUserAgainstTheParamsFor(String entity_type) {
+	public void validateTheLibraryDetailsForTheUserAgainstTheParamsFor(String entity_type) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
 		SoftAssert sa = new SoftAssert();
-		System.out.println("this is the entity "+ entity_type);
-		AssortedEntities.readAndValidateAssortedEntity(resp, sa);
+		if(!entity_type.equals("song")) {
+			sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+					"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
+		}
+		log.info("Validated for the following entity "+ entity_type);
+		AssortedEntities.readAndValidateAssortedEntityForLibraryDetails(entity_type, resp, sa);
 		sa.assertAll();
 	}
 }

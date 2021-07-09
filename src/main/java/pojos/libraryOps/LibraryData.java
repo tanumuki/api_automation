@@ -32,7 +32,8 @@ public class LibraryData extends Entity {
     public String status;
     @JsonProperty("data")
     public List<LibraryEntities> data;
-    @JsonProperty("song_data")
-    public Song song_data;
+    @JsonProperty("songs")
+    public List<Song> songs;
+
 
 }
