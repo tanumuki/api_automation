@@ -198,9 +198,7 @@ public class GlobalConfigValidator {
         sa.assertTrue(Validate.asNum(gc.getMax_Video_Limit()), AssertionMsg.print(className, methodName, "global_config.getMax_Video_Limit", String.valueOf(gc.getMax_Video_Limit())));
         sa.assertTrue(Validate.asNum(gc.getFeatureViewSpan()), AssertionMsg.print(className, methodName, "global_config.getFeatureViewSpan", String.valueOf(gc.getFeatureViewSpan())));
         sa.assertTrue(Validate.asNum(gc.getWatchVideoSpan()), AssertionMsg.print(className, methodName, "global_config.getWatchVideoSpan", String.valueOf(gc.getWatchVideoSpan())));
-
-
-
+        sa.assertTrue(Validate.asNum(gc.getIn_app_review_stream_count()), AssertionMsg.print(className, methodName, "global_config.getIn_app_review_stream_count", String.valueOf(gc.getIn_app_review_stream_count())));
         validateAppLanguages(gc.getApp_languages(), sa);
 
     }
