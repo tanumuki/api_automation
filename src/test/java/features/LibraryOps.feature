@@ -61,17 +61,20 @@ Feature: Validating Library APIs
 
   Scenario Outline: Verify the response of the library get details by passing the params
 
-    Given Validate the library details by calling endpoint "LibraryGetDetails" using same cookie
+    Given I have the cookie for the following user
+      | username              | password   |
+      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I have the endpoint for "LibraryGetDetails"
     When User calls the method "<method>" below params "<entity_ids>", "<entity_type>", "<n>" and "<p>"
     Then User validates "OK" status code
-    And Validate the library details for the user against the params for "<entity>"
+    And Validate the library details for the user against the params
 
     Examples:
-    |method | entity_ids | entity_type | entity | n  | p |
-    | GET   | 3118021    | album       | album  | 10 | 1 |
-    | GET   | 459320     | artist      | artist | 10 | 1 |
-    | GET   | 9046       | show        | show   | 5  | 1 |
-    | GET   | Szjbreaj   | song        | song   | 10 | 1 |
+    |method | entity_ids        | entity_type | n  | p |
+    | GET   | 3118021           | album       | 10 | 1 |
+    | GET   | 455142            | artist      | 10 | 1 |
+    | GET   | 74816             | show        | 5  | 1 |
+    | GET   | 3eMvTzCO,90_xiy44 | song        | 10 | 1 |
 #    | GET   | 158826102  | playlist    | playlist |
 #    | GET   | JemPuqKI   | video       | video  |
 

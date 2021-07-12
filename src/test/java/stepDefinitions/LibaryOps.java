@@ -54,6 +54,7 @@ public class LibaryOps extends Util {
 	String seed_album_id = "";
 	Album albumDataInLibrary ;
 	String albumResponse="";
+	String entity_type;
 
 	@Given("Add payload with get library endpoint {string} and account credentials for cookie")
 	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint)
@@ -244,27 +245,19 @@ public class LibaryOps extends Util {
 		
 	}
 
-	@Given("Validate the library details by calling endpoint {string} using same cookie")
-	public void validateTheLibraryDetailsByCallingEndpointUsingSameCookie(String endPoint) throws FileNotFoundException {
-		APIResources resourceAPI = APIResources.valueOf(endPoint);
-		resource = resourceAPI.getResource();
-		cookie = System.getProperty("cookie");
-		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
-
-	}
-
 	@When("User calls the method {string} below params {string}, {string}, {string} and {string}")
-	public void userCallsTheMethodBelowParamsAnd(String method, String entity_ids, String entity_type, String n, String p) {
+	public void userCallsTheMethodBelowParams(String method, String entity_ids, String entity_type, String n, String p) {
 		resspec = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			res.queryParam("entity_ids", entity_ids);
-			res.queryParam("entity_type", entity_type);
-			res.queryParam("n", n);
-			res.queryParam("p", p);
-			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			GenericSteps.request.queryParam("entity_ids", entity_ids);
+			GenericSteps.request.queryParam("entity_type", entity_type);
+			GenericSteps.request.queryParam("n", n);
+			GenericSteps.request.queryParam("p", p);
+			resp = GenericSteps.request.when().get("/api.php").then().log().all().spec(resspec).extract().response();
 			System.out.println(resp.asString());
 		}
+		this.entity_type = entity_type;
 
 	}
 
@@ -276,8 +269,8 @@ public class LibaryOps extends Util {
 	}
 
 
-	@And("Validate the library details for the user against the params for {string}")
-	public void validateTheLibraryDetailsForTheUserAgainstTheParamsFor(String entity_type) throws JsonProcessingException {
+	@And("Validate the library details for the user against the params")
+	public void validateTheLibraryDetailsForTheUserAgainstTheParams() throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
 		SoftAssert sa = new SoftAssert();
@@ -285,8 +278,8 @@ public class LibaryOps extends Util {
 			sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
 					"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
 		}
-		log.info("Validated for the following entity "+ entity_type);
-		AssortedEntities.readAndValidateAssortedEntityForLibraryDetails(entity_type, resp, sa);
+		log.info("Validated for the following entity "+ this.entity_type);
+		AssortedEntities.readAndValidateAssortedEntityForLibraryDetails(this.entity_type, resp, sa);
 		sa.assertAll();
 	}
 }
