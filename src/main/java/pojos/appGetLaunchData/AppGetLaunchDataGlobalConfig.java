@@ -180,4 +180,7 @@ public class AppGetLaunchDataGlobalConfig {
 
     @JsonProperty("watchVideoSpan")
     private int watchVideoSpan;
+
+    @JsonProperty("in_app_review_stream_count")
+    private int in_app_review_stream_count;
 }
