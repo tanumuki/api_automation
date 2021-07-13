@@ -29,6 +29,10 @@ public class UserLogin {
 	private LoginData data;
 	@JsonProperty("prostatus")
 	private LoginProstatus prostatus;
+	@JsonProperty("error")
+	public Error error;
+
+
 	
 
 

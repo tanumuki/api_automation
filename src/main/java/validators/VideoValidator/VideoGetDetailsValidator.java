@@ -133,6 +133,25 @@ public class VideoGetDetailsValidator  extends EntityValidator {
             log.info("Preview URL is empty/Null");
         }
 
+        if(Validate.isNonEmptyString(mi.getVcode()))
+            sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "more_info.vCode", mi.getVcode()));
+        else {
+            log.info("VCode is empty/Null");
+        }
+
+        if(Validate.isNonEmptyString(mi.getVlink()))
+            sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "more_info.vLink", mi.getVlink()));
+        else {
+            log.info("vLink is empty/Null");
+        }
+
+
+        if(Validate.isNonEmptyString(mi.getVideoRateCap()))
+            sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "more_info.vLink", mi.getVlink()));
+        else {
+            log.info("vLink is empty/Null");
+        }
+
 
         if(mi.getSongMappings()  instanceof List && mi.getSongMappings()!=null){
 

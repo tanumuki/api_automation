@@ -29,6 +29,7 @@ public class VideoGetAlbumVideoList {
         SoftAssert sa = new SoftAssert();
 
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+       // mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         GetAlbumVideoList videoListObject = mapper.readValue(GenericSteps.resp.asString(), GetAlbumVideoList.class);
         new VideoGetAlbumListValidator().validate(videoListObject,sa);
 

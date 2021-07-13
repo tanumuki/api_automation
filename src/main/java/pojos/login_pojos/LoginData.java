@@ -20,46 +20,50 @@ public class LoginData {
         super();
     }
 
-
     @JsonProperty("username")
-    private String username;
+    public String username;
     @JsonProperty("uid")
-    private String uid;
+    public String uid;
     @JsonProperty("fbid")
-    private String fbid;
+    public String fbid;
     @JsonProperty("email")
-    private String email;
+    public String email;
     @JsonProperty("phone_number")
-    private String phoneNumber;
+    public String phoneNumber;
     @JsonProperty("fbtoken")
-    private String fbtoken;
+    public String fbtoken;
     @JsonProperty("regdate")
-    private String regdate;
+    public String regdate;
     @JsonProperty("status")
-    private String status;
+    public String status;
     @JsonProperty("lastname")
-    private String lastname;
+    public String lastname;
     @JsonProperty("firstname")
-    private String firstname;
+    public String firstname;
     @JsonProperty("gender")
-    private String gender;
+    public String gender;
     @JsonProperty("dob")
-    private String dob;
+    public String dob;
     @JsonProperty("birthyear")
-    private String birthyear;
+    public String birthyear;
     @JsonProperty("network")
-    private String network;
+    public String network;
     @JsonProperty("following_count")
-    private String followingCount;
+    public String followingCount;
     @JsonProperty("follower_count")
-    private String followerCount;
+    public String followerCount;
     @JsonProperty("update_time")
-    private String updateTime;
+    public String updateTime;
+    @JsonProperty("require_otp")
+    public Boolean requireOtp;
+    @JsonProperty("mandatory_verify")
+    public Boolean mandatoryVerify;
+    @JsonProperty("email_verified_status")
+    public String emailVerifiedStatus;
     @JsonProperty("paywall_only")
-    private String paywallOnly;
+    public String paywallOnly;
     @JsonProperty("loginwall")
-    private String loginwall;
-
+    public String loginwall;
 
     public boolean validateNull() {
 
