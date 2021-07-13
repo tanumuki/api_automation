@@ -20,6 +20,7 @@ public class VideoGetAlbumListValidator {
 
         if(videoList.data.size()==0){
                 AssertionMsg.print(className,methodName, videoList.data.toString(),"Video List is empty");
+                softAssert.fail("Video List is empty");
             }
         else{
             for(VideoData videoData :  videoList.getData()){
