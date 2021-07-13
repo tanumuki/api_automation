@@ -157,7 +157,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix|video)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(mls|dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
         } else
 //          perma_url is empty, just verify it as a string and return it
             return asString(url);
@@ -234,7 +234,10 @@ public class Validate {
 //        Example strings:
 //        "Artist <middle dot separator> 100K Fans" for pre-7.x
 //        "30.9M Listeners" for post-7.x
-        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+            return str.matches("(Artist • [0-9]{0,10} Listeners)");
+        else
+            return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
     }
 
     /**
@@ -303,11 +306,7 @@ public class Validate {
     }
 
     public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending" +
-                "|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles" +
-                "|similarArtists|artistPlaylists|triller|latest_release|show" +
-                "|new_albums|city_mod|promo:vx:data:[0-9]+|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending" +
-                "|podcast_home_module_[0-9]+|data_[0-9]+|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases");
     }
 
 
@@ -399,7 +398,7 @@ public class Validate {
 
     public static boolean asMatchingMatchDeeplink(String str) {
         boolean flag = false;
-        if (System.getProperty("ctx").equalsIgnoreCase("Android")||System.getProperty("ctx").equalsIgnoreCase("AndroidGo")) {
+        if (System.getProperty("ctx").equalsIgnoreCase("Android") || System.getProperty("ctx").equalsIgnoreCase("AndroidGo")) {
 
             if (str.matches("intent:\\/\\/(view|play)\\/(playlist|song|show|artist|channels|album|radio)\\/(featured\\/)?(english\\/)?([0-9]{2,})?\\/?([0-9]{1,}\\/)?([a-zA-Z0-9_-]{10,})?#Intent;action=android.intent.action.VIEW;scheme=jiosaavn;package=com.jio.media.jiobeats;S.market_referrer=utm_source%3DMobileWeb%26utm_medium%3DContentPage%26utm_campaign%3DClickPlay;end;"))
                 flag = true;
@@ -599,8 +598,10 @@ public class Validate {
         return str.matches("pro|free|trial");
     }
 
-    public static boolean asDefaultSelection(String str){return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english"); }
-    
+    public static boolean asDefaultSelection(String str) {
+        return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
+    }
+
 
 }
 

@@ -57,8 +57,9 @@ public class EntityValidator {
 		if(Validate.isNonEmptyString(adObj.getTitle() ))
 			sa.assertTrue(Validate.asString(adObj.getTitle()), AssertionMsg.print(className, methodName, sourceType,"Title", adObj.getTitle(), sourceEntity));
 
-		if(Validate.isNonEmptyString(adObj.getSubtitle() ))
-			sa.assertTrue(Validate.asString(adObj.getSubtitle()), AssertionMsg.print(className, methodName, sourceType,"Subtitle", adObj.getSubtitle(), sourceEntity));
+		if(Validate.isNonEmptyString(adObj.getSubtitle() )) {
+			sa.assertTrue(Validate.asString(adObj.getSubtitle()), AssertionMsg.print(className, methodName, sourceType, "Subtitle", adObj.getSubtitle(), sourceEntity));
+		}
 
 		if(Validate.isNonEmptyString(adObj.getType() ))
 			sa.assertTrue(Validate.asEntityType(adObj.getType()), AssertionMsg.print(className, methodName, sourceType,"Type", adObj.getType(), sourceEntity));
