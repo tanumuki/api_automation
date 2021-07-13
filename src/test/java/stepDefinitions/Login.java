@@ -136,7 +136,7 @@ public class Login extends Util {
 		System.out.println("errorString is "+errorString);
 		sa.assertTrue(error.equals(errorString), "Error message doesn't match" );
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		//objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
 
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
