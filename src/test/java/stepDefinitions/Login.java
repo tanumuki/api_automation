@@ -68,7 +68,7 @@ public class Login extends Util {
 
 		String username = (String) testContext.scenarioContext.getContext(Context.USERNAME);
 		String password = (String) testContext.scenarioContext.getContext(Context.PASSWORD);
-		System.out.println("ussername is " +username + "and" +password);
+		System.out.println("username is " +username + "and" +password);
 
 		method = table.cell(1, 0);
 		System.out.println("method is "+method);

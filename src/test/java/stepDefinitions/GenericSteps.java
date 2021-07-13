@@ -37,7 +37,7 @@ public class GenericSteps extends Util {
     }
 
     @When("I make the {string} request with the following query parameters")
-    public void iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
+    public void  iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
         List<Map<String, String>> params = queryParams.asMaps();
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
