@@ -252,7 +252,7 @@ public class UserLoginValidator {
         // require OTP
         if (login.getData()!=null){
             Boolean otpFlag = login.getData().requireOtp;
-            sa.assertTrue(Validate.asBoolean(otpFlag), className + "." + "validate offer_trial failed - ");
+            sa.assertTrue(Validate.asBoolean(otpFlag), className + "." + "validate otp flag failed - ");
         } else {
             System.out.println(" Otp flag is NULL or empty");
         }

@@ -147,9 +147,9 @@ public class VideoGetDetailsValidator  extends EntityValidator {
 
 
         if(Validate.isNonEmptyString(mi.getVideoRateCap()))
-            sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "more_info.vLink", mi.getVlink()));
+            sa.assertTrue(Validate.asBoolean(mi.getVideoRateCap()), AssertionMsg.print(className, methodName, "more_info.vLink", mi.getVlink()));
         else {
-            log.info("vLink is empty/Null");
+            log.info("Rate cap is empty/Null");
         }
 
 
