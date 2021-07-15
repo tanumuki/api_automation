@@ -1,5 +1,4 @@
 package validators;
-
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
@@ -249,6 +248,13 @@ public class UserLoginValidator {
             sa.assertTrue(Validate.asString(offerTrial), className + "." + "validate offer_trial failed - ");
         } else {
             System.out.println(" Offer trial  is NULL or empty");
+        }
+        // require OTP
+        if (login.getData()!=null){
+            Boolean otpFlag = login.getData().requireOtp;
+            sa.assertTrue(Validate.asBoolean(otpFlag), className + "." + "validate otp flag failed - ");
+        } else {
+            System.out.println(" Otp flag is NULL or empty");
         }
 
 

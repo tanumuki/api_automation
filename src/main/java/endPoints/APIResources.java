@@ -85,7 +85,7 @@ public enum APIResources {
 	VideoGetDetails("video.getDetails"),
 	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
 	GoogleAssistantGet("google_assistant.get"),
-	LibraryGetDetails("library.getDetails");
+	GetAlbumVideoList("video.getAlbumVideoList");
 
 	private String resource;
 

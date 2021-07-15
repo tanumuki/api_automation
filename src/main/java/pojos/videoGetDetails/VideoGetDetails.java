@@ -9,7 +9,7 @@ public class VideoGetDetails extends Entity {
         @JsonProperty("status")
         public String status;
         @JsonProperty("data")
-        public Data data;
+        public VideoData videoData;
 
     }
 
