@@ -37,10 +37,6 @@ public class AssortedEntities {
         Validate.asAssortedEntity(response, sa);
     }
 
-    public static void readAndValidateAssortedEntityForLibraryDetails(String entity, Response response, SoftAssert sa){
-        Validate.asAssortedEntityForLibraryDetails(entity, response, sa);
-    }
-
     /**
      * This method will return all the values of the requested `key` from the JSON Array.
      * See sample implementation in ContentGetTrending pagination step

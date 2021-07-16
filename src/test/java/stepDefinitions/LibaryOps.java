@@ -245,41 +245,17 @@ public class LibaryOps extends Util {
 		
 	}
 
-	@When("User calls the method {string} below params {string}, {string}, {string} and {string}")
-	public void userCallsTheMethodBelowParams(String method, String entity_ids, String entity_type, String n, String p) {
-		resspec = new ResponseSpecBuilder().expectStatusCode(200)
-				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF8")).build();
-		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			GenericSteps.request.queryParam("entity_ids", entity_ids);
-			GenericSteps.request.queryParam("entity_type", entity_type);
-			GenericSteps.request.queryParam("n", n);
-			GenericSteps.request.queryParam("p", p);
-			resp = GenericSteps.request.when().get("/api.php").then().log().all().spec(resspec).extract().response();
-			System.out.println(resp.asString());
-		}
-		this.entity_type = entity_type;
-
-	}
-
-	@Then("User validates {string} status code")
-	public void userValidatesStatusCode(String statusCode) {
-		StatusCode code = StatusCode.valueOf(statusCode);
-		int resource = code.getResource();
-		assertEquals(resp.getStatusCode(), resource);
-	}
-
-
-	@And("Validate the library details for the user against the params")
-	public void validateTheLibraryDetailsForTheUserAgainstTheParams() throws JsonProcessingException {
+	@Then("Validate the library details for the user against the params {string}")
+	public void validateTheLibraryDetailsForTheUserAgainstTheParams(String entity_type) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-		LibraryData libraryData = mapper.readValue(resp.asString(), LibraryData.class);
+		LibraryData libraryData = mapper.readValue(GenericSteps.resp.asString(), LibraryData.class);
 		SoftAssert sa = new SoftAssert();
 		if(!entity_type.equals("song")) {
 			sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
 					"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
 		}
-		log.info("Validated for the following entity "+ this.entity_type);
-		AssortedEntities.readAndValidateAssortedEntityForLibraryDetails(this.entity_type, resp, sa);
+		log.info("Validated for the following entity "+ entity_type);
+		Validate.asAssortedEntityForLibraryDetails(entity_type, GenericSteps.resp, sa);
 		sa.assertAll();
 	}
 }

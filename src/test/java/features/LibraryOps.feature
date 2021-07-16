@@ -65,16 +65,18 @@ Feature: Validating Library APIs
       | username              | password   |
       | paypaltest7@saavn.com | Saavn@1234 |
     Given I have the endpoint for "LibraryGetDetails"
-    When User calls the method "<method>" below params "<entity_ids>", "<entity_type>", "<n>" and "<p>"
-    Then User validates "OK" status code
-    And Validate the library details for the user against the params
+    When I make the "GET" request with the following query parameters
+    | entity_ids  | entity_type  | n  | p |
+    | <entity_ids>| <entity_type>| 10 | 1 |
+    Then I validate status code with "OK"
+    And Validate the library details for the user against the params "<entity_type>"
 
     Examples:
-    |method | entity_ids        | entity_type | n  | p |
-    | GET   | 3118021           | album       | 10 | 1 |
-    | GET   | 455142            | artist      | 10 | 1 |
-    | GET   | 74816             | show        | 5  | 1 |
-    | GET   | 3eMvTzCO,90_xiy44 | song        | 10 | 1 |
+    | entity_ids        | entity_type |
+    | 3118021           | album       |
+    | 455142            | artist      |
+    | 74816             | show        |
+    | 3eMvTzCO,90_xiy44 | song        |
 #    | GET   | 158826102  | playlist    | playlist |
 #    | GET   | JemPuqKI   | video       | video  |
 

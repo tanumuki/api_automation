@@ -2,9 +2,11 @@ package stepDefinitions;
 
 
 import endPoints.APIResources;
+import enums.StatusCode;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import resources.APIConstants;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
 public class GenericSteps extends Util {
 
@@ -96,4 +99,13 @@ public class GenericSteps extends Util {
         logResponseTime(resp);
         System.out.println(resp.asString());
     }
+
+    @Then("I validate status code with {string}")
+    public static void iValidateStatusCode(String statusCode){
+        StatusCode code = StatusCode.valueOf(statusCode);
+        int resource = code.getResource();
+        assertEquals(resp.getStatusCode(), resource);
+        System.out.println("The status is "+ statusCode);
+    }
+
 }

@@ -3,6 +3,7 @@
  */
 package validators.genericValidators;
 
+import com.sun.xml.bind.v2.TODO;
 import entities.ArtistMap;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
@@ -31,22 +32,22 @@ public class ArtistMapValidator {
 				}
 			}
 			else {
-				log.info("Albums doesn't have the featured artists");
+				log.info("libray.getdetails for albums response doesn't have the featured artists");
 			}
 
-			if( artistMap.getFeaturedArtists() != null) {
+			if( artistMap.getArtists() != null) {
 				for(Artist artist : artistMap.getArtists()) {
 					new ArtistMapValidator().validate(artist, sa, "artists", sourceType, sourceId);
 				}
 			}
 			else {
-				log.info("Albums doesn't have the artists");
+				log.info("library.getdetails for albums response doesn't have the artists");
 			}
 		}
 
-
-
 	}
+
+// TODO: Generalize two types of artistMap objects of album mini in one method: SnigdhaMajee
 
 	public void validate(Artist artist, SoftAssert sa, String artistType, String sourceType, String sourceEntity) {
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();

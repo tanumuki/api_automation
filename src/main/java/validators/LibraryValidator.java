@@ -70,7 +70,7 @@ public class LibraryValidator extends EntityValidator {
 
 		//username
 		log.info("Validating USERNAME " + obj.getUsername());
-		sa.assertTrue(Validate.asString(obj.getUid()), className + "." + "validate username failed ");
+		sa.assertTrue(Validate.asString(obj.getUsername()), className + "." + "validate username failed ");
 
 
 		//username
