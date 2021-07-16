@@ -2,47 +2,53 @@ package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.Rights;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-public class VideoMiniObjectMoreInfo {
+@Getter
+@Setter
+@Data
+public class VideoStationMiniObjectMoreInfo {
 
     @JsonProperty("music")
-    public String music;
+    private String music;
     @JsonProperty("label")
-    public String label;
+    private String label;
     @JsonProperty("origin")
-    public String origin;
+    private String origin;
     @JsonProperty("encrypted_media_url")
-    public String encryptedMediaUrl;
+    private String encryptedMediaUrl;
     @JsonProperty("thumbnail_url")
-    public String thumbnailUrl;
+    private String thumbnailUrl;
     @JsonProperty("duration")
-    public String duration;
+    private String duration;
     @JsonProperty("rights")
-    public Rights rights;
+    private Rights rights;
     @JsonProperty("cache_state")
-    public String cacheState;
+    private String cacheState;
     @JsonProperty("has_lyrics")
-    public String hasLyrics;
+    private String hasLyrics;
     @JsonProperty("lyrics_snippet")
-    public String lyricsSnippet;
+    private String lyricsSnippet;
     @JsonProperty("starred")
-    public String starred;
+    private String starred;
     @JsonProperty("copyright_text")
-    public String copyrightText;
+    private String copyrightText;
     @JsonProperty("artistMap")
-    public ArtistMap artistMap;
+    private ArtistMap artistMap;
     @JsonProperty("release_date")
-    public String releaseDate;
+    private String releaseDate;
     @JsonProperty("song_mappings")
-    public List<String> songMappings = null;
+    private List<String> songMappings = null;
     @JsonProperty("vcode")
-    public String vcode;
+    private String vcode;
     @JsonProperty("vlink")
-    public String vlink;
+    private String vlink;
     @JsonProperty("video_rate_cap")
-    public Integer videoRateCap;
+    private Integer videoRateCap;
     @JsonProperty("preview_url")
-    public String previewUrl;
+    private String previewUrl;
 }

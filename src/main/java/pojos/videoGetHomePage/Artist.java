@@ -1,20 +1,26 @@
 package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Data
 public class Artist {
 
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("name")
-    public String name;
+    private String name;
     @JsonProperty("role")
-    public String role;
+    private String role;
     @JsonProperty("image")
-    public String image;
+    private String image;
     @JsonProperty("type")
-    public String type;
+    private String type;
     @JsonProperty("perma_url")
-    public String permaUrl;
+    private String permaUrl;
 
 }

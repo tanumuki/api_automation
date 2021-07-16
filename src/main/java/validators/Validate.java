@@ -314,6 +314,10 @@ public class Validate {
         return key.matches("(promo|topic|nrtplaylist| topics & promos|artist|surprise_me)[a-zA-z0-9_\\^:-]*");
     }
 
+    public static boolean asVideoPromosField(String key) {
+        return key.matches("(videoHomePage:vx:data)[a-zA-z0-9_\\^:-]*");
+    }
+
     public static boolean asModulesPosition(int pos) {
         return pos <= 15;
     }

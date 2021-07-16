@@ -1,16 +1,22 @@
 package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@Data
 public class ArtistMap {
 
     @JsonProperty("primary_artists")
-    public List<PrimaryArtist> primaryArtists = null;
+    private List<PrimaryArtist> primaryArtists = null;
     @JsonProperty("featured_artists")
-    public List<Object> featuredArtists = null;
+    private List<Object> featuredArtists = null;
     @JsonProperty("artists")
-    public List<Artist> artists = null;
+    private List<Artist> artists = null;
 
 }

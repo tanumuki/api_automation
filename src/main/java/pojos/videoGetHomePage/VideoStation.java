@@ -1,25 +1,33 @@
 package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.Entity;
+import entities.RadioStation;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-public class VideoStation {
+@Getter
+@Setter
+@Data
+public class VideoStation extends RadioStation {
 
-    @JsonProperty("id")
-    public String id;
-    @JsonProperty("title")
-    public String title;
-    @JsonProperty("subtitle")
-    public String subtitle;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("image")
-    public String image;
-    @JsonProperty("perma_url")
-    public String permaUrl;
-    @JsonProperty("more_info")
-    public MoreInfo moreInfo;
-    @JsonProperty("explicit_content")
-    public String explicitContent;
-    @JsonProperty("mini_obj")
-    public Boolean miniObj;
+//    @JsonProperty("id")
+//    private String id;
+//    @JsonProperty("title")
+//    private String title;
+//    @JsonProperty("subtitle")
+//    private String subtitle;
+//    @JsonProperty("type")
+//    private String type;
+//    @JsonProperty("image")
+//    private String image;
+//    @JsonProperty("perma_url")
+//    private String permaUrl;
+      @JsonProperty("more_info")
+      private VideoStationMoreInfo videoStationMoreInfo;
+//    @JsonProperty("explicit_content")
+//    private String explicitContent;
+//    @JsonProperty("mini_obj")
+//    private Boolean miniObj;
 }

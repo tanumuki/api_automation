@@ -1,27 +1,33 @@
 package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@Data
 public class ModulesVideoStations {
 
     @JsonProperty("source")
-    public String source;
+    private String source;
     @JsonProperty("position")
-    public Integer position;
+    private Integer position;
     @JsonProperty("scroll_type")
-    public String scrollType;
+    private String scrollType;
     @JsonProperty("title")
-    public String title;
+    private String title;
     @JsonProperty("subtitle")
-    public String subtitle;
+    private String subtitle;
     @JsonProperty("highlight")
-    public String highlight;
+    private String highlight;
     @JsonProperty("simpleHeader")
-    public Boolean simpleHeader;
+    private Boolean simpleHeader;
     @JsonProperty("noHeader")
-    public Boolean noHeader;
+    private Boolean noHeader;
     @JsonProperty("view_more")
-    public List<Object> viewMore = null;
+    private List<Object> viewMore = null;
 }

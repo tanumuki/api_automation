@@ -9,5 +9,6 @@ Background:
     Given I have the endpoint for "VideoGetVideoHomePage"
     When I make the "Get" request
     Then The videoGetHomePage API returns status code 200
+    And Validate the videoGetHomePage response
     
     

@@ -1,16 +1,22 @@
 package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@Data
 public class Tags {
     @JsonProperty("genre")
-    public List<String> genre = null;
+    private List<String> genre = null;
     @JsonProperty("seasonality")
-    public List<String> seasonality = null;
+    private List<String> seasonality = null;
     @JsonProperty("situation")
-    public List<String> situation = null;
+    private List<String> situation = null;
     @JsonProperty("mood")
-    public List<String> mood = null;
+    private List<String> mood = null;
 }

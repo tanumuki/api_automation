@@ -2,6 +2,7 @@ package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.RadioStation;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,9 +19,9 @@ public class VideoGetHomePage {
 
 
     @JsonProperty("video_stations")
-    public List<VideoStation> videoStations = null;
+    private List<VideoStation> videoStations = null;
     @JsonProperty("modules")
-    public Modules modules;
+    private Modules modules;
 
 
     private Map<String, List<VideoData>> videoHomePageData=  new LinkedHashMap<>();
