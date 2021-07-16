@@ -14,7 +14,7 @@ import validators.genericValidators.RightsValidator;
 import java.util.*;
 
 @Slf4j
-public class VideoGetDetailsValidator  extends EntityValidator {
+public class VideoObjectValidator extends EntityValidator {
 
 
     final String className = getClass().getName();
