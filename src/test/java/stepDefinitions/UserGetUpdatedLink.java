@@ -14,14 +14,17 @@ import validators.Validate;
 @Slf4j
 public class UserGetUpdatedLink extends Util {
 
-    @And("I validate the response against the passed query parameter and userId {string}")
-    public void iValidateTheResponseAgainstThePassedQueryParameter(String url_userid) throws JsonProcessingException {
+    @And("I validate the response against the passed query parameter {string} and userId {string}")
+    public void iValidateTheResponseAgainstThePassedQueryParameter(String url, String url_userid) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         GetUpdatedLink linkPojo = objectMapper.readValue(GenericSteps.resp.asString(), GetUpdatedLink.class);
         SoftAssert sa = new SoftAssert();
         sa.assertTrue(linkPojo.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
                 "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + linkPojo.getStatus() + "\"");
-        new UserGetUpdatedLinkValidator().validate(linkPojo, sa, url_userid);
+        if(Validate.asHeaders(url)) {
+            log.info("The passed query parameter "+url+" has headers: http or https");
+            new UserGetUpdatedLinkValidator().validate(linkPojo, sa, url_userid);
+        }
         sa.assertAll();
 
     }
