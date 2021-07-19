@@ -22,8 +22,7 @@ public class UserGetUpdatedLinkValidator {
             log.info("The url from response "+ urlFromResp + " is validated");
         }
         else {
-            sa.fail();
-            log.info("The Data object is empty.");
+            sa.fail("The Data object is empty.");
         }
     }
 }
