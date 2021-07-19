@@ -21,5 +21,9 @@ public class UserGetUpdatedLinkValidator {
             sa.assertTrue(Validate.asUpdatedUrlForDeeplink(urlFromResp, url), AssertionMsg.print(className, methodName, "data.url", url));
             log.info("The url from response "+ urlFromResp + " is validated");
         }
+        else {
+            sa.fail();
+            log.info("The Data object is empty.");
+        }
     }
 }
