@@ -52,5 +52,6 @@ public class AlbumMoreInfo {
 	private Integer release_year;
 	@JsonProperty("video_mappings")
 	private String [] video_mappings;
-
+	@JsonProperty("contents")
+	private String contents;
 }

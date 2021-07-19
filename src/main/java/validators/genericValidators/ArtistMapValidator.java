@@ -3,7 +3,9 @@
  */
 package validators.genericValidators;
 
+import com.sun.xml.bind.v2.TODO;
 import entities.ArtistMap;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 
 import entities.Artist;
@@ -14,6 +16,8 @@ import validators.Validate;
  * @author aswingokulachandran
  *
  */
+
+@Slf4j
 public class ArtistMapValidator {
 	final String className = SongValidator.class.getName();
 
@@ -22,18 +26,28 @@ public class ArtistMapValidator {
 			for(Artist artist : artistMap.getPrimaryArtists()) {
 				new ArtistMapValidator().validate(artist, sa, "primary_artists", sourceType, sourceId);
 			}
-			for(Artist artist : artistMap.getFeaturedArtists()) {
-				new ArtistMapValidator().validate(artist, sa, "featured_artists", sourceType, sourceId);
+			if( artistMap.getFeaturedArtists() != null) {
+				for (Artist artist : artistMap.getFeaturedArtists()) {
+					new ArtistMapValidator().validate(artist, sa, "featured_artists", sourceType, sourceId);
+				}
+			}
+			else {
+				log.info("libray.getdetails for albums response doesn't have the featured artists");
 			}
 
-			for(Artist artist : artistMap.getArtists()) {
-				new ArtistMapValidator().validate(artist, sa, "artists", sourceType, sourceId);
+			if( artistMap.getArtists() != null) {
+				for(Artist artist : artistMap.getArtists()) {
+					new ArtistMapValidator().validate(artist, sa, "artists", sourceType, sourceId);
+				}
+			}
+			else {
+				log.info("library.getdetails for albums response doesn't have the artists");
 			}
 		}
 
-
-
 	}
+
+// TODO: Generalize two types of artistMap objects of album mini in one method: SnigdhaMajee
 
 	public void validate(Artist artist, SoftAssert sa, String artistType, String sourceType, String sourceEntity) {
 		final String methodName = new Throwable().getStackTrace()[0].getMethodName();
@@ -55,6 +69,8 @@ public class ArtistMapValidator {
 
 		sa.assertTrue(Validate.asPermaURL(artist.getPermaUrl()), AssertionMsg.print(className, methodName, sourceType,
 				"more_info.artistMap." + artistType + ".artist.perma_url", artist.getPermaUrl(), sourceEntity));
+
+		log.info("Validation done for "+artistType);
 	}
 
 }
