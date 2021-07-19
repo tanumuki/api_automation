@@ -13,7 +13,7 @@ Feature: user.getUpdatedlink()
     | url   |
     | <url> |
     Then I validate status code with "OK"
-    And I validate the response against the passed query parameter and userId "<url_userid>"
+    And I validate the response against the passed query parameter "<url>" and userId "<url_userid>"
 
     Examples:
     | url                                                                 | url_userid                                               |

@@ -624,7 +624,7 @@ public class Validate {
      * @param str, toBeMatchedString
      * @return Boolean
      */
-    public static boolean asUpdateUrlForDeeplink(String str, String toBeMatchedString){
+    public static boolean asUpdatedUrlForDeeplink(String str, String toBeMatchedString){
         return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/"+toBeMatchedString);
     }
 

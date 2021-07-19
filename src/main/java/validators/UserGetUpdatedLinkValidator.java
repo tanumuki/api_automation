@@ -18,10 +18,8 @@ public class UserGetUpdatedLinkValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         if (linkPojo.getData() != null) {
             String urlFromResp = linkPojo.getData().getUrl();
-            if (Validate.asHeaders(urlFromResp)){
-                sa.assertTrue(Validate.asUpdateUrlForDeeplink(urlFromResp, url), AssertionMsg.print(className, methodName, "data.url", url));
-                log.info("The url from response "+ urlFromResp + " is validated");
-           }
+            sa.assertTrue(Validate.asUpdatedUrlForDeeplink(urlFromResp, url), AssertionMsg.print(className, methodName, "data.url", url));
+            log.info("The url from response "+ urlFromResp + " is validated");
         }
     }
 }
