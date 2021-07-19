@@ -617,6 +617,16 @@ public class Validate {
         return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
     }
 
+    public static boolean asHeaders(String str){ return str.contains("http")||str.contains("https"); }
+
+    /**
+     Will verify the url sent in the param matches with the one is response, url gets concatenated with the encrypted userid
+     * @param str, toBeMatchedString
+     * @return Boolean
+     */
+    public static boolean asUpdateUrlForDeeplink(String str, String toBeMatchedString){
+        return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/"+toBeMatchedString);
+    }
 
 }
 
