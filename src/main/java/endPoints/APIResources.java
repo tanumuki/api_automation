@@ -45,6 +45,7 @@ public enum APIResources {
 	ShowGetHomePage("show.getHomePage"),
 	GetAllChannelsAPI("channel.getAllChannels"),
 	GetPlaylistDetailsAPI("playlist.getDetails"),
+	SurpriseMe("playlist.getDetailsForFeaturedRandom"),
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
@@ -87,8 +88,7 @@ public enum APIResources {
 	GoogleAssistantGet("google_assistant.get"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	LibraryGetDetails("library.getDetails"),
-	UserGetUpdatedLink("user.getUpdatedlink"),
-	SurpriseMe("playlist.getDetailsForFeaturedRandom");
+	UserGetUpdatedLink("user.getUpdatedlink");
 
 	private String resource;
 
