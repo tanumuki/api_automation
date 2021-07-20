@@ -31,7 +31,7 @@ public class GenericSteps extends Util {
     static String cookie;
 
     @Given("I have the endpoint for {string}")
-    public void iHaveTheEndopointFor(String endPoint) throws FileNotFoundException {
+    public void iHaveTheEndpointFor(String endPoint) throws FileNotFoundException {
         apiResource = APIResources.valueOf(endPoint).getResource();
         if (cookie != null)
             request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
