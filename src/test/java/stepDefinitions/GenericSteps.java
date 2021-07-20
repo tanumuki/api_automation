@@ -25,10 +25,10 @@ import static org.testng.Assert.assertEquals;
 
 public class GenericSteps extends Util {
 
-    //static RequestSpecification request = null;
     static Response resp;
     static String apiResource;
     static String cookie;
+    static List<Map<String, String>> params;
 
     @Given("I have the endpoint for {string}")
     public void iHaveTheEndpointFor(String endPoint) throws FileNotFoundException {
@@ -41,10 +41,11 @@ public class GenericSteps extends Util {
 
     @When("I make the {string} request with the following query parameters")
     public void  iMakeTheRequestWithTheFollowingQueryParameters(String method, DataTable queryParams) throws IOException {
-        List<Map<String, String>> params = queryParams.asMaps();
+        params = queryParams.asMaps();
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
         }
+        params.get(0);
 
         resp = request.given()
                 .log()
