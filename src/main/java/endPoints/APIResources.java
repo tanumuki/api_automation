@@ -87,7 +87,8 @@ public enum APIResources {
 	GoogleAssistantGet("google_assistant.get"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	LibraryGetDetails("library.getDetails"),
-	UserGetUpdatedLink("user.getUpdatedlink");
+	UserGetUpdatedLink("user.getUpdatedlink"),
+	SurpriseMe("playlist.getDetailsForFeaturedRandom");
 
 	private String resource;
 
