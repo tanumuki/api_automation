@@ -9,6 +9,7 @@ import org.testng.asserts.SoftAssert;
 import resources.Util;
 import validators.genericValidators.PlaylistValidator;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -35,6 +36,9 @@ public class SurpriseMePlaylist extends Util {
 //      Validate list_count
         sa.assertTrue(plObj.getListCount().equalsIgnoreCase((listSize)),
                 "Expected listcount: " + listSize + ", but found: " + plObj.getListCount());
+//      Validate list size
+        sa.assertTrue (((ArrayList)plObj.getList()).size() == Integer.parseInt(listSize),
+                "list_count and number of entities in list don't match");
 
         new PlaylistValidator().validate(plObj, sa);
         sa.assertAll();
