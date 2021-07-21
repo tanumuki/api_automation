@@ -1,7 +1,7 @@
 package validators;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
+import pojos.login_pojos.ErrorPojo;
 import pojos.login_pojos.LoginProstatus;
 import pojos.login_pojos.SlotsUsed;
 import pojos.login_pojos.UserLogin;
@@ -14,68 +14,33 @@ public class UserLoginValidator {
 
     String className = getClass().getName();
 
-    public void validate(UserLogin login, SoftAssert sa) {
+    public void validateAll(UserLogin login, SoftAssert sa) {
 
+        validateData(login, sa);
+        validateProStatus(login, sa);
 
-        JSONObject inputJSONOBject = new JSONObject(login);
+    }
 
-
-//		String "validate " = getClass().getEnclosingMethod().getName();
-        //JsonParser.getKey(inputJSONOBject, "phone_number");
-        System.out.println("starting");
-
-        if (Validate.isNonEmptyString(login.getProstatus().getProduct())) {
-            String product = login.getProstatus().getProduct();
-            System.out.println("product " + product);
-            sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
-        } else {
-            log.info("product is NULL or empty");
-        }
-
-
-        LoginProstatus proStatus = login.getProstatus();
-
-        // get product type
-
-        // get product type
-        if (Validate.isNonEmptyString(String.valueOf(login.getProstatus().getExpirationTimestamp()))) {
-            Integer time = login.getProstatus().getExpirationTimestamp();
-            sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
-            System.out.println("exp time stamp is " + time);
-
-
-        } else {
-            System.out.println("product is NULL or empty");
-        }
+    public void validateData(UserLogin login, SoftAssert sa) {
 
         //get email
-
         if (Validate.isNonEmptyString(login.getData().getEmail())) {
-
             String email = login.getData().getEmail();
-            System.out.println("email " + login.getData().getEmail());
+            log.info("email " + login.getData().getEmail());
             sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
         } else {
-            System.out.println("Email field is NULL or empty");
+            log.info("Email field is NULL or empty");
         }
 
 
         // get network
         if (Validate.isNonEmptyString(login.getData().getNetwork())) {
             String network = login.getData().getNetwork();
-            System.out.println("network " + network);
+            log.info("network " + network);
             sa.assertTrue(Validate.asString(network), className + "." + "validate network failed - ");
         } else {
-            System.out.println("Network field is NULL or empty");
+            log.info("Network field is NULL or empty");
 
-        }
-        //get phone no
-
-
-        if (Validate.isNonEmptyString(login.getData().getPhoneNumber())) {
-            sa.assertTrue(Validate.asString(login.getData().getPhoneNumber()), className + "." + "validate phone failed - ");
-        } else {
-            System.out.println("phone is NULL or empty");
         }
 
 
@@ -83,7 +48,7 @@ public class UserLoginValidator {
         if (Validate.isNonEmptyString(login.getData().getFbid())) {
             sa.assertTrue(Validate.asString(login.getData().getFbid()), className + "." + "validate FBID failed - ");
         } else {
-            System.out.println("FBID is NULL or empty");
+            log.info("FBID is NULL or empty");
         }
 
 
@@ -92,16 +57,16 @@ public class UserLoginValidator {
             String regDate = login.getData().getRegdate();
             sa.assertTrue(Validate.asDateTime(regDate), className + "." + "validate regDate failed - ");
         } else {
-            System.out.println("Reg date is NULL or empty");
+            log.info("Reg date is NULL or empty");
         }
 
 
         // username
         if (Validate.isNonEmptyString(login.getData().getUsername())) {
-            String username = login.getData().getRegdate();
+            String username = login.getData().getUsername();
             sa.assertTrue(Validate.asString(username), className + "." + "validate username failed - ");
         } else {
-            System.out.println("User name is NULL or empty");
+            log.info("User name is NULL or empty");
         }
 
 
@@ -110,7 +75,7 @@ public class UserLoginValidator {
             String uid = login.getData().getUid();
             sa.assertTrue(Validate.asId(uid), className + "." + "validate uid failed - ");
         } else {
-            System.out.println(" UID is NULL or empty");
+            sa.fail("UID is NULL or empty");
         }
 
 
@@ -119,7 +84,7 @@ public class UserLoginValidator {
             String ph = login.getData().getPhoneNumber();
             sa.assertTrue(Validate.asString(ph), className + "." + "validate ph failed - ");
         } else {
-            System.out.println(" phone is NULL or empty");
+            log.info(" phone is NULL or empty");
         }
 
 
@@ -128,7 +93,7 @@ public class UserLoginValidator {
             String fbtoken = login.getData().getFbtoken();
             sa.assertTrue(Validate.asString(fbtoken), className + "." + "validate fbToken failed - ");
         } else {
-            System.out.println(" FB TOKEN is NULL or empty");
+            log.info(" FB TOKEN is NULL or empty");
         }
 
 
@@ -137,7 +102,7 @@ public class UserLoginValidator {
             String status = login.getData().getStatus();
             sa.assertTrue(Validate.asString(status), className + "." + "validate status failed - ");
         } else {
-            System.out.println(" Status is NULL or empty");
+            log.info(" Status is NULL or empty");
         }
 
 
@@ -146,7 +111,7 @@ public class UserLoginValidator {
             String lastname = login.getData().getLastname();
             sa.assertTrue(Validate.asString(lastname), className + "." + "validate lastname failed - ");
         } else {
-            System.out.println(" lastname is NULL or empty");
+            log.info(" lastname is NULL or empty");
         }
 
         // first name
@@ -155,7 +120,7 @@ public class UserLoginValidator {
             String firstname = login.getData().getFirstname();
             sa.assertTrue(Validate.asString(firstname), className + "." + "validate firstname failed - ");
         } else {
-            System.out.println(" firstname is NULL or empty");
+            log.info(" firstname is NULL or empty");
         }
 
 
@@ -165,7 +130,7 @@ public class UserLoginValidator {
             String gender = login.getData().getGender();
             sa.assertTrue(Validate.asGender(gender), className + "." + "validate gender failed - ");
         } else {
-            System.out.println(" gender is NULL or empty");
+            log.info(" gender is NULL or empty");
         }
 
         // dob
@@ -174,7 +139,7 @@ public class UserLoginValidator {
             String dob = login.getData().getDob();
             sa.assertTrue(Validate.asDate(dob), className + "." + "validate dob failed - ");
         } else {
-            System.out.println(" DOB is NULL or empty");
+            log.info(" DOB is NULL or empty");
         }
 
 
@@ -184,7 +149,7 @@ public class UserLoginValidator {
             String birthyear = login.getData().getBirthyear();
             sa.assertTrue(Validate.asDate(birthyear), className + "." + "validate birthyear failed - ");
         } else {
-            System.out.println(" birthyear is NULL or empty");
+            log.info(" birthyear is NULL or empty");
         }
 
 
@@ -194,7 +159,7 @@ public class UserLoginValidator {
             String followingCount = login.getData().getFollowingCount();
             sa.assertTrue(Validate.asNum(followingCount), className + "." + "validate following_count failed - ");
         } else {
-            System.out.println(" following count is NULL or empty");
+            log.info(" following count is NULL or empty");
         }
 
 
@@ -203,7 +168,7 @@ public class UserLoginValidator {
             String followerCount = login.getData().getFollowerCount();
             sa.assertTrue(Validate.asNum(followerCount), className + "." + "validate follower_count failed - ");
         } else {
-            System.out.println(" follower count is NULL or empty");
+            log.info(" follower count is NULL or empty");
         }
 
         // update_time
@@ -211,7 +176,7 @@ public class UserLoginValidator {
             String updateTime = login.getData().getUpdateTime();
             sa.assertTrue(Validate.asDateTime(updateTime), className + "." + "validate update_time failed - ");
         } else {
-            System.out.println(" updateTime  is NULL or empty");
+            log.info(" updateTime  is NULL or empty");
         }
 
 
@@ -221,7 +186,7 @@ public class UserLoginValidator {
             String paywallOnly = login.getData().getPaywallOnly();
             sa.assertTrue(Validate.asBoolean(paywallOnly), className + "." + "validate paywall_only failed - ");
         } else {
-            System.out.println(" paywall only  is NULL or empty");
+            log.info(" paywall only  is NULL or empty");
         }
 
 
@@ -230,16 +195,48 @@ public class UserLoginValidator {
             String loginwall = login.getData().getLoginwall();
             sa.assertTrue(Validate.asBoolean(loginwall), className + "." + "validate loginwall failed - ");
         } else {
-            System.out.println(" loginwall   is NULL or empty");
+            log.info(" loginwall   is NULL or empty");
         }
 
+        // require OTP
+        if (login.getData()!=null){
+            Boolean otpFlag = login.getData().requireOtp;
+            sa.assertTrue(Validate.asBoolean(otpFlag), className + "." + "validate otp flag failed - ");
+        } else {
+            log.info(" Otp flag is NULL or empty");
+        }
+
+    }
+
+    public void validateProStatus(UserLogin login, SoftAssert sa) {
+
+        LoginProstatus proStatus = login.getProstatus();
+
+        if (Validate.isNonEmptyString(proStatus.getProduct())) {
+            String product = proStatus.getProduct();
+            log.info("product " + product);
+            sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
+        } else {
+            log.info("product is NULL or empty");
+        }
+
+        // get product type
+        if (Validate.isNonEmptyString(String.valueOf(proStatus.getExpirationTimestamp()))) {
+            Integer time = proStatus.getExpirationTimestamp();
+            sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
+            log.info("exp time stamp is " + time);
+
+
+        } else {
+            log.info("product is NULL or empty");
+        }
 
         // pro status type
         if (Validate.isNonEmptyString(proStatus.getType())) {
             String type = proStatus.getType();
             sa.assertTrue(Validate.asString(type), className + "." + "validate type failed - ");
         } else {
-            System.out.println(" pro status Type  is NULL or empty");
+            log.info(" pro status Type  is NULL or empty");
         }
 
         // pro status offer_trial
@@ -247,29 +244,19 @@ public class UserLoginValidator {
             String offerTrial = proStatus.getOfferTrial();
             sa.assertTrue(Validate.asString(offerTrial), className + "." + "validate offer_trial failed - ");
         } else {
-            System.out.println(" Offer trial  is NULL or empty");
+            log.info(" Offer trial  is NULL or empty");
         }
-        // require OTP
-        if (login.getData()!=null){
-            Boolean otpFlag = login.getData().requireOtp;
-            sa.assertTrue(Validate.asBoolean(otpFlag), className + "." + "validate otp flag failed - ");
-        } else {
-            System.out.println(" Otp flag is NULL or empty");
-        }
-
 
         //slots used
-
-
         if (proStatus.getSlotsUsed() != null) {
             List<SlotsUsed> slots = proStatus.getSlotsUsed();
             for (SlotsUsed su : slots) {
                 String id = su.getId();
-                System.out.println("id: " + id);
+                log.info("id: " + id);
                 sa.assertTrue(Validate.asString(id), className + "." + "validate id failed - ");
 
                 String name = su.getName();
-                System.out.println("name: " + name);
+                log.info("name: " + name);
                 sa.assertTrue(Validate.asString(name), className + "." + "validate name failed - ");
             }
         }
@@ -279,17 +266,20 @@ public class UserLoginValidator {
             String vendor = proStatus.getVendor();
             sa.assertTrue(Validate.asString(vendor), className + "." + "validate vendor failed - ");
         } else {
-            System.out.println(" Vendor  is NULL or empty");
+            log.info(" Vendor  is NULL or empty");
         }
 
-
     }
 
-    public void validateErrorMessage(UserLogin login, SoftAssert sa) {
-        System.out.println(" error message");
-
-
+    public void validateError(UserLogin login, SoftAssert sa, String expectedErrorMessage) {
+        ErrorPojo error = login.getError();
+        sa.assertEquals(error.getMsg(), expectedErrorMessage,
+                "Expected: \"" + expectedErrorMessage +  "\", but found: \"" + error.getMsg() + "\"");
     }
+
+
+
+
 }
 
 

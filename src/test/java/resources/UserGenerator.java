@@ -5,17 +5,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 
 import cookieManager.GetCookies;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class UserGenerator {
 
-	
-	
-	   private static UserGenerator userGenerator ;
-
-	
-	
+		private static UserGenerator userGenerator ;
 
 	   /* A private Constructor prevents any other
 	    * class from instantiating.
@@ -37,20 +35,18 @@ public class UserGenerator {
 	
 	
 	   public HashMap<String, String> generateNewUserCookie() throws Exception {
-		   
-		   System.out.println("howdy");
 		
-		HashMap<String,String> map = new HashMap<String, String>();
+		HashMap<String,String> map = new HashMap<>();
+		Map<String,String> userDetailsMap;
+
 		StringBuffer response = null;
 		String baseurl = ConfigReader.getInstance().getBaseUrl();
-		long time = System.currentTimeMillis();
-		String randoms = String.valueOf(time);
-		String domain = "@saavn.com";
-		String username = randoms + domain;
-		String password = "Saavn@1234";
-		System.out.println(username);
-		String url = baseurl+"/api.php?__call=user.createV2&username="+username+"&email="+username+"&password="+password+"&api_version=4&_format=json&_marker=0&ctx=android";	
-		
+		userDetailsMap = getRandomUsernameEmail();
+		String username = userDetailsMap.get("username");
+		String password = userDetailsMap.get("password");
+		log.info(username);
+		String url = baseurl+"/api.php?__call=user.createV2&username="+username+"&email="+username+"&password="+password+"&api_version=4&_format=json&_marker=0&ctx=android";
+
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("GET");
@@ -80,7 +76,24 @@ public class UserGenerator {
 		map.put("password", password);
 		map.put("cookie", cookie);
 		return map;
+	}
 
+	public HashMap<String, String> getRandomUsernameEmail() {
+
+		HashMap<String, String> userDetailsMap = new HashMap<>();
+
+		long time = System.currentTimeMillis();
+		String randoms = String.valueOf(time);
+		String prefix = "qa.auto";
+		String domain = "@saavn.com";
+		String username = prefix + randoms + domain;
+		String password = "Saavn@1234";
+
+		userDetailsMap.put("username", username);
+		userDetailsMap.put("email", username);
+		userDetailsMap.put("password", password);
+
+		return userDetailsMap;
 	}
 
 
