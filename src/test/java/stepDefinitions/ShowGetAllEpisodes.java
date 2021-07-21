@@ -68,7 +68,7 @@ public class ShowGetAllEpisodes extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
         SoftAssert sa = new SoftAssert();
-        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+        if (ConfigReader.getInstance().getCtx().equalsIgnoreCase("androidgo"))
         {
             List<Episode> episodes = mapper.readValue(resp.asString(), new TypeReference<List<Episode>>() {
             });

@@ -65,8 +65,9 @@ public class ContentGetAlbums extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
         SoftAssert sa = new SoftAssert();
+        String ctx = ConfigReader.getInstance().getCtx();
 //        List<Album> albums = mapper.readValue(resp.asString(), new TypeReference<List<Album>>() {});
-        if (System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+        if (ctx.equalsIgnoreCase("androidgo")) {
             List<Album> albums = mapper.readValue(resp.asString(), new TypeReference<List<Album>>() {
             });
             for (Album album : albums) {
