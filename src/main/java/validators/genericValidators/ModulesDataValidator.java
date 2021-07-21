@@ -110,6 +110,9 @@ public class ModulesDataValidator {
                 sa.assertTrue(Validate.asImageType(md.getImage_type()), AssertionMsg.print(className, methodName, "module.image_type", md.getImage_type()));
             }
 
+            System.out.println("is_jt_module: " + md.getIs_JT_module());
+            sa.assertTrue(Validate.asBoolean(md.getIs_JT_module()), AssertionMsg.print(className, methodName, "module.is_JT_module", String.valueOf(md.getIs_JT_module())));
+
             if(md.getShowMore() != null){
                 ModulesDataShowMore mds = md.getShowMore();
 

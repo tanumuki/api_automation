@@ -17,7 +17,7 @@ public class Playlist extends Entity{
     @JsonProperty("list")
     private Object list;
     @JsonProperty("more_info")
-    private Object more_info; //can be a JSONArray or JSONObject
+    private PlaylistMoreInfo more_info; //can be a JSONArray or JSONObject
     @JsonProperty("mini_obj")
     private Boolean mini_obj;
 //    @JsonProperty("modules")
