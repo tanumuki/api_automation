@@ -45,6 +45,7 @@ public enum APIResources {
 	ShowGetHomePage("show.getHomePage"),
 	GetAllChannelsAPI("channel.getAllChannels"),
 	GetPlaylistDetailsAPI("playlist.getDetails"),
+	SurpriseMe("playlist.getDetailsForFeaturedRandom"),
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
