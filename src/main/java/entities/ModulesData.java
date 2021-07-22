@@ -45,4 +45,7 @@ public class ModulesData {
     private String image_url;
     @JsonProperty("image_type")
     private String image_type;
+    @JsonProperty("is_JT_module")
+    private Boolean is_JT_module;
+
 }

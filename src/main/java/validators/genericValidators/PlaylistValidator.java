@@ -47,14 +47,25 @@ public class PlaylistValidator extends EntityValidator {
 
     public void validateMoreInfo(Entity plObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        PlaylistMoreInfo moreInfo;
+        PlaylistMoreInfo moreInfo = null;
+        List<String> surpriseMePlaylist = new ArrayList<>();
 
         try {
+//            Ashwin TODO: fix surprise me more_info handling
+//            moreInfo = (PlaylistMoreInfo) ((Playlist) plObj).getMore_info();
             moreInfo = ((Playlist) plObj).getMore_info();
-
         } catch (ClassCastException e) {
-            moreInfo = ((UserProfilePlaylists) plObj).getMore_info();
+            /*This case is only for Surprise Me Playlist as the more_info field is an empty JSONArray for SurpriseMe API
+            We will just assert that MoreInfo is empty and return from the validation as there is no data to validate
+            In case this field ever gets populated (highly unlikely), please add the necessary validations - Ashwin*/
+//            if (e.getMessage().contains("class java.util.ArrayList cannot be cast to class entities.PlaylistMoreInfo")) {
+//                surpriseMePlaylist = (ArrayList)((Playlist) plObj).getMore_info();
+//                sa.assertTrue(surpriseMePlaylist.isEmpty());
+//                return;
+//            }
+//            else {
+                moreInfo = ((UserProfilePlaylists) plObj).getMore_info();
+//            }
         }
         if(Validate.isNonEmptyString(moreInfo.getUid()))
             sa.assertTrue(Validate.asString(moreInfo.getUid()), AssertionMsg.print(className, methodName, "playlist.more_info.uid", moreInfo.getUid()));
