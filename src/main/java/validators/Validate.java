@@ -319,7 +319,7 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST");
     }
 
     public static boolean asProStatusType(String type) {
@@ -404,7 +404,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune");
     }
 
     public static boolean asDeeplink(String deeplink) {
