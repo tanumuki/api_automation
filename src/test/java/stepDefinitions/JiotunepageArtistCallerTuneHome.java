@@ -19,7 +19,7 @@ public class JiotunepageArtistCallerTuneHome extends Util {
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         ArtistCallerTuneContainer artistCallerTuneContainer = objectMapper.readValue(GenericSteps.resp.asString(),ArtistCallerTuneContainer.class);
         System.out.println(GenericSteps.resp.asString());
-        new JiotunepageArtistCallerTuneHomeValidator().validate(GenericSteps.resp, artistCallerTuneContainer, sa);
+        new JiotunepageArtistCallerTuneHomeValidator().validate(artistCallerTuneContainer, sa);
         sa.assertAll();
     }
 }

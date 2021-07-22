@@ -61,23 +61,8 @@ public class EntityValidator {
 		if(adObj.getMiniObj() != null)
 			sa.assertTrue(Validate.asBoolean(adObj.getMiniObj()), AssertionMsg.print(className, methodName,adObj.getType(), "mini_obj", String.valueOf(adObj.getMiniObj()), adObj.getId()));
 
-		/**
-		 * Adding the new JioTune entity fields
-		 */
 		if(Validate.isNonEmptyString(adObj.getSubtype()))
 			sa.assertTrue(Validate.asEntityType(adObj.getSubtype()), AssertionMsg.print(className, methodName,adObj.getType(), "subtype", String.valueOf(adObj.getSubtype()), adObj.getId()));
-
-		if(adObj.getPosition() != null)
-			sa.assertTrue(Validate.asNum(String.valueOf(adObj.getPosition())), AssertionMsg.print(className, methodName,adObj.getType(), "position", String.valueOf(adObj.getPosition()), adObj.getId()));
-
-		if(Validate.isNonEmptyString(adObj.getSource()))
-			sa.assertTrue(Validate.asString(adObj.getSource()), AssertionMsg.print(className, methodName,adObj.getType(), "position", adObj.getSource(), adObj.getId()));
-
-		if(Validate.isNonEmptyString(adObj.getScrollType()))
-			sa.assertTrue(Validate.asModulesScrollType(adObj.getScrollType()), AssertionMsg.print(className, methodName,adObj.getType(), "position", adObj.getScrollType(), adObj.getId()));
-
-		if(adObj.getNoHeader() != null)
-			sa.assertTrue(Validate.asBoolean(adObj.getNoHeader()), AssertionMsg.print(className, methodName,adObj.getType(), "position", String.valueOf(adObj.getNoHeader()), adObj.getId()));
 
 		log.info("Validation done for the fields" + adObj + " and entity " +adObj.getType());
 	}

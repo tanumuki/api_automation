@@ -1,16 +1,11 @@
 package pojos.JiotunepageCallerTune;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
-import entities.Entity;
-import io.cucumber.java.af.En;
+import entities.ModulesData;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.HashMap;
-import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
@@ -27,8 +22,8 @@ public class Modules {
 
 // TODO: To figure out how to use @JsonAnySetter for JsonObject (Used it for JsonArray in ArtistCallerTuneContainer)
     @JsonProperty("popular_artist_tune")
-    public Entity popularArtistTune;
+    public ModulesData popularArtistTune;
     @JsonProperty("all_artist_tune_1")
-    public Entity allArtistTuneInModules;
+    public ModulesData allArtistTuneInModules;
 
 }

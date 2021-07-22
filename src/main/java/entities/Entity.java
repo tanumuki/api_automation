@@ -46,15 +46,8 @@ public class Entity {
     private String headerDesc;
     @JsonProperty("mini_obj")
     private Boolean miniObj;
-    @JsonProperty("scroll_type")
-    private String scrollType;
-    @JsonProperty("noheader")
-    private Boolean noHeader;
     @JsonProperty("subtype")
     private String subtype;
-    @JsonProperty("position")
-    public Integer position;
-    @JsonProperty("source")
-    public String source;
+
 
 }
