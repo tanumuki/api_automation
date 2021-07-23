@@ -89,7 +89,8 @@ public enum APIResources {
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	LibraryGetDetails("library.getDetails"),
 	UserGetUpdatedLink("user.getUpdatedlink"),
-	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome");
+	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome"),
+	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome");
 
 	private String resource;
 

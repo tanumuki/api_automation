@@ -25,5 +25,7 @@ public class Modules {
     public ModulesData popularArtistTune;
     @JsonProperty("all_artist_tune_1")
     public ModulesData allArtistTuneInModules;
+    @JsonProperty("all_name_caller_tune_1")
+    public ModulesData allNameCallerTuneInModules;
 
 }
