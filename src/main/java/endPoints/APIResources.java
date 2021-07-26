@@ -49,7 +49,7 @@ public enum APIResources {
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
-	UserCreateAPI ("user.createV2"),
+	UserCreateV2API ("user.createV2"),
 	LibraryAddAPI ("library.add"),
 	SocialFollowAPI ("social.follow"),
 	SocialUnfollowAPI("social.unfollow"),
