@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-
-Feature: Get all the channels
+Feature: channel.getAllChannels
 
   Scenario: Get all the channels
     Given Payload with get all Channels endPoint "GetAllChannelsAPI"

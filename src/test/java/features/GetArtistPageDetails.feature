@@ -1,4 +1,4 @@
-Feature: Get Artist Page Details
+Feature: artist.getArtistPageDetails
 
   Scenario Outline: Get Artist page details for an artist
 

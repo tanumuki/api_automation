@@ -1,4 +1,4 @@
-Feature: Validating user Radio APIs
+Feature: webradio.createArtistStation + webradio.getSong
 
   Scenario: Verify if station ID is generated
 

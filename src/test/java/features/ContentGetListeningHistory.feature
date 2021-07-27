@@ -1,4 +1,4 @@
-Feature: Content Get Listening History
+Feature: content.getListeningHistory
 
   Scenario: Get the listening history for a user and validate all song/episode objects
 

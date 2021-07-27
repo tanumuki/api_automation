@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-
-Feature: Get Album recommendations for a given album id
+Feature: reco.getAlbumReco
 
   Scenario Outline: Get Album recommendations for a given album id
     Given Payload with get album recommendations endPoint "GetAlbumRecoAPI"
