@@ -68,7 +68,7 @@ public class PlaylistValidator extends EntityValidator {
         }
         else if(temp instanceof LinkedHashMap) {
 //          Handler for regular playlist more_info field
-            moreInfo = mapper.convertValue((LinkedHashMap) temp, PlaylistMoreInfo.class);
+            moreInfo = mapper.convertValue(temp, PlaylistMoreInfo.class);
         }
 
         if(Validate.isNonEmptyString(moreInfo.getUid()))
