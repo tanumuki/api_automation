@@ -1,4 +1,4 @@
-Feature: Validating featured Radio 
+Feature: webradio.createFeaturedStation + webradio.getSong
 
 Scenario: Verify if title is generated from getFeaturedStation API
 

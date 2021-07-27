@@ -1,4 +1,4 @@
-Feature: Artist Get Dedicated Album Playlists of given artistID
+Feature: artist.getArtistDedicatedPlaylists
 
   Scenario Outline: Get Dedicated Album Playlists of given artistID
     Given Payload with the ArtistDedicatedPlaylists endPoint "ArtistGetArtistDedicatedPlaylists"

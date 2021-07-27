@@ -1,4 +1,4 @@
-Feature: Get Artist More Songs
+Feature: artist.getArtistMoreSong
 
 	Scenario Outline: Get Artist More Songs for an Artist
 

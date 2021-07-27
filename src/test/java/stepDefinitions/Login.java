@@ -103,7 +103,7 @@ public class Login extends Util {
 				
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
 		log.info("userlogin json for valid credentials "+login.toString());
-		new UserLoginValidator().validate(login, sa);
+		new UserLoginValidator().validateAll(login, sa);
 
 	}
 	@Then("The Login API returns success with status code {string} for invalid credentials")

@@ -102,7 +102,6 @@ public class CreateArtistRadioWebRelease extends Util {
 
            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
                    true);
-           objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
            entities.Radio  radio = objectMapper.readValue(getSongResponse.asString(),entities.Radio.class);
 
            System.out.println(artistName);

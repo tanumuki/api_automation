@@ -98,7 +98,7 @@ public class FeaturedRadio extends Util {
         SoftAssert sa = new SoftAssert();
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
                 true);
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
         //objectMapper.readerFor(resp.getBody().asByteArray());
         List<RadioStation> radioStationObj = objectMapper.readValue(resp.asString(), new TypeReference<List<RadioStation>>() {
         });
