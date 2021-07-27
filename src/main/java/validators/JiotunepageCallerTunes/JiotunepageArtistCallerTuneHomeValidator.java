@@ -28,17 +28,25 @@ public class JiotunepageArtistCallerTuneHomeValidator extends EntityValidator {
         /**
          * Validation for popular_artist_tune array of object
          */
-        for (Entity entity : artistCaller.getPopularArtistTune()) {
-            super.validate(entity, sa);
+        if(artistCaller.getPopularArtistTune().size() > 0) {
+            for (Entity entity : artistCaller.getPopularArtistTune()) {
+                super.validate(entity, sa);
+            }
+        }else {
+            sa.fail("Popular Artist Tune section is empty.");
         }
 
         /**
-         * Validation for popular_artist_tune array of object
+         * Validation for all_artist_tune array of object
          */
-        for (Map.Entry<String, Entity[]> data : artistCaller.getAllArtistTune().entrySet()) {
-            for (Entity entity : data.getValue()) {
-                super.validate(entity, sa);
+        if(artistCaller.getAllArtistTune().entrySet().size() > 0) {
+            for (Map.Entry<String, Entity[]> data : artistCaller.getAllArtistTune().entrySet()) {
+                for (Entity entity : data.getValue()) {
+                    super.validate(entity, sa);
+                }
             }
+        }else {
+            sa.fail("All Artist Tune section is empty.");
         }
 
         /**
