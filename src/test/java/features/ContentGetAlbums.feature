@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-
-Feature: Content Get Albums
+Feature: content.getAlbums
 
   Scenario: Get all top albums
     Given Payload with endpoint content get albums "ContentGetAlbums"

@@ -1,4 +1,4 @@
-Feature: Get Artist Similar Artists
+Feature: artist.getSimilarArtists
 
 	Scenario Outline: Get Similar artists for an Artist
 
