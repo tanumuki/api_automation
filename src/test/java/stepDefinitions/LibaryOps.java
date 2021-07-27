@@ -110,7 +110,6 @@ public class LibaryOps extends Util {
 
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
 		new LibraryValidator().validateForNewUSer(library, sa);
 		sa.assertAll();
@@ -148,7 +147,6 @@ public class LibaryOps extends Util {
 		System.setProperty("albumResponse", albumResponse);
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		 albumDataInLibrary = objectMapper.readValue(resp.asString(), Album.class);
 		
 		
@@ -213,7 +211,6 @@ public class LibaryOps extends Util {
 		seed_song_id =System.getProperty("seed_song_id");
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
 		new LibraryValidator().validateLibraryForUserWithUpdatedData(library, sa, seed_album_id, seed_song_id, albumResponse);
 		sa.assertAll();
@@ -238,7 +235,6 @@ public class LibaryOps extends Util {
 		SoftAssert sa = new SoftAssert();
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
 		new LibraryValidator().validateForUSerAfterDeletionOfLibraryData(library, sa);
 		sa.assertAll();

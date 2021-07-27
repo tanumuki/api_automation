@@ -29,7 +29,6 @@ public class VideoGetDetails extends Util {
         SoftAssert sa = new SoftAssert();
 
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         pojos.videoGetDetails.VideoGetDetails videoDetailsObject= mapper.readValue(GenericSteps.resp.asString(), pojos.videoGetDetails.VideoGetDetails.class);
         new VideoGetDetailsValidator().validate(videoDetailsObject, sa);
