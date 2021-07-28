@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-public class JTGetDecadesPojo extends Entity {
+public class JTGetHomepageModules extends Entity {
     @JsonProperty("data")
     private List<PlaylistMini> data;
     @JsonProperty("last_page")
