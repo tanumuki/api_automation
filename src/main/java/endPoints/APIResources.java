@@ -88,6 +88,7 @@ public enum APIResources {
 	GoogleAssistantGet("google_assistant.get"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	LibraryGetDetails("library.getDetails"),
+	JiotunepageGetDecades("jiotunepage.getDecades"),
 	UserGetUpdatedLink("user.getUpdatedlink");
 
 	private String resource;
