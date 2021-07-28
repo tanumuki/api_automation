@@ -1,4 +1,3 @@
-@ignore
 Feature: playlist.getDetailsForFeaturedRandom (Surprise Me API)
 
   Scenario Outline: Surprise Me API for single language
