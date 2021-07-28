@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
@@ -9,19 +10,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import resources.Util;
+import validators.VideoValidator.VideoGetHomePageValidator;
 
 @Slf4j
 public class VideoGetHomePage extends Util {
 
 
 
-    Response response;
+   // Response response;
 
     @Then("The videoGetHomePage API returns status code {int}")
     public void the_video_get_home_page_api_returns_status_code( int statusCode) {
 
         SoftAssert softAssert= new SoftAssert();
         Assert.assertEquals(statusCode, GenericSteps.resp.getStatusCode());
+        System.out.println("resp tanu "+GenericSteps.resp.jsonPath().get("modules"));
         softAssert.assertAll();
     }
 
@@ -32,7 +35,10 @@ public class VideoGetHomePage extends Util {
         SoftAssert sa = new SoftAssert();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
 
-       pojos.videoGetHomePage.VideoGetHomePage homePage = mapper.readValue(response.asString(), pojos.videoGetHomePage.VideoGetHomePage.class);
+       pojos.videoGetHomePage.VideoGetHomePage homePage = mapper.readValue(GenericSteps.resp.asString(), pojos.videoGetHomePage.VideoGetHomePage.class);
+             new VideoGetHomePageValidator().validate(homePage,sa);
+       // JsonNode videoHomePage = mapper.readValue(GenericSteps.resp.asString(), JsonNode.class);
+       // new VideoGetHomePageValidator().validateModule(videoHomePage,sa);
 
 
     }

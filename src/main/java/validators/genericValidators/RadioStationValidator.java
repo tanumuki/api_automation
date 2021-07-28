@@ -11,6 +11,7 @@ public class RadioStationValidator extends EntityValidator {
     public void validate(RadioStation station, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(station, sa);
+            validateMoreInfo(station,sa);
 
     }
 
