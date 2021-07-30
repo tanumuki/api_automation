@@ -37,8 +37,6 @@ public class VideoGetHomePage extends Util {
 
        pojos.videoGetHomePage.VideoGetHomePage homePage = mapper.readValue(GenericSteps.resp.asString(), pojos.videoGetHomePage.VideoGetHomePage.class);
              new VideoGetHomePageValidator().validate(homePage,sa);
-       // JsonNode videoHomePage = mapper.readValue(GenericSteps.resp.asString(), JsonNode.class);
-       // new VideoGetHomePageValidator().validateModule(videoHomePage,sa);
 
 
     }

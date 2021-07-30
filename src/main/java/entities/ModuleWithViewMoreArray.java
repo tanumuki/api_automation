@@ -17,5 +17,5 @@ public class ModuleWithViewMoreArray extends ModulesData {
     @JsonProperty("view_more")
     private List<Object> viewMore;
     @JsonProperty("is_JT_module")
-    private boolean isJTFlag;
+    private boolean is_JT_module;
 }

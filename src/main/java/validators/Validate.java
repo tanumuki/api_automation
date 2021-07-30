@@ -89,7 +89,7 @@ public class Validate {
 
     public static boolean asFeaturedStationType(String type) {
         //return str.matches("\\d+|^$");
-        return type.matches("artist|featured");
+        return type.matches("artist|featured|video");
     }
 
 
@@ -306,7 +306,7 @@ public class Validate {
     }
 
     public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|videohomepage:vx:data:[0-9]{2}|video_stations|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases");
     }
 
 
@@ -323,7 +323,7 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_VIDEO_LANDSCAPE|VIDEO_STATION|");
     }
 
     public static boolean asProStatusType(String type) {

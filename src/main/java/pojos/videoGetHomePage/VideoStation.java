@@ -24,8 +24,8 @@ public class VideoStation extends RadioStation {
 //    private String image;
 //    @JsonProperty("perma_url")
 //    private String permaUrl;
-      @JsonProperty("more_info")
-      private VideoStationMoreInfo videoStationMoreInfo;
+//      @JsonProperty("more_info")
+//      private VideoStationMoreInfo videoStationMoreInfo;
 //    @JsonProperty("explicit_content")
 //    private String explicitContent;
 //    @JsonProperty("mini_obj")

@@ -1,17 +1,12 @@
 package pojos.videoGetHomePage;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.ModuleWithViewMoreArray;
-import io.cucumber.messages.internal.com.google.gson.JsonArray;
-import io.cucumber.messages.internal.com.google.gson.JsonElement;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -19,16 +14,19 @@ import java.util.Map;
 @Data
 public class Modules {
 
-    @JsonProperty("video_stations")
-    private ModuleWithViewMoreArray videoStations;
+//    @JsonAnySetter
+//    private Map<String , ModuleWithViewMoreArray>  videoStations =new LinkedHashMap<>();
+//    public void setVideoStationModule(String key, ModuleWithViewMoreArray val){
+//        videoStations.put(key,val);
+//    }
 
 
 
    @JsonAnySetter
-    private Map<String , ModuleWithViewMoreArray> videoHomePageDataModule=  new LinkedHashMap<>();
+    private Map<String , ModuleWithViewMoreArray> viewMoreArrayDataModule =  new LinkedHashMap<>();
 
-    public void setVideoHomePageDataModule(String key, ModuleWithViewMoreArray val){
-        videoHomePageDataModule.put(key,val);
+    public void setViewMoreArrayDataModule(String key, ModuleWithViewMoreArray val){
+        viewMoreArrayDataModule.put(key,val);
     }
 
 
