@@ -15,7 +15,7 @@ import validators.Validate;
  */
 @Slf4j
 public class EntityValidator {
-	final String className = EntityValidator.class.getName();
+	public final String className = EntityValidator.class.getName();
 
 	public void validate(Entity adObj, SoftAssert sa) {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();

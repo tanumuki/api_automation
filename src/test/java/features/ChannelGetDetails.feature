@@ -1,6 +1,6 @@
 # new feature
-# Tags: optional
-@channeldetails
+# Tags: Optional
+
 Feature: Get details of the channel for the given channel id
 
   Scenario Outline: Get details of the channel for the given channel id

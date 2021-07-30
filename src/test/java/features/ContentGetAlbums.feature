@@ -1,6 +1,7 @@
 # new feature
 # Tags: optional
 
+@AlbumDetails
 Feature: Content Get Albums
 
   Scenario: Get all top albums

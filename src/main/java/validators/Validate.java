@@ -590,4 +590,13 @@ public class Validate {
     public static boolean asPastState(String str) {
         return str.matches("pro|free|trial");
     }
+
+    public static void asString(String users, SoftAssert sa) {
+    }
+
+    public static void asNum(Integer usersCount, SoftAssert sa) {
+    }
+
+    public static void asBoolean(Boolean isFollowed, SoftAssert sa) {
+    }
 }

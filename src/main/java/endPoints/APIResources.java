@@ -81,7 +81,9 @@ public enum APIResources {
 	ContentDecodeTokenAndFetchResults("content.decodeTokenAndFetchResults"),
 	JioSendOtpApi("jio.sendOtp"),
 	JioTuneLimitApi("jiotune.jioTuneLimit"),
-	MatchingMatchApi("matching.match");
+	MatchingMatchApi("matching.match"),
+	SocialGetFollowers("social.getFollowersDetails"),
+	SocialGetFollowing("social.getFollowingDetails");
 
 
 	private String resource;

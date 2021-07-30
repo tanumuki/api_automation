@@ -1,3 +1,6 @@
+# new feature
+# Tags: Optional
+
 Feature: Get playlist details of the given playlist id
 
   Scenario Outline: Get playlist details of the given playlist id
