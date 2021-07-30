@@ -20,20 +20,9 @@ import java.util.Map;
 public class JTModules {
 
     @JsonAnySetter
-    private Map<String, ModulesData> allArtistTuneInModules = new LinkedHashMap<>();
+    private Map<String, ModulesData> artistTuneModules = new LinkedHashMap<>();
 
-    public void setModulesDataForAllArtistTunes(String key, ModulesData val){ allArtistTuneInModules.put(key, val);
+    public void setModulesDataForAllArtistTunes(String key, ModulesData val){ artistTuneModules.put(key, val);
     }
-
-    private Map<String, ModulesData> popularArtistTune = new LinkedHashMap<>();
-
-    public void setModulesDataForPopularArtistTunes(String key, ModulesData val){ popularArtistTune.put(key, val);
-    }
-
-// TODO: To figure out how to use @JsonAnySetter for JsonObject (Used it for JsonArray in ArtistCallerTuneContainer)
-//    @JsonProperty("popular_artist_tune")
-//    public ModulesData popularArtistTune;
-//    @JsonProperty("all_artist_tune_1")
-//    public ModulesData allArtistTuneInModules;
 
 }

@@ -54,24 +54,18 @@ public class JiotunepageArtistCallerTuneHomeValidator extends EntityValidator {
          * Validation for modules.popular_artist_tune object
          */
         if (artistCaller.getModules() != null) {
-            for (Map.Entry<String, ModulesData> entry : artistCaller.getModules().getPopularArtistTune().entrySet()) {
-                sa.assertEquals(entry.getKey(), entry.getValue().getSource(),
-                        AssertionMsg.print(className, methodName, "modules.popular_artist_tune", entry.getValue().getSource()));
-                log.info("The key " + entry.getKey() + " matches with the source value " + entry.getValue().getSource());
-                new ModulesDataValidator();
-                ModulesDataValidator.validate(entry.getValue(), sa);
-                log.info("Validation done for " + entry.getKey());
+            if(artistCaller.getModules().getArtistTuneModules().entrySet().size() > 0) {
+                for (Map.Entry<String, ModulesData> entry : artistCaller.getModules().getArtistTuneModules().entrySet()) {
+                    sa.assertEquals(entry.getKey(), entry.getValue().getSource(),
+                            AssertionMsg.print(className, methodName, "artist_tune_modules", entry.getValue().getSource()));
+                    log.info("The key " + entry.getKey() + " matches with the source value " + entry.getValue().getSource());
+                    new ModulesDataValidator();
+                    ModulesDataValidator.validate(entry.getValue(), sa);
+                    log.info("Validation done for " + entry.getKey());
+                }
             }
-
-            /**
-             * Validation for modules.all_artist_tune_* object
-             */
-            for (Map.Entry<String, ModulesData> entry : artistCaller.getModules().getAllArtistTuneInModules().entrySet()) {
-                sa.assertEquals(entry.getKey(), entry.getValue().getSource(),
-                        AssertionMsg.print(className, methodName, "modules.all_artist_tune_*", entry.getValue().getSource()));
-                log.info("The key " + entry.getKey() + " matches with the source value " + entry.getValue().getSource());
-                ModulesDataValidator.validate(entry.getValue(), sa);
-                log.info("Validation done for " + entry.getKey());
+            else {
+                sa.fail("Validation failed, the size of the map with modules objects should not be empty.");
             }
 
         }
