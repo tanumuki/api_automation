@@ -27,6 +27,7 @@ public enum musicLanguages {
 	INSTRUMENTAL,
 	CROATIAN,
 	KOREAN,
+	JAPANESE,
 	CHINESE,
 	FARSI,
 	HIMACHALI,
