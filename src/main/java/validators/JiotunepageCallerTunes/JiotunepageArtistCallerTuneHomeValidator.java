@@ -13,6 +13,7 @@ import validators.genericValidators.EntityValidator;
 import validators.genericValidators.ModulesDataValidator;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -28,38 +29,55 @@ public class JiotunepageArtistCallerTuneHomeValidator extends EntityValidator {
         /**
          * Validation for popular_artist_tune array of object
          */
-        if(artistCaller.getPopularArtistTune().size() > 0) {
+        if (artistCaller.getPopularArtistTune().size() > 0) {
             for (Entity entity : artistCaller.getPopularArtistTune()) {
                 super.validate(entity, sa);
             }
-        }else {
+        } else {
             sa.fail("Popular Artist Tune section is empty.");
         }
 
         /**
          * Validation for all_artist_tune array of object
          */
-        if(artistCaller.getAllArtistTune().entrySet().size() > 0) {
+        if (artistCaller.getAllArtistTune().entrySet().size() > 0) {
             for (Map.Entry<String, Entity[]> data : artistCaller.getAllArtistTune().entrySet()) {
                 for (Entity entity : data.getValue()) {
                     super.validate(entity, sa);
                 }
             }
-        }else {
+        } else {
             sa.fail("All Artist Tune section is empty.");
         }
 
         /**
          * Validation for modules.popular_artist_tune object
          */
-        ModulesData modulesData = artistCaller.getModules().getPopularArtistTune();
-        ModulesDataValidator.validate(modulesData, sa);
+        if (artistCaller.getModules() != null) {
+            for (Map.Entry<String, ModulesData> entry : artistCaller.getModules().getPopularArtistTune().entrySet()) {
+                sa.assertEquals(entry.getKey(), entry.getValue().getSource(),
+                        AssertionMsg.print(className, methodName, "modules.popular_artist_tune", entry.getValue().getSource()));
+                log.info("The key " + entry.getKey() + " matches with the source value " + entry.getValue().getSource());
+                new ModulesDataValidator();
+                ModulesDataValidator.validate(entry.getValue(), sa);
+                log.info("Validation done for " + entry.getKey());
+            }
 
-        /**
-         * Validation for modules.all_artist_tune
-         */
-        ModulesData modulesData1 = artistCaller.getModules().getAllArtistTuneInModules();
-        ModulesDataValidator.validate(modulesData1, sa);
+            /**
+             * Validation for modules.all_artist_tune_* object
+             */
+            for (Map.Entry<String, ModulesData> entry : artistCaller.getModules().getAllArtistTuneInModules().entrySet()) {
+                sa.assertEquals(entry.getKey(), entry.getValue().getSource(),
+                        AssertionMsg.print(className, methodName, "modules.all_artist_tune_*", entry.getValue().getSource()));
+                log.info("The key " + entry.getKey() + " matches with the source value " + entry.getValue().getSource());
+                ModulesDataValidator.validate(entry.getValue(), sa);
+                log.info("Validation done for " + entry.getKey());
+            }
+
+        }
+        else{
+            sa.fail("Validation failed, modules object should not be empty");
+        }
     }
 }
 
