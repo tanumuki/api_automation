@@ -30,6 +30,8 @@ public class JTHomePageModules extends Util {
             for (PlaylistMini playlistMini : jtGetDecadesPojo.getData()) {
                 new PlaylistMiniValidator().validate(playlistMini, sa);
             }
+        }else{
+            sa.fail("Validation fails as there is no playlist available for this API response");
         }
         log.info("Playlistmini objects are validated: "+ jtGetDecadesPojo.getData());
         sa.assertAll();
