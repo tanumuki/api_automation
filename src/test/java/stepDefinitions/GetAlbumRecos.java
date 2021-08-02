@@ -66,7 +66,7 @@ public class GetAlbumRecos extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         SoftAssert sa = new SoftAssert();
 
-        if (System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+        if (ConfigReader.getInstance().getCtx().equalsIgnoreCase("androidgo")) {
             List<AlbumMiniObject> albumMiniObjects = mapper.readValue(resp.asString(), new TypeReference<List<AlbumMiniObject>>() {
             });
             for (AlbumMiniObject albumMiniObject : albumMiniObjects) {
