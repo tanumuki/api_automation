@@ -7,7 +7,7 @@ Feature: Validating  login APIs
       | GET    | UserLoginAPI | paypaltest7@saavn.com | Saavn@1234 |
     Then The Login API returns success with status code "OK"
 
-  Scenario: Verify if user is able to login with invalid credentails
+  Scenario: Verify if user is able to login with invalid credentials
 
     Given Add payload with login endpoint "UserLoginAPI"
     When User calls with method with below params
