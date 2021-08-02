@@ -92,7 +92,8 @@ public enum APIResources {
 	JiotunepageGetDecades("jiotunepage.getDecades"),
 	JiotunepageGetMoodGenres("jiotunepage.getMoodsGenres"),
 	JiotunepageGetArtists("jiotunepage.getArtists"),
-	JiotunepageGetTopJiotune("jiotunepage.getTopJioTune");
+	JiotunepageGetTopJiotune("jiotunepage.getTopJioTune"),
+	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome");
 
 	private String resource;
 
