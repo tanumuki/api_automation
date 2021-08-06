@@ -24,7 +24,7 @@ public class ArtistCallerTuneContainer {
     @JsonProperty("last_page")
     public Integer lastPage;
     @JsonProperty("modules")
-    public Modules modules;
+    public JTModules modules;
     private Map<String, Entity[]> allArtistTune = new HashMap<>();
     @JsonAnySetter
     public void setProviders(String key, Entity[] val){

@@ -1,4 +1,4 @@
-Feature: Get Artist More Albums
+Feature: artist.getArtistMoreAlbum
 
 
 	Scenario Outline: Get Artist More Albums for an Artist

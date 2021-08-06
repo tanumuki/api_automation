@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-
-Feature: Get all channels of browse
+Feature: browse.getAll
 
   Scenario: Get all channels of browse
     Given I have the cookie for the following user
