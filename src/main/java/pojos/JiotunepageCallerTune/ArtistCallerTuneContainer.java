@@ -23,6 +23,7 @@ public class ArtistCallerTuneContainer {
     public List<Entity> popularArtistTune = null;
     @JsonProperty("last_page")
     public Integer lastPage;
+    public Boolean last_Page;
     @JsonProperty("modules")
     public JTModules modules;
     private Map<String, Entity[]> allArtistTune = new HashMap<>();

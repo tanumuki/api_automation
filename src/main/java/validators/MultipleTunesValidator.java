@@ -12,7 +12,7 @@ public class MultipleTunesValidator extends EntityValidator {
     public void validate(MultipleTunes tunes, SoftAssert sa){
         String methodName =  new Throwable().getStackTrace()[0].getMethodName();
 
-//        Validate id, title, type, subtype, vcode and vlink
+//        Validate id, title, subtitle, type, subtype, vcode and vlink
         sa.assertTrue(Validate.asNum(tunes.getId()), AssertionMsg.print(className, methodName, "subtype", tunes.getId()));
         log.info("Validation done for field id "+ tunes.getId());
 
@@ -30,6 +30,10 @@ public class MultipleTunesValidator extends EntityValidator {
 
         sa.assertTrue(Validate.asJTVLink(tunes.getVlink()), AssertionMsg.print(className, methodName, "vlink", tunes.getVlink()));
         log.info("Validation done for vlink "+tunes.getVlink());
+
+        sa.assertTrue(Validate.asString(tunes.getSubtitle()), AssertionMsg.print(className, methodName, "subtitle", tunes.getSubtitle()));
+        log.info("Validation done for subtitle"+tunes.getSubtitle());
+
 
     }
 

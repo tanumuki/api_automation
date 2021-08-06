@@ -74,5 +74,7 @@ public class EpisodeMoreInfo {
     private String album;
     @JsonProperty("primary_artists")
     private List<ArtistResultObj> primary_artists;
+    @JsonProperty("release_time")
+    private String releaseTime;
 
 }

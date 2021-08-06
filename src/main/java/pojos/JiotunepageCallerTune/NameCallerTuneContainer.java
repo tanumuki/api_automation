@@ -20,12 +20,10 @@ import java.util.Map;
 @Setter
 
 public class NameCallerTuneContainer {
-    @JsonProperty("popular_artist_tune")
-    public List<Entity> popularArtistTune = null;
     @JsonProperty("last_page")
     public Boolean lastPageBool;
     @JsonProperty("modules")
-    public Modules modules;
+    public JTModules modules;
     private Map<String, MultipleTunes[]> allNameTune = new HashMap<>();
     @JsonAnySetter
     public void setProviders1(String key, MultipleTunes[] val){
