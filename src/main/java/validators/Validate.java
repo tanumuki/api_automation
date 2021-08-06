@@ -222,6 +222,10 @@ public class Validate {
 
     }
 
+    public static boolean asEpisodeReleaseTime(String str){
+        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}");
+    }
+
     public static boolean asUnixEpochTime(String str) {
         return str.matches("^\\d{10}$");//epoch ts is 10 digits
     }

@@ -141,7 +141,7 @@ public class EpisodeValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getAlbum()), AssertionMsg.print(className, methodName, "episode.more_info.album", mi.getAlbum()));
 
         if(Validate.isNonEmptyString(mi.getReleaseTime()))
-            sa.assertTrue(Validate.asString(mi.getReleaseTime()), AssertionMsg.print(className, methodName, "release_time", mi.getReleaseTime()));
+            sa.assertTrue(Validate.asEpisodeReleaseTime(mi.getReleaseTime()), AssertionMsg.print(className, methodName, "release_time", mi.getReleaseTime()));
 
         if(mi.getPrimary_artists() != null) {
             for(ArtistResultObj artist : mi.getPrimary_artists()){
