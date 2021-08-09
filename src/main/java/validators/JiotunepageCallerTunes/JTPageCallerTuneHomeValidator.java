@@ -80,8 +80,10 @@ public class JTPageCallerTuneHomeValidator extends EntityValidator {
          */
         if (nameTune.getAllNameTune().entrySet().size() > 0) {
             for (Map.Entry<String, MultipleTunes[]> data : nameTune.getAllNameTune().entrySet()) {
-                for (MultipleTunes tune : data.getValue()) {
-                    new MultipleTunesValidator().validate(tune, sa);
+                if(data.getValue() != null) {
+                    for (MultipleTunes tune : data.getValue()) {
+                        new MultipleTunesValidator().validate(tune, sa);
+                    }
                 }
             }
         } else {
