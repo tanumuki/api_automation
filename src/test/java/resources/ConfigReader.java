@@ -18,6 +18,7 @@ public class ConfigReader {
 	 	static String username;
 	 	static String password;
 	 	static String userAgent;
+	 	static String jioBaseUrl;
 
 	private static ConfigReader configReader;
 
@@ -58,6 +59,7 @@ public class ConfigReader {
 			String username =  System.getProperty("username");
 			String password =  System.getProperty("password");
 			String userAgent =  System.getProperty("userAgent");
+			String jioBaseUrl=System.getProperty("jioBaseUrl");
 
 			System.out.println("Runtime env: "+baseUrl+ " and " +app_version);
 			if (baseUrl != null) {
@@ -74,6 +76,17 @@ public class ConfigReader {
 			else {
 				baseUrl= "https://www.saavn.com";
 				System.out.println("Aswin baseurl: " + baseUrl);
+			}
+
+			if (jioBaseUrl != null) {
+				if (jioBaseUrl.equalsIgnoreCase("jioBaseUrl")) { //IF clause added here incase there is different env even for jio apis
+					properties.setProperty("jioBaseUrl", "https://api.jio.com/v3/dip/user/authtoken/verify");
+				}
+
+			}
+			else {
+				jioBaseUrl= "https://api.jio.com/v3/dip/user/authtoken/verify";
+				System.out.println("jioBaseUrl : " + jioBaseUrl);
 			}
 		
 
@@ -150,7 +163,9 @@ public class ConfigReader {
     	 */
     	else {
 			baseUrl="https://staging.jiosaavn.com";
+			jioBaseUrl="https://api.jio.com/v3/dip/user/authtoken/verify";
 			properties.setProperty("baseUrl", baseUrl);
+			properties.setProperty("jioBaseUrl",jioBaseUrl);
 			app_version="8.0.1";
 			properties.setProperty("app_version", app_version);
 			version="286";
@@ -194,6 +209,13 @@ public class ConfigReader {
         	return baseUrl;
         else throw new RuntimeException("base_Url not specified in the Configuration.properties file.");
     }
+
+    public String getJioBaseUrl(){
+		jioBaseUrl = properties.getProperty("jioBaseUrl");
+		if(jioBaseUrl != null)
+			return jioBaseUrl;
+		else throw new RuntimeException("jioBaseUrl not specified in the Configuration.properties file.");
+	}
    
     public String getAppVersion() {
          app_version = properties.getProperty("app_version");

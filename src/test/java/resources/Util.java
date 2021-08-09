@@ -2,12 +2,14 @@ package resources;
 
 import cookieManager.GetCookies;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -216,5 +218,24 @@ public class Util {
                 .addQueryParam("ctx", ctx).setContentType(ContentType.JSON)
                 .build();
         return request;
+    }
+
+    public RequestSpecification requestSpecificationForSsoToken(String jToken,String contentType, String xApiKey,String appName) throws FileNotFoundException {
+
+        PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
+       request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getJioBaseUrl())
+                .addFilter(RequestLoggingFilter.logRequestTo(log))
+                .addFilter(ResponseLoggingFilter.logResponseTo(log))
+                .addHeader("Content-Type", contentType)
+                .addHeader("x-api-key",xApiKey)
+                .addHeader("app-name", appName)
+                .setContentType(contentType)
+                .build();
+       return request;
+
+    }
+
+    public ResponseSpecification responseSpecificationForSsoToken(String contentType, int statusCode){
+        return new ResponseSpecBuilder().expectStatusCode(statusCode).expectContentType(contentType).build();
     }
 }

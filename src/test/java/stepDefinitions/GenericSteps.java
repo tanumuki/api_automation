@@ -2,11 +2,16 @@ package stepDefinitions;
 
 
 import endPoints.APIResources;
+import enums.StatusCode;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import org.json.simple.JSONObject;
+import pojos.jioTuneLogin.ssoPojo.SsoObjectToJson;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
@@ -62,6 +67,45 @@ public class GenericSteps extends Util {
         List<Map<String, String>> user = userDetails.asMaps();
         cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
         System.setProperty("ctx", ConfigReader.getInstance().getCtx());
+    }
+
+    @Given("^I have the following params for SSO Token generation$")
+    public void i_have_the_following_params_for_sso_token_generation(DataTable table) throws Throwable {
+
+        RequestSpecification requestSpecification;
+        ResponseSpecification responseSpecification;
+        Response response;
+
+        List<Map<String, String>> tokenDetails =table.asMaps();
+        String  jToken =tokenDetails.get(0).get("JTOKEN");
+        System.out.println("jtoeken "+jToken);
+        String  contentType =tokenDetails.get(0).get("Content-Type");
+        String  xApiKey =tokenDetails.get(0).get("x-api-key");
+        String  appName =tokenDetails.get(0).get("app-name");
+
+
+        requestSpecification =given().spec(requestSpecificationForSsoToken(jToken,contentType,xApiKey,appName));
+
+        //Adding the variables to request spec object
+
+       responseSpecification= responseSpecificationForSsoToken(contentType, StatusCode.valueOf("OK").getResource());
+
+
+        JSONObject params = new JSONObject();
+        requestSpecification.body(SsoObjectToJson.parseSso());
+
+       response= requestSpecification.given().log().all().when().post().then().log().all().spec(responseSpecification).extract().response();
+
+        System.out.println("tanu22");
+        System.out.println("Response of token "+response.getBody().asString());
+
+
+
+
+
+
+
+
     }
 
     @When("I make the {string} request")
