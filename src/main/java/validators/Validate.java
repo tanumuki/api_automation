@@ -222,6 +222,10 @@ public class Validate {
 
     }
 
+    public static boolean asEpisodeReleaseTime(String str){
+        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}");
+    }
+
     public static boolean asUnixEpochTime(String str) {
         return str.matches("^\\d{10}$");//epoch ts is 10 digits
     }
@@ -276,6 +280,10 @@ public class Validate {
         return lang.matches("english|hindi|punjabi|tamil|telugu|marathi|gujarati|bengali|kannada|bhojpuri|malayalam|urdu|haryanvi|rajasthani|odia|assamese|spanish|latin|italian|french|portuguese|instrumental|croatian|korean|unknown");
     }
 
+    public static boolean asJTSubType(String str){
+        return str.matches("nameTune");
+    }
+
     /**
      * Will verify artist types like artist, singer, music director, lyricist, etc. Refer the enum class for more details
      * @param str
@@ -306,7 +314,7 @@ public class Validate {
     }
 
     public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune|all_artist_tune_1");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune|all_artist_tune_1|all_name_caller_tune_1");
     }
 
 
@@ -627,6 +635,14 @@ public class Validate {
     public static boolean asUpdatedUrlForDeeplink(String str, String toBeMatchedString){
         return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/"+toBeMatchedString);
     }
+
+    /**
+     * Verify the JT Vlink
+     */
+    public static boolean asJTVLink(String url){
+        return url.matches("^(http|https):\\/\\/jiotunepreview.jio.com\\/content\\/Converted\\/[0-9]+.mp3");
+    }
+
 
 }
 
