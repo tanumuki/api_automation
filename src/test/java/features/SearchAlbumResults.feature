@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Album results for a given search query
+Feature: search.getAlbumResults
 
   Scenario Outline: Get Album results for a given search query
     Given Payload with endpoint search get album results "SearchGetAlbumResults"

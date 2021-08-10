@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Gets the user's current subscription details
+Feature: subscription.getUserCurrentSubscription
 
   Scenario: Gets the user's current subscription details
     Given Payload with endpoint get current subs "GetUserCurrSubscription" with given credentials

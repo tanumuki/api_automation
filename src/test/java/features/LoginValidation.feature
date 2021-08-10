@@ -1,4 +1,4 @@
-Feature: Validating  login APIs
+Feature: user.login
 
   Scenario: Verify if user is able to login with valid credentials
     Given Add payload with login endpoint "UserLoginAPI"

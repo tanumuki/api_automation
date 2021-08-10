@@ -1,4 +1,4 @@
-Feature: Validation of Search Get Results API
+Feature: search.getResultsFromEntities
 
   Background:
     Given I have the cookie for the following user

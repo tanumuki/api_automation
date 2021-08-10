@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Gets the subscription status
+Feature: subscription.getStatus
 
   Scenario: Gets the subscription status without include receipt
     Given Payload with endpoint subs get status "SubscriptionGetStatus" with the given credentials

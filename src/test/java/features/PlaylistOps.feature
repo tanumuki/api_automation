@@ -1,4 +1,4 @@
-Feature: Validating Playlist APIs
+Feature: playlist.create
 
   Scenario: Verify playlist creation for a new user
      Given Add payload with get playlist endpoint "PlaylistCreate" and account credentials for cookie

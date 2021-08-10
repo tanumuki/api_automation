@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Meta response for the given input params
+Feature: seo.getMetaResponse
 
   Scenario Outline: Get Meta response for the given input params
     Given Payload with endpoint getMetaResponse "SEOgetMetaResponse"

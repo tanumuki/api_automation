@@ -1,4 +1,4 @@
-Feature: Validation of Social follow/Unfollow API.
+Feature: social.follow, social.unfollow
 
 
   Background:
