@@ -1,8 +1,7 @@
-package pojos.jioTuneLogin.ssoPojo;
+package pojos.jioTuneLogin;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.cucumber.java.hu.De;
 
 public class SsoObjectToJson {
 
@@ -35,6 +34,8 @@ public class SsoObjectToJson {
         return pojo;
 
     }
+
+
 
 
 

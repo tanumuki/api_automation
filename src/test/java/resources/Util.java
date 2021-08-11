@@ -220,7 +220,7 @@ public class Util {
         return request;
     }
 
-    public RequestSpecification requestSpecificationForSsoToken(String jToken,String contentType, String xApiKey,String appName) throws FileNotFoundException {
+    public RequestSpecification requestSpecificationForSsoToken(String contentType, String xApiKey,String appName) throws FileNotFoundException {
 
         PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
        request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getJioBaseUrl())
@@ -235,7 +235,7 @@ public class Util {
 
     }
 
-    public ResponseSpecification responseSpecificationForSsoToken(String contentType, int statusCode){
+    public ResponseSpecification responseSpecification(String contentType, int statusCode){
         return new ResponseSpecBuilder().expectStatusCode(statusCode).expectContentType(contentType).build();
     }
 }

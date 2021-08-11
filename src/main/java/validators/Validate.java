@@ -11,6 +11,9 @@ import enums.musicLanguages;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
+import pojos.login_pojos.LoginData;
+import pojos.login_pojos.LoginProstatus;
+import pojos.login_pojos.SlotsUsed;
 import pojos.podcastsGetAll.PodcastCategory;
 import validators.Artist.ArtistPageValidator;
 import validators.genericValidators.*;
@@ -82,6 +85,7 @@ public class Validate {
         //return str.matches("\\d+|^$");
         return time.matches("^[0-9]{10}");
     }
+
 
     /*
      * Validate featured station type
@@ -183,7 +187,7 @@ public class Validate {
     /*
      * Validate as primitive boolean
      */
-    public static boolean asBoolean(boolean value) {
+    public static boolean asBoolean(Boolean value) {
         log.debug("Testing as primitive boolean: \"" + value + "\"");
         if (value || !value) {
             return true;
@@ -604,6 +608,303 @@ public class Validate {
 
     public static boolean asDefaultSelection(String str) {
         return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
+    }
+
+    /*
+
+        validation of user data for all the user login test cases (user.login/user.jioLogin apis)
+     */
+
+    public static void validateUserData(LoginData loginData, SoftAssert sa){
+
+
+
+        String className = Validate.class.getName();
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+
+        if (Validate.isNonEmptyString(loginData.getEmail())) {
+
+            String email = loginData.getEmail();
+            log.info("email " + loginData.getEmail());
+            sa.assertTrue(Validate.asEmail(email), className + "." + "validate email failed - ");
+        } else {
+            log.info("Email field is NULL or empty");
+        }
+
+
+        // get network
+        if (Validate.isNonEmptyString(loginData.getNetwork())) {
+            String network = loginData.getNetwork();
+            log.info("network " + network);
+            sa.assertTrue(Validate.asString(network), className + "." + "validate network failed - ");
+        } else {
+            log.info("Network field is NULL or empty");
+
+        }
+        //get phone no
+
+
+        if (Validate.isNonEmptyString(loginData.getPhoneNumber())) {
+            sa.assertTrue(Validate.asString(loginData.getPhoneNumber()), className + "." + "validate phone failed - ");
+        } else {
+            log.info("phone is NULL or empty");
+        }
+
+
+        // get fbid
+        if (Validate.isNonEmptyString(loginData.getFbid())) {
+            sa.assertTrue(Validate.asString(loginData.getFbid()), className + "." + "validate FBID failed - ");
+        } else {
+            log.info("FBID is NULL or empty");
+        }
+
+
+        // get reg date
+        if (Validate.isNonEmptyString(loginData.getRegdate())) {
+            String regDate = loginData.getRegdate();
+            sa.assertTrue(Validate.asDateTime(regDate), className + "." + "validate regDate failed - ");
+        } else {
+            log.info("Reg date is NULL or empty");
+        }
+
+
+        // username
+        if (Validate.isNonEmptyString(loginData.getUsername())) {
+            String username = loginData.getRegdate();
+            sa.assertTrue(Validate.asString(username), className + "." + "validate username failed - ");
+        } else {
+            log.info("User name is NULL or empty");
+        }
+
+
+        // uid
+        if (Validate.isNonEmptyString(loginData.getUid())) {
+            String uid = loginData.getUid();
+            sa.assertTrue(Validate.asId(uid), className + "." + "validate uid failed - ");
+        } else {
+            log.info(" UID is NULL or empty");
+        }
+
+
+        // phone number
+        if (Validate.isNonEmptyString(loginData.getPhoneNumber())) {
+            String ph = loginData.getPhoneNumber();
+            sa.assertTrue(Validate.asString(ph), className + "." + "validate ph failed - ");
+        } else {
+            log.info(" phone is NULL or empty");
+        }
+
+
+        // fb token
+        if (Validate.isNonEmptyString(loginData.getFbtoken())) {
+            String fbtoken = loginData.getFbtoken();
+            sa.assertTrue(Validate.asString(fbtoken), className + "." + "validate fbToken failed - ");
+        } else {
+            log.info(" FB TOKEN is NULL or empty");
+        }
+
+
+        // status
+        if (Validate.isNonEmptyString(loginData.getStatus())) {
+            String status = loginData.getStatus();
+            sa.assertTrue(Validate.asString(status), className + "." + "validate status failed - ");
+        } else {
+            log.info(" Status is NULL or empty");
+        }
+
+
+        // lastname
+        if (Validate.isNonEmptyString(loginData.getLastname())) {
+            String lastname = loginData.getLastname();
+            sa.assertTrue(Validate.asString(lastname), className + "." + "validate lastname failed - ");
+        } else {
+            log.info(" lastname is NULL or empty");
+        }
+
+        // first name
+
+        if (Validate.isNonEmptyString(loginData.getFirstname())) {
+            String firstname = loginData.getFirstname();
+            sa.assertTrue(Validate.asString(firstname), className + "." + "validate firstname failed - ");
+        } else {
+            log.info(" firstname is NULL or empty");
+        }
+
+
+        // gender
+
+        if (Validate.isNonEmptyString(loginData.getGender())) {
+            String gender = loginData.getGender();
+            sa.assertTrue(Validate.asGender(gender), className + "." + "validate gender failed - ");
+        } else {
+            log.info(" gender is NULL or empty");
+        }
+
+        // dob
+
+        if (Validate.isNonEmptyString(loginData.getDob())) {
+            String dob = loginData.getDob();
+            sa.assertTrue(Validate.asDate(dob), className + "." + "validate dob failed - ");
+        } else {
+            log.info(" DOB is NULL or empty");
+        }
+
+
+        // birthyear
+
+        if (Validate.isNonEmptyString(loginData.getBirthyear())) {
+            String birthyear = loginData.getBirthyear();
+            sa.assertTrue(Validate.asDate(birthyear), className + "." + "validate birthyear failed - ");
+        } else {
+            log.info(" birthyear is NULL or empty");
+        }
+
+
+        // following_count
+
+        if (Validate.isNonEmptyString(loginData.getFollowingCount())) {
+            String followingCount = loginData.getFollowingCount();
+            sa.assertTrue(Validate.asNum(followingCount), className + "." + "validate following_count failed - ");
+        } else {
+            log.info(" following count is NULL or empty");
+        }
+
+
+        // follower_count
+        if (Validate.isNonEmptyString(loginData.getFollowerCount())) {
+            String followerCount = loginData.getFollowerCount();
+            sa.assertTrue(Validate.asNum(followerCount), className + "." + "validate follower_count failed - ");
+        } else {
+            log.info(" follower count is NULL or empty");
+        }
+
+        // update_time
+        if (Validate.isNonEmptyString(loginData.getUpdateTime())) {
+            String updateTime = loginData.getUpdateTime();
+            sa.assertTrue(Validate.asDateTime(updateTime), className + "." + "validate update_time failed - ");
+        } else {
+            log.info(" updateTime  is NULL or empty");
+        }
+
+
+        // paywall_only
+
+        if (Validate.isNonEmptyString(loginData.getPaywallOnly())) {
+            String paywallOnly = loginData.getPaywallOnly();
+            sa.assertTrue(Validate.asBoolean(paywallOnly), className + "." + "validate paywall_only failed - ");
+        } else {
+            log.info(" paywall only  is NULL or empty");
+        }
+
+
+        // loginwall
+        if (Validate.isNonEmptyString(loginData.getLoginwall())) {
+            String loginwall = loginData.getLoginwall();
+            sa.assertTrue(Validate.asBoolean(loginwall), className + "." + "validate loginwall failed - ");
+        } else {
+            log.info(" loginwall   is NULL or empty");
+        }
+
+        // require_otp
+        if (loginData.getRequireOtp()!=null ) {
+            boolean flag = loginData.getRequireOtp();
+            sa.assertTrue(Validate.asBoolean(flag), className + "." + "Require otp  failed - ");
+        } else {
+            log.info(" Require otp field   is NULL or empty");
+        }
+        // mandatory_verify
+        if (loginData.getMandatoryVerify()!=null) {
+            boolean flag = loginData.getMandatoryVerify();
+            sa.assertTrue(Validate.asBoolean(flag), className + "." + "Mandatory verify failed - ");
+        } else {
+            log.info(" Mandatory  field   is NULL or empty");
+        }
+
+        // email verified status
+        if (Validate.isNonEmptyString(loginData.getEmailVerifiedStatus())) {
+            String emailVerifiedStatus = loginData.getEmailVerifiedStatus();
+            sa.assertTrue(Validate.asEmailVerifiedStatus(emailVerifiedStatus), className + "." + "Email verified status failed - ");
+        } else {
+            log.info(" Email verified status field   is NULL or empty");
+        }
+
+        sa.assertAll();
+
+    }
+
+    public static void validateProStatus(LoginProstatus proStatus, SoftAssert sa){
+
+        String className = Validate.class.getName();
+
+
+        if (Validate.isNonEmptyString(proStatus.getProduct())) {
+            String product = proStatus.getProduct();
+            log.info("product " + product);
+            sa.assertTrue(Validate.asProduct(product), className + "." + "validate product failed - ");
+        } else {
+            log.info("product is NULL or empty");
+        }
+
+
+
+
+        // get product type
+
+        // get product type
+        if (Validate.isNonEmptyString(String.valueOf(proStatus.getExpirationTimestamp()))) {
+            Integer time = proStatus.getExpirationTimestamp();
+            sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
+            log.info("exp time stamp is " + time);
+
+
+        } else {
+            log.info("product is NULL or empty");
+        }
+
+
+
+        // pro status type
+        if (Validate.isNonEmptyString(proStatus.getType())) {
+            String type = proStatus.getType();
+            sa.assertTrue(Validate.asString(type), className + "." + "validate type failed - ");
+        } else {
+            log.info(" pro status Type  is NULL or empty");
+        }
+
+        // pro status offer_trial
+        if (Validate.isNonEmptyString(proStatus.getOfferTrial())) {
+            String offerTrial = proStatus.getOfferTrial();
+            sa.assertTrue(Validate.asString(offerTrial), className + "." + "validate offer_trial failed - ");
+        } else {
+            log.info(" Offer trial  is NULL or empty");
+        }
+
+        //slots used
+
+
+        if (proStatus.getSlotsUsed() != null) {
+            List<SlotsUsed> slots = proStatus.getSlotsUsed();
+            for (SlotsUsed su : slots) {
+                String id = su.getId();
+                log.info("id: " + id);
+                sa.assertTrue(Validate.asString(id), className + "." + "validate id failed - ");
+
+                String name = su.getName();
+                log.info("name: " + name);
+                sa.assertTrue(Validate.asString(name), className + "." + "validate name failed - ");
+            }
+        }
+
+        //vendor
+        if (Validate.isNonEmptyString(proStatus.getVendor())) {
+            String vendor = proStatus.getVendor();
+            sa.assertTrue(Validate.asString(vendor), className + "." + "validate vendor failed - ");
+        } else {
+            log.info(" Vendor  is NULL or empty");
+        }
+
+        sa.assertAll();
     }
 
 

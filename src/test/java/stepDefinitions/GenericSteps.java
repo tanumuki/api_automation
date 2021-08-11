@@ -2,18 +2,21 @@ package stepDefinitions;
 
 
 import endPoints.APIResources;
+import endPoints.Context;
 import enums.StatusCode;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
-import pojos.jioTuneLogin.ssoPojo.SsoObjectToJson;
+import pojos.jioTuneLogin.DeviceInfo;
+import pojos.jioTuneLogin.SsoObjectToJson;
 import resources.APIConstants;
 import resources.ConfigReader;
+import resources.ScenarioContext;
 import resources.Util;
 
 import java.io.FileNotFoundException;
@@ -25,12 +28,16 @@ import java.util.Map;
 import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
 
+@Slf4j
 public class GenericSteps extends Util {
 
     //static RequestSpecification request = null;
     static Response resp;
     static String apiResource;
     static String cookie;
+    public ScenarioContext scenarioContext;
+    public static  String ssoToken;
+
 
     @Given("I have the endpoint for {string}")
     public void iHaveTheEndopointFor(String endPoint) throws FileNotFoundException {
@@ -61,6 +68,30 @@ public class GenericSteps extends Util {
         logResponseTime(resp);
         System.out.println(resp.asString());
     }
+    @When("I make the {string} request with the following query parameters with response specification")
+    public void  iMakeTheRequestWithTheFollowingQueryParametersWithResponseSpecification(String method, DataTable queryParams) throws IOException {
+        List<Map<String, String>> params = queryParams.asMaps();
+        ssoToken = (String) testContext.scenarioContext.getContext(Context.SSO_TOKEN);
+        if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+            request.queryParams(params.get(0));
+            request.queryParam("ssotoken", ssoToken);
+            request.queryParam("jtoken", new DeviceInfo().getJToken()); //This field(jtoken) is optional
+        }
+
+        resp = request.given()
+                .log()
+                .all()
+                .when()
+                .get("/api.php")
+                .then()
+                .log()
+                .all()
+                .spec(responseSpecification("text/html; charset=UTF-8", 200))
+                .extract()
+                .response();
+        logResponseTime(resp);
+        System.out.println(resp.asString());
+    }
 
     @Given("I have the cookie for the following user")
     public void iHaveTheCookieForTheFollowingUser(DataTable userDetails) throws IOException {
@@ -77,33 +108,20 @@ public class GenericSteps extends Util {
         Response response;
 
         List<Map<String, String>> tokenDetails =table.asMaps();
-        String  jToken =tokenDetails.get(0).get("JTOKEN");
-        System.out.println("jtoeken "+jToken);
         String  contentType =tokenDetails.get(0).get("Content-Type");
         String  xApiKey =tokenDetails.get(0).get("x-api-key");
         String  appName =tokenDetails.get(0).get("app-name");
 
 
-        requestSpecification =given().spec(requestSpecificationForSsoToken(jToken,contentType,xApiKey,appName));
-
+        requestSpecification =given().spec(requestSpecificationForSsoToken(contentType,xApiKey,appName));
         //Adding the variables to request spec object
-
-       responseSpecification= responseSpecificationForSsoToken(contentType, StatusCode.valueOf("OK").getResource());
-
-
+       responseSpecification= responseSpecification(contentType, StatusCode.valueOf("OK").getResource());
         JSONObject params = new JSONObject();
         requestSpecification.body(SsoObjectToJson.parseSso());
-
-       response= requestSpecification.given().log().all().when().post().then().log().all().spec(responseSpecification).extract().response();
-
-        System.out.println("tanu22");
-        System.out.println("Response of token "+response.getBody().asString());
-
-
-
-
-
-
+        response= requestSpecification.given().log().all().when().post().then().log().all().spec(responseSpecification).extract().response();
+        log.info("Response of token "+response.getBody().asString());
+        ssoToken = response.jsonPath().getString("ssoToken");
+        testContext.scenarioContext.setContext(Context.SSO_TOKEN, ssoToken);
 
 
     }

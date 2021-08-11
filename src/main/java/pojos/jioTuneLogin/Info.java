@@ -1,4 +1,4 @@
-package pojos.jioTuneLogin.ssoPojo;
+package pojos.jioTuneLogin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

@@ -8,6 +8,7 @@ public enum Context {
 	FEATURED_STATIONS,
 	COOKIE,
 	USERNAME,
-	PASSWORD
+	PASSWORD,
+	SSO_TOKEN,
 
 }
