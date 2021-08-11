@@ -1,4 +1,4 @@
-Feature: Validation of User Change Password API
+Feature: user.changePassword
 
   Background:
     Given I have the cookie for the following user

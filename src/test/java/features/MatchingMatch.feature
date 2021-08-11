@@ -1,4 +1,4 @@
-Feature: Validation of Matching Match API
+Feature: matching.match
 
   Background:
     Given I have the cookie for the following user

@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: View all results for the given query and entity type
+Feature: search.getMoreResults
 
   Scenario Outline: View all results for the given query and entity type
     Given Payload with endpoint get more results "SearchGetMoreResults"

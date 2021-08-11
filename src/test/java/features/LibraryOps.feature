@@ -1,4 +1,4 @@
-Feature: Validating Library APIs
+Feature: library.getAll, library.add, library.delete, library.getDetails
 
   Scenario: Verify user library for new user
      Given Add payload with get library endpoint "LibraryGetAllAPI" and account credentials for cookie

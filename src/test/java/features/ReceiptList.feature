@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: List all the receipts for a given user
+Feature: receipt.list
 
   Scenario: List all receipts for a given user
     Given Payload with receipt list endpoint "ReceiptList" along with given credentials

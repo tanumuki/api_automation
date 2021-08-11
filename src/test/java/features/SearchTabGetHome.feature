@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Search grid Home page
+Feature: search_tab.getsearchhomepage
 
   Scenario Outline: Get Search grid Home page
     Given Payload with search grid home page endpoint "SearchTabHomePage"

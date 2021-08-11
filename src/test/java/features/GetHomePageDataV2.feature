@@ -1,4 +1,4 @@
-Feature: Get Homepage data
+Feature: content.getHomepageDataV2
 
   Scenario: Get Homepage data when user is in logged out state
     Given Payload with endpoint GetHomepageDataV2 "GetHomepageDataV2"

@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Podcasts get all categories
+Feature: podcast.getAllCategories
 
   Scenario: Podcasts get all categories
     Given Payload with podcasts get all categories endpoint "PodcastGetAllCategories"

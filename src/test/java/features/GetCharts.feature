@@ -1,7 +1,8 @@
 # new feature
 # Tags: optional
 
-Feature: Get all the charts
+Feature: content.getCharts
+
   Scenario: Get All the charts
     Given Payload with get all contents endPoint "GetAllChartsAPI"
     When User calls Get All contents api

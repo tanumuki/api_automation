@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Episode details of the given episode id
+Feature: show.getEpisodeDetails
 
   Scenario Outline: Get Episode details of the given episode id
     Given Payload with endpoint get episode details "ShowGetEpisodeDetails"
