@@ -86,6 +86,15 @@ public class Validate {
         return time.matches("^[0-9]{10}");
     }
 
+    /*
+     * Validate jio trial duration (it will always be 30 days)
+     */
+
+    public static boolean asJioTrialDuration(String time) {
+        //return str.matches("\\d+|^$");
+        return time.matches("30 days");
+    }
+
 
     /*
      * Validate featured station type
@@ -102,6 +111,20 @@ public class Validate {
      */
     public static boolean asId(String str) {
         return str.matches("[0-9A-Za-z_-]{8}|[0-9]{7}|[0-9A-Za-z_-]{6}|[0-9]{0,9}|[0-9A-Za-z]{32}|[0-9A-Za-z]{42}|[0-9]{96}|[0-9A-Za-z]{42}|[0-9A-Za-z_]{42}");
+    }
+
+    /*
+     * Validate as uid
+     */
+    public static boolean asUid(String str) {
+        return str.matches("[a-z0-9]+");
+    }
+
+    /*
+     * Validate as subscriber id
+     */
+    public static boolean asSubscriberId(String str) {
+        return str.matches("[0-9]{10}");
     }
 
 
@@ -213,6 +236,14 @@ public class Validate {
                 || str.matches("[0-9]{1}-[0-9]{2}-[0-9]{4}"));
     }
 
+    public static boolean asBirthYear(String str) {
+        log.debug("Testing as birth year: \"" + str + "\"");
+        return (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}") || str.matches("[0-9]{2}-[0-9]{2}-[0-9]{4}")
+                || str.matches("[0-9]{1}-[0-9]{2}-[0-9]{4}") || str.matches("0"));
+    }
+
+
+
     public static boolean asProduct(String str) {
         return str.matches("PRIME|prime|saavn.30day|SAAVN.30DAY");
     }
@@ -231,7 +262,7 @@ public class Validate {
     }
 
     public static boolean asGender(String str) {
-        return str.matches("m|f|u");
+        return str.matches("m|f|u|Male|Female");
     }
 
     public static boolean asSubtitleArtist(String str) {
@@ -512,6 +543,11 @@ public class Validate {
         return str.matches("^[a-zA-Z0-9_\\-]*$");
     }
 
+    public static boolean asAlphaNumericWithHyphen(String str) {
+        log.debug("Testing as API: \"" + str + "\"");
+        return str.matches("^[a-z0-9-]*$");
+    }
+
     public static boolean asImageType(String str) {
         log.debug("Testing as image type: \"" + str + "\"");
         return str.matches("^(round|square)$");
@@ -540,6 +576,11 @@ public class Validate {
         return age > 0 && age <= 150;
     }
 
+    public static boolean asUserAgeJioData(String age) {
+//        age should be between 0 and 150
+        return  age.matches("NA") ;
+    }
+
     public static boolean asEmailVerifiedStatus(String str) {
         return str.matches("new_unverified|existing_unverified|existing_verified");
     }
@@ -555,6 +596,16 @@ public class Validate {
     public static boolean asPlaylistSubtype(String str) {
         return str.matches("JioTuneArtist| JioTuneDecade| JioTuneActivity|VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
 
+    }
+
+    public static boolean asEncryptedJioPhoneNumber(String str) {
+
+        return str.matches("[0-9a-zA-Z/=]{24}");
+    }
+
+
+    public static boolean asMaskedPhoneNumber(String str) {
+        return str.matches("[+]{1}[X]{8}[0-9]{4}");
     }
 
     public static boolean asQuickActions(String str) {
@@ -752,10 +803,15 @@ public class Validate {
 
 
         // birthyear
+        /*
+            For now we are adding 0 in validation cause from backend it's coming as 0
+            | birthyear         | smallint(5) unsigned                  | YES  |     | NULL                |
+            birthyear field's type is smallint. So, empty string is not being set in this case. It's taking 0 as default value(jira 8139)
+         */
 
         if (Validate.isNonEmptyString(loginData.getBirthyear())) {
             String birthyear = loginData.getBirthyear();
-            sa.assertTrue(Validate.asDate(birthyear), className + "." + "validate birthyear failed - ");
+            sa.assertTrue(Validate.asBirthYear(birthyear), className + "." + "validate birthyear failed - ");
         } else {
             log.info(" birthyear is NULL or empty");
         }

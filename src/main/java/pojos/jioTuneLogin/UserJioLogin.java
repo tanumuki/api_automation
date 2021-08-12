@@ -12,11 +12,11 @@ import pojos.login_pojos.LoginData;
 public class UserJioLogin {
 
     @JsonProperty("data")
-    public LoginData data;
+    private LoginData data;
     @JsonProperty("jio_trial_redeem")
-    public String jioTrialRedeem;
+    private String jioTrialRedeem;
     @JsonProperty("jio_trial_duration")
-    public String jioTrialDuration;
+    private String jioTrialDuration;
     @JsonProperty("jio_user_data")
-    public JioUserData jioUserData;
+    private JioUserData jioUserData;
 }

@@ -1,23 +1,29 @@
 package pojos.jioTuneLogin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Data
 public class JioUserData {
 
     @JsonProperty("unique")
-    public String unique;
+    private String unique;
     @JsonProperty("uid")
-    public String uid;
+    private String uid;
     @JsonProperty("subscriberId")
-    public String subscriberId;
+    private String subscriberId;
     @JsonProperty("age")
-    public String age;
+    private String age;
     @JsonProperty("gender")
-    public String gender;
+    private String gender;
     @JsonProperty("phone_number")
-    public String phoneNumber;
+    private String phoneNumber;
     @JsonProperty("version")
-    public String version;
+    private String version;
     @JsonProperty("masked_phone_number")
-    public String maskedPhoneNumber;
+    private String maskedPhoneNumber;
 }
