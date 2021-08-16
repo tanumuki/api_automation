@@ -139,6 +139,16 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
                 System.out.println("adproduct_abtest: " + ads.getAdproduct_abtest());
             }
 
+            if (ads.getAudio_companion_exp() != null) {
+                sa.assertTrue(Validate.asString(ads.getAudio_companion_exp()), AssertionMsg.print(className, methodName, "ads.audio_companion_exp", ads.getAudio_companion_exp()));
+                System.out.println("audio_companion_exp: " + ads.getAudio_companion_exp());
+            }
+
+            if (ads.getPa_exp() != null) {
+                sa.assertTrue(Validate.asString(ads.getPa_exp()), AssertionMsg.print(className, methodName, "ads.pa_exp", ads.getPa_exp()));
+                System.out.println("pa_exp: " + ads.getPa_exp());
+            }
+
         }
 
     }

@@ -24,4 +24,9 @@ public class Ads {
     private AdRefree referee;
     @JsonProperty("adproduct_abtest")
     private String adproduct_abtest;
+    @JsonProperty("audio_companion_exp")
+    private String audio_companion_exp;
+    @JsonProperty("pa_exp")
+    private String pa_exp;
+
 }

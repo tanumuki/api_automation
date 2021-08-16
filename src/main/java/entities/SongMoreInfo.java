@@ -127,5 +127,5 @@ public class SongMoreInfo {
 	@JsonProperty("video_mappings")
 	private String [] video_mappings;
 	@JsonProperty("multiple_tunes")
-	private MultipleTunes multiPleTunes;
+	private List<MultipleTunes> multiPleTunes;
 }

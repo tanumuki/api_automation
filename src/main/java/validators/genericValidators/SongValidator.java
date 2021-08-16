@@ -245,8 +245,10 @@ public class SongValidator extends EntityValidator {
         new RightsValidator().validate(rights, sa, "song", songObj.getId());
 
         if (songObj.getMoreInfo().getMultiPleTunes() != null) {
-            MultipleTunes multipleTunes = songObj.getMoreInfo().getMultiPleTunes();
-            validateMultipleTunes(multipleTunes, sa);
+//            MultipleTunes multipleTunes = songObj.getMoreInfo().getMultiPleTunes();
+            for (MultipleTunes multipleTunes : songObj.getMoreInfo().getMultiPleTunes()) {
+                validateMultipleTunes(multipleTunes, sa);
+            }
         }
     }
 
