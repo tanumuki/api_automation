@@ -32,6 +32,8 @@ public class EpisodeMoreInfo {
     private String bg_color;
     @JsonProperty("season_no")
     private String seasonNo;
+    @JsonProperty("sequence_number")
+    private String sequence_number;
     @JsonProperty("season_number")
     private String seasonNumber;
     @JsonProperty("show_id")

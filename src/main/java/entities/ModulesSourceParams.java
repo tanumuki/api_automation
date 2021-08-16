@@ -21,5 +21,7 @@ public class ModulesSourceParams {
     private String video_pids;
     @JsonProperty("album_year")
     private String album_year;
+    @JsonProperty("partner_id")
+    private String partner_id;
 
 }

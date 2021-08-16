@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pojos.Videos.ExtraData;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -45,6 +46,8 @@ public class ModulesData {
     private String image_url;
     @JsonProperty("image_type")
     private String image_type;
+    @JsonProperty("extra_data")
+    private ExtraData extra_data;
     @JsonProperty("is_JT_module")
     private Boolean is_JT_module;
 

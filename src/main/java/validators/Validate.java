@@ -327,7 +327,10 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
+                "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
+                "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
+                "SS_CAROUSEL|SS_SHORT_VIDEOS");
     }
 
     public static boolean asProStatusType(String type) {
@@ -540,6 +543,10 @@ public class Validate {
         return str.matches("^(http|https):\\/\\/uploads.cdn.triller.co\\/v1\\/jiosaavn\\/[0-9]+.mp4");
     }
 
+    public static boolean asThirdPartyVideoPartnerID(String str) {
+        return str.matches("triller");
+    }
+
     public static boolean asHexColour(String str) {
         log.debug("Testing as hex colour: \"" + str + "\"");
         return str.matches("^(#)?[a-zA-Z0-9]{6,8}$");
@@ -573,7 +580,7 @@ public class Validate {
     }
 
     public static boolean asQuickActions(String str) {
-        return str.matches("download|add to library|none");
+        return str.matches("download|add to library|setJiotune|none");
     }
 
     public static boolean asHomepageTabOrder(List<String> tabs) {
@@ -582,6 +589,10 @@ public class Validate {
                 return false;
         }
         return true;
+    }
+
+    public static boolean asBenefitsEventType(String str) {
+        return str.matches("nonconcert");
     }
 
     public static boolean asEmptyArray(String[] arr) {

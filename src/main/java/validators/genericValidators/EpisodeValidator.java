@@ -56,6 +56,9 @@ public class EpisodeValidator extends EntityValidator {
         if(Validate.isNonEmptyString(mi.getBg_color()))
             sa.assertTrue(Validate.asHexColour(mi.getBg_color()),AssertionMsg.print(className, methodName, "episode", "episode.more_info.bg_color", mi.getBg_color(), episode.getId()));
 
+        if(Validate.isNonEmptyString(mi.getSequence_number()))
+            sa.assertTrue(Validate.asNum(mi.getSequence_number()),AssertionMsg.print(className, methodName, "episode", "episode.more_info.sequence_number", mi.getSequence_number(), episode.getId()));
+
         if(Validate.isNonEmptyString(mi.getDescription()))
             sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "episode", "episode.more_info.description", mi.getDescription(), episode.getId()));
 

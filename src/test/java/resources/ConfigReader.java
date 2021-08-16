@@ -151,9 +151,9 @@ public class ConfigReader {
     	else {
 			baseUrl="https://staging.jiosaavn.com";
 			properties.setProperty("baseUrl", baseUrl);
-			app_version="8.0.1";
+			app_version="8.2";
 			properties.setProperty("app_version", app_version);
-			version="286";
+			version="288";
 			properties.setProperty("v", version);
 			ctx="android";
 			properties.setProperty("ctx", ctx);

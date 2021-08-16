@@ -134,12 +134,11 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
         }
 
-//        if(!Arrays.toString(mi.getSub_types()).equalsIgnoreCase("null")||!Arrays.toString(mi.getSub_types()).equalsIgnoreCase("[]")) {
-        if(!ArrayUtils.isEmpty(mi.getSub_types())) {
-            /*TODO: Add validation for sub_types, for now it's coming up as null
-             * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
-             * add the validations - Ashwin */
-            sa.fail("QA TODO: Add assertions for sub_types. Value found: " + Arrays.toString(mi.getSub_types()));
+        if(mi.getSub_types() != null) {
+            for (String subtype : mi.getSub_types()) {
+                sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName,
+                        "playlist.more_info.sub_types", subtype));
+            }
         }
 
         if(mi.getImages()!=null) {
