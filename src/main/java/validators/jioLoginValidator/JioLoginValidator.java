@@ -55,9 +55,7 @@ public class JioLoginValidator {
 
         if(Validate.isNonEmptyString(jioUserData.getUnique()))
             softAssert.assertTrue(Validate.asAlphaNumericWithHyphen(jioUserData.getUnique()), AssertionMsg.print(className, methodName, "jio user data unique field", "user.jiologin.jio_user_data"));
-
         if(Validate.isNonEmptyString(jioUserData.getUid()))
-
             softAssert.assertTrue(Validate.asUid(jioUserData.getUid()), AssertionMsg.print(className, methodName, "jio user data uid field", "user.jiologin.jio_user_data"));
         if(Validate.isNonEmptyString(jioUserData.getSubscriberId()))
             softAssert.assertTrue(Validate.asSubscriberId(jioUserData.getSubscriberId()),AssertionMsg.print(className, methodName, "jio user data subscriber id field", "user.jiologin.jio_user_data"));
@@ -67,15 +65,11 @@ public class JioLoginValidator {
             softAssert.assertTrue(Validate.asGender(jioUserData.getGender()), AssertionMsg.print(className, methodName, "jio user data gender field", "user.jiologin.jio_user_data"));
         if(Validate.isNonEmptyString(jioUserData.getPhoneNumber()))
             softAssert.assertTrue(Validate.asEncryptedJioPhoneNumber(jioUserData.getPhoneNumber()), AssertionMsg.print(className, methodName, "jio user data phone number field", "user.jiologin.jio_user_data"));
-
         if(Validate.isNonEmptyString(jioUserData.getVersion()))
             softAssert.assertTrue(Validate.asNum(jioUserData.getVersion()),AssertionMsg.print(className, methodName, "jio user data version number field", "user.jiologin.jio_user_data"));
         if(Validate.isNonEmptyString(jioUserData.getMaskedPhoneNumber()))
             softAssert.assertTrue(Validate.asMaskedPhoneNumber(jioUserData.getMaskedPhoneNumber()),AssertionMsg.print(className, methodName, "jio user data masked phone number field", "user.jiologin.jio_user_data"));
-
-
-
-
+        
             softAssert.assertAll();
     }
 

@@ -20,8 +20,7 @@ public class JioLogin extends Util {
     public void the_jio_login_api_returns_something_with_status_code_200_and_response_message_is_validated(String strArg1) throws Throwable {
 
 
-        System.out.println("Response of jio login is  " +GenericSteps.resp.getBody().asString());
-
+        log.info("Response of jio login is  " +GenericSteps.resp.getBody().asString());
         log.info( " Validating Jio Login response");
         SoftAssert sa = new SoftAssert();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);

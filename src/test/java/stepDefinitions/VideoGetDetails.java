@@ -25,7 +25,7 @@ public class VideoGetDetails extends Util {
 
     @Then("Validate the video response")
     public void validate_the_video_response() throws JsonProcessingException {
-       log.info( " Validating video response");
+       //log.info( " Validating video response");
         SoftAssert sa = new SoftAssert();
 
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
@@ -36,7 +36,6 @@ public class VideoGetDetails extends Util {
         sa.assertAll();
 
     }
-
 
 
 
