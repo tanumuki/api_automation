@@ -19,7 +19,7 @@ public class JiotunepageCallerTuneHome extends Util {
         SoftAssert sa = new SoftAssert();
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         ArtistCallerTuneContainer artistCallerTuneContainer = objectMapper.readValue(GenericSteps.resp.asString(), ArtistCallerTuneContainer.class);
-        new JTPageCallerTuneHomeValidator().validate(artistCallerTuneContainer, sa);
+        new JTPageCallerTuneHomeValidator().validateArtistTune(artistCallerTuneContainer, sa);
         sa.assertAll();
     }
 

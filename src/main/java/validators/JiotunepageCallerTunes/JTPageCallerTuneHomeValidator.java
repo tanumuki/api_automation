@@ -18,7 +18,7 @@ import java.util.Map;
 public class JTPageCallerTuneHomeValidator extends EntityValidator {
     final String className = getClass().getName();
 
-    public void validate(ArtistCallerTuneContainer artistCaller, SoftAssert sa) throws IOException {
+    public void validateArtistTune(ArtistCallerTuneContainer artistCaller, SoftAssert sa) throws IOException {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         sa.assertTrue(Validate.asNum(artistCaller.getLastPage()), AssertionMsg.print(className, methodName, "last_page", (artistCaller.getLastPage()).toString()));
@@ -91,7 +91,7 @@ public class JTPageCallerTuneHomeValidator extends EntityValidator {
         }
 
         /**
-         * Validation for modules.all_artist_tune_* object
+         * Validation for modules.all_name_tune_* object
          */
         if (nameTune.getModules() != null) {
             if (nameTune.getModules().getCallerTuneModules().entrySet().size() > 0) {

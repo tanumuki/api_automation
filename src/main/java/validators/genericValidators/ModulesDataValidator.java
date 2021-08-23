@@ -157,6 +157,11 @@ public class ModulesDataValidator {
                     sa.assertTrue(Validate.asNum(msp.getNumItems()), AssertionMsg.print(className, methodName, "module.source_param.n", String.valueOf(msp.getNumItems())));
 
             }
+
+            if(md.getNoFooter() != null) {
+                System.out.println("no footer: " + md.getNoFooter());
+                sa.assertTrue(Validate.asBoolean(md.getNoFooter()),AssertionMsg.print(className, methodName, "modules.list.noFooter", String.valueOf(md.getNoFooter())));
+            }
         }
 
     }

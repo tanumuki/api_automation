@@ -50,5 +50,10 @@ public class ModulesData {
     private ExtraData extra_data;
     @JsonProperty("is_JT_module")
     private Boolean is_JT_module;
+    @JsonProperty("noFooter")
+    private Boolean noFooter;
+//    @JsonProperty("view_more")
+//    private ModuleViewMore viewMore;
+
 
 }
