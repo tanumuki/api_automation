@@ -46,4 +46,10 @@ public class GoogleAssistantValidator extends EntityValidator {
         new SongValidator().validate(songObj, sa, songObj.getId(), "song");
     }
 
+    public void validateEntityStationID(GoogleAssistantGet googleAssistantPojo, SoftAssert sa) {
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
+        if (Validate.isNonEmptyString(googleAssistantPojo.getStationid()))
+            sa.assertTrue(Validate.asString(googleAssistantPojo.getStationid()), AssertionMsg.print(className, methodName, "stationid", googleAssistantPojo.getStationid()));
+    }
 }
