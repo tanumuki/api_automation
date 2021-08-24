@@ -2,6 +2,7 @@ package validators.AppGetLaunchData;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.appGetLaunchData.*;
 import validators.AssertionMsg;
@@ -10,6 +11,7 @@ import validators.Validate;
 
 import java.util.LinkedHashMap;
 
+@Slf4j
 public class GetLaunchDataValidator extends HomepageDataValidator {
     final String className = getClass().getName();
 
@@ -20,9 +22,8 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         super.validate(obj, sa);
 
         String appVersion = System.getProperty("app_version");
-//        System.out.println("appVersion1: " + appVersion);
-        System.out.println("App_version is: " + obj.getGlobal_config().getApp_version());
-        sa.assertTrue(appVersion.equals(obj.getGlobal_config().getApp_version()), AssertionMsg.print(className, methodName, "global_config.app_version", String.valueOf(obj.getAppVersion())));
+        log.info("App_version is: " + obj.getAppVersion());
+        sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
 
         if (obj.getUpdateConfig() != null)
             validateUpdateConfig(obj.getUpdateConfig(), sa);
@@ -110,44 +111,44 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 
     public void validateAds(Ads ads, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-        System.out.println("=======Validate Ads=========");
-        System.out.println("ads null? " + ads == null);
+        log.info("=======Validate Ads=========");
+        log.info(String.valueOf("ads null? " + ads == null));
         if (ads != null) {
-            System.out.println("----Not Null----");
+            log.info("----Not Null----");
             if (Validate.isNonEmptyString(ads.getCarrier())) {
                 sa.assertTrue(Validate.asString(ads.getCarrier()), AssertionMsg.print(className, methodName, "ads.carrier", ads.getCarrier()));
-                System.out.println("carrier: " + ads.getCarrier());
+                log.info("carrier: " + ads.getCarrier());
             }
 
 
             if (Validate.isNonEmptyString(ads.getSegmentIds()))
                 sa.assertTrue(Validate.asString(ads.getSegmentIds()), AssertionMsg.print(className, methodName, "ads.segment_ids", ads.getSegmentIds()));
 
-            System.out.println("gender: " + ads.getGender());
+            log.info("gender: " + ads.getGender());
             if (Validate.isNonEmptyString(ads.getGender())) {
                 sa.assertTrue(Validate.asString(ads.getGender()), AssertionMsg.print(className, methodName, "ads.gender", ads.getGender()));
-                System.out.println("gender: " + ads.getGender());
+                log.info("gender: " + ads.getGender());
             }
 
 
             if (Validate.isNonEmptyString(ads.getCohort())) {
                 sa.assertTrue(Validate.asString(ads.getCohort()), AssertionMsg.print(className, methodName, "ads.cohort", ads.getCohort()));
-                System.out.println("cohort: " + ads.getCohort());
+                log.info("cohort: " + ads.getCohort());
             }
 
             if (ads.getAdproduct_abtest() != null) {
                 sa.assertTrue(Validate.asString(ads.getAdproduct_abtest()), AssertionMsg.print(className, methodName, "ads.adproduct_abtest", ads.getAdproduct_abtest()));
-                System.out.println("adproduct_abtest: " + ads.getAdproduct_abtest());
+                log.info("adproduct_abtest: " + ads.getAdproduct_abtest());
             }
 
             if (ads.getAudio_companion_exp() != null) {
                 sa.assertTrue(Validate.asString(ads.getAudio_companion_exp()), AssertionMsg.print(className, methodName, "ads.audio_companion_exp", ads.getAudio_companion_exp()));
-                System.out.println("audio_companion_exp: " + ads.getAudio_companion_exp());
+                log.info("audio_companion_exp: " + ads.getAudio_companion_exp());
             }
 
             if (ads.getPa_exp() != null) {
                 sa.assertTrue(Validate.asString(ads.getPa_exp()), AssertionMsg.print(className, methodName, "ads.pa_exp", ads.getPa_exp()));
-                System.out.println("pa_exp: " + ads.getPa_exp());
+                log.info("pa_exp: " + ads.getPa_exp());
             }
 
         }
@@ -186,7 +187,7 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
             sa.assertTrue(Validate.asNum(ts.getExplicit_content()), AssertionMsg.print(className, methodName, "top_searches.explicit_content", ts.getExplicit_content()));
 
         if (ts.getMini_obj() == "false") {
-            System.out.println(ts.getMoreInfo());
+            log.info((String) ts.getMoreInfo());
 
         }
 
