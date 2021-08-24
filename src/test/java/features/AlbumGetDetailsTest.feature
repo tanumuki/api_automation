@@ -1,5 +1,5 @@
-@contents @runNow
-Feature: Content Get Album Details of given albumId
+@content
+Feature: content.getAlbumDetails
 
   Scenario Outline: Get Album details for given albumId
     Given Payload with endPoint "GetAlbumDetailsAPI"

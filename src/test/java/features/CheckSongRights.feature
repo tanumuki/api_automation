@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-
-Feature: Gets the contents rights of a given song id
+Feature: subscription.checkRights
 
   Scenario Outline: Gets the contents rights of a given song id
     Given Payload with endpoint check rights "SubscriptionCheckRights"

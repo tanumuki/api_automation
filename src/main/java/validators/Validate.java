@@ -157,7 +157,7 @@ public class Validate {
      */
     public static boolean asPermaURL(String url) {
         if (!url.isEmpty()) {
-            return url.matches("^(https|http):\\/\\/(mls|dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix)\\/.+$");
+            return url.matches("^(https|http):\\/\\/(mls|dls|staging|www|qa|d[0-9].+).(jio)?saavn.com(\\/s|\\/p|\\/play)?\\/(song|album|featured|show(s)?|channel|radio|artist|playlist|mix|video)\\/.+$");
         } else
 //          perma_url is empty, just verify it as a string and return it
             return asString(url);
@@ -306,7 +306,7 @@ public class Validate {
     }
 
     public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune|all_artist_tune_1");
     }
 
 
@@ -319,7 +319,7 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST");
     }
 
     public static boolean asProStatusType(String type) {
@@ -380,6 +380,21 @@ public class Validate {
         }
     }
 
+    public static void asAssortedEntityForLibraryDetails(String chosenEntity, Response response, SoftAssert sa) {
+//        This is to select the jsonpath according to the chosen entity. The response structure varies for different entities
+        String field;
+        if(!chosenEntity.equals("song")){
+            field = "data";
+        }
+        else{
+            field = "songs";
+        }
+        List<LinkedHashMap> entityList = response.jsonPath().getJsonObject(field);
+        for (LinkedHashMap entity : entityList) {
+            Validate.asAssortedEntity(entity, sa);
+        }
+    }
+
     public static void asAssortedEntity(List<LinkedHashMap> entityList, SoftAssert sa) {
         if (entityList != null && entityList.size() > 0) {
             for (LinkedHashMap entity : entityList) {
@@ -389,7 +404,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune");
     }
 
     public static boolean asDeeplink(String deeplink) {
@@ -602,6 +617,16 @@ public class Validate {
         return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
     }
 
+    public static boolean asHeaders(String str){ return str.contains("http")||str.contains("https"); }
+
+    /**
+     Will verify the url sent in the param matches with the one is response, url gets concatenated with the encrypted userid
+     * @param str, toBeMatchedString
+     * @return Boolean
+     */
+    public static boolean asUpdatedUrlForDeeplink(String str, String toBeMatchedString){
+        return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/"+toBeMatchedString);
+    }
 
 }
 

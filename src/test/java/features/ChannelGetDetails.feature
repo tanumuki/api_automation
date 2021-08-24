@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-@channeldetails
-Feature: Get details of the channel for the given channel id
+Feature: channel.getDetails
 
   Scenario Outline: Get details of the channel for the given channel id
     Given Payload with Channel get details api "ChannelGetDetailsAPI"

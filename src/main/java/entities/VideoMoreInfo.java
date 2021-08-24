@@ -45,11 +45,14 @@ public class VideoMoreInfo {
         public String releaseDate;
         @JsonProperty("song_mappings")
         public List<String> songMappings = null;
+        @JsonProperty("vcode")
+        public String vcode;
+        @JsonProperty("vlink")
+        public String vlink;
         @JsonProperty("video_rate_cap")
-        public Integer videoRateCap;
+        public String videoRateCap;
         @JsonProperty("preview_url")
         public String previewUrl;
-
     }
 
 

@@ -45,10 +45,11 @@ public enum APIResources {
 	ShowGetHomePage("show.getHomePage"),
 	GetAllChannelsAPI("channel.getAllChannels"),
 	GetPlaylistDetailsAPI("playlist.getDetails"),
+	SurpriseMe("playlist.getDetailsForFeaturedRandom"),
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
-	UserCreateAPI ("user.createV2"),
+	UserCreateV2API ("user.createV2"),
 	LibraryAddAPI ("library.add"),
 	SocialFollowAPI ("social.follow"),
 	SocialUnfollowAPI("social.unfollow"),
@@ -85,7 +86,15 @@ public enum APIResources {
 	VideoGetDetails("video.getDetails"),
 	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
 	GoogleAssistantGet("google_assistant.get"),
-	MakePrivatePlaylist("playlist.makePrivate");
+	MakePrivatePlaylist("playlist.makePrivate"),
+	GetAlbumVideoList("video.getAlbumVideoList"),
+	LibraryGetDetails("library.getDetails"),
+	UserGetUpdatedLink("user.getUpdatedlink"),
+	JiotunepageGetDecades("jiotunepage.getDecades"),
+	JiotunepageGetMoodGenres("jiotunepage.getMoodsGenres"),
+	JiotunepageGetArtists("jiotunepage.getArtists"),
+	JiotunepageGetTopJiotune("jiotunepage.getTopJioTune"),
+	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome");
 
 	private String resource;
 

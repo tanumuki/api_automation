@@ -1,4 +1,4 @@
-Feature: Validation of Benefits list and count API.
+Feature: benefits.count + benefits.list
   Background:
     Given I have the cookie for the following user
       | username | password |

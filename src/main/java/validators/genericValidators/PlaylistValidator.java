@@ -47,15 +47,30 @@ public class PlaylistValidator extends EntityValidator {
 
     public void validateMoreInfo(Entity plObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        PlaylistMoreInfo moreInfo = null;
+        List<String> surpriseMePlaylist = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        PlaylistMoreInfo moreInfo;
+        Object temp = null;
 
         try {
-            moreInfo = ((Playlist) plObj).getMore_info();
-
-        } catch (ClassCastException e) {
+            temp = ((Playlist) plObj).getMore_info();
+        }
+        catch(ClassCastException e) {
             moreInfo = ((UserProfilePlaylists) plObj).getMore_info();
         }
+
+        if(temp instanceof ArrayList) {
+//          The Surprise Me playlist's more_info is empty, so we just assert that the length is 0
+//          and return because there is nothing to verify
+            surpriseMePlaylist = (ArrayList) ((Playlist) plObj).getMore_info();
+            sa.assertTrue(surpriseMePlaylist.isEmpty());
+            return;
+        }
+        else if(temp instanceof LinkedHashMap) {
+//          Handler for regular playlist more_info field
+            moreInfo = mapper.convertValue(temp, PlaylistMoreInfo.class);
+        }
+
         if(Validate.isNonEmptyString(moreInfo.getUid()))
             sa.assertTrue(Validate.asString(moreInfo.getUid()), AssertionMsg.print(className, methodName, "playlist.more_info.uid", moreInfo.getUid()));
 

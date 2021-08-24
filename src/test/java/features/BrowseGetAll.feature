@@ -1,10 +1,10 @@
-# new feature
-# Tags: optional
-
-Feature: Get all channels of browse
+Feature: browse.getAll
 
   Scenario: Get all channels of browse
-    Given Payload with browse get all endpoint "BrowseGetAll" along with given credentials
-    When User calls browse get all api
+    Given I have the cookie for the following user
+      | username | password |
+      | ai370@saavn.com | Saavn123 |
+    Given I have the endpoint for "BrowseGetAll"
+    When I make the "GET" request
     Then Browse get all api should return with status code "OK"
     And Browse get all response must be validated successfully

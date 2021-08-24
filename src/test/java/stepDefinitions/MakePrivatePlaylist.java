@@ -46,7 +46,7 @@ public class MakePrivatePlaylist extends Util {
         System.out.println("resource: " + resource);
         reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
     }
-    @When("User calls MakePrivatePlaylist  api with {int}")
+    @When("User calls MakePrivatePlaylist api with {string}")
     public void user_calls_MakePrivatePlaylist_api_with(String playlist_id){
         resSpec = new ResponseSpecBuilder().expectStatusCode(200)
                 .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
@@ -59,7 +59,7 @@ public class MakePrivatePlaylist extends Util {
     }
 
     @Then("MakePrivatePlaylist api must respond with status code {string}")
-    public void makeprivateplaylist_api_must_respond_with_status_code(String statusCode) {
+    public void makePrivatePlaylist_api_must_respond_with_status_code(String statusCode) {
         StatusCode code = StatusCode.valueOf(statusCode);
         int resource = code.getResource();
         assertEquals(resp.getStatusCode(), resource);

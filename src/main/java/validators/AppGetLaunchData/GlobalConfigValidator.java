@@ -198,11 +198,11 @@ public class GlobalConfigValidator {
         sa.assertTrue(Validate.asNum(gc.getMax_Video_Limit()), AssertionMsg.print(className, methodName, "global_config.getMax_Video_Limit", String.valueOf(gc.getMax_Video_Limit())));
         sa.assertTrue(Validate.asNum(gc.getFeatureViewSpan()), AssertionMsg.print(className, methodName, "global_config.getFeatureViewSpan", String.valueOf(gc.getFeatureViewSpan())));
         sa.assertTrue(Validate.asNum(gc.getWatchVideoSpan()), AssertionMsg.print(className, methodName, "global_config.getWatchVideoSpan", String.valueOf(gc.getWatchVideoSpan())));
-
-
-
+        sa.assertTrue(Validate.asNum(gc.getIn_app_review_stream_count()), AssertionMsg.print(className, methodName, "global_config.getIn_app_review_stream_count", String.valueOf(gc.getIn_app_review_stream_count())));
         validateAppLanguages(gc.getApp_languages(), sa);
-
+        sa.assertTrue(Validate.asNum(gc.getModule_limit()), AssertionMsg.print(className, methodName, "global_config.module_limit", String.valueOf(gc.getModule_limit())));
+        sa.assertTrue(Validate.asNum(gc.getModule_content_limit()), AssertionMsg.print(className, methodName, "global_config.module_content_limit", String.valueOf(gc.getModule_content_limit())));
+        sa.assertTrue(Validate.asNum(gc.getAd_config_ref_time()), AssertionMsg.print(className, methodName, "global_config.getAd_config_ref_time", String.valueOf(gc.getAd_config_ref_time())));
     }
 
 

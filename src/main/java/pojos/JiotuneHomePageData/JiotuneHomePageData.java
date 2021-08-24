@@ -2,6 +2,8 @@ package pojos.JiotuneHomePageData;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entities.ModulesData;
+import entities.ModulesObject;
 import entities.ModulesWithViewMoreObj;
 import entities.Song;
 import lombok.Data;
@@ -31,6 +33,6 @@ public class JiotuneHomePageData {
     private List<LinkedHashMap> data_5;
     @JsonProperty("data_6")
     private List<LinkedHashMap> data_6;
-    @JsonProperty("modules")
-    private List<ModulesWithViewMoreObj> modules;
+    @JsonProperty("modules") // The JSONArray has been changed to a JSONObject as of 7th July, 2021 - Ashwin
+    private ModulesObject modules;
 }
