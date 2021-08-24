@@ -68,6 +68,7 @@ public enum APIResources {
 	GetArtistMoreAlbums("artist.getArtistMoreAlbum"),
 	GetArtistSimilarArtists("artist.getSimilarArtists"),
 	PlaylistCreate("playlist.create"),
+	PlaylistDelete("playlist.delete"),
 	UserLogoutAPI("user.logout"),
 	WebRadioCreateEntityStation("webradio.createEntityStation"),
 	WebRadioCreateStation("webradio.createStation"),
