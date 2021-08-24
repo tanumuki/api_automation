@@ -23,7 +23,11 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
 
         String appVersion = System.getProperty("app_version");
         log.info("App_version is: " + obj.getAppVersion());
-        sa.assertTrue(appVersion.equals(obj.getAppVersion()), AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
+        if(!(System.getProperty("ctx").equalsIgnoreCase("iphoneapp"))) {
+            // ctx=iphoneapp has the app version sent in the global config and is validated with other global config fields below
+            sa.assertTrue(appVersion.equals(obj.getAppVersion()),
+                    AssertionMsg.print(className, methodName, "app_version", String.valueOf(obj.getAppVersion())));
+        }
 
         if (obj.getUpdateConfig() != null)
             validateUpdateConfig(obj.getUpdateConfig(), sa);
