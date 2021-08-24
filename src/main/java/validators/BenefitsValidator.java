@@ -211,5 +211,7 @@ public class BenefitsValidator {
                 AssertionMsg.print(className, methodName,"metadata.monetary_value.saved", benefitsList.getMetadata().getMonetary_value().getSaved()));
         sa.assertTrue(Validate.asString(benefitsList.getMetadata().getMonetary_value().getTo_unlock()),
                 AssertionMsg.print(className, methodName,"metadata.monetary_value.to_unlock", benefitsList.getMetadata().getMonetary_value().getTo_unlock()));
+        sa.assertTrue(Validate.asCurrency(benefitsList.getMetadata().getMonetary_value().getCurrency().trim()),
+                AssertionMsg.print(className, methodName,"metadata.monetary_value.currency", benefitsList.getMetadata().getMonetary_value().getCurrency().trim()));
     }
 }

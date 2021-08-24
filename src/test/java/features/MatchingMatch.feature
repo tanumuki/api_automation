@@ -5,7 +5,7 @@ Feature: matching.match
       | username | password |
       | paypaltest7@saavn.com | Saavn@1234 |
 
-  Scenario Outline: Verify response of matching matach API
+  Scenario Outline: Verify response of matching match API
     Given I have the endpoint for "MatchingMatchApi"
     And I make the "GET" request with the following query parameters
       | url   |

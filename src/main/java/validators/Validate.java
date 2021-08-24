@@ -636,6 +636,10 @@ public class Validate {
         return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
     }
 
+    public static boolean asCurrency(String str){
+        return str.matches("Rs.|$");
+    }
+
     public static boolean asHeaders(String str){ return str.contains("http")||str.contains("https"); }
 
     /**
