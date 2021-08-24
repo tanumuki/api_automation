@@ -36,7 +36,8 @@ public class GetLaunchDataValidator extends HomepageDataValidator {
         //Validate ab_test
         if (obj.getAbTest() instanceof LinkedHashMap) {
             AB_test ab_testObj = mapper.convertValue(obj.getAbTest(), AB_test.class);
-            sa.assertTrue(ab_testObj.getSplash().equals("single_artist"), AssertionMsg.print(className, methodName, "ab_test.splash", ab_testObj.getSplash()));
+            sa.assertTrue(ab_testObj.getSplash().matches("single_artist|multi_artist"), AssertionMsg.print(className, methodName, "ab_test.splash", ab_testObj.getSplash()));
+
 
             sa.assertTrue(ab_testObj.getPaywall().equals("phone_green"), AssertionMsg.print(className, methodName, "ab_test.paywall", ab_testObj.getPaywall()));
 

@@ -193,4 +193,7 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("ad_config_ref_time")
     private int ad_config_ref_time;
 
+    @JsonProperty("is_homepod_enabled")
+    private Boolean is_homepod_enabled;
+
 }
