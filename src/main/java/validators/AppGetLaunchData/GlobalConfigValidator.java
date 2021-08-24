@@ -203,6 +203,9 @@ public class GlobalConfigValidator {
         sa.assertTrue(Validate.asNum(gc.getModule_limit()), AssertionMsg.print(className, methodName, "global_config.module_limit", String.valueOf(gc.getModule_limit())));
         sa.assertTrue(Validate.asNum(gc.getModule_content_limit()), AssertionMsg.print(className, methodName, "global_config.module_content_limit", String.valueOf(gc.getModule_content_limit())));
         sa.assertTrue(Validate.asNum(gc.getAd_config_ref_time()), AssertionMsg.print(className, methodName, "global_config.getAd_config_ref_time", String.valueOf(gc.getAd_config_ref_time())));
+        if(System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
+            sa.assertTrue(Validate.asBoolean(gc.getIs_homepod_enabled()), AssertionMsg.print(className, methodName, "global_config.is_homepod_enabled", String.valueOf(gc.getIs_homepod_enabled())));
+        }
     }
 
 
