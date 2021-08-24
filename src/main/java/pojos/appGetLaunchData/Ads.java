@@ -28,5 +28,7 @@ public class Ads {
     private String audio_companion_exp;
     @JsonProperty("pa_exp")
     private String pa_exp;
+    @JsonProperty("adload_abtest")
+    private String adload_abtest;
 
 }
