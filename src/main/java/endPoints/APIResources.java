@@ -87,7 +87,8 @@ public enum APIResources {
 	GoogleAssistantGet("google_assistant.get"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	VideoGetVideoHomePage("video.getVideoHomePage"),
-	UserJioLoginAPI("user.jiologin");
+	UserJioLoginAPI("user.jiologin"),
+	JiotuneSetJioTune("jiotune.setJioTune");
 
 	private String resource;
 

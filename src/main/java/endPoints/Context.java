@@ -10,5 +10,6 @@ public enum Context {
 	USERNAME,
 	PASSWORD,
 	SSO_TOKEN,
+	RESPONSE,
 
 }

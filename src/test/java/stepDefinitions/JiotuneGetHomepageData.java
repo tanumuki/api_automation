@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
+import endPoints.Context;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +17,7 @@ import io.restassured.specification.ResponseSpecification;
 import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import resources.ConfigReader;
+import resources.ScenarioContext;
 import resources.Util;
 import validators.JiotuneHomepageData.JTHomePageDataValidator;
 
@@ -29,6 +31,7 @@ public class JiotuneGetHomepageData extends Util {
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     Response resp;
+    ScenarioContext scenarioContext;
 
     @Given("Payload with jiotune home page data endpoint {string}")
     public void payload_with_jiotune_home_page_data_endpoint(String endpoint) throws IOException {
@@ -46,7 +49,7 @@ public class JiotuneGetHomepageData extends Util {
 
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
         System.out.println( resp.asString());
-
+        testContext.scenarioContext.setContext(Context.RESPONSE, resp);
         logResponseTime(resp);
     }
 
