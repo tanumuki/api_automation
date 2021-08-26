@@ -184,10 +184,12 @@ public class GlobalConfigValidator {
         }
 
         //Web release 08-April-2020
-        if (gc.getZero_streamer() != null) {
-            sa.assertTrue(Validate.asBoolean(gc.getZero_streamer()), AssertionMsg.print(className, methodName, "global_config.zero_streamer", gc.getZero_streamer().toString()));
-        } else {
-            sa.fail("global_config.zero_streamer is empty/null");
+        if(!(System.getProperty("ctx").equalsIgnoreCase("iphoneapp"))) {
+            if (gc.getZero_streamer() != null) {
+                sa.assertTrue(Validate.asBoolean(gc.getZero_streamer()), AssertionMsg.print(className, methodName, "global_config.zero_streamer", gc.getZero_streamer().toString()));
+            } else {
+                sa.fail("global_config.zero_streamer is empty/null");
+            }
         }
 
         sa.assertTrue(Validate.asNum(gc.getVideo_mapping_data_update()), AssertionMsg.print(className, methodName, "global_config.getVideo_mapping_data_update", String.valueOf(gc.getVideo_mapping_data_update())));
