@@ -69,18 +69,20 @@ public class GenericSteps extends Util {
 
     @When("I make the {string} request")
     public void iMakeTheRequest(String method) {
-        resp = request.given()
-                .log()
-                .all()
-                .when()
-                .get("/api.php")
-                .then()
-                .log()
-                .all()
-                .extract()
-                .response();
-        logResponseTime(resp);
-        System.out.println(resp.asString());
+        if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+            resp = request.given()
+                    .log()
+                    .all()
+                    .when()
+                    .get("/api.php")
+                    .then()
+                    .log()
+                    .all()
+                    .extract()
+                    .response();
+            logResponseTime(resp);
+            System.out.println(resp.asString());
+        }
     }
 
 
