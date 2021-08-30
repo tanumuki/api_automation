@@ -141,7 +141,7 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://(sgdccdnems02.cdnsrv.jio.com\\/c|c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
@@ -334,7 +334,7 @@ public class Validate {
         return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
                 "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
                 "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
-                "SS_CAROUSEL|SS_SHORT_VIDEOS");
+                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_CAROUSEL_JIOTUNE|SS_Generic");
     }
 
     public static boolean asProStatusType(String type) {
@@ -358,6 +358,7 @@ public class Validate {
                 new EpisodeValidator().validate(episode, sa);
                 break;
             case "song":
+                System.out.println("in song");
                 Song song = mapper.convertValue(entity, Song.class);
                 new SongValidator().validate(song, sa);
                 break;
@@ -419,7 +420,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune|menu");
     }
 
     public static boolean asDeeplink(String deeplink) {

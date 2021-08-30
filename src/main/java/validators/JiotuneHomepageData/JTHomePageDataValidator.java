@@ -1,9 +1,6 @@
 package validators.JiotuneHomepageData;
 
-import entities.ModulesData;
-import entities.ModulesDataShowMore;
-import entities.ModulesWithViewMoreObj;
-import entities.Song;
+import entities.*;
 import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import validators.AssertionMsg;
@@ -12,6 +9,7 @@ import validators.genericValidators.ModulesDataValidator;
 import validators.genericValidators.SongValidator;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class JTHomePageDataValidator {
@@ -20,20 +18,21 @@ public class JTHomePageDataValidator {
     public void validate(JiotuneHomePageData hd, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        //validate data_0
-        for(Song song : hd.getData_0()){
+        //validate trending_jiotunes
+        for(Song song : hd.getTrending_jiotunes()){
             new SongValidator().validate(song, sa, song.getId(), "Trending Jiotunes");
         }
 
-        //validate data_1
-        Validate.asAssortedEntity(hd.getData_1(), sa);
+        // Validate data_0
+        for(JTMenu jtMenu : hd.getData_0()) {
+            new JTMenuValidator().validate(jtMenu, sa);
+        }
 
         //validate data_2
         Validate.asAssortedEntity(hd.getData_2(), sa);
 
         //Validate data_3
         Validate.asAssortedEntity(hd.getData_3(), sa);
-
 
         //Validate data_4
         Validate.asAssortedEntity(hd.getData_4(), sa);
