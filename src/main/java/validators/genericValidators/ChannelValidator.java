@@ -64,7 +64,9 @@ public class ChannelValidator extends EntityValidator {
             if(Validate.isNonEmptyString(moreInfo.getBadge()))
                 sa.assertTrue(Validate.asString(moreInfo.getBadge()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.badge", moreInfo.getBadge(), chObj.getId()));
 
-            sa.assertTrue(Validate.asChannelSubtype(moreInfo.getSubType()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.sub_type", moreInfo.getSubType(), chObj.getId()));
+            if(Validate.isNonEmptyString(moreInfo.getSubType())) {
+                sa.assertTrue(Validate.asChannelSubtype(moreInfo.getSubType()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.sub_type", moreInfo.getSubType(), chObj.getId()));
+            }
 
             if(Validate.isNonEmptyString(moreInfo.getAvailable()))
                 sa.assertTrue(Validate.asNum(moreInfo.getAvailable()), AssertionMsg.print(className, methodName, chObj.getType(), "channel.more_info.available", moreInfo.getAvailable(), chObj.getId()));
