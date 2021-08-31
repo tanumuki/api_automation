@@ -13,6 +13,6 @@ Feature: user.login
     When User calls with method with below params
       | method | endPoint     | username              | password    |
       | GET    | UserLoginAPI | paypaltest7@saavn.com | Saavn@12344 |
-    Then The Login API returns success with status code "OK" for invalid credentials
+    Then The Login API returns an error message with status code "OK" for invalid credentials
 
 

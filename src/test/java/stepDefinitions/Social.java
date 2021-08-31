@@ -13,8 +13,8 @@ public class Social extends Util {
     public void theSocialFollowAPIReturnsWithStatusCode(String expectedStatus, int expectedStatusCode) {
 
         SoftAssert sa = new SoftAssert();
-        Assert.assertEquals(expectedStatusCode, GenericSteps.resp.getStatusCode(), "Response code validation failed for user update API");
-        Assert.assertEquals(expectedStatus, GenericSteps.resp.jsonPath().get("status"), "Status validation failed for user update API");
+        Assert.assertEquals(GenericSteps.resp.getStatusCode(), expectedStatusCode, "Response code validation failed for user update API");
+        Assert.assertEquals(GenericSteps.resp.jsonPath().get("status"), expectedStatus, "Status validation failed for user update API");
         sa.assertAll();
     }
 
