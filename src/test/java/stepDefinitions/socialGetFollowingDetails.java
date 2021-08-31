@@ -17,6 +17,7 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import validators.ChannelGetDetails.ChannelGetDetailsValidator;
+import validators.SocialFollow.socialGetFollowingDetailsValidator;
 
 import java.io.IOException;
 
@@ -60,14 +61,13 @@ import static org.testng.Assert.assertEquals;
 
 
 
-    /* @Then("SocialGetFollowers details api response must be validated successfully")
-    public void SocialGetFollowers_details_api_response_must_be_validated_successfully() throws JsonProcessingException {
+        @Then("Following get details api response must be validated successfully")
+    public void SocialGetFollowing_details_api_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        pojos.social.getFollowersDetails channels = mapper.readValue(resp.asString(), pojos.channelGetDetailsPojos.ChannelGetDetails.class);
+        pojos.SocialFollow.GetFollowingDetails followingDetails = mapper.readValue(resp.asString(), pojos.SocialFollow.GetFollowingDetails.class);
         SoftAssert sa = new SoftAssert();
-        new ChannelGetDetailsValidator().validate(channels, sa);
+        new socialGetFollowingDetailsValidator().validate(followingDetails, sa);
         sa.assertAll();
-    } */
-
+    }
 
    }

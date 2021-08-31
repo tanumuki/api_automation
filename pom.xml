@@ -34,11 +34,11 @@
             <artifactId>cucumber-java</artifactId>
             <version>${version.cucumber}</version>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${version.restAssured}</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-path</artifactId>
@@ -99,6 +99,13 @@
             <version>2.6.0</version>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Repository</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>
