@@ -73,6 +73,31 @@ public class Util {
         return request;
     }
 
+    public RequestSpecification requestSpecificationWithHeadersUsingMap(String ctx, String endPoint, String cookie, Map<String,String> headerMap) throws FileNotFoundException {
+
+
+        PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
+        String device_id = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+        cookie = updateGeoCookieToIndia(cookie);
+        cookie += device_id;
+        request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())
+                .addFilter(RequestLoggingFilter.logRequestTo(log))
+                .addFilter(ResponseLoggingFilter.logResponseTo(log))
+                .addCookie(cookie)
+                .addHeader("User-Agent", ConfigReader.getInstance().getUserAgent())
+                .addHeaders(headerMap)
+                .addQueryParam("__call", endPoint)
+                .addQueryParam("api_version", "4")
+                .addQueryParam("_format", "json")
+                .addQueryParam("_marker", "0")
+                .addQueryParam("app_version", ConfigReader.getInstance().getAppVersion())
+                .addQueryParam("v", ConfigReader.getInstance().getVersion())
+                .addQueryParam("ctx", ctx).setContentType(ContentType.JSON)
+                .build();
+
+        return request;
+    }
+
     //https://www.baeldung.com/rest-assured-header-cookie-parameter
 
     public static String updateGeoCookieToIndia(String cookie) {
@@ -237,5 +262,13 @@ public class Util {
 
     public ResponseSpecification responseSpecification(String contentType, int statusCode){
         return new ResponseSpecBuilder().expectStatusCode(statusCode).expectContentType(contentType).build();
+    }
+
+
+    public static String getRandomElement(List<String> list){
+
+        Random random = new Random();
+        return list.get(random.nextInt(list.size()));
+
     }
 }

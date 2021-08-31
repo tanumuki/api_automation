@@ -49,7 +49,7 @@ public class JiotuneGetHomepageData extends Util {
 
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
         System.out.println( resp.asString());
-        testContext.scenarioContext.setContext(Context.RESPONSE, resp);
+        testContext.scenarioContext.setContext(Context.JIOTUNEGETHOMEPAGERESPONSE, resp);
         logResponseTime(resp);
     }
 

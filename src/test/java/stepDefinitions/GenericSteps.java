@@ -98,6 +98,7 @@ public class GenericSteps extends Util {
         List<Map<String, String>> user = userDetails.asMaps();
         cookie = initCookies(user.get(0).get("username"), user.get(0).get("password"));
         System.setProperty("ctx", ConfigReader.getInstance().getCtx());
+        testContext.scenarioContext.setContext(Context.COOKIE,cookie);
     }
 
     @Given("^I have the following params for SSO Token generation$")

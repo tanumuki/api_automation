@@ -36,3 +36,4 @@ public class JiotuneHomePageData {
     @JsonProperty("modules") // The JSONArray has been changed to a JSONObject as of 7th July, 2021 - Ashwin
     private ModulesObject modules;
 }
+
