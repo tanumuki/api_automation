@@ -358,7 +358,6 @@ public class Validate {
                 new EpisodeValidator().validate(episode, sa);
                 break;
             case "song":
-                System.out.println("in song");
                 Song song = mapper.convertValue(entity, Song.class);
                 new SongValidator().validate(song, sa);
                 break;
