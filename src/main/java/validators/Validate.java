@@ -238,10 +238,10 @@ public class Validate {
 //        Example strings:
 //        "Artist <middle dot separator> 100K Fans" for pre-7.x
 //        "30.9M Listeners" for post-7.x
-        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
-            return str.matches("(Artist • [0-9]{0,10} Listeners)");
-        else
-            return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+//        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+//            return str.matches("(Artist • [0-9]{0,10} Listeners)");
+//        else
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
     }
 
     /**
@@ -277,7 +277,7 @@ public class Validate {
     }
 
     public static boolean asMusicLanguages(String lang) {
-        return lang.matches("english|hindi|punjabi|tamil|telugu|marathi|gujarati|bengali|kannada|bhojpuri|malayalam|urdu|haryanvi|rajasthani|odia|assamese|spanish|latin|italian|french|portuguese|instrumental|croatian|korean|unknown");
+        return lang.matches("english|hindi|punjabi|tamil|telugu|marathi|gujarati|bengali|kannada|bhojpuri|malayalam|urdu|haryanvi|rajasthani|odia|assamese|spanish|latin|italian|french|portuguese|instrumental|croatian|korean|unknown|icelandic");
     }
 
     public static boolean asJTSubType(String str){
