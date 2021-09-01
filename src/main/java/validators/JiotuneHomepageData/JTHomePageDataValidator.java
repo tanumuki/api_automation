@@ -1,6 +1,7 @@
 package validators.JiotuneHomepageData;
 
 import entities.*;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import validators.AssertionMsg;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+@Slf4j
 public class JTHomePageDataValidator {
     final String className = getClass().getName();
 
@@ -41,8 +43,12 @@ public class JTHomePageDataValidator {
         Validate.asAssortedEntity(hd.getData_5(), sa);
 
         //Validate data_6
-        if (hd.getData_6()!=null)
-        Validate.asAssortedEntity(hd.getData_6(), sa);
+        if (!(hd.getData_6().isEmpty())) {
+            Validate.asAssortedEntity(hd.getData_6(), sa);
+        }
+        else{
+            log.info("data_6(Requested JTs) is empty array of objects for the user.");
+        }
 
         //Validate modules
         List<ModulesWithViewMoreObj> mdo = new ArrayList<>();
