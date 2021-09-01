@@ -3,14 +3,15 @@ package validators.genericValidators;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.*;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+@Slf4j
 public class ChannelValidator extends EntityValidator {
     final String className = SongValidator.class.getName();
     public void validate(Channel chObj, SoftAssert sa) {
@@ -92,10 +93,12 @@ public class ChannelValidator extends EntityValidator {
             if (temp instanceof ArrayList) {
                 emptyTags = (ArrayList) (moreInfo).getTags();
                 sa.assertTrue(emptyTags.isEmpty());
+                log.info("The tags are empty for this channel "+chObj.getId());
             } else if (temp instanceof LinkedHashMap) {
                 tags = mapper.convertValue(temp, Tags.class);
                 if (tags != null)
                     new TagsValidator().validate(tags, sa, "channel", chObj.getId());
+                    log.info("Validation done for tags for the channel id "+chObj.getId());
             }
 
 
