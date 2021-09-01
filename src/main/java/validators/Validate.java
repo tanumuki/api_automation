@@ -661,6 +661,10 @@ public class Validate {
         return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
     }
 
+    public static boolean asJiotuneSetMessage(String str){
+        return str.matches("JioTune set for:  XXXXXX[0-9]{4} Order Ref number: [A-Z0-9]{12}");
+    }
+
     /*
 
         validation of user data for all the user login test cases (user.login/user.jioLogin apis)

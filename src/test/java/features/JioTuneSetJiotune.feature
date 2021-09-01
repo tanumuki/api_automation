@@ -17,11 +17,11 @@ Feature: jiotune.setJiotune
 
     Scenario: Verify setJiotune api response
       Given I have the endpoint for "JiotuneSetJioTune" with params
-        |Content-Type|lbcookie|api-key|Accept|
-        |application/x-www-form-urlencoded|1   |l7xx77e611b130e44bdd91e5193986704c32|application/json|
+            |Content-Type|lbcookie|api-key|Accept|
+            |application/x-www-form-urlencoded|1   |l7xx77e611b130e44bdd91e5193986704c32|application/json|
       When I make the "GET" request with the following query parameters for setJioTune
-        |msisdn                              |uid   |
-        |RrXcJeH\/0WYXX7atH0ipSw==|bharatkhati08|
+             |msisdn                              |uid   |
+             |RrXcJeH\/0WYXX7atH0ipSw==           |bharatkhati08|
       Then The Jio Tune API returns "success" with status code 200 and response message is validated
 
 

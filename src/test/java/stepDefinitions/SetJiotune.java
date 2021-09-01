@@ -20,10 +20,12 @@ import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import pojos.jioTuneLogin.DeviceInfo;
 import pojos.jioTuneLogin.UserJioLogin;
+import pojos.setJioTune.JiotuneSetJioTunePojo;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.ScenarioContext;
 import resources.Util;
+import validators.JiotuneValidator.JiotuneValidator;
 import validators.jioLoginValidator.JioLoginValidator;
 
 import java.io.FileNotFoundException;
@@ -48,11 +50,9 @@ public class SetJiotune extends Util {
     @Given("I have the endpoint for {string} with params")
     public void iHaveTheEndpointFor(String endPoint, DataTable dataTable) throws FileNotFoundException {
         apiResource = APIResources.valueOf(endPoint).getResource();
-        System.out.println("api ro" +apiResource);
-        System.out.println("cooki "+cookie);
-               List<Map<String, String>> map= dataTable.asMaps();
-               Map<String,String> headerMap = new HashMap<>();
-              String ContentType= map.get(0).get("Content-Type");
+             List<Map<String, String>> map= dataTable.asMaps();
+             Map<String,String> headerMap = new HashMap<>();
+             String ContentType= map.get(0).get("Content-Type");
              String lbcookie= map.get(0).get("lbcookie");
              String apikey= map.get(0).get("api-key");
              String accept = map.get(0).get("Accept");
@@ -85,19 +85,17 @@ public class SetJiotune extends Util {
         List<Song> dataList= jsonPath.getList("data_0", Song.class);
         for(int i=0 ;i <dataList.size() ;i++){
              String vcodeNumber=   dataList.get(i).getMoreInfo().getVcode();
-            log.info("vcodeNumber is: "+vcodeNumber);
+            log.info("vcode Number is: "+vcodeNumber);
             vCodes.add(vcodeNumber);
 
          }
        String vCode= Util.getRandomElement(vCodes);
         log.info("VCode : "+vCode);
         List<Map<String, String>> params = queryParams.asMaps();
-        System.out.println("sso " +ssoToken);
+        log.info("sso token is " +ssoToken);
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
-           // request.queryParam("ssotoken", ssoToken);
             request.queryParam("vcode", vCode);
-           // request.queryParam("jtoken", new DeviceInfo().getJToken()); //This field(jtoken) is optional
         }
 
         resp = request.given()
@@ -112,7 +110,6 @@ public class SetJiotune extends Util {
                 .extract()
                 .response();
         logResponseTime(resp);
-        System.out.println("me resp " +resp.asString());
     }
 
     @Then("^The Jio Tune API returns \"([^\"]*)\" with status code 200 and response message is validated$")
@@ -124,8 +121,9 @@ public class SetJiotune extends Util {
         SoftAssert sa = new SoftAssert();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
         System.out.println("response " +resp.asString());
-//        UserJioLogin jioLoginResponse= mapper.readValue(GenericSteps.resp.asString(), UserJioLogin.class);
-//        new JioLoginValidator().validate(jioLoginResponse,sa);
+        JiotuneSetJioTunePojo setJioTunePojo= mapper.readValue(resp.asString(), pojos.setJioTune.JiotuneSetJioTunePojo.class);
+        new JiotuneValidator().validate(setJioTunePojo,sa);
+        log.info("Jiotune set and validated!");
     }
 
 }
