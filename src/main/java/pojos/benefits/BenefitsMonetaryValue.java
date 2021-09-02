@@ -17,4 +17,6 @@ public class BenefitsMonetaryValue {
     private String saved;
     @JsonProperty("to_unlock")
     private String to_unlock;
+    @JsonProperty("currency")
+    private String currency;
 }
