@@ -69,33 +69,34 @@ public class JTPageCallerTuneHomeValidator extends EntityValidator {
         }
     }
 
-    public void validateNameTune(NameCallerTuneContainer nameTune, SoftAssert sa) {
+    public void validateNameTuneHomeOrArtistTune(NameCallerTuneContainer callerTune, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
-        sa.assertTrue(Validate.asBoolean(nameTune.getLastPageBool()), AssertionMsg.print(className, methodName, "last_page", (nameTune.getLastPageBool()).toString()));
+        sa.assertTrue(Validate.asBoolean(callerTune.getLastPageBool()), AssertionMsg.print(className, methodName, "last_page", (callerTune.getLastPageBool()).toString()));
         log.info("Last_page field is validated.");
 
         /**
-         * Validation for all_name_tune array of objects
+         * Validation for all_name_tune/all_artist_tune array of objects
          */
-        if (nameTune.getAllNameTune().entrySet().size() > 0) {
-            for (Map.Entry<String, MultipleTunes[]> data : nameTune.getAllNameTune().entrySet()) {
-                if(data.getValue() != null) {
+        if (callerTune.getAllNameTuneHomeOrArtistTune().entrySet().size() > 0) {
+            for (Map.Entry<String, MultipleTunes[]> data : callerTune.getAllNameTuneHomeOrArtistTune().entrySet()) {
+                if (data.getValue() != null) {
                     for (MultipleTunes tune : data.getValue()) {
                         new MultipleTunesValidator().validate(tune, sa);
+                        log.info("Validation done for "+data.getKey());
                     }
                 }
             }
         } else {
-            sa.fail("All Name Tunes list is empty, Validation fails.");
+            sa.fail("All Name tunes/Artist tunes list is empty, Validation fails.");
         }
 
         /**
-         * Validation for modules.all_name_tune_* object
+         * Validation for modules.all_name_tune_* or all_artist_tune* object
          */
-        if (nameTune.getModules() != null) {
-            if (nameTune.getModules().getCallerTuneModules().entrySet().size() > 0) {
-                for (Map.Entry<String, ModulesData> entry : nameTune.getModules().getCallerTuneModules().entrySet()) {
+        if (callerTune.getModules() != null) {
+            if (callerTune.getModules().getCallerTuneModules().entrySet().size() > 0) {
+                for (Map.Entry<String, ModulesData> entry : callerTune.getModules().getCallerTuneModules().entrySet()) {
                     sa.assertEquals(entry.getKey(), entry.getValue().getSource(),
                             AssertionMsg.print(className, methodName, "artist_tune_modules", entry.getValue().getSource()));
                     log.info("The key " + entry.getKey() + " matches with the source value " + entry.getValue().getSource());
@@ -109,7 +110,6 @@ public class JTPageCallerTuneHomeValidator extends EntityValidator {
         } else {
             sa.fail("Validation failed, modules object should not be empty");
         }
-
     }
 }
 
