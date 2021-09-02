@@ -96,11 +96,7 @@ public class PlaylistOps extends Util {
 
 	@Then("Playlist Delete API returns success with status code {string} and response is validated")
 	public void playlistDeleteAPIReturnsSuccessWithStatusCode(String statusCode) throws JsonProcessingException {
-		StatusCode code = StatusCode.valueOf(statusCode);
-		int resource = code.getResource();
-		assertEquals(resp.getStatusCode(), resource);
-		log.info("The status is "+ resp.getStatusCode());
-
+		userValidatesTheStatusCode(statusCode);
 		SoftAssert sa = new SoftAssert();
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		PlaylistContainer playlist = mapper.readValue(resp.asString(), PlaylistContainer.class);
@@ -131,11 +127,7 @@ public class PlaylistOps extends Util {
 
 	@Then("I verify that there is no such playlist after deletion and status code is {string}")
 	public void iVerifyThatThereIsNoSuchPlaylistAfterDeletionAndStatusCodeIs(String statusCode) throws JsonProcessingException {
-		StatusCode code = StatusCode.valueOf(statusCode);
-		int resource = code.getResource();
-		assertEquals(resp.getStatusCode(), resource);
-		log.info("The status is "+ resp.getStatusCode());
-
+		userValidatesTheStatusCode(statusCode);
 		SoftAssert sa = new SoftAssert();
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		Playlist playlist = mapper.readValue(resp.asString(), Playlist.class);
