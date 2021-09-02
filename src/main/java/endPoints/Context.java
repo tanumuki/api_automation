@@ -11,5 +11,6 @@ public enum Context {
 	PASSWORD,
 	SSO_TOKEN,
 	JIOTUNEGETHOMEPAGERESPONSE,
+	VCode
 
 }

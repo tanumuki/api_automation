@@ -10,6 +10,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.eo.Se;
 import io.cucumber.messages.internal.com.google.gson.JsonElement;
 import io.cucumber.messages.internal.com.google.gson.JsonObject;
 import io.restassured.path.json.JsonPath;
@@ -45,6 +46,9 @@ public class SetJiotune extends Util {
     Response resp;
     static String apiResource;
     static String cookie =GenericSteps.cookie;
+   // static final String seedVcode = null;
+    public static final String VCODE = new String();
+    final StringBuilder stringbufferVariable = new StringBuilder();
 
 
     @Given("I have the endpoint for {string} with params")
@@ -70,8 +74,8 @@ public class SetJiotune extends Util {
     }
 
 
-    @When("I make the {string} request with the following query parameters for setJioTune")
-    public void  iMakeTheRequestWithTheFollowingQueryParametersForSetJiotune(String method, DataTable queryParams) throws IOException {
+    @When("I make the {string} request with the following query parameters for setJioTune and vcode being {string} msisdn being {string} and uid being {string}")
+    public void  iMakeTheRequestWithTheFollowingQueryParametersForSetJiotune(String method, String msisdn, String uid, String seedcode) throws IOException {
 
         /*
         Getting the vcode from the jiotune getHomepage response
@@ -89,13 +93,19 @@ public class SetJiotune extends Util {
             vCodes.add(vcodeNumber);
 
          }
-       String vCode= Util.getRandomElement(vCodes);
+         String vCode= Util.getRandomElement(vCodes);
+        stringbufferVariable.append(vCode);
+        System.out.println("meow2"+stringbufferVariable);
+
+
+
         log.info("VCode : "+vCode);
-        List<Map<String, String>> params = queryParams.asMaps();
         log.info("sso token is " +ssoToken);
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-            request.queryParams(params.get(0));
-            request.queryParam("vcode", vCode);
+           // request.queryParams(params.get(0));
+            request.queryParam("msisdn", msisdn);
+            request.queryParam("uid", uid);
+            request.queryParam("vcode", stringbufferVariable);
         }
 
         resp = request.given()
