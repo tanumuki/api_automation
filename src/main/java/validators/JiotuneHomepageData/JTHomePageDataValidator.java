@@ -73,17 +73,19 @@ public class JTHomePageDataValidator {
         mdo.add(hd.getModules().getData_0());
 
         if(hd.getModules().getData_1() != null)
-            mdo.add(hd.getModules().getData_0());
-        if(hd.getModules().getData_2() != null)
-            mdo.add(hd.getModules().getData_0());
+            mdo.add(hd.getModules().getData_1());
         if(hd.getModules().getData_3() != null)
-            mdo.add(hd.getModules().getData_0());
+            mdo.add(hd.getModules().getData_3());
         if(hd.getModules().getData_4() != null)
-            mdo.add(hd.getModules().getData_0());
+            mdo.add(hd.getModules().getData_4());
         if(hd.getModules().getData_5() != null)
-            mdo.add(hd.getModules().getData_0());
+            mdo.add(hd.getModules().getData_5());
         if(hd.getModules().getData_6() != null)
-            mdo.add(hd.getModules().getData_0());
+            mdo.add(hd.getModules().getData_6());
+        if (hd.getModules().getData_7() != null)
+            mdo.add(hd.getModules().getData_7());
+        if(hd.getModules().getTrending_jiotunes() != null)
+            mdo.add(hd.getModules().getTrending_jiotunes());
 
         for(ModulesWithViewMoreObj md : mdo){
             ModulesDataValidator.validate(md, sa);
