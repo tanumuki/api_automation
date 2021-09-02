@@ -36,7 +36,7 @@ public class JTMenuValidator extends EntityValidator {
 
         if(Validate.isNonEmptyString(jtMenu.getType())){
             sa.assertTrue(Validate.asEntityType(jtMenu.getType()),
-                    AssertionMsg.print(className, methodName, "data_0.search_api", jtMenu.getType()));
+                    AssertionMsg.print(className, methodName, "data_0.type", jtMenu.getType()));
         }
 
         if(jtMenu.getSourceAPI()!=null){
