@@ -662,6 +662,13 @@ public class Validate {
         return url.matches("^(http|https):\\/\\/jiotunepreview.jio.com\\/content\\/Converted\\/[0-9]+.mp3");
     }
 
+    /**
+     * Verify status message
+     */
+    public static boolean asStatusMessage(String str){
+        return str.matches("ok");
+    }
+
 
 }
 

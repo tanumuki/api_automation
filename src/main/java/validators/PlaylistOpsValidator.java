@@ -35,7 +35,7 @@ public class PlaylistOpsValidator {
         if(Validate.isNonEmptyString(playlist.getPermaUrl())){
             sa.assertEquals(playlist.getPermaUrl(), "", AssertionMsg.print(className, methodName, "perma_url", playlist.getPermaUrl()));
         }
-        log.info("Validation done for title and perma_url to be null after deletion of the playlist: "+playlist.getTitle()+playlist.getPermaUrl());
+        log.info("Validation done for title and perma_url to be null after deletion of the playlist with id: "+playlist.getId());
 
     }
 }

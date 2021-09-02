@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import endPoints.Context;
 import entities.Playlist;
 import entities.PlaylistContainer;
 import enums.StatusCode;
@@ -68,17 +69,19 @@ public class PlaylistOps extends Util {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		PlaylistContainer playlist = mapper.readValue(resp.asString(), PlaylistContainer.class);
 		new PlaylistOpsValidator().validate(playlist, sa);
-		this.listID = playlist.getDetails().getId();
+		listID = playlist.getDetails().getId();
+		testContext.scenarioContext.setContext(Context.PLAYLIST_ID,listID);
 		log.info(this.listID);
 
 	}
 
-	@When("User calls {string} method with param {string} of the created playlist")
-	public void userCallsMethodWithParamListIDOfTheCreatedPlaylist(String method, String listID) {
-		listID = this.listID;
+	@When("User calls {string} method with param listID of the created playlist")
+	public void userCallsMethodWithParamListIDOfTheCreatedPlaylist(String method) {
+//
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			System.out.println("in here"+ listID);
-			GenericSteps.request.queryParam("listid", this.listID);
+			listID = (String) testContext.scenarioContext.getContext(Context.PLAYLIST_ID);
+			log.info("List ID: "+listID);
+			GenericSteps.request.queryParam("listid", listID);
 		}
 
 		resp = GenericSteps.request.given()
@@ -101,15 +104,17 @@ public class PlaylistOps extends Util {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		PlaylistContainer playlist = mapper.readValue(resp.asString(), PlaylistContainer.class);
 		if(Validate.isNonEmptyString(playlist.getStatus()))
-			sa.assertTrue(Validate.asString(playlist.getStatus()));
-		log.info("Validation done for status "+playlist.getStatus());
+			sa.assertTrue(Validate.asStatusMessage(playlist.getStatus()));
+		log.info("Validation done for status "+playlist.getStatus()+"after deleting a playlist.");
 
 	}
 
 	@And("I make the {string} request with the following query parameters with deleted listID")
 	public void iMakeTheRequestWithTheFollowingQueryParametersWithDeletedListID(String method) {
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			GenericSteps.request.queryParam("listid", this.listID);
+			listID = (String) testContext.scenarioContext.getContext(Context.PLAYLIST_ID);
+			log.info("List ID: "+listID);
+			GenericSteps.request.queryParam("listid", listID);
 		}
 
 		resp = GenericSteps.request.given()
