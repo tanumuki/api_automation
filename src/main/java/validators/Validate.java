@@ -141,7 +141,7 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(sgdccdnems02.cdnsrv.jio.com\\/c|c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://([a-z0-9]+.cdnsrv.jio.com\\/c|c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
