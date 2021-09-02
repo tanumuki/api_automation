@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.PlaylistMini;
 import entities.PlaylistMiniMoreInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.testng.asserts.SoftAssert;
 import validators.genericValidators.EntityValidator;
@@ -11,6 +12,7 @@ import validators.genericValidators.EntityValidator;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class PlaylistMiniValidator extends EntityValidator {
 
     final String className = getClass().getName();
@@ -139,6 +141,8 @@ public class PlaylistMiniValidator extends EntityValidator {
                 sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName,
                         "playlist.more_info.sub_types", subtype));
             }
+        }else {
+            log.info("sub_types is empty for"+mi.getArtist_name());
         }
 
         if(mi.getImages()!=null) {

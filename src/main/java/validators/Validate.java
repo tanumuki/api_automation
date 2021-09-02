@@ -281,7 +281,7 @@ public class Validate {
     }
 
     public static boolean asJTSubType(String str){
-        return str.matches("nameTune|artistTune");
+        return str.matches("nameTune");
     }
 
     /**
@@ -318,7 +318,7 @@ public class Validate {
                 "dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod" +
                 "|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]" +
                 "|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune" +
-                "|all_artist_tune_1|all_name_caller_tune_1|up_next|artist_tune_0");
+                "|all_artist_tune_1|all_name_caller_tune_1|up_next");
     }
 
 
