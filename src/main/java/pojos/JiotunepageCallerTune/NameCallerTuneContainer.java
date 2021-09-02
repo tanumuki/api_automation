@@ -24,10 +24,10 @@ public class NameCallerTuneContainer {
     public Boolean lastPageBool;
     @JsonProperty("modules")
     public JTModules modules;
-    private Map<String, MultipleTunes[]> allNameTune = new HashMap<>();
+    private Map<String, MultipleTunes[]> allNameTuneHomeOrArtistTune = new HashMap<>();
     @JsonAnySetter
     public void setProviders1(String key, MultipleTunes[] val){
-        allNameTune.put(key, val);
+        allNameTuneHomeOrArtistTune.put(key, val);
     }
 
 }

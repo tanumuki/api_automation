@@ -23,12 +23,12 @@ public class JiotunepageCallerTuneHome extends Util {
         sa.assertAll();
     }
 
-    @And("Response should be validated against the parameters for Name Tune Home")
-    public void responseShouldBeValidatedAgainstTheParametersforNameTune() throws IOException {
+    @And("Response should be validated against the parameters for Name Tune Home or Artist Tune")
+    public void responseShouldBeValidatedAgainstTheParametersForNameTuneHomeorArtistTune() throws IOException {
         SoftAssert sa = new SoftAssert();
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         NameCallerTuneContainer nameCallerTuneContainer = objectMapper.readValue(GenericSteps.resp.asString(), NameCallerTuneContainer.class);
-        new JTPageCallerTuneHomeValidator().validateNameTune(nameCallerTuneContainer, sa);
+        new JTPageCallerTuneHomeValidator().validateNameTuneHomeOrArtistTune(nameCallerTuneContainer, sa);
         sa.assertAll();
     }
 }

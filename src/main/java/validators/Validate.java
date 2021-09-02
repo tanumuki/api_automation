@@ -281,7 +281,7 @@ public class Validate {
     }
 
     public static boolean asJTSubType(String str){
-        return str.matches("nameTune");
+        return str.matches("nameTune|artistTune");
     }
 
     /**
@@ -318,7 +318,7 @@ public class Validate {
                 "dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod" +
                 "|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]" +
                 "|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune" +
-                "|all_artist_tune_1|all_name_caller_tune_1|up_next|trending_jiotunes");
+                "|all_artist_tune_1|all_name_caller_tune_1|up_next|artist_tune_0|trending_jiotunes");
     }
 
 
@@ -334,7 +334,7 @@ public class Validate {
         return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
                 "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
                 "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
-                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_CAROUSEL_JIOTUNE|SS_Generic");
+                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_Generic");
     }
 
     public static boolean asProStatusType(String type) {
