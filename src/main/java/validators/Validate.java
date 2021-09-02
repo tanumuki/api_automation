@@ -141,7 +141,7 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://([a-z0-9]+.cdnsrv.jio.com\\/c|c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
@@ -318,7 +318,7 @@ public class Validate {
                 "dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod" +
                 "|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]" +
                 "|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune" +
-                "|all_artist_tune_1|all_name_caller_tune_1|up_next");
+                "|all_artist_tune_1|all_name_caller_tune_1|up_next|trending_jiotunes");
     }
 
 
@@ -334,7 +334,7 @@ public class Validate {
         return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
                 "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
                 "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
-                "SS_CAROUSEL|SS_SHORT_VIDEOS");
+                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_CAROUSEL_JIOTUNE|SS_Generic");
     }
 
     public static boolean asProStatusType(String type) {
@@ -419,7 +419,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune|menu");
     }
 
     public static boolean asDeeplink(String deeplink) {
