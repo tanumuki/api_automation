@@ -23,4 +23,6 @@ public class PlaylistContainer extends Entity{
     private String status;
     @JsonProperty("data")
     private List<PlaylistMini> data;
+    @JsonProperty("details")
+    private Playlist details;
 }
