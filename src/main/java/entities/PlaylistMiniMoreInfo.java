@@ -64,7 +64,7 @@ public class PlaylistMiniMoreInfo {
     private Boolean is_dolby_content;
      //TODO: add validation for subtypes
     @JsonProperty("sub_types")
-    private String [] sub_types;
+    private List<String> sub_types;
     @JsonProperty("images")
     private String images;
 }

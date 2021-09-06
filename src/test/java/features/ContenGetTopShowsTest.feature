@@ -1,7 +1,4 @@
-# new feature
-# Tags: optional
-@runNow
-Feature: Get all Top shows
+Feature: content.getTopShows
 
   Scenario: Get all top shows
     Given Payload with endpoint content get top shows "ContentGetTopShows"

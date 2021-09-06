@@ -32,6 +32,10 @@ public class BenefitsListData {
     private String codes_info;
     @JsonProperty("ticket_info")
     private String ticket_info;
+    @JsonProperty("redemption_url")
+    private String redemption_url;
+    @JsonProperty("event_type")
+    private String event_type;
     @JsonProperty("expiry")
     private String expiry;
     @JsonProperty("used_count")

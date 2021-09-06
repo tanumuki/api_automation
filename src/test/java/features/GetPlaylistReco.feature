@@ -1,6 +1,6 @@
 # new feature
 # Tags: optional
-Feature: Get Playlist Recommendation for a given playlist id
+Feature: reco.getPlaylistReco
 
   Scenario Outline: Get playlist recommendations for a given playlist id
     Given Payload with get playlist recommendations endPoint "GetPlaylistRecoAPI"

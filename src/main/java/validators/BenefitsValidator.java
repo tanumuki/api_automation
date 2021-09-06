@@ -76,6 +76,18 @@ public class BenefitsValidator {
             sa.assertTrue(Validate.asString(ticket_info), className + "." + "validate ticket info failed for benefit id - " + (benefits_id));
             log.info(("LOG response ticket info in benefits list for benefit " + (benefits_id) + " is " + ticket_info));
 
+            if(benefitsList.getData()[i].getRedemption_url() != null) {
+                String redemptionURL = benefitsList.getData()[i].getRedemption_url();
+                sa.assertTrue(Validate.asString(redemptionURL), className + "." + "validate redemption url failed for benefit id - " + (benefits_id));
+                log.info(("LOG response redemption url in benefits list for benefit " + (benefits_id) + " is " + redemptionURL));
+            }
+
+            if(benefitsList.getData()[i].getEvent_type() != null) {
+                String event_type = benefitsList.getData()[i].getEvent_type();
+                sa.assertTrue(Validate.asBenefitsEventType(event_type), className + "." + "validate event type failed for benefit id - " + (benefits_id));
+                log.info(("LOG response event type in benefits list for benefit " + (benefits_id) + " is " + event_type));
+            }
+
             String expiry = benefitsList.getData()[i].getExpiry();
             sa.assertTrue(Validate.asDateTime(expiry), className + "." + "validate expiry failed for benefit id - " + (benefits_id));
             log.info(("LOG response expiry in benefits list for benefit " + (benefits_id) + " is " + expiry));
@@ -199,5 +211,10 @@ public class BenefitsValidator {
                 AssertionMsg.print(className, methodName,"metadata.monetary_value.saved", benefitsList.getMetadata().getMonetary_value().getSaved()));
         sa.assertTrue(Validate.asString(benefitsList.getMetadata().getMonetary_value().getTo_unlock()),
                 AssertionMsg.print(className, methodName,"metadata.monetary_value.to_unlock", benefitsList.getMetadata().getMonetary_value().getTo_unlock()));
+        if(System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
+//            For improving consistency between the two ctx's: JS-8254
+            sa.assertTrue(Validate.asCurrency(benefitsList.getMetadata().getMonetary_value().getCurrency().trim()),
+                    AssertionMsg.print(className, methodName, "metadata.monetary_value.currency", benefitsList.getMetadata().getMonetary_value().getCurrency().trim()));
+        }
     }
 }

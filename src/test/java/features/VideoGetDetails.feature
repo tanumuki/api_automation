@@ -1,4 +1,4 @@
-Feature: Validation of video get details API
+Feature: video.getDetails
 
 
   Scenario: Verify user is able to view videos

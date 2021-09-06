@@ -110,6 +110,11 @@ public class ModulesDataValidator {
                 sa.assertTrue(Validate.asImageType(md.getImage_type()), AssertionMsg.print(className, methodName, "module.image_type", md.getImage_type()));
             }
 
+            if(md.getIs_JT_module()!=null) {
+                System.out.println("is_jt_module: " + md.getIs_JT_module());
+                sa.assertTrue(Validate.asBoolean(md.getIs_JT_module()), AssertionMsg.print(className, methodName, "module.is_JT_module", String.valueOf(md.getIs_JT_module())));
+            }
+
             if(md.getShowMore() != null){
                 ModulesDataShowMore mds = md.getShowMore();
 
@@ -151,6 +156,11 @@ public class ModulesDataValidator {
                 if(msp.getNumItems() != null)
                     sa.assertTrue(Validate.asNum(msp.getNumItems()), AssertionMsg.print(className, methodName, "module.source_param.n", String.valueOf(msp.getNumItems())));
 
+            }
+
+            if(md.getNoFooter() != null) {
+                System.out.println("no footer: " + md.getNoFooter());
+                sa.assertTrue(Validate.asBoolean(md.getNoFooter()),AssertionMsg.print(className, methodName, "modules.list.noFooter", String.valueOf(md.getNoFooter())));
             }
         }
 

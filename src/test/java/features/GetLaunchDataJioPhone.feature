@@ -1,4 +1,4 @@
-Feature: Validation of Get Launch Data Api for Jio Phone
+Feature: app.getLaunchDataJioPhone
 
   Background:
     Given I have the cookie for the following user

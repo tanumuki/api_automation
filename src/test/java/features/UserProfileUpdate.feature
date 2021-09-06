@@ -1,4 +1,4 @@
-Feature: Validation of user profile update API.
+Feature: user.update
 
   Background:
     Given I have the cookie for the following user

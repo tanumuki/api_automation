@@ -1,4 +1,4 @@
-Feature: Validation of Content Decode Token and Fetch Results API
+Feature: content.decodeTokenAndFetchResults
 
   Background:
     Given I have the cookie for the following user

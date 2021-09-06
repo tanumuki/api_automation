@@ -1,5 +1,5 @@
 @search
-Feature: Search queries using autocompleteGet
+Feature: autocomplete.get
 
   Scenario Outline: Search for album and verify the results
 

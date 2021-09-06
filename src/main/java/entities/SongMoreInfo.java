@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pojos.Videos.ThirdPartyVideo;
 
 import java.util.List;
 
@@ -105,6 +106,12 @@ public class SongMoreInfo {
 	private String singers;
 	@JsonProperty("video_available")
 	private Boolean video_available;
+	@JsonProperty("third_party_video_available")
+	private Boolean third_party_video_available;
+	@JsonProperty("third_party_video_partners")
+	private List<String> third_party_video_partners;
+	@JsonProperty("third_party_videos")
+	private List<ThirdPartyVideo> third_party_videos;
 	@JsonProperty("triller_available")
 	private Boolean triller_available;
 	@JsonProperty("video_thumbnail")
@@ -120,5 +127,5 @@ public class SongMoreInfo {
 	@JsonProperty("video_mappings")
 	private String [] video_mappings;
 	@JsonProperty("multiple_tunes")
-	private MultipleTunes multiPleTunes;
+	private List<MultipleTunes> multiPleTunes;
 }

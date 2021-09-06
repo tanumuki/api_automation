@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Podcast get more data
+Feature: podcast.getMoreData
 
   Scenario Outline: Podcast get more data
     Given Payload with podcasts get more data endpoint "PodcastGetMoreData"

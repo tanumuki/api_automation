@@ -30,7 +30,7 @@ public class UserLogin {
 	@JsonProperty("prostatus")
 	private LoginProstatus prostatus;
 	@JsonProperty("error")
-	public Error error;
+	public ErrorPojo error;
 
 
 	

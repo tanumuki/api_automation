@@ -1,4 +1,4 @@
-Feature: Get playlist details of the given playlist id
+Feature: playlist.getDetails
 
   Scenario Outline: Get playlist details of the given playlist id
     Given Playlist API with endpoint "GetPlaylistDetailsAPI"

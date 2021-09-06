@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: List Mixes
+Feature: mix.list
 
   Scenario Outline: List all the mixes for a user
     Given Payload with endpoint list mixes "MixesList"

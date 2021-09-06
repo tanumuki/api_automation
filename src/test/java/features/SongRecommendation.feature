@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Gets similar songs for the given song id
+Feature: reco.getreco
 
   Scenario Outline: Gets similar songs for the given song id
     Given Payload with endPoint get song reco API "GetSongReco"

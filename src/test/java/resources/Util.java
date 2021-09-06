@@ -20,6 +20,8 @@ public class Util {
 
     public static RequestSpecification request;
     public static final TestContext testContext = new TestContext();
+    public static final String ANDROID_DEVICE_ID = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+    public static final String IOS_DEVICE_ID = "ssid=did_v1_598C80A8-AF83-4D5E-AFA0-79FB1EE1CB41";
 
 
     public RequestSpecification requestSpecification(String ctx, String endPoint) throws IOException {
@@ -53,7 +55,7 @@ public class Util {
 
 
         PrintStream log = new PrintStream(new FileOutputStream("Output.txt"));
-        String device_id = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
+        String device_id = ctx.equalsIgnoreCase("iphoneapp") ? IOS_DEVICE_ID : ANDROID_DEVICE_ID;
         cookie = updateGeoCookieToIndia(cookie);
         cookie += device_id;
         request = new RequestSpecBuilder().setBaseUri(ConfigReader.getInstance().getBaseUrl())

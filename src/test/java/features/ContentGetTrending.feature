@@ -1,4 +1,4 @@
-Feature: Content Get Trending
+Feature: content.getTrending
 
 	Scenario: Get the trending items and validate
 

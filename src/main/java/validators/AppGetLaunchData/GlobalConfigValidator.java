@@ -184,10 +184,12 @@ public class GlobalConfigValidator {
         }
 
         //Web release 08-April-2020
-        if (gc.getZero_streamer() != null) {
-            sa.assertTrue(Validate.asBoolean(gc.getZero_streamer()), AssertionMsg.print(className, methodName, "global_config.zero_streamer", gc.getZero_streamer().toString()));
-        } else {
-            sa.fail("global_config.zero_streamer is empty/null");
+        if(!(System.getProperty("ctx").equalsIgnoreCase("iphoneapp"))) {
+            if (gc.getZero_streamer() != null) {
+                sa.assertTrue(Validate.asBoolean(gc.getZero_streamer()), AssertionMsg.print(className, methodName, "global_config.zero_streamer", gc.getZero_streamer().toString()));
+            } else {
+                sa.fail("global_config.zero_streamer is empty/null");
+            }
         }
 
         sa.assertTrue(Validate.asNum(gc.getVideo_mapping_data_update()), AssertionMsg.print(className, methodName, "global_config.getVideo_mapping_data_update", String.valueOf(gc.getVideo_mapping_data_update())));
@@ -200,7 +202,12 @@ public class GlobalConfigValidator {
         sa.assertTrue(Validate.asNum(gc.getWatchVideoSpan()), AssertionMsg.print(className, methodName, "global_config.getWatchVideoSpan", String.valueOf(gc.getWatchVideoSpan())));
         sa.assertTrue(Validate.asNum(gc.getIn_app_review_stream_count()), AssertionMsg.print(className, methodName, "global_config.getIn_app_review_stream_count", String.valueOf(gc.getIn_app_review_stream_count())));
         validateAppLanguages(gc.getApp_languages(), sa);
-
+        sa.assertTrue(Validate.asNum(gc.getModule_limit()), AssertionMsg.print(className, methodName, "global_config.module_limit", String.valueOf(gc.getModule_limit())));
+        sa.assertTrue(Validate.asNum(gc.getModule_content_limit()), AssertionMsg.print(className, methodName, "global_config.module_content_limit", String.valueOf(gc.getModule_content_limit())));
+        sa.assertTrue(Validate.asNum(gc.getAd_config_ref_time()), AssertionMsg.print(className, methodName, "global_config.getAd_config_ref_time", String.valueOf(gc.getAd_config_ref_time())));
+        if(System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
+            sa.assertTrue(Validate.asBoolean(gc.getIs_homepod_enabled()), AssertionMsg.print(className, methodName, "global_config.is_homepod_enabled", String.valueOf(gc.getIs_homepod_enabled())));
+        }
     }
 
 

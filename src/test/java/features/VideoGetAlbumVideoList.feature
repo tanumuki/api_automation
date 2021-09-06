@@ -1,4 +1,4 @@
-Feature: Validation of Album Video List
+Feature: video.getAlbumVideoList
 
   Scenario: Verify user is able to view album video list
     Given I have the endpoint for "GetAlbumVideoList"

@@ -81,6 +81,7 @@ public class ContentDecodeTokenAndFetchResultsSteps {
                 sa.assertAll();
                 break;
             case "Songs":
+            case "Videos":
                 contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Song.class);
                 for (Song song : ((Song) contentDecodeTokenAndFetchResultsPojo).getSongs()) {
                     new SongValidator().validate(song, sa);
@@ -110,13 +111,6 @@ public class ContentDecodeTokenAndFetchResultsSteps {
             case "User Playlist":
                 contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), MixDetails.class);
                 new PlaylistValidator().validate((MixDetails) contentDecodeTokenAndFetchResultsPojo, sa);
-                sa.assertAll();
-                break;
-            case "Videos":
-                contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Song.class);
-                for (Song song : ((Song) contentDecodeTokenAndFetchResultsPojo).getSongs()) {
-                    new SongValidator().validate(song, sa);
-                }
                 sa.assertAll();
                 break;
 

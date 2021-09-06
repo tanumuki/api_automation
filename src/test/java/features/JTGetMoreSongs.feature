@@ -3,7 +3,7 @@
   #Ignoring this suite as jiotunepage.getMoreSongs is run on websocket arch and not on the http arch.
   #This scenario will be covered when we create test suites for websocket APIs
 @ignore
-Feature: Jiotunes get more songs
+Feature: jiotunepage.getMoreSongs
 
   #failure: failing cuz of 500
   Scenario Outline: Jiotunes get more songs
