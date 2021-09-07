@@ -22,10 +22,7 @@ import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import pojos.jioTuneLogin.DeviceInfo;
 import pojos.jioTuneLogin.UserJioLogin;
 import pojos.setJioTune.JiotuneSetJioTunePojo;
-import resources.APIConstants;
-import resources.ConfigReader;
-import resources.ScenarioContext;
-import resources.Util;
+import resources.*;
 import validators.JiotuneValidator.JiotuneValidator;
 import validators.jioLoginValidator.JioLoginValidator;
 
@@ -42,13 +39,13 @@ import static io.restassured.RestAssured.given;
 public class SetJiotune extends Util {
 
 
+
     public static  String ssoToken;
     Response resp;
     static String apiResource;
     static String cookie =GenericSteps.cookie;
-   // static final String seedVcode = null;
-    public static final String VCODE = new String();
-    final StringBuilder stringbufferVariable = new StringBuilder();
+    static  String seedVcode = null;
+    boolean rerunFlag=true;
 
 
     @Given("I have the endpoint for {string} with params")
@@ -75,7 +72,7 @@ public class SetJiotune extends Util {
 
 
     @When("I make the {string} request with the following query parameters for setJioTune and vcode being {string} msisdn being {string} and uid being {string}")
-    public void  iMakeTheRequestWithTheFollowingQueryParametersForSetJiotune(String method, String msisdn, String uid, String seedcode) throws IOException {
+    public void  iMakeTheRequestWithTheFollowingQueryParametersForSetJiotune(String method, String vcode, String msisdn, String uid) throws IOException, InterruptedException {
 
         /*
         Getting the vcode from the jiotune getHomepage response
@@ -94,18 +91,27 @@ public class SetJiotune extends Util {
 
          }
          String vCode= Util.getRandomElement(vCodes);
-        stringbufferVariable.append(vCode);
-        System.out.println("vcode: "+stringbufferVariable);
+        /*
+        Initializing a static variable- seedVcode and flag- rerunFlag. The value will not be changed for the next instance of the class. This will make sure the value of Vcode is not changed
+            in the next run for negative scenario (re run of the test case for same vcode, basically setting jiotune for same song)
+         */
+        if(seedVcode==null){
+            seedVcode=vCode;
+            rerunFlag=false;
+        }
+        else {
+            rerunFlag=true;
+        }
 
-
-
+        Thread.sleep(5000);
+        log.info("seed vcode "+seedVcode);
         log.info("VCode : "+vCode);
         log.info("sso token is " +ssoToken);
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
            // request.queryParams(params.get(0));
             request.queryParam("msisdn", msisdn);
             request.queryParam("uid", uid);
-            request.queryParam("vcode", vCode);
+            request.queryParam("vcode", seedVcode);
         }
 
         resp = request.given()
@@ -131,9 +137,9 @@ public class SetJiotune extends Util {
         log.info( " Validating Jiotune api response");
         SoftAssert sa = new SoftAssert();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
-        System.out.println("response " +resp.asString());
+        log.info("response " +resp.asString());
         JiotuneSetJioTunePojo setJioTunePojo= mapper.readValue(resp.asString(), pojos.setJioTune.JiotuneSetJioTunePojo.class);
-        new JiotuneValidator().validate(setJioTunePojo,sa);
+        new JiotuneValidator().validateMessage(setJioTunePojo,sa,rerunFlag);
         log.info("Jiotune set and validated!");
     }
 

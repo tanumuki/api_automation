@@ -675,6 +675,9 @@ public class Validate {
     public static boolean asJiotuneSetMessage(String str){
         return str.matches("JioTune set for:  XXXXXX[0-9]{4} Order Ref number: [A-Z0-9]{12}");
     }
+    public static boolean asJiotuneSetFailureMessage(String str){
+        return str.matches("Alert - This JioTune has already been set for your number.");
+    }
 
     public static void validateUserData(LoginData loginData, SoftAssert sa){
 
