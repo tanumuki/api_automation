@@ -48,7 +48,7 @@ public enum APIResources {
 	GetAlbumDetailsAPI("content.getAlbumDetails"),
 	AutocompleteGet("autocomplete.get"),
 	UserLoginAPI ("user.login"),
-	UserCreateAPI ("user.createV2"),
+	UserCreateV2API ("user.createV2"),
 	LibraryAddAPI ("library.add"),
 	SocialFollowAPI ("social.follow"),
 	SocialUnfollowAPI("social.unfollow"),
@@ -67,12 +67,14 @@ public enum APIResources {
 	GetArtistMoreAlbums("artist.getArtistMoreAlbum"),
 	GetArtistSimilarArtists("artist.getSimilarArtists"),
 	PlaylistCreate("playlist.create"),
+	PlaylistDelete("playlist.delete"),
 	UserLogoutAPI("user.logout"),
 	WebRadioCreateEntityStation("webradio.createEntityStation"),
 	WebRadioCreateStation("webradio.createStation"),
 	WebRadioCreateFavouriteStation("webradio.createFeaturedStation"),
 	BenefitsCountApi("benefits.count"),
 	BenefitsListApi("benefits.list"),
+	SurpriseMe("playlist.getDetailsForFeaturedRandom"),
 	AppGetLaunchDataJioPhone("app.getLaunchDataJioPhone"),
 	SearchGetResultsFromEntities("search.getResultsFromEntities"),
 	ContentGetTopSearches("content.getTopSearches"),
@@ -88,7 +90,16 @@ public enum APIResources {
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	VideoGetVideoHomePage("video.getVideoHomePage"),
 	UserJioLoginAPI("user.jiologin"),
-	JiotuneSetJioTune("jiotune.setJioTune");
+	JiotuneSetJioTune("jiotune.setJioTune"),
+	LibraryGetDetails("library.getDetails"),
+	UserGetUpdatedLink("user.getUpdatedlink"),
+	JiotunepageGetDecades("jiotunepage.getDecades"),
+	JiotunepageGetMoodGenres("jiotunepage.getMoodsGenres"),
+	JiotunepageGetArtists("jiotunepage.getArtists"),
+	JiotunepageGetTopJiotune("jiotunepage.getTopJioTune"),
+	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome"),
+	JiotunepageGetArtistCallerTune("jiotunepage.getArtistCallerTune"),
+	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome");
 
 	private String resource;
 

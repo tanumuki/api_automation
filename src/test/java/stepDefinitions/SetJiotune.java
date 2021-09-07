@@ -86,7 +86,7 @@ public class SetJiotune extends Util {
          */
         List<String> vCodes = new ArrayList<>();
        JsonPath jsonPath= resp.jsonPath();
-        List<Song> dataList= jsonPath.getList("data_0", Song.class);
+        List<Song> dataList= jsonPath.getList("data_1", Song.class);
         for(int i=0 ;i <dataList.size() ;i++){
              String vcodeNumber=   dataList.get(i).getMoreInfo().getVcode();
             log.info("vcode Number is: "+vcodeNumber);
@@ -95,7 +95,7 @@ public class SetJiotune extends Util {
          }
          String vCode= Util.getRandomElement(vCodes);
         stringbufferVariable.append(vCode);
-        System.out.println("meow2"+stringbufferVariable);
+        System.out.println("vcode: "+stringbufferVariable);
 
 
 
@@ -105,7 +105,7 @@ public class SetJiotune extends Util {
            // request.queryParams(params.get(0));
             request.queryParam("msisdn", msisdn);
             request.queryParam("uid", uid);
-            request.queryParam("vcode", stringbufferVariable);
+            request.queryParam("vcode", vCode);
         }
 
         resp = request.given()
@@ -120,6 +120,7 @@ public class SetJiotune extends Util {
                 .extract()
                 .response();
         logResponseTime(resp);
+        log.info(resp.asString());
     }
 
     @Then("^The Jio Tune API returns \"([^\"]*)\" with status code 200 and response message is validated$")
