@@ -123,6 +123,7 @@ public class ConfigReader {
 			}
 			else {
 				jioBaseUrl= "https://api.jio.com/v3/dip/user/authtoken/verify";
+				properties.setProperty("jioBaseUrl", jioBaseUrl);
 				System.out.println("jioBaseUrl : " + jioBaseUrl);
 			}
 
