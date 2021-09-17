@@ -68,6 +68,7 @@ public enum APIResources {
 	GetArtistMoreAlbums("artist.getArtistMoreAlbum"),
 	GetArtistSimilarArtists("artist.getSimilarArtists"),
 	PlaylistCreate("playlist.create"),
+	PlaylistDelete("playlist.delete"),
 	UserLogoutAPI("user.logout"),
 	WebRadioCreateEntityStation("webradio.createEntityStation"),
 	WebRadioCreateStation("webradio.createStation"),
@@ -94,6 +95,7 @@ public enum APIResources {
 	JiotunepageGetArtists("jiotunepage.getArtists"),
 	JiotunepageGetTopJiotune("jiotunepage.getTopJioTune"),
 	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome"),
+	JiotunepageGetArtistCallerTune("jiotunepage.getArtistCallerTune"),
 	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome");
 
 	private String resource;

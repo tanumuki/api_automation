@@ -106,8 +106,8 @@ public class Login extends Util {
 		new UserLoginValidator().validateAll(login, sa);
 
 	}
-	@Then("The Login API returns success with status code {string} for invalid credentials")
-	public void the_login_api_returns_success_with_status_code_for_invalid_credentials(String statusCode) throws JsonProcessingException {
+	@Then("The Login API returns an error message with status code {string} for invalid credentials")
+	public void the_login_api_returns_an_error_message_with_status_code_for_invalid_credentials(String statusCode) throws JsonProcessingException {
 		// Write code here that turns the phrase above into concrete actions
 
 		SoftAssert sa = new SoftAssert();

@@ -22,6 +22,10 @@ public class MultipleTunesValidator extends EntityValidator {
         sa.assertTrue(Validate.asEntityType(tunes.getType()), AssertionMsg.print(className, methodName, "vlink", tunes.getType()));
         log.info("Validation done for type "+tunes.getType());
 
+        if(tunes.getSubtype() == "artistTune")
+            sa.assertTrue(Validate.asCDNURL(tunes.getImage()), AssertionMsg.print(className, methodName, "vlink", tunes.getImage()));
+            log.info("Validation done for image "+tunes.getImage());
+
         sa.assertTrue(Validate.asJTSubType(tunes.getSubtype()), AssertionMsg.print(className, methodName, "subtype", tunes.getSubtype()));
         log.info("Validation done for subtype "+ tunes.getSubtype());
 

@@ -32,6 +32,8 @@ public enum musicLanguages {
 	FARSI,
 	HIMACHALI,
 	SWEDISH,
+	ICELANDIC,
+	AFRIKAANS,
 	UNKNOWN;
 }
 

@@ -23,5 +23,9 @@ public class ModulesSourceParams {
     private String album_year;
     @JsonProperty("partner_id")
     private String partner_id;
+    @JsonProperty("page_param")
+    private String page_param;
+    @JsonProperty("size_param")
+    private String size_param;
 
 }
