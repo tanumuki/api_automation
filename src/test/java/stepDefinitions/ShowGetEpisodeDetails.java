@@ -26,41 +26,10 @@ import static org.testng.Assert.assertEquals;
 
 public class ShowGetEpisodeDetails extends Util {
 
-    RequestSpecification reqSpec;
-    ResponseSpecification resSpec;
-    Response resp;
-
-    @Given("Payload with endpoint get episode details {string}")
-    public void payload_with_endpoint_get_episode_details(String endpoint) throws IOException {
-        APIResources resourceAPI = APIResources.valueOf(endpoint);
-        String resource = resourceAPI.getResource();
-        System.out.println("resource: " + resource);
-        reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
-    }
-
-    @When("User calls the get episode details api with {string}")
-    public void user_calls_the_get_episode_details_api_with(String episode_id) {
-        resSpec = new ResponseSpecBuilder().expectStatusCode(200)
-                .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-        reqSpec.queryParam("episode_id", episode_id);
-        System.out.println("resSpec: " + resSpec.toString());
-        resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println( resp.asString());
-
-        logResponseTime(resp);
-    }
-
-    @Then("Get episode details api should return response with status code {string}")
-    public void get_episode_details_api_should_return_response_with_status_code(String statusCode) {
-        StatusCode code = StatusCode.valueOf(statusCode);
-        int resource = code.getResource();
-        assertEquals(resp.getStatusCode(), resource);
-    }
-
     @Then("Get episode details api response is validated successfully")
     public void get_episode_details_api_response_is_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        EpisodeDetails episodeDetails = mapper.readValue(resp.asString(), EpisodeDetails.class);
+        EpisodeDetails episodeDetails = mapper.readValue(GenericSteps.resp.asString(), EpisodeDetails.class);
         SoftAssert sa = new SoftAssert();
         new EpisodeDetailsValidator().validate(episodeDetails, sa);
         sa.assertAll();

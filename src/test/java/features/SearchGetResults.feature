@@ -4,9 +4,7 @@
 Feature: search.getResults
 
   Scenario Outline: Get song results for a given query
-#    Given Payload with endpoint search get results "SearchGetResults"
     Given I have the endpoint for "SearchGetResults"
-#    When User calls search get results api with the "<query>"
     When I make the "GET" request with the following query parameters
       | q |
       |<query>|

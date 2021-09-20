@@ -31,37 +31,6 @@ import static org.testng.Assert.assertEquals;
 
 public class ShowGetAllEpisodes extends Util {
 
-    RequestSpecification reqSpec;
-    ResponseSpecification resSpec;
-    Response resp;
-
-    @Given("Payload with get all episodes endpoint {string}")
-    public void payload_with_get_all_episodes_endpoint(String endpoint) throws IOException {
-        APIResources resourceAPI = APIResources.valueOf(endpoint);
-        String resource = resourceAPI.getResource();
-        System.out.println("resource: " + resource);
-        reqSpec = given().spec(requestSpecification(ConfigReader.getInstance().getCtx(), resource));
-    }
-
-    @When("User calls get all episodes api with {string} and {string}")
-    public void user_calls_get_all_episodes_api_with_and(String show_id, String season_number) {
-        resSpec = new ResponseSpecBuilder().expectStatusCode(200)
-                .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-        reqSpec.queryParam("show_id", show_id);
-        reqSpec.queryParam("season_number", season_number);
-        System.out.println("resSpec: " + resSpec.toString());
-        resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println( resp.asString());
-
-        logResponseTime(resp);
-    }
-
-    @Then("Get all episodes api must respond with status code {string}")
-    public void get_all_episodes_api_must_respond_with_status_code(String statusCode) {
-        StatusCode code = StatusCode.valueOf(statusCode);
-        int resource = code.getResource();
-        assertEquals(resp.getStatusCode(), resource);
-    }
 
     @Then("Get all episodes api response must be valided successfully")
     public void get_all_episodes_api_response_must_be_valided_successfully() throws JsonProcessingException {
@@ -70,14 +39,14 @@ public class ShowGetAllEpisodes extends Util {
         SoftAssert sa = new SoftAssert();
         if (ConfigReader.getInstance().getCtx().equalsIgnoreCase("androidgo"))
         {
-            List<Episode> episodes = mapper.readValue(resp.asString(), new TypeReference<List<Episode>>() {
+            List<Episode> episodes = mapper.readValue(GenericSteps.resp.asString(), new TypeReference<List<Episode>>() {
             });
             for (Episode episode : episodes) {
                 new EpisodeValidator().validate(episode, sa);
             }
         }
         else {
-            EpisodeContainer episodes = mapper.readValue(resp.asString(), EpisodeContainer.class);
+            EpisodeContainer episodes = mapper.readValue(GenericSteps.resp.asString(), EpisodeContainer.class);
 
 //        Validators
             sa.assertTrue(episodes.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
