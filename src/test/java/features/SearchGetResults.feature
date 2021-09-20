@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get song results for a given query
+Feature: search.getResults
 
   Scenario Outline: Get song results for a given query
 #    Given Payload with endpoint search get results "SearchGetResults"

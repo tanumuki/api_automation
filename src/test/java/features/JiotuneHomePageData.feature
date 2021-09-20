@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Jiotune Homepage data
+Feature: jiotunepage.getHomepageData
 
   Scenario: Get Jiotune Homepage data
     Given Payload with jiotune home page data endpoint "JiotuneGetHomepageData"

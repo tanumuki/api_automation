@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Album results for a given search query
+Feature: search.getAlbumResults
 
   Scenario Outline: Get Album results for a given search query
     Given I have the endpoint for "SearchGetAlbumResults"

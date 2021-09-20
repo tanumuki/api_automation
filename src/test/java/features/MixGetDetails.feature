@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get Details of a Mix with given Id
+Feature: mix.getDetails
 
   Scenario Outline: Given a mix id, get the details of the mix
     Given Payload with endpoint mixes get details "MixGetDetails"

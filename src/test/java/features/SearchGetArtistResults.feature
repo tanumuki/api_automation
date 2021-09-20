@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Search get artist results
+Feature: search.getArtistResults
 
   Scenario Outline: Search and gets the artist results for the given query
     Given I have the endpoint for "SearchGetArtistResults"

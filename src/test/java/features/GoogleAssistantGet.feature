@@ -1,4 +1,4 @@
-Feature: Get Google Assistant results call with query
+Feature: google_assistant.get
 
   Scenario Outline: Starts station with Get Google Assistant
     Given Payload with the GoogleAssistantGet endPoint "GoogleAssistantGet"

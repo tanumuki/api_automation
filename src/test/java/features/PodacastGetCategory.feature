@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Podcast get category with given id & type
+Feature: podcast.getCategory
 
   Scenario Outline: Podcast get category with given id & type
     Given I have the endpoint for "PodcastGetCategory"

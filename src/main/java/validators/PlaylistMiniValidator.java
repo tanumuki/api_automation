@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.PlaylistMini;
 import entities.PlaylistMiniMoreInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.testng.asserts.SoftAssert;
 import validators.genericValidators.EntityValidator;
@@ -11,6 +12,7 @@ import validators.genericValidators.EntityValidator;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class PlaylistMiniValidator extends EntityValidator {
 
     final String className = getClass().getName();
@@ -134,12 +136,13 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
         }
 
-//        if(!Arrays.toString(mi.getSub_types()).equalsIgnoreCase("null")||!Arrays.toString(mi.getSub_types()).equalsIgnoreCase("[]")) {
-        if(!ArrayUtils.isEmpty(mi.getSub_types())) {
-            /*TODO: Add validation for sub_types, for now it's coming up as null
-             * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
-             * add the validations - Ashwin */
-            sa.fail("QA TODO: Add assertions for sub_types. Value found: " + Arrays.toString(mi.getSub_types()));
+        if(mi.getSub_types() != null) {
+            for (String subtype : mi.getSub_types()) {
+                sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName,
+                        "playlist.more_info.sub_types", subtype));
+            }
+        }else {
+            log.info("sub_types is empty for"+mi.getArtist_name());
         }
 
         if(mi.getImages()!=null) {

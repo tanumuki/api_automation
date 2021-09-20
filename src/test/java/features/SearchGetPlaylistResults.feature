@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: View All Playlist Results for the given search query
+Feature: search.getPlaylistResults
 
   Scenario Outline: View All Playlist Results for the given search query
     Given I have the endpoint for "SearchGetPlaylistResults"

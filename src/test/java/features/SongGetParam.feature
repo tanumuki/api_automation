@@ -1,4 +1,4 @@
-Feature: Validation of song get param API.
+Feature: song.getParam
 
   Background:
     Given I have the cookie for the following user

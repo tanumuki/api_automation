@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.extern.slf4j.Slf4j;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
@@ -23,6 +24,7 @@ import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class GenericSteps extends Util {
 
     static Response resp;
@@ -57,7 +59,7 @@ public class GenericSteps extends Util {
                 .extract()
                 .response();
         logResponseTime(resp);
-        System.out.println(resp.asString());
+        log.info(resp.asString());
     }
 
     @Given("I have the cookie for the following user")
@@ -80,7 +82,7 @@ public class GenericSteps extends Util {
                 .extract()
                 .response();
         logResponseTime(resp);
-        System.out.println(resp.asString());
+        log.info(resp.asString());
     }
 
 
@@ -97,15 +99,16 @@ public class GenericSteps extends Util {
                 .extract()
                 .response();
         logResponseTime(resp);
-        System.out.println(resp.asString());
+        log.info(resp.asString());
     }
 
     @Then("I validate status code with {string}")
     public static void iValidateStatusCode(String statusCode){
         StatusCode code = StatusCode.valueOf(statusCode);
         int resource = code.getResource();
+        System.out.println(resp.getStatusCode());
         assertEquals(resp.getStatusCode(), resource);
-        System.out.println("The status is "+ statusCode);
+        log.info("The status is "+ resp.getStatusCode());
     }
 
 }

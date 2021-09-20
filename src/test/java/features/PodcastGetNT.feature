@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Podcast get New & Trending
+Feature: podcast.getNewandTrending
 
   Scenario: Podcast get New & Trending
     Given I have the endpoint for "PodcastGetNT"
