@@ -1,4 +1,4 @@
-Feature: Validation of user logout API.
+Feature: user.logout
 
   Background:
     Given I have the cookie for the following user

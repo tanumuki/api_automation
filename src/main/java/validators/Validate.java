@@ -141,7 +141,7 @@ public class Validate {
      * @return
      */
     public static boolean asCDNURL(String url) {
-        return url.matches("^$|((https|http)://(c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
+        return url.matches("^$|((https|http)://([a-z0-9]+.cdnsrv.jio.com\\/c|c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4)?(/.+)?)" +
                 "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.png)" +
                 "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.png)" +
@@ -222,6 +222,10 @@ public class Validate {
 
     }
 
+    public static boolean asEpisodeReleaseTime(String str){
+        return str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}\\s[0-9]{2}:[0-9]{2}:[0-9]{2}");
+    }
+
     public static boolean asUnixEpochTime(String str) {
         return str.matches("^\\d{10}$");//epoch ts is 10 digits
     }
@@ -234,10 +238,10 @@ public class Validate {
 //        Example strings:
 //        "Artist <middle dot separator> 100K Fans" for pre-7.x
 //        "30.9M Listeners" for post-7.x
-        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
-            return str.matches("(Artist • [0-9]{0,10} Listeners)");
-        else
-            return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+//        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
+//            return str.matches("(Artist • [0-9]{0,10} Listeners)");
+//        else
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
     }
 
     /**
@@ -273,7 +277,11 @@ public class Validate {
     }
 
     public static boolean asMusicLanguages(String lang) {
-        return lang.matches("english|hindi|punjabi|tamil|telugu|marathi|gujarati|bengali|kannada|bhojpuri|malayalam|urdu|haryanvi|rajasthani|odia|assamese|spanish|latin|italian|french|portuguese|instrumental|croatian|korean|unknown");
+        return lang.matches("english|hindi|punjabi|tamil|telugu|marathi|gujarati|bengali|kannada|bhojpuri|malayalam|urdu|haryanvi|rajasthani|odia|assamese|spanish|latin|italian|french|portuguese|instrumental|croatian|korean|unknown|icelandic");
+    }
+
+    public static boolean asJTSubType(String str){
+        return str.matches("nameTune|artistTune");
     }
 
     /**
@@ -306,7 +314,11 @@ public class Validate {
     }
 
     public static boolean asModulesSource(String source) {
-        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune|all_artist_tune_1");
+        return source.matches("list|reco.getAlbumReco|client|charts|new_trending|artist_recos|featured_artist_playlist|" +
+                "dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod" +
+                "|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]" +
+                "|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune" +
+                "|all_artist_tune_1|all_name_caller_tune_1|up_next|artist_tune_0|trending_jiotunes");
     }
 
 
@@ -319,7 +331,10 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST");
+        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
+                "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
+                "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
+                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_Generic");
     }
 
     public static boolean asProStatusType(String type) {
@@ -404,7 +419,7 @@ public class Validate {
     }
 
     public static boolean asEntityType(String entityType) {
-        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune");
+        return entityType.matches("artist|mix|playlist|album|song|channel|radio_station|episode|show|category|season|deeplink|video|jiotune|menu");
     }
 
     public static boolean asDeeplink(String deeplink) {
@@ -532,6 +547,10 @@ public class Validate {
         return str.matches("^(http|https):\\/\\/uploads.cdn.triller.co\\/v1\\/jiosaavn\\/[0-9]+.mp4");
     }
 
+    public static boolean asThirdPartyVideoPartnerID(String str) {
+        return str.matches("triller");
+    }
+
     public static boolean asHexColour(String str) {
         log.debug("Testing as hex colour: \"" + str + "\"");
         return str.matches("^(#)?[a-zA-Z0-9]{6,8}$");
@@ -565,7 +584,7 @@ public class Validate {
     }
 
     public static boolean asQuickActions(String str) {
-        return str.matches("download|add to library|none");
+        return str.matches("download|add to library|setJiotune|none");
     }
 
     public static boolean asHomepageTabOrder(List<String> tabs) {
@@ -574,6 +593,10 @@ public class Validate {
                 return false;
         }
         return true;
+    }
+
+    public static boolean asBenefitsEventType(String str) {
+        return str.matches("nonconcert");
     }
 
     public static boolean asEmptyArray(String[] arr) {
@@ -617,6 +640,10 @@ public class Validate {
         return str.matches("hindi|bengali|kannada|marathi|tamil|telugu|punjabi|gujarati|malayalam|haryanvi|bhojpuri|english");
     }
 
+    public static boolean asCurrency(String str){
+        return str.matches("Rs.|$");
+    }
+
     public static boolean asHeaders(String str){ return str.contains("http")||str.contains("https"); }
 
     /**
@@ -627,6 +654,21 @@ public class Validate {
     public static boolean asUpdatedUrlForDeeplink(String str, String toBeMatchedString){
         return str.matches("^(http|https):\\/\\/(staging|www).(saavn|jiosaavn).com/"+toBeMatchedString);
     }
+
+    /**
+     * Verify the JT Vlink
+     */
+    public static boolean asJTVLink(String url){
+        return url.matches("^(http|https):\\/\\/jiotunepreview.jio.com\\/content\\/Converted\\/[0-9]+.mp3");
+    }
+
+    /**
+     * Verify status message
+     */
+    public static boolean asStatusMessage(String str){
+        return str.matches("ok");
+    }
+
 
 }
 

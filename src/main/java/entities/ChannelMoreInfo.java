@@ -20,7 +20,7 @@ public class ChannelMoreInfo {
     @JsonProperty("is_featured")
     private String isFeatured;
     @JsonProperty("tags")
-    private Tags tags;
+    private Object tags; // Can be both array and object
     @JsonProperty("video_url")
     private String videoUrl;
     @JsonProperty("video_thumbnail")

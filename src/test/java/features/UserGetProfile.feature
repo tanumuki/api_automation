@@ -1,4 +1,4 @@
-Feature: Validation of user get profile API
+Feature: user.getDetails
 
   Background:
     Given I have the cookie for the following user

@@ -19,10 +19,11 @@ import java.util.Map;
 
 public class JTModules {
 
+    // Using it for both artist/name caller tune
     @JsonAnySetter
-    private Map<String, ModulesData> artistTuneModules = new LinkedHashMap<>();
+    private Map<String, ModulesData> callerTuneModules = new LinkedHashMap<>();
 
-    public void setModulesDataForAllArtistTunes(String key, ModulesData val){ artistTuneModules.put(key, val);
+    public void setModulesDataForAllArtistTunes(String key, ModulesData val){ callerTuneModules.put(key, val);
     }
 
 }

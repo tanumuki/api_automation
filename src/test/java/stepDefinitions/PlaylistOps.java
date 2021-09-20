@@ -1,94 +1,142 @@
 package stepDefinitions;
 
-import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import endPoints.APIResources;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.Context;
-import entities.Album;
+import entities.Playlist;
+import entities.PlaylistContainer;
 import enums.StatusCode;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.asserts.SoftAssert;
 import resources.APIConstants;
-import resources.ConfigReader;
-import resources.ScenarioContext;
-import resources.UserGenerator;
 import resources.Util;
+import validators.PlaylistOpsValidator;
+import validators.Validate;
 
 @Slf4j
 public class PlaylistOps extends Util {
 
-	RequestSpecification res;
-	ResponseSpecification resspec;
 	Response resp;
-	String cookie = "";
-	String resource;
-	String seed_song_id = "";
-	String seed_album_id = "";
-	Album albumDataInLibrary ;
-	String albumResponse="";
-	public ScenarioContext scenarioContext;
-
-	@Given("Add payload with get playlist endpoint {string} and account credentials for cookie")
-	public void add_payload_with_get_playlist_endpoint_and_account_credentials_for_cookie(String endPoint)
-			throws Exception {
-
-		APIResources resourceAPI = APIResources.valueOf(endPoint);
-		resource = resourceAPI.getResource();
-		System.out.println("resource api " + resourceAPI.getResource());
-		UserGenerator user = UserGenerator.getInstance();
-		HashMap<String, String> userMap = user.generateNewUserCookie();
-		cookie = userMap.get("cookie");
-		System.out.println("my cookie = " +cookie);
-		testContext.scenarioContext.setContext(Context.COOKIE, cookie);
-		//System.setProperty("cookie", cookie);
-		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
-		log.info("MYCOOKIE1 " + cookie);
-
-	}
-
+	String listID;
 
 	@When("User calls method with below params for playlistOps")
 	public void user_calls_method_with_below_params_for_playlistOps(io.cucumber.datatable.DataTable table) {
-		resspec = new ResponseSpecBuilder().expectStatusCode(200)
-				.expectContentType(io.restassured.http.ContentType.fromContentType("text/html;charset=UTF-8")).build();
-		// code to handle Data Table
 		List<Map<String, String>> data = table.asMaps();
-		System.out.println("data" + data.get(0));
+		log.info("data" + data.get(0));
 		String method = data.get(0).get("method");
+		String generatedString = RandomStringUtils.randomAlphabetic(10);
+		log.info(generatedString);
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-
-			res.queryParam("listname", data.get(0).get("listname"));
-			res.queryParam("contents", data.get(0).get("contents"));
-			res.queryParam("share", data.get(0).get("share"));
-			resp = res.when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			GenericSteps.request.queryParam("listname", generatedString);
+			GenericSteps.request.queryParam("contents", data.get(0).get("contents"));
+			GenericSteps.request.queryParam("share", data.get(0).get("share"));
 		}
 
-		resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
-
+		resp = GenericSteps.request.given()
+				.log()
+				.all()
+				.when()
+				.get("/api.php")
+				.then()
+				.log()
+				.all()
+				.extract()
+				.response();
+		log.info(resp.asString());
 	}
 
-	@Then("The playlist API returns success with status code {string}")
-	public void the_playlist_api_returns_success_with_status_code(String statusCode) {
-
+	@Then("User validates the status code {string}")
+	public void userValidatesTheStatusCode(String statusCode) {
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();
-		System.out.println("the code is  " + resource);
-		System.out.println("cookie in response " + resp.getHeaders());
-		System.out.println("the response is  " + resp.body().asString());
-
 		assertEquals(resp.getStatusCode(), resource);
+		log.info("The status is "+ resp.getStatusCode());
 	}
 
+	@And("User validates the response of the newly created playlist")
+	public void userValidatesTheResponseOfTheNewlyCreatedPlaylist() throws JsonProcessingException {
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		PlaylistContainer playlist = mapper.readValue(resp.asString(), PlaylistContainer.class);
+		new PlaylistOpsValidator().validate(playlist, sa);
+		listID = playlist.getDetails().getId();
+		testContext.scenarioContext.setContext(Context.PLAYLIST_ID,listID);
+		log.info(this.listID);
+
+	}
+
+	@When("User calls {string} method with param listID of the created playlist")
+	public void userCallsMethodWithParamListIDOfTheCreatedPlaylist(String method) {
+//
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			listID = (String) testContext.scenarioContext.getContext(Context.PLAYLIST_ID);
+			log.info("List ID: "+listID);
+			GenericSteps.request.queryParam("listid", listID);
+		}
+
+		resp = GenericSteps.request.given()
+				.log()
+				.all()
+				.when()
+				.get("/api.php")
+				.then()
+				.log()
+				.all()
+				.extract()
+				.response();
+		log.info(resp.asString());
+	}
+
+	@Then("Playlist Delete API returns success with status code {string} and response is validated")
+	public void playlistDeleteAPIReturnsSuccessWithStatusCode(String statusCode) throws JsonProcessingException {
+		userValidatesTheStatusCode(statusCode);
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		PlaylistContainer playlist = mapper.readValue(resp.asString(), PlaylistContainer.class);
+		if(Validate.isNonEmptyString(playlist.getStatus()))
+			sa.assertTrue(Validate.asStatusMessage(playlist.getStatus()));
+		log.info("Validation done for status "+playlist.getStatus()+"after deleting a playlist.");
+
+	}
+
+	@And("I make the {string} request with the following query parameters with deleted listID")
+	public void iMakeTheRequestWithTheFollowingQueryParametersWithDeletedListID(String method) {
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			listID = (String) testContext.scenarioContext.getContext(Context.PLAYLIST_ID);
+			log.info("List ID: "+listID);
+			GenericSteps.request.queryParam("listid", listID);
+		}
+
+		resp = GenericSteps.request.given()
+				.log()
+				.all()
+				.when()
+				.get("/api.php")
+				.then()
+				.log()
+				.all()
+				.extract()
+				.response();
+		log.info(resp.asString());
+	}
+
+	@Then("I verify that there is no such playlist after deletion and status code is {string}")
+	public void iVerifyThatThereIsNoSuchPlaylistAfterDeletionAndStatusCodeIs(String statusCode) throws JsonProcessingException {
+		userValidatesTheStatusCode(statusCode);
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		Playlist playlist = mapper.readValue(resp.asString(), Playlist.class);
+		new PlaylistOpsValidator().validatePlaylistDeletion(playlist, sa);
+
+	}
 }

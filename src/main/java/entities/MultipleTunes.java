@@ -23,4 +23,8 @@ public class MultipleTunes {
     private String vcode;
     @JsonProperty("vlink")
     private String vlink;
+    @JsonProperty("subtitle")
+    private String subtitle;
+    @JsonProperty("image")
+    private String image;
 }

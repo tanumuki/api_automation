@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Gets the homepage of a show
+Feature: show.getHomePage
 
   Scenario Outline: Gets the homepage of a show with the given id
     Given Payload with endPoint shows get homepage API "ShowGetHomePage"

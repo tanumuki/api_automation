@@ -7,8 +7,10 @@ import entities.*;
 import org.testng.asserts.SoftAssert;
 
 import lombok.extern.slf4j.Slf4j;
+import pojos.Videos.ThirdPartyVideo;
 import validators.AssertionMsg;
 import validators.Validate;
+import validators.VideoValidator.ThirdPartyVideoValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,7 @@ public class SongValidator extends EntityValidator {
     void validateMoreInfo(Song songObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         SongMoreInfo moreInfo = songObj.getMoreInfo();
+        boolean validateThirdPartyData = false;
 
         if (Validate.isNonEmptyString(moreInfo.getMusic())) {
             sa.assertTrue(Validate.asString(moreInfo.getMusic()), AssertionMsg.print(className, methodName,
@@ -162,6 +165,29 @@ public class SongValidator extends EntityValidator {
                     songObj.getType(), "more_info.video_available", String.valueOf(moreInfo.getVideo_available()), songObj.getId()));
         }
 
+        if (moreInfo.getThird_party_video_available() != null) {
+            validateThirdPartyData = moreInfo.getThird_party_video_available();
+            sa.assertTrue(Validate.asBoolean(moreInfo.getThird_party_video_available()), AssertionMsg.print(className, methodName,
+                    songObj.getType(),"more_info.third_party_video_available",
+                    String.valueOf(moreInfo.getThird_party_video_available()), songObj.getId()));
+        }
+
+//        Validate the third party video partners
+        if(moreInfo.getThird_party_video_partners() != null) {
+            for (String partnerName : moreInfo.getThird_party_video_partners()) {
+                sa.assertTrue(Validate.asString(partnerName), AssertionMsg.print(className, methodName, songObj.getType(),
+                        "more_info.third_party_video_partners", partnerName));
+            }
+        }
+
+//        Validate the third party videos object
+        if(validateThirdPartyData) {
+            ThirdPartyVideoValidator tpv = new ThirdPartyVideoValidator();
+            tpv.validate(moreInfo, sa);
+        }
+
+
+
         if (moreInfo.getTriller_available() != null) {
             sa.assertTrue(Validate.asBoolean(moreInfo.getTriller_available()), AssertionMsg.print(className, methodName,
                     songObj.getType(), "more_info.triller_available", String.valueOf(moreInfo.getTriller_available()), songObj.getId()));
@@ -219,8 +245,10 @@ public class SongValidator extends EntityValidator {
         new RightsValidator().validate(rights, sa, "song", songObj.getId());
 
         if (songObj.getMoreInfo().getMultiPleTunes() != null) {
-            MultipleTunes multipleTunes = songObj.getMoreInfo().getMultiPleTunes();
-            validateMultipleTunes(multipleTunes, sa);
+//            MultipleTunes multipleTunes = songObj.getMoreInfo().getMultiPleTunes();
+            for (MultipleTunes multipleTunes : songObj.getMoreInfo().getMultiPleTunes()) {
+                validateMultipleTunes(multipleTunes, sa);
+            }
         }
     }
 
