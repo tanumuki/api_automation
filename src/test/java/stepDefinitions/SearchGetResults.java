@@ -60,7 +60,7 @@ public class SearchGetResults extends Util {
     @Then("search get results api response must be validated")
     public void search_get_results_api_response_must_be_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        SearchGetEntityResults result = mapper.readValue(resp.asString(), SearchGetEntityResults.class);
+        SearchGetEntityResults result = mapper.readValue(GenericSteps.resp.asString(), SearchGetEntityResults.class);
         SoftAssert sa = new SoftAssert();
         new SearchGetEntityResultsValidator().validate(result, sa);
         sa.assertAll();

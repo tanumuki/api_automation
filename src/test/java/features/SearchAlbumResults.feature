@@ -4,9 +4,11 @@
 Feature: Get Album results for a given search query
 
   Scenario Outline: Get Album results for a given search query
-    Given Payload with endpoint search get album results "SearchGetAlbumResults"
-    When User calls search get album results api with "<query>"
-    Then search get album results api must respond with status code "OK"
+    Given I have the endpoint for "SearchGetAlbumResults"
+    When I make the "GET" request with the following query parameters
+    | q |
+    |<query>|
+    Then I validate status code with "OK"
     And search get album results response must be validated successfully
 
     Examples:
