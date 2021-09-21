@@ -3,9 +3,11 @@ Feature: autocomplete.get
 
   Scenario Outline: Search for album and verify the results
 
-    Given Add payload with search endpoint "AutocompleteGet"
-    When User calls "GET" https request for queries in "<query>"
-    Then Api should return response with status code "200"
+    Given I have the endpoint for "AutocompleteGet"
+    When I make the "GET" request with the following query parameters
+    | query   |
+    | <query> |
+    Then I validate status code with "OK"
     And I should see response with JSON validation
 
     Examples:
