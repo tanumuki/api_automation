@@ -15,6 +15,7 @@ Feature: playlist.create, playlist.delete
      Then User validates the status code "OK"
      And User validates the response of the newly created playlist
 
+
      Given I have the endpoint for "PlaylistDelete"
      When User calls "GET" method with param listID of the created playlist
      Then Playlist Delete API returns success with status code "OK" and response is validated
