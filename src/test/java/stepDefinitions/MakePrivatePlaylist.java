@@ -74,7 +74,7 @@ public class MakePrivatePlaylist extends Util {
         SoftAssert sa = new SoftAssert();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         PlaylistMakePrivatePublic playlist = mapper.readValue(resp.asString(), PlaylistMakePrivatePublic.class);
-        sa.assertTrue(((PlaylistMoreInfo)playlist.getDetails().getMore_info()).getShare().equalsIgnoreCase("0"));
+        new PlaylistOpsValidator().validatePrivatePlaylist(playlist, sa);
         log.info("Validation done for playlist ID "+ playlist.getDetails().getId() +" after making private playlist.");
 
 
