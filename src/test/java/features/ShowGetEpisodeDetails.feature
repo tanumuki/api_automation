@@ -7,10 +7,10 @@ Feature: show.getEpisodeDetails
     Given I have the endpoint for "ShowGetEpisodeDetails"
     When I make the "GET" request with the following query parameters
       |episode_id|
-      | <eps>    |
+      | <episode_id>    |
     Then I validate status code with "OK"
     And Get episode details api response is validated successfully
 
     Examples:
-    | eps |
+    | episode_id |
     | UpNGpJ_0 |
