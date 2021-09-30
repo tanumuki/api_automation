@@ -27,7 +27,7 @@ public class JTHomePageDataValidator {
         }
 
         // Validate data_1
-        for(Song song : hd.getJiotune_reco()){
+        for(Song song : hd.getData_1()){
             new SongValidator().validate(song, sa, song.getId(), "Recommended JioTunes");
             log.info("Validation done for entity type: "+song.getType()+" and title: "+song.getTitle());
         }
