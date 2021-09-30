@@ -27,7 +27,7 @@ public class JTHomePageDataValidator {
         }
 
         // Validate data_1
-        for(Song song : hd.getData_1()){
+        for(Song song : hd.getJiotune_reco()){
             new SongValidator().validate(song, sa, song.getId(), "Recommended JioTunes");
             log.info("Validation done for entity type: "+song.getType()+" and title: "+song.getTitle());
         }
@@ -86,6 +86,8 @@ public class JTHomePageDataValidator {
             mdo.add(hd.getModules().getData_7());
         if(hd.getModules().getTrending_jiotunes() != null)
             mdo.add(hd.getModules().getTrending_jiotunes());
+        if(hd.getModules().getJiotune_reco() != null)
+            mdo.add(hd.getModules().getJiotune_reco());
 
         for(ModulesWithViewMoreObj md : mdo){
             ModulesDataValidator.validate(md, sa);

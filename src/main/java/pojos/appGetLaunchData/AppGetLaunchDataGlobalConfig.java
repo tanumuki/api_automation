@@ -196,4 +196,7 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("is_homepod_enabled")
     private Boolean is_homepod_enabled;
 
+    @JsonProperty("isVideoStreamer")
+    private Boolean isVideoStreamer;
+
 }

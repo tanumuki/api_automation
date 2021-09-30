@@ -36,5 +36,7 @@ public class JiotuneHomePageData {
     private List<Song> trending_jiotunes;
     @JsonProperty("modules") // The JSONArray has been changed to a JSONObject as of 7th July, 2021 - Ashwin
     private ModulesObject modules;
+    @JsonProperty("jiotune_reco")
+    private List<Song> jiotune_reco;
 //    TODO: Use JSONAnySetter for handling dynamic fields
 }
