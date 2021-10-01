@@ -206,7 +206,7 @@ public class Validate {
     public static boolean asDate(String str) {
         log.debug("Testing as date: \"" + str + "\"");
         return (str.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}") || str.matches("[0-9]{2}-[0-9]{2}-[0-9]{4}")
-                || str.matches("[0-9]{1}-[0-9]{2}-[0-9]{4}"));
+                || str.matches("[0-9]{1}-[0-9]{2}-[0-9]{4}")||str.matches("[0-9]{2}-[A-Za-z]{3}-[0-9]{4}"));
     }
 
     public static boolean asProduct(String str) {
@@ -318,12 +318,12 @@ public class Validate {
                 "dedicated_artist_playlist|singles|similarArtists|artistPlaylists|triller|latest_release|show(_reco)?|new_albums|city_mod" +
                 "|promo:vx:data:[0-9]|top_playlists|tag_mixes|made_for_you|base_menu|new_and_trending|podcast_home_module_[0-9]+|data_[0-9]" +
                 "|jiotune.jioTuneRequestStatus|artist|quick_stations|top_songs|channel|keep_listening|new_releases|popular_artist_tune" +
-                "|all_artist_tune_1|all_name_caller_tune_1|up_next|artist_tune_0|trending_jiotunes");
+                "|all_artist_tune_1|all_name_caller_tune_1|up_next|artist_tune_0|trending_jiotunes|jiotune_reco");
     }
 
 
     public static boolean asTopicPromosField(String key) {
-        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist|surprise_me)[a-zA-z0-9_\\^:-]*");
+        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist|surprise_me|jiotune_reco)[a-zA-z0-9_\\^:-]*");
     }
 
     public static boolean asModulesPosition(int pos) {
@@ -331,10 +331,10 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
-                "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
-                "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
-                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_Generic");
+        return scrollType.toLowerCase().matches("ss_basic|ss_basic_double|ss_condensed|" +
+                "ss_condensed_double|ss_widescreen|ss_widescreen_double|ss_description|ss_video|cells_standard|" +
+                "cells_editorsnote|cells_text|threetile_menu|ss_carousel_description|ss_multipleitem|ss_triller|ss_jiotune_artist|" +
+                "ss_carousel|ss_short_videos|ss_generic");
     }
 
     public static boolean asProStatusType(String type) {
@@ -579,7 +579,7 @@ public class Validate {
     }
 
     public static boolean asPlaylistSubtype(String str) {
-        return str.matches("JioTuneArtist| JioTuneDecade| JioTuneActivity|VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist");
+        return str.matches("JioTuneArtist| JioTuneDecade| JioTuneActivity|VideoPlaylist| VideoAudioPlaylist| ProPlaylist| DolbyPlaylist|JioTuneDecade");
 
     }
 
