@@ -331,10 +331,10 @@ public class Validate {
     }
 
     public static boolean asModulesScrollType(String scrollType) {
-        return scrollType.matches("SS_Basic|SS_BASIC|SS_Basic_Double|SS_BASIC_DOUBLE|SS_Condensed|SS_CONDENSED|" +
-                "SS_Condensed_Double|SS_Widescreen|SS_Widescreen_Double|SS_Description|SS_Video|Cells_Standard|CELLS_STANDARD|" +
-                "Cells_EditorsNote|Cells_Text|THREETILE_MENU|SS_CAROUSEL_DESCRIPTION|SS_MULTIPLEITEM|SS_TRILLER|SS_JIOTUNE_ARTIST|" +
-                "SS_CAROUSEL|SS_SHORT_VIDEOS|SS_Generic");
+        return scrollType.toLowerCase().matches("ss_basic|ss_basic_double|ss_condensed|" +
+                "ss_condensed_double|ss_widescreen|ss_widescreen_double|ss_description|ss_video|cells_standard|" +
+                "cells_editorsnote|cells_text|threetile_menu|ss_carousel_description|ss_multipleitem|ss_triller|ss_jiotune_artist|" +
+                "ss_carousel|ss_short_videos|ss_generic");
     }
 
     public static boolean asProStatusType(String type) {
