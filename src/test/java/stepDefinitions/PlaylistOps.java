@@ -17,6 +17,7 @@ import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.asserts.SoftAssert;
+import pojos.playlistOps.PlaylistMakePrivatePublic;
 import resources.APIConstants;
 import resources.Util;
 import validators.PlaylistOpsValidator;
@@ -74,10 +75,9 @@ public class PlaylistOps extends Util {
 		log.info(this.listID);
 
 	}
-
-	@When("User calls {string} method with param listID of the created playlist")
-	public void userCallsMethodWithParamListIDOfTheCreatedPlaylist(String method) {
-//
+	//--------Make Private Playlist-----------------------------------------
+	@When("I make thr {string} request with param listID of the created playlist")
+	public void user_calls_method_with_below_params_for_MakePrivatePlaylist(String method) {
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
 			listID = (String) testContext.scenarioContext.getContext(Context.PLAYLIST_ID);
 			log.info("List ID: "+listID);
@@ -96,6 +96,59 @@ public class PlaylistOps extends Util {
 				.response();
 		log.info(resp.asString());
 	}
+
+	@Then("I validate the status code {string} and validate the response")
+	public void makePrivatePlaylistReturnsSuccessWithStatusCode(String statusCode) throws JsonProcessingException {
+		StatusCode code = StatusCode.valueOf(statusCode);
+		int resource = code.getResource();
+		assertEquals(resp.getStatusCode(), resource);
+		log.info("The status is "+ resp.getStatusCode());
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		PlaylistMakePrivatePublic playlist = mapper.readValue(resp.asString(), PlaylistMakePrivatePublic.class);
+		new PlaylistOpsValidator().validatePrivatePublicPlaylist(playlist, sa);
+		log.info("Validation done for playlist ID "+ playlist.getDetails().getId() +" after making private playlist.");
+
+
+
+	}
+	//--------Make Public Playlist-----------------------------------------
+	@And("I verify the status code {string} and validate the response")
+	public void makePublicPlaylistReturnsSuccessWithStatusCode(String statusCode) throws JsonProcessingException {
+		StatusCode code = StatusCode.valueOf(statusCode);
+		int resource = code.getResource();
+		assertEquals(resp.getStatusCode(), resource);
+		log.info("The status is " + resp.getStatusCode());
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		PlaylistMakePrivatePublic playlist = mapper.readValue(resp.asString(), PlaylistMakePrivatePublic.class);
+		new PlaylistOpsValidator().validatePrivatePublicPlaylist(playlist, sa);
+		log.info("Validation done for playlist ID " + playlist.getDetails().getId() + " after making private playlist.");
+
+
+	}
+
+//	@When("User calls {string} method with param listID of the created playlist")
+//	public void userCallsMethodWithParamListIDOfTheCreatedPlaylist(String method) {
+////
+//		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+//			listID = (String) testContext.scenarioContext.getContext(Context.PLAYLIST_ID);
+//			log.info("List ID: "+listID);
+//			GenericSteps.request.queryParam("listid", listID);
+//		}
+//
+//		resp = GenericSteps.request.given()
+//				.log()
+//				.all()
+//				.when()
+//				.get("/api.php")
+//				.then()
+//				.log()
+//				.all()
+//				.extract()
+//				.response();
+//		log.info(resp.asString());
+//	}
 
 	@Then("Playlist Delete API returns success with status code {string} and response is validated")
 	public void playlistDeleteAPIReturnsSuccessWithStatusCode(String statusCode) throws JsonProcessingException {

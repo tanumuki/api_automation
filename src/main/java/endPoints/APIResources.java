@@ -88,6 +88,7 @@ public enum APIResources {
 	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
 	GoogleAssistantGet("google_assistant.get"),
 	MakePrivatePlaylist("playlist.makePrivate"),
+	MakePublicPlaylist("playlist.makePublic"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	LibraryGetDetails("library.getDetails"),
 	UserGetUpdatedLink("user.getUpdatedlink"),

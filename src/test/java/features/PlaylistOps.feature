@@ -1,4 +1,4 @@
-Feature: playlist.create, playlist.delete
+Feature: playlist.create,playlist.makePrivate,playlist.makePublic, playlist.delete
 #  Verifying playlist.create and playlist.delete with the same playlist listid and
 #  finally checking if the playlist is deleted using playlist.geDetails
 
@@ -6,7 +6,7 @@ Feature: playlist.create, playlist.delete
     Given I have the cookie for the following user
       | username              | password   |
       | paypaltest7@saavn.com | Saavn@1234 |
-    
+
   Scenario: Verify playlist creation for a new user
      Given I have the endpoint for "PlaylistCreate"
      When User calls method with below params for playlistOps
@@ -16,8 +16,16 @@ Feature: playlist.create, playlist.delete
      And User validates the response of the newly created playlist
 
 
+    Given I have the endpoint for "MakePrivatePlaylist"
+    When I make thr "GET" request with param listID of the created playlist
+    Then I validate the status code "OK" and validate the response
+
+    Given I have the endpoint for "MakePublicPlaylist"
+    And  I verify the status code "OK" and validate the response
+
+
      Given I have the endpoint for "PlaylistDelete"
-     When User calls "GET" method with param listID of the created playlist
+#     When User calls "GET" method with param listID of the created playlist
      Then Playlist Delete API returns success with status code "OK" and response is validated
 
      Given I have the endpoint for "GetPlaylistDetailsAPI"
