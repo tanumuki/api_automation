@@ -86,6 +86,8 @@ public class JTHomePageDataValidator {
             mdo.add(hd.getModules().getData_7());
         if(hd.getModules().getTrending_jiotunes() != null)
             mdo.add(hd.getModules().getTrending_jiotunes());
+        if(hd.getModules().getJiotune_reco() != null)
+            mdo.add(hd.getModules().getJiotune_reco());
 
         for(ModulesWithViewMoreObj md : mdo){
             ModulesDataValidator.validate(md, sa);
