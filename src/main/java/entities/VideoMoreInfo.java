@@ -53,6 +53,8 @@ public class VideoMoreInfo {
         public String videoRateCap;
         @JsonProperty("preview_url")
         public String previewUrl;
+        @JsonProperty("content_category")
+        private String contentCategory;
     }
 
 

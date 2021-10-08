@@ -130,4 +130,6 @@ public class SongMoreInfo {
 	private List<MultipleTunes> multiPleTunes;
 	@JsonProperty("label_url")
 	private String labelUrl;
+	@JsonProperty("content_category")
+	private String contentCategory;
 }

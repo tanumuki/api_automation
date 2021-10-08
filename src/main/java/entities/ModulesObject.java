@@ -29,4 +29,6 @@ public class ModulesObject {
     private ModulesWithViewMoreObj data_7;
     @JsonProperty("trending_jiotunes")
     private ModulesWithViewMoreObj trending_jiotunes;
+    @JsonProperty("jiotune_reco")
+    private ModulesWithViewMoreObj jiotune_reco;
 }
