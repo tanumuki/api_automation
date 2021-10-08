@@ -25,6 +25,6 @@ Feature: jiotune.setJiotune
       Examples:
         |vcode |
         |value1|
-        |value2|
+#        |value2|
 
 
