@@ -20,6 +20,7 @@ public class JiotuneValidator {
                /*
         Validation of message code,should equal 200 (hard assert)
          */
+             log.info(setJioTunePojo+"setJioTunePojo");
              Assert.assertTrue(setJioTunePojo.getMessageCode().equals("200"), "className: JiotuneValidator: Message code field is null/wrong" );
 
         /*
@@ -45,7 +46,7 @@ public class JiotuneValidator {
                 /*
                 Validation of message field for rerun scenario
                 */
-                softAssert.assertTrue(Validate.asJiotuneSetFailureMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: Message field is null/wrong");
+                softAssert.assertTrue(Validate.asJiotuneSetFailureMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: Message failed field is null/wrong");
 
             }
 

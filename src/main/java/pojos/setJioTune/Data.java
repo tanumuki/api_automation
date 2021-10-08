@@ -13,4 +13,6 @@ public class Data {
     private String success;
     @JsonProperty("msg")
     private String msg;
+    @JsonProperty("renewDate")
+    private String renewDate;
 }

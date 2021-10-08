@@ -35,7 +35,6 @@ public class GenericSteps extends Util {
     static Response resp;
     static String apiResource;
     static String cookie;
-    static String ssoToken;
     static List<Map<String, String>> params;
 
     @Given("I have the endpoint for {string}")
@@ -71,7 +70,7 @@ public class GenericSteps extends Util {
     @When("I make the {string} request with the following query parameters with response specification")
     public void  iMakeTheRequestWithTheFollowingQueryParametersWithResponseSpecification(String method, DataTable queryParams) throws IOException {
         List<Map<String, String>> params = queryParams.asMaps();
-        ssoToken = (String) testContext.scenarioContext.getContext(Context.SSO_TOKEN);
+        String ssoToken = (String) testContext.scenarioContext.getContext(Context.SSO_TOKEN);
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
             request.queryParams(params.get(0));
             request.queryParam("ssotoken", ssoToken);
@@ -102,18 +101,20 @@ public class GenericSteps extends Util {
 
     @When("I make the {string} request")
     public void iMakeTheRequest(String method) {
-        resp = request.given()
-                .log()
-                .all()
-                .when()
-                .get("/api.php")
-                .then()
-                .log()
-                .all()
-                .extract()
-                .response();
-        logResponseTime(resp);
-        log.info(resp.asString());
+        if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+            resp = request.given()
+                    .log()
+                    .all()
+                    .when()
+                    .get("/api.php")
+                    .then()
+                    .log()
+                    .all()
+                    .extract()
+                    .response();
+            logResponseTime(resp);
+            System.out.println(resp.asString());
+        }
     }
 
 

@@ -33,6 +33,7 @@ public enum musicLanguages {
 	HIMACHALI,
 	SWEDISH,
 	ICELANDIC,
+	AFRIKAANS,
 	UNKNOWN;
 }
 

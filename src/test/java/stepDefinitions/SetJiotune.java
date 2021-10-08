@@ -81,9 +81,10 @@ public class SetJiotune extends Util {
         /*
         Getting the json array from the response - data_0
          */
+        System.out.println(resp.asString());
         List<String> vCodes = new ArrayList<>();
        JsonPath jsonPath= resp.jsonPath();
-        List<Song> dataList= jsonPath.getList("data_1", Song.class);
+        List<Song> dataList= jsonPath.getList("data_2", Song.class);
         for(int i=0 ;i <dataList.size() ;i++){
              String vcodeNumber=   dataList.get(i).getMoreInfo().getVcode();
             log.info("vcode Number is: "+vcodeNumber);
