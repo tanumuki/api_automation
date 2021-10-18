@@ -669,6 +669,10 @@ public class Validate {
         return str.matches("ok");
     }
 
+    public static boolean asJT_CTA_Text(String str) {
+        return str.matches("RENEW|REMOVE");
+    }
+
 
 }
 
