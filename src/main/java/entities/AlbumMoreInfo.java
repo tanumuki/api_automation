@@ -54,4 +54,6 @@ public class AlbumMoreInfo {
 	private String [] video_mappings;
 	@JsonProperty("contents")
 	private String contents;
+	@JsonProperty("album_id")
+	private String albumId;
 }
