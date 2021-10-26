@@ -38,5 +38,11 @@ public class JiotuneHomePageData {
     private ModulesObject modules;
     @JsonProperty("jiotune_reco")
     private List<Song> jiotune_reco;
+    @JsonProperty("cta_text")
+    private String cta_text;
+    @JsonProperty("show_delete")
+    private String show_delete;
+    @JsonProperty("cta_action")
+    private String cta_action;
 //    TODO: Use JSONAnySetter for handling dynamic fields
 }
