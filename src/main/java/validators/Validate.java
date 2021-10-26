@@ -1027,7 +1027,8 @@ public class Validate {
         return key.matches("(videoHomePage:vx:data)[a-zA-z0-9_\\^:-]*");
     }
 
-
+    public static boolean asJT_CTA_Text(String str) {
+        return str.matches("RENEW|REMOVE"); }
 
 
 
