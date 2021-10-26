@@ -32,16 +32,20 @@ public class JiotuneHomePageData {
     private List<LinkedHashMap> data_6;
     @JsonProperty("data_7")
     private List<LinkedHashMap> data_7;
+    @JsonProperty("data_8")
+    private List<LinkedHashMap> data_8;
     @JsonProperty("trending_jiotunes")
     private List<Song> trending_jiotunes;
     @JsonProperty("modules") // The JSONArray has been changed to a JSONObject as of 7th July, 2021 - Ashwin
     private ModulesObject modules;
     @JsonProperty("jiotune_reco")
     private List<Song> jiotune_reco;
+    @JsonProperty("myjiotune")
+    private List<LinkedHashMap> myjiotune;
     @JsonProperty("cta_text")
-    private String cta_text;
+    private String ctaText;
     @JsonProperty("show_delete")
-    private String show_delete;
+    private Boolean showDelete;
     @JsonProperty("cta_action")
     private String cta_action;
 //    TODO: Use JSONAnySetter for handling dynamic fields
