@@ -50,4 +50,3 @@ public class JiotuneHomePageData {
     private String cta_action;
 //    TODO: Use JSONAnySetter for handling dynamic fields
 }
-

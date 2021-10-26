@@ -78,6 +78,7 @@ public enum APIResources {
 	AppGetLaunchDataJioPhone("app.getLaunchDataJioPhone"),
 	SearchGetResultsFromEntities("search.getResultsFromEntities"),
 	ContentGetTopSearches("content.getTopSearches"),
+	WebApiGet("webapi.get"),
 	UserChangePasswordApi("user.changePassword"),
 	SongGetParamsApi("song.getParam"),
 	ContentDecodeTokenAndFetchResults("content.decodeTokenAndFetchResults"),
