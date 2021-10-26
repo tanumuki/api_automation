@@ -113,9 +113,9 @@ public class JTHomePageDataValidator {
 
         }
 
-        sa.assertTrue(Validate.asJT_CTA_Text(hd.getCta_text()), AssertionMsg.print(className, methodName, "cta_text", hd.getCta_text()));
-        sa.assertTrue(Validate.asBoolean(hd.getShow_delete()), AssertionMsg.print(className, methodName, "show_delete", hd.getShow_delete()));
-        sa.assertTrue(Validate.asString(hd.getCta_action()), AssertionMsg.print(className, methodName, "cta_action", hd.getCta_action()));
+//        sa.assertTrue(Validate.asJT_CTA_Text(hd.getCta_text()), AssertionMsg.print(className, methodName, "cta_text", hd.getCta_text()));
+//        sa.assertTrue(Validate.asBoolean(hd.getShow_delete()), AssertionMsg.print(className, methodName, "show_delete", hd.getShow_delete()));
+//        sa.assertTrue(Validate.asString(hd.getCta_action()), AssertionMsg.print(className, methodName, "cta_action", hd.getCta_action()));
 
     }
 
