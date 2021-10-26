@@ -1,6 +1,5 @@
 package validators.JiotuneValidator;
 
-import enums.StatusCode;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -30,13 +29,23 @@ public class JiotuneValidator {
                /*
                 Validation of message field
                 */
+             log.info("Message : "+setJioTunePojo.getResult().getData().getMsg());
 
-             softAssert.assertTrue(Validate.asJiotuneSetMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: Message field is null/wrong");
+             softAssert.assertTrue(Validate.asJiotuneSetMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: for rerun= false| Message field is null/wrong");
+
+                /*
+                Validation of toast field
+                */
+
+             log.info("Toast : "+setJioTunePojo.getResult().getData().getToast());
+
+             softAssert.assertTrue(Validate.asJiotuneToast(setJioTunePojo.getResult().getData().getToast()), "className: JiotuneValidator: for rerun: false Toast field is null/wrong");
 
          }
 
 
             if(rerunFlag){
+                System.out.println("Validator for true");
                   /*
                     Validation of success code, should be equal to 0 for retry set jiotune
                     */
@@ -46,7 +55,7 @@ public class JiotuneValidator {
                 /*
                 Validation of message field for rerun scenario
                 */
-                softAssert.assertTrue(Validate.asJiotuneSetFailureMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: Message failed field is null/wrong");
+                softAssert.assertTrue(Validate.asJiotuneSetFailureMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator for rerun true: Message failed field is null/wrong");
 
             }
 
@@ -67,13 +76,13 @@ public class JiotuneValidator {
         /*
         Validation of success field
          */
-        softAssert.assertTrue(setJioTunePojo.getResult().getData().getSuccess().equals("1"), "className: JiotuneValidator: Success field is null/wrong");
+        softAssert.assertTrue(setJioTunePojo.getResult().getData().getSuccess().equals("0"), "className: JiotuneValidator: Success field is null/wrong");
 
         /*
         Validation of message field
          */
 
-        softAssert.assertTrue(Validate.asJiotuneSetMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: Message field is null/wrong");
+        softAssert.assertTrue(Validate.asJiotuneSetFailureMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: Message field is null/wrong");
 
         softAssert.assertAll();
 

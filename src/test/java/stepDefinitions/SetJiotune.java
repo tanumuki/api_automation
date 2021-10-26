@@ -79,12 +79,12 @@ public class SetJiotune extends Util {
          */
         resp= (Response) testContext.scenarioContext.getContext(Context.JIOTUNEGETHOMEPAGERESPONSE);
         /*
-        Getting the json array from the response - data_0
+        Getting the json array from the response - trending_jiotunes
          */
-        System.out.println(resp.asString());
+        System.out.println("Resp22 from jiotune home" +resp.asString());
         List<String> vCodes = new ArrayList<>();
        JsonPath jsonPath= resp.jsonPath();
-        List<Song> dataList= jsonPath.getList("data_2", Song.class);
+        List<Song> dataList= jsonPath.getList("trending_jiotunes", Song.class);
         for(int i=0 ;i <dataList.size() ;i++){
              String vcodeNumber=   dataList.get(i).getMoreInfo().getVcode();
             log.info("vcode Number is: "+vcodeNumber);
@@ -94,18 +94,19 @@ public class SetJiotune extends Util {
          String vCode= Util.getRandomElement(vCodes);
         /*
         Initializing a static variable- seedVcode and flag- rerunFlag. The value will not be changed for the next instance of the class. This will make sure the value of Vcode is not changed
-            in the next run for negative scenario (re run of the test case for same vcode, basically setting jiotune for same song)
+            in the next run for negative scenario (re run of the test case for same vcode, basically we are setting jiotune for the same song)
          */
         if(seedVcode==null){
             seedVcode=vCode;
             rerunFlag=false;
         }
         else {
+            log.info("Flag:is true!!");
             rerunFlag=true;
         }
 
         Thread.sleep(5000);
-        log.info("seed vcode "+seedVcode);
+        log.info("seed vcode final "+seedVcode);
         log.info("VCode : "+vCode);
         log.info("sso token is " +ssoToken);
         if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {

@@ -673,10 +673,14 @@ public class Validate {
     }
 
     public static boolean asJiotuneSetMessage(String str){
-        return str.matches("JioTune set for:  [0-9]{10} Order Ref number: [A-Z0-9]{12}");
+        return str.matches("JioTune set for:  [A-Z0-9]{10} Order Ref number: [A-Z0-9]{12}");
     }
     public static boolean asJiotuneSetFailureMessage(String str){
         return str.matches("Alert - This JioTune has already been set for your number.");
+    }
+    public static boolean asJiotuneToast(String str){
+        System.out.println("str toast is "+str);
+        return str.matches("JioTune has been set for [A-Z0-9]{10}. If the My JioTune section doesn’t show the updated details, please reload the page after some time");
     }
 
     public static void validateUserData(LoginData loginData, SoftAssert sa){
