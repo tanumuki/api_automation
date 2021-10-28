@@ -679,8 +679,8 @@ public class Validate {
         return str.matches("Alert - This JioTune has already been set for your number.");
     }
     public static boolean asJiotuneToast(String str){
-        System.out.println("str toast is "+str);
-        return str.matches("JioTune has been set for [A-Z0-9]{10}. If the My JioTune section doesn’t show the updated details, pl'ease reload the page after some time");
+        log.info("str toast is "+str);
+        return str.matches("JioTune has been set for XXXXXX[0-9]{4}. If the My JioTune section doesn't show the updated details, please reload the page after some time");
     }
 
     public static void validateUserData(LoginData loginData, SoftAssert sa){

@@ -16,18 +16,19 @@ public class JiotuneValidator {
             final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
          if(!rerunFlag){
-               /*
-        Validation of message code,should equal 200 (hard assert)
-         */
+               /**
+                Validation of message code,should equal 200 (hard assert)
+            */
              log.info(setJioTunePojo+"setJioTunePojo");
              Assert.assertTrue(setJioTunePojo.getMessageCode().equals("200"), "className: JiotuneValidator: Message code field is null/wrong" );
 
-        /*
+        /**
         Validation of success field
          */
              softAssert.assertTrue(setJioTunePojo.getResult().getData().getSuccess().equals("1"), "className: JiotuneValidator: Success field is null/wrong");
-               /*
-                Validation of message field
+
+             /**
+               Validation of message field
                 */
              log.info("Message : "+setJioTunePojo.getResult().getData().getMsg());
 
@@ -38,7 +39,6 @@ public class JiotuneValidator {
                 */
 
              log.info("Toast : "+setJioTunePojo.getResult().getData().getToast());
-
              softAssert.assertTrue(Validate.asJiotuneToast(setJioTunePojo.getResult().getData().getToast()), "className: JiotuneValidator: for rerun: false Toast field is null/wrong");
 
          }
