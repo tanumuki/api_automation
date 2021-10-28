@@ -680,7 +680,7 @@ public class Validate {
     }
     public static boolean asJiotuneToast(String str){
         System.out.println("str toast is "+str);
-        return str.matches("JioTune has been set for [A-Z0-9]{10}. If the My JioTune section doesn’t show the updated details, please reload the page after some time");
+        return str.matches("JioTune has been set for [A-Z0-9]{10}. If the My JioTune section doesn't show the updated details, please reload the page after some time");
     }
 
     public static void validateUserData(LoginData loginData, SoftAssert sa){

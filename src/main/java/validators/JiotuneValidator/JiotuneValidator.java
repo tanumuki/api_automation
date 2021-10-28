@@ -34,7 +34,7 @@ public class JiotuneValidator {
              softAssert.assertTrue(Validate.asJiotuneSetMessage(setJioTunePojo.getResult().getData().getMsg()), "className: JiotuneValidator: for rerun= false| Message field is null/wrong");
 
                 /*
-                Validation of toast field
+              Validation of toast field
                 */
 
              log.info("Toast : "+setJioTunePojo.getResult().getData().getToast());
