@@ -21,16 +21,16 @@ public class JTHomePageDataValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
 
         // Validate data_0
-        for(JTMenu jtMenu : hd.getData_0()) {
-            new JTMenuValidator().validate(jtMenu, sa);
-            log.info("Validation done for: "+jtMenu.getTitle());
-        }
+//        for(JTMenu jtMenu : hd.getData_0()) {
+//            new JTMenuValidator().validate(jtMenu, sa);
+//            log.info("Validation done for: "+jtMenu.getTitle());
+//        }
 
         // Validate data_1
-        for(Song song : hd.getData_1()){
-            new SongValidator().validate(song, sa, song.getId(), "Recommended JioTunes");
-            log.info("Validation done for entity type: "+song.getType()+" and title: "+song.getTitle());
-        }
+//        for(Song song : hd.getJiotune_reco()){
+//            new SongValidator().validate(song, sa, song.getId(), "Recommended JioTunes");
+//            log.info("Validation done for entity type: "+song.getType()+" and title: "+song.getTitle());
+//        }
 
         //validate trending_jiotunes
         for(Song song : hd.getTrending_jiotunes()){
@@ -69,11 +69,11 @@ public class JTHomePageDataValidator {
 
 
         // There should be atleast one module always
-        sa.assertNotNull(hd.getModules().getData_0(), "Test failed: There should be atleast one module.");
-        mdo.add(hd.getModules().getData_0());
+//        sa.assertNotNull(hd.getModules().getData_0(), "Test failed: There should be atleast one module.");
+//        mdo.add(hd.getModules().getData_0());
 
-        if(hd.getModules().getData_1() != null)
-            mdo.add(hd.getModules().getData_1());
+        if(hd.getModules().getData_8() != null)
+            mdo.add(hd.getModules().getData_8());
         if(hd.getModules().getData_3() != null)
             mdo.add(hd.getModules().getData_3());
         if(hd.getModules().getData_4() != null)
@@ -86,8 +86,8 @@ public class JTHomePageDataValidator {
             mdo.add(hd.getModules().getData_7());
         if(hd.getModules().getTrending_jiotunes() != null)
             mdo.add(hd.getModules().getTrending_jiotunes());
-        if(hd.getModules().getJiotune_reco() != null)
-            mdo.add(hd.getModules().getJiotune_reco());
+//        if(hd.getModules().getJiotune_reco() != null)
+//            mdo.add(hd.getModules().getJiotune_reco());
 
         for(ModulesWithViewMoreObj md : mdo){
             ModulesDataValidator.validate(md, sa);
@@ -112,6 +112,10 @@ public class JTHomePageDataValidator {
             }
 
         }
+
+//        sa.assertTrue(Validate.asJT_CTA_Text(hd.getCta_text()), AssertionMsg.print(className, methodName, "cta_text", hd.getCta_text()));
+//        sa.assertTrue(Validate.asBoolean(hd.getShow_delete()), AssertionMsg.print(className, methodName, "show_delete", hd.getShow_delete()));
+//        sa.assertTrue(Validate.asString(hd.getCta_action()), AssertionMsg.print(className, methodName, "cta_action", hd.getCta_action()));
 
     }
 

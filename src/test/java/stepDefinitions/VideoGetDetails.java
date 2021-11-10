@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import resources.Util;
-import validators.VideoValidator.VideoGetDetailsValidator;
+import validators.VideoValidator.VideoObjectValidator;
 
 @Slf4j
 public class VideoGetDetails extends Util {
@@ -25,18 +25,16 @@ public class VideoGetDetails extends Util {
 
     @Then("Validate the video response")
     public void validate_the_video_response() throws JsonProcessingException {
-       log.info( " Validating video response");
+       //log.info( " Validating video response");
         SoftAssert sa = new SoftAssert();
 
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
         pojos.videoGetDetails.VideoGetDetails videoDetailsObject= mapper.readValue(GenericSteps.resp.asString(), pojos.videoGetDetails.VideoGetDetails.class);
-        new VideoGetDetailsValidator().validate(videoDetailsObject, sa);
-
+        new VideoObjectValidator().validate(videoDetailsObject, sa);
         sa.assertAll();
 
     }
-
 
 
 
