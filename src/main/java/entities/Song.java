@@ -31,5 +31,16 @@ public class Song extends Entity {
 	private Boolean mini_obj;
 	@JsonProperty("description")
 	private String description;
-
+	@JsonProperty("source_api")
+	private Boolean sourceAPI;
+	@JsonProperty("source")
+	private String source;
+	@JsonProperty("source_view")
+	private String source_view;
+	@JsonProperty("search_api")
+	private String search_api;
+	@JsonProperty("search_placeholder")
+	private String search_placeholder;
+	@JsonProperty("source_params")
+	private ModulesSourceParams source_params;
 }

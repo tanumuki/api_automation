@@ -21,49 +21,49 @@ public class LoginData {
     }
 
     @JsonProperty("username")
-    public String username;
+     String username;
     @JsonProperty("uid")
-    public String uid;
+    private String uid;
     @JsonProperty("fbid")
-    public String fbid;
+    private String fbid;
     @JsonProperty("email")
-    public String email;
+    private String email;
     @JsonProperty("phone_number")
-    public String phoneNumber;
+    private String phoneNumber;
     @JsonProperty("fbtoken")
-    public String fbtoken;
+    private String fbtoken;
     @JsonProperty("regdate")
-    public String regdate;
+    private String regdate;
     @JsonProperty("status")
-    public String status;
+    private String status;
     @JsonProperty("lastname")
-    public String lastname;
+    private String lastname;
     @JsonProperty("firstname")
-    public String firstname;
+    private String firstname;
     @JsonProperty("gender")
-    public String gender;
+    private String gender;
     @JsonProperty("dob")
-    public String dob;
+    private String dob;
     @JsonProperty("birthyear")
-    public String birthyear;
+    private String birthyear;
     @JsonProperty("network")
-    public String network;
+    private String network;
     @JsonProperty("following_count")
-    public String followingCount;
+    private String followingCount;
     @JsonProperty("follower_count")
-    public String followerCount;
+    private String followerCount;
     @JsonProperty("update_time")
-    public String updateTime;
+    private String updateTime;
     @JsonProperty("require_otp")
-    public Boolean requireOtp;
+    private Boolean requireOtp;
     @JsonProperty("mandatory_verify")
-    public Boolean mandatoryVerify;
+    private Boolean mandatoryVerify;
     @JsonProperty("email_verified_status")
-    public String emailVerifiedStatus;
+    private String emailVerifiedStatus;
     @JsonProperty("paywall_only")
-    public String paywallOnly;
+    private String paywallOnly;
     @JsonProperty("loginwall")
-    public String loginwall;
+    private String loginwall;
 
     public boolean validateNull() {
 

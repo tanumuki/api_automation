@@ -11,12 +11,18 @@ public class RadioStationValidator extends EntityValidator {
     public void validate(RadioStation station, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(station, sa);
+            validateMoreInfo(station,sa);
 
     }
 
     void validateMoreInfo(RadioStation station, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        System.out.println("object of station "+station.getMore_info().getDescription());
         RadioStationMoreInfo mi = station.getMore_info();
+        System.out.println("object of mi "+mi.toString());
+//        if(mi.getDescription()==null || mi.getDescription()==" " || mi.getDescription().isEmpty()){
+//            System.out.println("mi: its null");
+//        }
         if(mi.getDescription() != null)
             sa.assertTrue(Validate.asString(mi.getDescription()), AssertionMsg.print(className, methodName, "radio_station", "radio_station.more_info.description", mi.getDescription(), station.getId() ));
 
