@@ -1,10 +1,8 @@
 package validators;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.testng.asserts.SoftAssert;
-import pojos.login_pojos.ErrorPojo;
-import pojos.login_pojos.LoginProstatus;
-import pojos.login_pojos.SlotsUsed;
-import pojos.login_pojos.UserLogin;
+import pojos.login_pojos.*;
 
 import java.util.List;
 
@@ -16,8 +14,19 @@ public class UserLoginValidator {
 
     public void validateAll(UserLogin login, SoftAssert sa) {
 
-        validateData(login, sa);
-        validateProStatus(login, sa);
+
+        /*
+        Validation of user data
+         */
+
+        Validate.validateUserData(login.getData(),sa);
+
+        /*
+        Validation of pro status
+         */
+        Validate.validateProStatus(login.getProstatus(), sa);
+
+
 
     }
 
@@ -200,7 +209,7 @@ public class UserLoginValidator {
 
         // require OTP
         if (login.getData()!=null){
-            Boolean otpFlag = login.getData().requireOtp;
+            Boolean otpFlag = login.getData().getRequireOtp();
             sa.assertTrue(Validate.asBoolean(otpFlag), className + "." + "validate otp flag failed - ");
         } else {
             log.info(" Otp flag is NULL or empty");
@@ -276,6 +285,8 @@ public class UserLoginValidator {
         sa.assertEquals(error.getMsg(), expectedErrorMessage,
                 "Expected: \"" + expectedErrorMessage +  "\", but found: \"" + error.getMsg() + "\"");
     }
+
+
 
 
 

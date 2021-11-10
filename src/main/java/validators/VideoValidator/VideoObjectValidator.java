@@ -14,7 +14,7 @@ import validators.genericValidators.RightsValidator;
 import java.util.*;
 
 @Slf4j
-public class VideoGetDetailsValidator  extends EntityValidator {
+public class VideoObjectValidator extends EntityValidator {
 
 
     final String className = getClass().getName();
@@ -25,6 +25,9 @@ public class VideoGetDetailsValidator  extends EntityValidator {
         super.validate(videoObj, sa);
 
         //Validating status
+        /*
+            TODO - remove the status and data field
+         */
         if(Validate.isNonEmptyString(videoObj.status)){
             sa.assertTrue(Validate.API_STATUS_SUCCESS.matches(videoObj.status));
         }

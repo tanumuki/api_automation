@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
+import endPoints.Context;
 import enums.StatusCode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,9 +14,11 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.JiotuneHomePageData.JiotuneHomePageData;
 import resources.ConfigReader;
+import resources.ScenarioContext;
 import resources.Util;
 import validators.JiotuneHomepageData.JTHomePageDataValidator;
 
@@ -24,11 +27,13 @@ import java.io.IOException;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class JiotuneGetHomepageData extends Util {
 
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     Response resp;
+    ScenarioContext scenarioContext;
 
     @Given("Payload with jiotune home page data endpoint {string}")
     public void payload_with_jiotune_home_page_data_endpoint(String endpoint) throws IOException {
@@ -46,12 +51,14 @@ public class JiotuneGetHomepageData extends Util {
 
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
         System.out.println( resp.asString());
-
+        log.debug("Jiotune homepage : response "+resp);
+        testContext.scenarioContext.setContext(Context.JIOTUNEGETHOMEPAGERESPONSE, resp);
         logResponseTime(resp);
     }
 
     @Then("jiotune home page data api should respond with status code {string}")
     public void jiotune_home_page_data_api_should_respond_with_status_code(String statusCode) {
+        log.debug("Jiotune homepage : status code ");
         StatusCode code = StatusCode.valueOf(statusCode);
         int resource = code.getResource();
         assertEquals(resp.getStatusCode(), resource);
