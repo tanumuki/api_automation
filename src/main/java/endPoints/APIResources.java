@@ -88,6 +88,7 @@ public enum APIResources {
 	VideoGetDetails("video.getDetails"),
 	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
 	GoogleAssistantGet("google_assistant.get"),
+	MakePrivatePlaylist("playlist.makePrivate"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	VideoGetVideoHomePage("video.getVideoHomePage"),
 	UserJioLoginAPI("user.jiologin"),

@@ -10,6 +10,8 @@ public class VideoGetDetails extends Entity {
         public String status;
         @JsonProperty("data")
         public VideoData videoData;
+        @JsonProperty("app_version")
+        private String appVersion;
 
     }
 
