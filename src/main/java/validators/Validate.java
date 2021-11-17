@@ -591,7 +591,8 @@ public class Validate {
         return str.matches("pro|free|trial");
     }
 
-    public static void asString(String users, SoftAssert sa) {
+    public static boolean asString(String users, SoftAssert sa) {
+        return false;
     }
 
     public static void asNum(Integer usersCount, SoftAssert sa) {
