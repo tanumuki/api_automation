@@ -12,7 +12,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import pojos.jioTuneLogin.DeviceInfo;
 import pojos.jioTuneLogin.SsoObjectToJson;
 import resources.APIConstants;
