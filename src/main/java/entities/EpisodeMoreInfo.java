@@ -32,6 +32,8 @@ public class EpisodeMoreInfo {
     private String bg_color;
     @JsonProperty("season_no")
     private String seasonNo;
+    @JsonProperty("sequence_number")
+    private String sequence_number;
     @JsonProperty("season_number")
     private String seasonNumber;
     @JsonProperty("show_id")
@@ -74,5 +76,7 @@ public class EpisodeMoreInfo {
     private String album;
     @JsonProperty("primary_artists")
     private List<ArtistResultObj> primary_artists;
+    @JsonProperty("release_time")
+    private String releaseTime;
 
 }

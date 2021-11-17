@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Get all the featured playlists
+Feature: content.getFeaturedPlaylists
 
   Scenario: Get All the featured playlists
     Given Payload with get all contents endPoint "GetFeaturedPlaylistAPI"

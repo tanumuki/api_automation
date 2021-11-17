@@ -16,4 +16,6 @@ public class BenefitsList {
     private String status;
     @JsonProperty("data")
     private BenefitsListData [] data;
+    @JsonProperty("metadata")
+    private Metadata metadata;
 }

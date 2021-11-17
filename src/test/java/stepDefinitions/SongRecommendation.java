@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
-import entities.Channel;
 import entities.Song;
 import entities.SongContainer;
 import enums.StatusCode;
@@ -22,7 +21,6 @@ import org.testng.asserts.SoftAssert;
 import resources.ConfigReader;
 import resources.Util;
 import validators.Validate;
-import validators.genericValidators.ChannelValidator;
 import validators.genericValidators.SongValidator;
 
 import java.io.IOException;
@@ -52,7 +50,7 @@ public class SongRecommendation extends Util {
         reqSpec.queryParam("pid", song_id);
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println(resp.asString());
 
         logResponseTime(resp);
     }
@@ -68,14 +66,21 @@ public class SongRecommendation extends Util {
     public void get_song_reco_api_response_is_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        SongContainer songs = mapper.readValue(resp.asString(), SongContainer.class);
         SoftAssert sa = new SoftAssert();
 
-//        Validators
-        sa.assertTrue(songs.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
-                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + songs.getStatus() + "\"");
-        for(Song song : songs.getData()) {
-            new SongValidator().validate(song, sa);
+        if (System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+            List<Song> songs = mapper.readValue(resp.asString(), new TypeReference<List<Song>>() {
+            });
+            for (Song song : songs) {
+                new SongValidator().validate(song, sa);
+            }
+        } else {
+            SongContainer songs = mapper.readValue(resp.asString(), SongContainer.class);
+            sa.assertTrue(songs.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                    "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + songs.getStatus() + "\"");
+            for (Song song : songs.getData()) {
+                new SongValidator().validate(song, sa);
+            }
         }
         sa.assertAll();
     }

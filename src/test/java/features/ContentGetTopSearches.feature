@@ -1,4 +1,4 @@
-Feature: Validation of Content Get Top searches API
+Feature: content.getTopSearches
 
   Background:
     Given I have the cookie for the following user

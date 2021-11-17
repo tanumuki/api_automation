@@ -59,6 +59,10 @@ public class UserStateValidator {
             sa.assertTrue(Validate.asBoolean(us.getMandatory_verify()), AssertionMsg.print(className, methodName, "user_state.mandatory_verify", String.valueOf(us.getMandatory_verify())));
 
             sa.assertTrue(Validate.asBoolean(us.getRequire_otp()), AssertionMsg.print(className, methodName, "user_state.require_otp", String.valueOf(us.getRequire_otp())));
+            if (us.getEmail()!=null)
+            {
+                sa.assertTrue(Validate.asEmail(us.getEmail()), AssertionMsg.print(className, methodName, "user_state.email", us.getEmail()));
+            }
         }
 
 
@@ -66,6 +70,18 @@ public class UserStateValidator {
             new LoginProStatusValidator().validate(us.getProstatus(), sa);
         else if(us.getUserLoggedIn() == 1)
             sa.fail(className + "." + methodName + "-pro_status is null");
+
+        /*All fields are null now. Please add assertions as and when values are available - Ashwin*/
+        if(us.getSecondary_information() != null) {
+            sa.assertNull(us.getSecondary_information().getEmail(),
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getEmail());
+            sa.assertTrue(us.getSecondary_information().getPhone().length() == 0,
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getPhone());
+            sa.assertNull(us.getSecondary_information().getEmail_verified(),
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getEmail_verified());
+            sa.assertNull(us.getSecondary_information().getPhone_verified(),
+                    "TODO QA: Found possible values. Add assertions: " + us.getSecondary_information().getPhone_verified());
+        }
 
     }
 

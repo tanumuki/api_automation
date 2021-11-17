@@ -1,15 +1,16 @@
-# new feature
-# Tags: optional
+Feature: app.getLaunchData
 
-Feature: Gets app get launch data for logged out user
-  Scenario: Gets app get launch data
-    Given Payload with endpoint for app get launch "AppGetLaunchData"
-    When User calls app get launch api
-    Then App get launch data api must respond with code "OK"
+  Scenario: Gets app get launch data for a logged out user
+    Given I have the endpoint for "AppGetLaunchData"
+    When I make the "GET" request
+    Then I validate status code with "OK"
     And App get launch data response must be validated successfully
 
-  Scenario: Gets app get launch data for logged in user
-    Given Payload with app get launch endpoint "AppGetLaunchData" along with given credentials
-    When User calls app get launch api
-    Then App get launch data api must respond with code "OK"
+  Scenario: app.getLaunchData for a logged-in user
+    Given I have the cookie for the following user
+      | username              | password   |
+      | paypaltest7@saavn.com | Saavn@1234 |
+    When I have the endpoint for "AppGetLaunchData"
+    And I make the "GET" request
+    Then I validate status code with "OK"
     And App get launch data response must be validated successfully

@@ -43,6 +43,11 @@ public class PodcastGetNTValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(mi.getCopyrightText(), sa), AssertionMsg.print(className, methodName, "show.more_info.copyright_text", mi.getCopyrightText()));
         }
 
+        if(Validate.isNonEmptyString(mi.getM4a())) {
+            sa.assertTrue(Validate.asBoolean(mi.getM4a()),
+                    AssertionMsg.print(className, methodName, "show.more_info.m4a", mi.getM4a()));
+        }
+
         new ArtistMapValidator().validate(mi.getArtist_map(), sa, "show", id);
     }
 

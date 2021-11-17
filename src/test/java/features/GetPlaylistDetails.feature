@@ -1,7 +1,4 @@
-# new feature
-# Tags: Optional
-
-Feature: Get playlist details of the given playlist id
+Feature: playlist.getDetails
 
   Scenario Outline: Get playlist details of the given playlist id
     Given Playlist API with endpoint "GetPlaylistDetailsAPI"
@@ -9,7 +6,7 @@ Feature: Get playlist details of the given playlist id
     Then PlaylistGetDetails api must respond with status code "OK"
     And User should see the PlaylistGetDetails response validated
 
-    Examples: 
+    Examples:
       | playlistid |
       | 81853229 |
       | 82859880 |

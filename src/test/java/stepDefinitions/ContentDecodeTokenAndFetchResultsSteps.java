@@ -81,6 +81,7 @@ public class ContentDecodeTokenAndFetchResultsSteps {
                 sa.assertAll();
                 break;
             case "Songs":
+            case "Videos":
                 contentDecodeTokenAndFetchResultsPojo = objectMapper.readValue(GenericSteps.resp.asString(), Song.class);
                 for (Song song : ((Song) contentDecodeTokenAndFetchResultsPojo).getSongs()) {
                     new SongValidator().validate(song, sa);

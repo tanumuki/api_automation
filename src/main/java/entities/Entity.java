@@ -46,4 +46,8 @@ public class Entity {
     private String headerDesc;
     @JsonProperty("mini_obj")
     private Boolean miniObj;
+    @JsonProperty("subtype")
+    private String subtype;
+
+
 }

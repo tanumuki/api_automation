@@ -51,7 +51,7 @@ public class ShowGetAllEpisodes extends Util {
         reqSpec.queryParam("season_number", season_number);
         System.out.println("resSpec: " + resSpec.toString());
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }
@@ -67,14 +67,24 @@ public class ShowGetAllEpisodes extends Util {
     public void get_all_episodes_api_response_must_be_valided_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         TypeFactory typeFactory = mapper.getTypeFactory();
-        EpisodeContainer episodes = mapper.readValue(resp.asString(), EpisodeContainer.class);
         SoftAssert sa = new SoftAssert();
+        if (ConfigReader.getInstance().getCtx().equalsIgnoreCase("androidgo"))
+        {
+            List<Episode> episodes = mapper.readValue(resp.asString(), new TypeReference<List<Episode>>() {
+            });
+            for (Episode episode : episodes) {
+                new EpisodeValidator().validate(episode, sa);
+            }
+        }
+        else {
+            EpisodeContainer episodes = mapper.readValue(resp.asString(), EpisodeContainer.class);
 
 //        Validators
-        sa.assertTrue(episodes.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
-                "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + episodes.getStatus() + "\"");
-        for(Episode episode : episodes.getData()) {
-            new EpisodeValidator().validate(episode, sa);
+            sa.assertTrue(episodes.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+                    "Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + episodes.getStatus() + "\"");
+            for (Episode episode : episodes.getData()) {
+                new EpisodeValidator().validate(episode, sa);
+            }
         }
         sa.assertAll();
     }

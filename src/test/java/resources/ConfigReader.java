@@ -18,6 +18,7 @@ public class ConfigReader {
 	 	static String username;
 	 	static String password;
 	 	static String userAgent;
+	 	static String jioBaseUrl;
 
 	private static ConfigReader configReader;
 
@@ -58,14 +59,18 @@ public class ConfigReader {
 			String username =  System.getProperty("username");
 			String password =  System.getProperty("password");
 			String userAgent =  System.getProperty("userAgent");
+			String jioBaseUrl = System.getProperty("jioBaseUrl");
 
-			System.out.println("stuff works "+baseUrl+ " and " +app_version);
+			System.out.println("Runtime env: "+baseUrl+ " and " +app_version);
 			if (baseUrl != null) {
 				if (baseUrl.equalsIgnoreCase("staging")) {
 					properties.setProperty("baseUrl", "https://staging.saavn.com");
 				}
 				else if (baseUrl.equalsIgnoreCase("prod")) {
 					properties.setProperty("baseUrl", "https://www.saavn.com");
+				}
+				else if (baseUrl.equalsIgnoreCase("test")){
+					properties.setProperty("baseUrl", "https://imgtest.saavn.com");
 				}
 			}
 			else {
@@ -75,32 +80,11 @@ public class ConfigReader {
 		
 
 			if (app_version != null) {
-				if (app_version.equalsIgnoreCase("5.1")) {
-					properties.setProperty("app_version", "5.1");
-				} else if (app_version.equalsIgnoreCase("6.1")) {
-					properties.setProperty("app_version", "6.1");
-				}
-				else if (app_version.equalsIgnoreCase("7.5.1")) {
-					properties.setProperty("app_version", "7.5.1");
-				}
-				else if (app_version.equalsIgnoreCase("7.4.0")){
-					properties.setProperty("app_version", "7.4.0");
-				}
+				properties.setProperty("app_version", app_version);
 			}
 
 			if (version != null) {
-				if (version.equalsIgnoreCase("190")) {
-					properties.setProperty("v", "190");
-				}
-				else if (version.equalsIgnoreCase("211")) {
-					properties.setProperty("v", "211");
-				}
-				else if (version.equalsIgnoreCase("258")) {
-					properties.setProperty("v", "258");
-				}
-				else if (version.equalsIgnoreCase("740.1")){
-					properties.setProperty("v", "740.1");
-				}
+					properties.setProperty("v", version);
 			}
 
 			if (ctx != null) {
@@ -108,6 +92,9 @@ public class ConfigReader {
 					properties.setProperty("ctx", "android");
 				} else if (ctx.equalsIgnoreCase("iphoneapp")) {
 					properties.setProperty("ctx", "iphoneapp");
+				}
+				else if (ctx.equalsIgnoreCase("androidgo")) {
+					properties.setProperty("ctx", "androidgo");
 				}
 			}
 
@@ -127,6 +114,17 @@ public class ConfigReader {
 				else if (password.equalsIgnoreCase("QAPassword")) {
 					properties.setProperty("username", "tanu.muk2009@gmail.com");
 				}
+			}
+
+			if (jioBaseUrl != null) {
+				if (jioBaseUrl.equalsIgnoreCase("jioBaseUrl")) { //IF clause added here incase there is different env even for jio apis
+					properties.setProperty("jioBaseUrl", "https://api.jio.com/v3/dip/user/authtoken/verify");
+				}
+			}
+			else {
+				jioBaseUrl= "https://api.jio.com/v3/dip/user/authtoken/verify";
+				properties.setProperty("jioBaseUrl", jioBaseUrl);
+				System.out.println("jioBaseUrl : " + jioBaseUrl);
 			}
 
 			if (userAgent != null) {
@@ -165,12 +163,12 @@ public class ConfigReader {
     	 */
     	else {
 			baseUrl="https://staging.jiosaavn.com";
+			jioBaseUrl="https://api.jio.com/v3/dip/user/authtoken/verify";
 			properties.setProperty("baseUrl", baseUrl);
-			password="Saavn@1234";
-			properties.setProperty("password", password);
-			app_version="7.5.1";
+			properties.setProperty("jioBaseUrl",jioBaseUrl);
+			app_version="8.4";
 			properties.setProperty("app_version", app_version);
-			version="258";
+			version="292";
 			properties.setProperty("v", version);
 			ctx="android";
 			properties.setProperty("ctx", ctx);
@@ -211,6 +209,13 @@ public class ConfigReader {
         	return baseUrl;
         else throw new RuntimeException("base_Url not specified in the Configuration.properties file.");
     }
+
+	public String getJioBaseUrl(){
+		jioBaseUrl = properties.getProperty("jioBaseUrl");
+		if(jioBaseUrl != null)
+			return jioBaseUrl;
+		else throw new RuntimeException("jioBaseUrl not specified in the Configuration.properties file.");
+	}
    
     public String getAppVersion() {
          app_version = properties.getProperty("app_version");

@@ -20,9 +20,8 @@ public class LoginData {
         super();
     }
 
-
     @JsonProperty("username")
-    private String username;
+     String username;
     @JsonProperty("uid")
     private String uid;
     @JsonProperty("fbid")
@@ -55,11 +54,16 @@ public class LoginData {
     private String followerCount;
     @JsonProperty("update_time")
     private String updateTime;
+    @JsonProperty("require_otp")
+    private Boolean requireOtp;
+    @JsonProperty("mandatory_verify")
+    private Boolean mandatoryVerify;
+    @JsonProperty("email_verified_status")
+    private String emailVerifiedStatus;
     @JsonProperty("paywall_only")
     private String paywallOnly;
     @JsonProperty("loginwall")
     private String loginwall;
-
 
     public boolean validateNull() {
 

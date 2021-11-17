@@ -2,9 +2,7 @@ package pojos.JiotuneHomePageData;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import entities.ModulesData;
-import entities.PlaylistMini;
-import entities.Song;
+import entities.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +17,9 @@ import java.util.List;
 @Setter
 public class JiotuneHomePageData {
     @JsonProperty("data_0")
-    private List<Song> data_0;
+    private List<JTMenu> data_0;
     @JsonProperty("data_1")
-    private List<LinkedHashMap> data_1;
+    private List<Song> data_1;
     @JsonProperty("data_2")
     private List<LinkedHashMap> data_2;
     @JsonProperty("data_3")
@@ -30,6 +28,25 @@ public class JiotuneHomePageData {
     private List<LinkedHashMap> data_4;
     @JsonProperty("data_5")
     private List<LinkedHashMap> data_5;
-    @JsonProperty("modules")
-    private List<ModulesData> modules;
+    @JsonProperty("data_6")
+    private List<LinkedHashMap> data_6;
+    @JsonProperty("data_7")
+    private List<LinkedHashMap> data_7;
+    @JsonProperty("data_8")
+    private List<LinkedHashMap> data_8;
+    @JsonProperty("trending_jiotunes")
+    private List<Song> trending_jiotunes;
+    @JsonProperty("modules") // The JSONArray has been changed to a JSONObject as of 7th July, 2021 - Ashwin
+    private ModulesObject modules;
+    @JsonProperty("jiotune_reco")
+    private List<Song> jiotune_reco;
+    @JsonProperty("myjiotune")
+    private List<LinkedHashMap> myjiotune;
+    @JsonProperty("cta_text")
+    private String ctaText;
+    @JsonProperty("show_delete")
+    private Boolean showDelete;
+    @JsonProperty("cta_action")
+    private String cta_action;
+//    TODO: Use JSONAnySetter for handling dynamic fields
 }

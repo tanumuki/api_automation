@@ -33,6 +33,7 @@ public class GetCookies {
 		msCookieManager = new java.net.CookieManager();
 		Map<String, List<String>> headerFields = connection.getHeaderFields();
 		List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
+
 		if (cookiesHeader != null) {
 			for (String cookie : cookiesHeader) {
 				msCookieManager.getCookieStore().add(null, HttpCookie.parse(cookie).get(0));
@@ -55,18 +56,7 @@ public class GetCookies {
 	
 	
 	public static String initCookies( String languageCookie, Map<String, List<String>> headerFields) throws IOException {
-		
-		System.out.println("init debug 1");
-//		baseUrl = Data.get(userDataFile).getBaseUrl();
-		//String languageCookie = Data.get(userDataFile).getLanguageCookie();
-		System.out.println("init debug 2");
-
-//		String url =  baseUrl+"/api.php?__call=app.getLaunchData&api_version=4&_format=json&_marker=0&app_version=6.0&v=80.0&ctx=android";
-//		URL  urlConn = new URL(url);
-//		//URLConnection connection = con.openConnection();
-//		HttpURLConnection connection = (HttpURLConnection) urlConn.openConnection();
 		msCookieManager = new java.net.CookieManager();
-	//	headerFields = connection.getHeaderFields();
 		List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);
 		System.out.println("init debug 3 " +COOKIES_HEADER.toString());
 		if (cookiesHeader != null) {
@@ -87,13 +77,6 @@ public class GetCookies {
 			cookieString=cookieString+entry.getKey()+"="+entry.getValue()+";";
 		}
 		System.out.println("string " +cookieString);
-		
-		
 		return cookieString;
-	
-	
-	
-	
-	}	
-
+	}
 }

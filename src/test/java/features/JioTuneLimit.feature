@@ -1,4 +1,4 @@
-Feature: Validating Jio Send OTP API
+Feature: jiotune.jioTuneLimit
 
   Background:
     Given I have the cookie for the following user

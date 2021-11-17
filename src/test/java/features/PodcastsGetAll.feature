@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Podcasts get all
+Feature: podcast.getAll
 
   Scenario: Podcasts get all
     Given Payload with podcasts get all endpoint "PodcastGetAll"

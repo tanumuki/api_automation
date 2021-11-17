@@ -4,11 +4,15 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.PlaylistMini;
 import entities.PlaylistMiniMoreInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.testng.asserts.SoftAssert;
 import validators.genericValidators.EntityValidator;
 
+import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class PlaylistMiniValidator extends EntityValidator {
 
     final String className = getClass().getName();
@@ -32,7 +36,7 @@ public class PlaylistMiniValidator extends EntityValidator {
             sa.assertTrue(Validate.asString(ch.getDescription()), AssertionMsg.print(className, methodName, "playlist.description", ch.getDescription()));
 
         if(ch.getNumsongs() != null){
-            //TODO: Add validation for numsongs, for now it's coming up as null
+            sa.assertTrue(Validate.asNum(ch.getNumsongs()), AssertionMsg.print(className, methodName, "numsongs", ch.getNumsongs()));
         }
 
         if(ch.getMoreInfo() instanceof List){
@@ -130,6 +134,22 @@ public class PlaylistMiniValidator extends EntityValidator {
         if(Validate.isNonEmptyString(mi.getVcode())){
             sa.assertTrue(Validate.asNum(mi.getVcode()), AssertionMsg.print(className, methodName, "playlist.more_info.vcode", mi.getVcode()));
             sa.assertTrue(Validate.asVlinkURL(mi.getVlink()), AssertionMsg.print(className, methodName, "playlist.more_info.vlink", mi.getVlink()));
+        }
+
+        if(mi.getSub_types() != null) {
+            for (String subtype : mi.getSub_types()) {
+                sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName,
+                        "playlist.more_info.sub_types", subtype));
+            }
+        }else {
+            log.info("sub_types is empty for"+mi.getArtist_name());
+        }
+
+        if(mi.getImages()!=null) {
+            /*TODO: Add validation for images, for now it's coming up as null
+             * Purposefully failing it for now, so that in case the test fails, we can check the values in JSON, and
+             * add the validations - Ashwin */
+            sa.fail("QA TODO: Add assertions for images. Value found: " + mi.getImages());
         }
 
         //WEb release 11-Mar-21

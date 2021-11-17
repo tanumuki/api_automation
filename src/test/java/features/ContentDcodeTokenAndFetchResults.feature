@@ -1,8 +1,8 @@
-Feature: Validation of Content Decode Token and Fetch Results API
+Feature: content.decodeTokenAndFetchResults
 
   Background:
     Given I have the cookie for the following user
-      | username | password |
+      | username              | password   |
       | paypaltest7@saavn.com | Saavn@1234 |
 
   Scenario Outline: Verify response of Content Decode Token and Fetch Results API

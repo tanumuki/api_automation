@@ -1,4 +1,5 @@
-Feature: Validation of Social follow/Unfollow API.
+Feature: social.follow, social.unfollow
+
 
   Background:
     Given I have the cookie for the following user

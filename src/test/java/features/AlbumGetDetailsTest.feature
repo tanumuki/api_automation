@@ -1,10 +1,12 @@
-@contents @runNow
-Feature: Content Get Album Details of given albumId
+@content
+Feature: content.getAlbumDetails
 
   Scenario Outline: Get Album details for given albumId
-    Given Payload with endPoint "GetAlbumDetailsAPI"
-    When User calls https request with "<albumid>"
-    Then User should get response with status code "OK"
+    Given I have the endpoint for "GetAlbumDetailsAPI"
+    When I make the "GET" request with the following query parameters
+    | albumid   |
+    | <albumid> |
+    Then I validate status code with "OK"
     And User should see the response validated
 
     Examples: 

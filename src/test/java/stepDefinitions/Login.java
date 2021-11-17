@@ -16,19 +16,21 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.login_pojos.UserLogin;
-import resources.*;
+import resources.APIConstants;
+import resources.ConfigReader;
+import resources.ScenarioContext;
+import resources.Util;
 import validators.UserLoginValidator;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class Login extends Util {
 
 	RequestSpecification res;
@@ -44,18 +46,9 @@ public class Login extends Util {
 	public void add_payload_with_login_endpoint(String endPoint) throws Exception {
 		APIResources resourceAPI = APIResources.valueOf(endPoint);
 		String resource = resourceAPI.getResource();
-		//UserGenerator user = UserGenerator.getInstance();
-		//HashMap<String, String> userMap = user.generateNewUserCookie();
-		//cookie= userMap.get("cookie");
-		//appending cookie with device_id
-		String device= "device_id= 8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
-		cookie=cookie+device;
-		System.out.println("cookie2 is " +cookie);
-		//username = userMap.get("username");
-		//password = userMap.get("password");
 		testContext.scenarioContext.setContext(Context.USERNAME, username);
 		testContext.scenarioContext.setContext(Context.PASSWORD, password);
-		System.out.println("resource api " + resourceAPI.getResource());
+		log.info("resource api " + resourceAPI.getResource());
 		res = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), resource, cookie));
 	}
 
@@ -69,8 +62,6 @@ public class Login extends Util {
 
 		String username = (String) testContext.scenarioContext.getContext(Context.USERNAME);
 		String password = (String) testContext.scenarioContext.getContext(Context.PASSWORD);
-		System.out.println("ussername is " +username + "and" +password);
-
 		method = table.cell(1, 0);
 		System.out.println("method is "+method);
 		 System.out.println("The value1 is : " + table.cell(1, 0));
@@ -109,38 +100,30 @@ public class Login extends Util {
 		assertEquals(resp.getStatusCode(), resource);
 
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
 				
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
-		System.out.println("userlogin2 "+login.toString());
-		new UserLoginValidator().validate(login, sa);
+		log.info("userlogin json for valid credentials "+login.toString());
+		new UserLoginValidator().validateAll(login, sa);
 
 	}
-	@Then("The Login API returns success with status code {string} for invalid credentials")
-	public void the_login_api_returns_success_with_status_code_for_invalid_credentials(String statusCode) throws JsonProcessingException {
+	@Then("The Login API returns an error message with status code {string} for invalid credentials")
+	public void the_login_api_returns_an_error_message_with_status_code_for_invalid_credentials(String statusCode) throws JsonProcessingException {
 		// Write code here that turns the phrase above into concrete actions
 
 		SoftAssert sa = new SoftAssert();
 
 		StatusCode code = StatusCode.valueOf(statusCode);
 		int resource = code.getResource();
-		System.out.println("the code is  " + resource);
-
-		//System.out.println("the response is  " + resp.body().asString());
 		JsonPath path = new JsonPath( resp.body().asString());
 	   String error = path.getString("error");
        System.out.println("server error is "+error);
 		assertEquals(resp.getStatusCode(), resource);
-
 		String errorString = "[msg:Incorrect username/password. Please try again.]";
 		System.out.println("errorString is "+errorString);
 		sa.assertTrue(error.equals(errorString), "Error message doesn't match" );
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
-
 		UserLogin login = objectMapper.readValue(resp.asString(), UserLogin.class);
+		log.info("User login json for invalid credentials "+login.toString());
 		sa.assertAll();
 	}
 

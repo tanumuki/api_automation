@@ -4,8 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import endPoints.APIResources;
 import entities.Album;
+import entities.AlbumMiniObject;
+import entities.AlbumReco;
+import entities.AssortedEntities;
 import enums.StatusCode;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,11 +22,14 @@ import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.asserts.SoftAssert;
 import pojos.libraryOps.LibraryData;
+import pojos.libraryOps.LibraryEntities;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.UserGenerator;
 import resources.Util;
 import validators.LibraryValidator;
+import validators.Validate;
+import validators.genericValidators.AlbumMiniValidator;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.port;
 import static org.testng.Assert.assertEquals;
 
 
@@ -46,6 +54,7 @@ public class LibaryOps extends Util {
 	String seed_album_id = "";
 	Album albumDataInLibrary ;
 	String albumResponse="";
+	String entity_type;
 
 	@Given("Add payload with get library endpoint {string} and account credentials for cookie")
 	public void add_payload_with_get_library_endpoint_and_account_credentials_for_cookie(String endPoint)
@@ -101,7 +110,6 @@ public class LibaryOps extends Util {
 
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
 		new LibraryValidator().validateForNewUSer(library, sa);
 		sa.assertAll();
@@ -139,7 +147,6 @@ public class LibaryOps extends Util {
 		System.setProperty("albumResponse", albumResponse);
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		 albumDataInLibrary = objectMapper.readValue(resp.asString(), Album.class);
 		
 		
@@ -204,7 +211,6 @@ public class LibaryOps extends Util {
 		seed_song_id =System.getProperty("seed_song_id");
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
 		new LibraryValidator().validateLibraryForUserWithUpdatedData(library, sa, seed_album_id, seed_song_id, albumResponse);
 		sa.assertAll();
@@ -229,11 +235,23 @@ public class LibaryOps extends Util {
 		SoftAssert sa = new SoftAssert();
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				true);
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		LibraryData library = objectMapper.readValue(resp.asString(), LibraryData.class);
 		new LibraryValidator().validateForUSerAfterDeletionOfLibraryData(library, sa);
 		sa.assertAll();
 		
 	}
-	
+
+	@Then("Validate the library details for the user against the params {string}")
+	public void validateTheLibraryDetailsForTheUserAgainstTheParams(String entity_type) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		LibraryData libraryData = mapper.readValue(GenericSteps.resp.asString(), LibraryData.class);
+		SoftAssert sa = new SoftAssert();
+		if(!entity_type.equals("song")) {
+			sa.assertTrue(libraryData.getStatus().equalsIgnoreCase(Validate.API_STATUS_SUCCESS),
+					"Expected \"" + Validate.API_STATUS_SUCCESS + "\", but found: \"" + libraryData.getStatus() + "\"");
+		}
+		log.info("Validated for the following entity "+ entity_type);
+		Validate.asAssortedEntityForLibraryDetails(entity_type, GenericSteps.resp, sa);
+		sa.assertAll();
+	}
 }

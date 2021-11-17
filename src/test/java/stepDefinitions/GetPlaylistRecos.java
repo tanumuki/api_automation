@@ -50,7 +50,7 @@ public class GetPlaylistRecos extends Util {
         System.out.println("resSpec: " + resSpec.toString());
         reqSpec.queryParam("listid", playlistid);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }

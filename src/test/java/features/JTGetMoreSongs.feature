@@ -1,7 +1,9 @@
 # new feature
 # Tags: optional
-
-Feature: Jiotunes get more songs
+  #Ignoring this suite as jiotunepage.getMoreSongs is run on websocket arch and not on the http arch.
+  #This scenario will be covered when we create test suites for websocket APIs
+@ignore
+Feature: jiotunepage.getMoreSongs
 
   #failure: failing cuz of 500
   Scenario Outline: Jiotunes get more songs
@@ -11,5 +13,5 @@ Feature: Jiotunes get more songs
     And jiotunes get more songs response must be validated successfully
 
     Examples:
-      | query       | n   | p  |
-      | Rajinikanth | 10 | 1 |
+      | query  | n  | p |
+      | arijit | 10 | 1 |

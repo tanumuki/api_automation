@@ -12,7 +12,7 @@ public class GetUserCurrSubsValidator {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         sa.assertTrue(Validate.asBoolean(res.getStatus()), AssertionMsg.print(className, methodName, "status", res.getStatus()));
 
-        //Since the subscription currently returns an empty object, no validation has been come up so far.
+        //TODO: Since the subscription currently returns an empty object, no validation has been come up so far.
         //We are yet to find the contents of the subscription object in the response
     }
 }

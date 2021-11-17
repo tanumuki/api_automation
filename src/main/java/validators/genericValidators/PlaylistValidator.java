@@ -2,19 +2,17 @@ package validators.genericValidators;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.*;
-import org.testng.asserts.SoftAssert;
-
+import entities.Entity;
 import entities.Playlist;
-import entities.Song;
+import entities.PlaylistMoreInfo;
+import entities.UserProfilePlaylists;
+import org.testng.asserts.SoftAssert;
 import validators.AssertionMsg;
 import validators.Validate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 public class PlaylistValidator extends EntityValidator {
 
     final String className = PlaylistValidator.class.getName();
@@ -49,15 +47,30 @@ public class PlaylistValidator extends EntityValidator {
 
     public void validateMoreInfo(Entity plObj, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        PlaylistMoreInfo moreInfo = null;
+        List<String> surpriseMePlaylist = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        PlaylistMoreInfo moreInfo;
+        Object temp = null;
 
         try {
-            moreInfo = ((Playlist) plObj).getMore_info();
-
-        } catch (ClassCastException e) {
+            temp = ((Playlist) plObj).getMore_info();
+        }
+        catch(ClassCastException e) {
             moreInfo = ((UserProfilePlaylists) plObj).getMore_info();
         }
+
+        if(temp instanceof ArrayList) {
+//          The Surprise Me playlist's more_info is empty, so we just assert that the length is 0
+//          and return because there is nothing to verify
+            surpriseMePlaylist = (ArrayList) ((Playlist) plObj).getMore_info();
+            sa.assertTrue(surpriseMePlaylist.isEmpty());
+            return;
+        }
+        else if(temp instanceof LinkedHashMap) {
+//          Handler for regular playlist more_info field
+            moreInfo = mapper.convertValue(temp, PlaylistMoreInfo.class);
+        }
+
         if(Validate.isNonEmptyString(moreInfo.getUid()))
             sa.assertTrue(Validate.asString(moreInfo.getUid()), AssertionMsg.print(className, methodName, "playlist.more_info.uid", moreInfo.getUid()));
 
@@ -93,26 +106,28 @@ public class PlaylistValidator extends EntityValidator {
 
         //Validate subtype
 
-        if(moreInfo.getSubtype() != null && moreInfo.getSubtype().size() > 0){
-            for(String subtype : moreInfo.getSubtype()){
+        if(moreInfo.getSub_types() != null && moreInfo.getSub_types().size() > 0){
+            for(String subtype : moreInfo.getSub_types()){
                 sa.assertTrue(Validate.asPlaylistSubtype(subtype), AssertionMsg.print(className, methodName, "playlist.more_info.subtype", subtype));
             }
         }
 
-//        if(moreInfo.getSubtype() instanceof List){
-//            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents");
-//        } else if(moreInfo.getSubtype() != null){
-//            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
-//        }
+//        Adding an empty assertion for now as this field is empty for all playlist API calls.
+//        If this assert fails, please check the JSON response and add the necessary validations - Ashwin
+        if(moreInfo.getImages()!=null) {
+            sa.assertTrue(moreInfo.getImages().isEmpty(), AssertionMsg.print(className, methodName, "playlist.more_info.images", moreInfo.getImages().toString()));
+        }
 
+        if(moreInfo.getSubtype() instanceof List){
+            sa.assertTrue(((List<?>)moreInfo.getSubtype()).size() == 0, "Playlist more_info.subtype of type list has contents. Test validations need to be added.");
+        } else if(moreInfo.getSubtype() != null){
+            sa.fail("Unsupported subtype for playlist with id - " + plObj.getId());
+        }
 
-        /*
-        else {
-            ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-
-            PlaylistMiniMoreInfo mi = mapper.convertValue(ch.getMoreInfo(), PlaylistMiniMoreInfo.class);
-            validatePlaylistMiniMoreInfo(mi, sa);
-        }*/
+        if(Validate.isNonEmptyString(moreInfo.getVideo_count())) {
+            sa.assertTrue(Validate.asNum(moreInfo.getVideo_count()),
+                    AssertionMsg.print(className, methodName, "playlist.more_info.video_count",moreInfo.getVideo_count()));
+        }
     }
 
 }

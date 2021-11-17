@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: Podcast get New & Trending
+Feature: podcast.getNewandTrending
 
   Scenario: Podcast get New & Trending
     Given Payload with podcasts get new and trending endpoint "PodcastGetNT"

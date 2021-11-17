@@ -10,6 +10,13 @@
 
     <name>Backend_Automation</name>
     <!-- <url>http://www.jiosaavn.com</url> -->
+    <repositories>
+        <repository>
+            <id>tanu</id>
+            <name>tanum</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+        </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +32,17 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.github.ralfstuckert.pdfbox-layout</groupId>
+            <artifactId>pdfbox2-layout</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${version.jackson}</version>
@@ -34,11 +52,6 @@
             <artifactId>cucumber-java</artifactId>
             <version>${version.cucumber}</version>
         </dependency>
-        <!--dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${version.restAssured}</version>
-        </dependency-->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-path</artifactId>
@@ -59,12 +72,12 @@
             <artifactId>datatable</artifactId>
             <version>${version.CucumberDataTable}</version>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok-maven-plugin</artifactId>
-            <version>${version.lombok}</version>
-            <type>maven-plugin</type>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.projectlombok</groupId>-->
+        <!--            <artifactId>lombok-maven-plugin</artifactId>-->
+        <!--            <version>${version.lombok}</version>-->
+        <!--            <type>maven-plugin</type>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -76,6 +89,16 @@
             <artifactId>slf4j-jdk14</artifactId>
             <version>${version.slf4j}</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.22</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -98,14 +121,13 @@
             <artifactId>extentreports-cucumber6-adapter</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
     </dependencies>
-    <repositories>
-        <repository>
-            <id>mulesoft-releases</id>
-            <name>MuleSoft Repository</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
-        </repository>
-    </repositories>
     <build>
         <plugins>
             <plugin>

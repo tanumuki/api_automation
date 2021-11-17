@@ -16,5 +16,9 @@ public class Modules {
     private ModuleWithViewMoreArray list;
     @JsonProperty("reco")
     private ModuleWithViewMoreArray reco;
+    @JsonProperty("videos")
+    private  ModuleWithViewMoreArray videos;
+    @JsonProperty("topAlbumsFromSameYear")
+    private  ModuleWithViewMoreArray topAlbumsFromSameYear;
 
 }

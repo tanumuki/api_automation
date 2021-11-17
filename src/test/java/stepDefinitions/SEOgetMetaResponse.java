@@ -53,7 +53,7 @@ public class SEOgetMetaResponse extends Util {
         reqSpec = reqSpec.headers(headerVals);
         resp = reqSpec.given().log().all().when().get("/api.php").then().log().all().extract().response();
 //        System.out.println("Req: " + reqSpec.given().log().method().toString());
-        System.out.println("Aswin response: " + resp.asString());
+        System.out.println( resp.asString());
 
         logResponseTime(resp);
     }

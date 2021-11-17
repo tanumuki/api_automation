@@ -1,4 +1,4 @@
-Feature: Validating Jio Send OTP API
+Feature: jio.sendOtp
 
   Scenario: Verify if user is able to generate an OTP using Jio Send OTP API
 

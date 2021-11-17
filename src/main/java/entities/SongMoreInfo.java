@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import pojos.Videos.ThirdPartyVideo;
 
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class SongMoreInfo {
 	private String _320kbps;
 	@JsonProperty("encrypted_media_url")
 	private String encryptedMediaUrl;
+	@JsonProperty("thumbnail_url")
+	private String thumbnail_url;
 	@JsonProperty("encrypted_cache_url")
 	private String encryptedCacheUrl;
 	@JsonProperty("album_url")
@@ -55,10 +58,16 @@ public class SongMoreInfo {
 	private ArtistMap artistMap;
 	@JsonProperty("release_date")
 	private String releaseDate;
+	@JsonProperty("song_mappings")
+	private List<String> song_mappings;
 	@JsonProperty("vcode")
 	private String vcode;
 	@JsonProperty("vlink")
 	private String vlink;
+	@JsonProperty("video_rate_cap")
+	private String video_rate_cap;
+	@JsonProperty("preview_url")
+	private String preview_url;
 	@JsonProperty("lyrics_id")
 	private String lyricsId;
 	@JsonProperty("geo_rules")
@@ -97,6 +106,12 @@ public class SongMoreInfo {
 	private String singers;
 	@JsonProperty("video_available")
 	private Boolean video_available;
+	@JsonProperty("third_party_video_available")
+	private Boolean third_party_video_available;
+	@JsonProperty("third_party_video_partners")
+	private List<String> third_party_video_partners;
+	@JsonProperty("third_party_videos")
+	private List<ThirdPartyVideo> third_party_videos;
 	@JsonProperty("triller_available")
 	private Boolean triller_available;
 	@JsonProperty("video_thumbnail")
@@ -109,4 +124,12 @@ public class SongMoreInfo {
 	private String language;
 	@JsonProperty("is_dolby_content")
 	private Boolean is_dolby_content;
+	@JsonProperty("video_mappings")
+	private String [] video_mappings;
+	@JsonProperty("multiple_tunes")
+	private List<MultipleTunes> multiPleTunes;
+	@JsonProperty("label_url")
+	private String labelUrl;
+	@JsonProperty("content_category")
+	private String contentCategory;
 }

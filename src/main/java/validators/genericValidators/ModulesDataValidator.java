@@ -64,10 +64,16 @@ public class ModulesDataValidator {
                 sa.assertTrue(Validate.asBoolean(md.getSimpleHeader()), AssertionMsg.print(className,methodName, "modules.list.simple_header", String.valueOf(md.getSimpleHeader())));
             }
 
-
+//          noHeader (uppercase H)
             if(md.getNoHeader() != null) {
                 System.out.println("no header: " + md.getNoHeader());
                 sa.assertTrue(Validate.asBoolean(md.getNoHeader()),AssertionMsg.print(className, methodName, "modules.list.noHeader", String.valueOf(md.getNoHeader())));
+            }
+
+//          noheader (lowercase h; used in JT Homepage for the THREETILE_MENU entity - ashwin)
+            if(md.getNo_header() != null) {
+                System.out.println("no header: " + md.getNo_header());
+                sa.assertTrue(Validate.asBoolean(md.getNo_header()),AssertionMsg.print(className, methodName, "modules.list.noheader", String.valueOf(md.getNo_header())));
             }
 
 
@@ -102,6 +108,11 @@ public class ModulesDataValidator {
             if(Validate.isNonEmptyString(md.getImage_type())) {
                 System.out.println("image type: " + md.getImage_type());
                 sa.assertTrue(Validate.asImageType(md.getImage_type()), AssertionMsg.print(className, methodName, "module.image_type", md.getImage_type()));
+            }
+
+            if(md.getIs_JT_module()!=null) {
+                System.out.println("is_jt_module: " + md.getIs_JT_module());
+                sa.assertTrue(Validate.asBoolean(md.getIs_JT_module()), AssertionMsg.print(className, methodName, "module.is_JT_module", String.valueOf(md.getIs_JT_module())));
             }
 
             if(md.getShowMore() != null){
@@ -145,6 +156,11 @@ public class ModulesDataValidator {
                 if(msp.getNumItems() != null)
                     sa.assertTrue(Validate.asNum(msp.getNumItems()), AssertionMsg.print(className, methodName, "module.source_param.n", String.valueOf(msp.getNumItems())));
 
+            }
+
+            if(md.getNoFooter() != null) {
+                System.out.println("no footer: " + md.getNoFooter());
+                sa.assertTrue(Validate.asBoolean(md.getNoFooter()),AssertionMsg.print(className, methodName, "modules.list.noFooter", String.valueOf(md.getNoFooter())));
             }
         }
 

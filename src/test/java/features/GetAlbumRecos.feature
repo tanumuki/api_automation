@@ -1,14 +1,13 @@
-# new feature
-# Tags: optional
-
-Feature: Get Album recommendations for a given album id
+Feature: reco.getAlbumReco
 
   Scenario Outline: Get Album recommendations for a given album id
-    Given Payload with get album recommendations endPoint "GetAlbumRecoAPI"
-    When User calls Get album recommendations api for the "<albumid>"
-    Then Get album recommendations must respond with status code "OK"
+    Given I have the endpoint for "GetAlbumRecoAPI"
+    When I make the "GET" request with the following query parameters
+    | albumid     |
+    | <albumid>   |
+    Then I validate status code with "OK"
     And User should see the recommendations response validated
 
     Examples:
-    | albumid |
+    | albumid   |
     | 23216490  |

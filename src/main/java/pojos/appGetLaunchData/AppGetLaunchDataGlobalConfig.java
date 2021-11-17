@@ -153,4 +153,56 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("dolby_enabled")
     private String dolby_enabled;
 
+    //Web release 08-April-2021
+    @JsonProperty("zero_streamer")
+    private Boolean zero_streamer;
+
+    @JsonProperty("video_mapping_data_update")
+    private int video_mapping_data_update;
+
+    @JsonProperty("auto_play_exp")
+    private AutoPlayExp auto_play_exp;
+
+    @JsonProperty("RateCap_Applicable")
+    private Boolean rateCap_Applicable;
+
+    @JsonProperty("Video_Remaining")
+    private int video_Remaining;
+
+    @JsonProperty("Max_Video_Limit")
+    private int max_Video_Limit;
+
+    @JsonProperty("app_languages")
+    private AppLanguages app_languages;
+
+    @JsonProperty("featureViewSpan")
+    private int featureViewSpan;
+
+    @JsonProperty("watchVideoSpan")
+    private int watchVideoSpan;
+
+    @JsonProperty("in_app_review_stream_count")
+    private int in_app_review_stream_count;
+
+    @JsonProperty("module_limit")
+    private int module_limit;
+
+    @JsonProperty("module_content_limit")
+    private int module_content_limit;
+
+    @JsonProperty("ad_config_ref_time")
+    private int ad_config_ref_time;
+
+    @JsonProperty("is_homepod_enabled")
+    private Boolean is_homepod_enabled;
+
+    @JsonProperty("isVideoStreamer")
+    private Boolean isVideoStreamer;
+
+    @JsonProperty("homepageExpEnabled")
+    private Boolean homepageExpEnabled;
+
+    @JsonProperty("homepageExpGraphicEnabled")
+    private int homepageExpGraphicEnabled;
+
 }
