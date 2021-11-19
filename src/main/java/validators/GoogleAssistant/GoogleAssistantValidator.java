@@ -26,6 +26,9 @@ public class GoogleAssistantValidator extends EntityValidator {
         if (Validate.isNonEmptyString(googleAssistantPojo.getSuccess()))
             sa.assertTrue(Validate.asBoolean(googleAssistantPojo.getSuccess()), AssertionMsg.print(className, methodName, "success", googleAssistantPojo.getSuccess()));
 
+        if (Validate.isNonEmptyString(googleAssistantPojo.getId()))
+            sa.assertTrue(Validate.asString(googleAssistantPojo.getId()), AssertionMsg.print(className, methodName, "id", googleAssistantPojo.getId()));
+
     }
 
     public void validateWebRadioSingle(WebRadioDataSingle webRadioDataSingle, SoftAssert sa, String stationID) {

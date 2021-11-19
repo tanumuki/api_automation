@@ -70,6 +70,9 @@ Feature: library.getAll, library.add, library.delete, library.getDetails
     | <entity_ids>| <entity_type>| 10 | 1 |
     Then I validate status code with "OK"
     And Validate the library details for the user against the params "<entity_type>"
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
 
     Examples:
     | entity_ids        | entity_type |

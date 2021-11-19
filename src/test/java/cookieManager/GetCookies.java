@@ -51,10 +51,19 @@ public class GetCookies {
 			cookieString = cookieString + entry.getKey() + "=" + entry.getValue() + ";";
 		}
 		return cookieString;
-	}	
-	
-	
-	
+	}
+
+	public static void clearCookies(String uid) throws IOException {
+
+
+		baseUrl= resources.ConfigReader.getInstance().getBaseUrl();
+		cookieString = "";
+
+		URL url = new URL(baseUrl + "/api.php?__call=user.logout&uid=" + uid + "&api_version=4&_format=json&_marker=0");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	}
+
+
 	public static String initCookies( String languageCookie, Map<String, List<String>> headerFields) throws IOException {
 		msCookieManager = new java.net.CookieManager();
 		List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);

@@ -11,3 +11,6 @@ Feature: content.getHomepageDataV2
     When User calls get homepage data api
     Then Get homepage data api must respond with status code "OK"
     And Get homepage data api response must be validated successfully with user state as logged in
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
