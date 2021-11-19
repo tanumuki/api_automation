@@ -11,6 +11,9 @@ Feature: matching.match
       | url   |
       | <url> |
     Then The Matching Match API returns response with status code 200 and the entity type matches with the "<url>"
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
     Examples:
       | url                                                                                            |
       | https://www.jiosaavn.com/s/playlist/44daa4ad2573f45bedff9665c28bb453/Songs/Po6,Q5ihUrU_        |

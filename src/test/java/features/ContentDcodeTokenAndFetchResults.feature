@@ -11,6 +11,9 @@ Feature: content.decodeTokenAndFetchResults
       | type    | token    |
       | <types> | <tokens> |
     Then The Content Decode and Fetch Token API returns response with status code 200 for entity type "<entity_type>"
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
     Examples:
       | types    | tokens          | entity_type   |
       | channel  | 0iLyYIH5zO8_    | Shorties      |

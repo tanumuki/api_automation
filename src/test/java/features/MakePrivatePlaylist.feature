@@ -15,6 +15,9 @@ Feature: playlist.makePrivate , playlist.makePublic
     Given I have the endpoint for "MakePrivatePlaylist"
     When I make thr "GET" request with param listID of the created playlist
     Then I validate the status code "OK" and validate the response
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
 
 
 

@@ -23,4 +23,7 @@ Feature: playlist.create, playlist.delete
      Given I have the endpoint for "GetPlaylistDetailsAPI"
      When I make the "GET" request with the following query parameters with deleted listID
      Then I verify that there is no such playlist after deletion and status code is "OK"
+     Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
 

@@ -11,5 +11,8 @@ Feature: search.getResultsFromEntities
       | entities |
       | dance    |
     Then The Search Get Results from Entities API returns response with status code 200
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |
 
 

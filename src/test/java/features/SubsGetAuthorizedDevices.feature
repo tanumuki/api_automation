@@ -5,3 +5,6 @@ Feature: subscription.getAuthorizedDevices
     When User calls get authorized devices api
     Then get authorized devices api must respond with code "OK"
     And get authorized devices response must be validated successfully
+    Then I request log out API for the uid
+      | uid                              |
+      | 44daa4ad2573f45bedff9665c28bb453 |

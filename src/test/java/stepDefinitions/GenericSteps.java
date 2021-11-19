@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static cookieManager.GetCookies.clearCookies;
 import static cookieManager.GetCookies.initCookies;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -166,5 +167,11 @@ public class GenericSteps extends Util {
         String ssoToken = response.jsonPath().getString("ssoToken");
         testContext.scenarioContext.setContext(Context.SSO_TOKEN, ssoToken);
 
+    }
+
+    @Then("I request log out API for the uid")
+    public void iRequestLogOutAPI(DataTable table) throws IOException {
+        List<Map<String, String>> data = table.asMaps();
+        clearCookies(data.get(0).get("uid"));
     }
 }
