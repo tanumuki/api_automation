@@ -205,4 +205,8 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("homepageExpGraphicEnabled")
     private int homepageExpGraphicEnabled;
 
+    @JsonProperty("juspay_sandbox")
+    private Boolean juspaySandbox;
+
+
 }

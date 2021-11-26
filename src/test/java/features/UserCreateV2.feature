@@ -14,6 +14,3 @@ Feature: user.createV2
       | paypaltest7@saavn.com | paypaltest7@saavn.com | Saavn@1234 |
     Then I validate status code with "OK"
     But The user account does not get created and responds with "User already exists. Please try another username."
-    Then I request log out API for the uid
-      | uid                              |
-      | 44daa4ad2573f45bedff9665c28bb453 |
