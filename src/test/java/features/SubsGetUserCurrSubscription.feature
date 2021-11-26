@@ -8,6 +8,3 @@ Feature: subscription.getUserCurrentSubscription
     When User calls get current subs api
     Then get current subs api must respond with status code "OK"
     And get current subs api response must be validated successfully
-    Then I request log out API for the uid
-      | uid                              |
-      | 44daa4ad2573f45bedff9665c28bb453 |

@@ -11,6 +11,3 @@ Feature: user.update
       | firstname | lastname | gender | dob        | email                 | phonefbid | phonefbtoken | phone_number | idtoken | ct         |
       | Test2     | User2    | f      | 1999-01-01 | paypaltest7@saavn.com |           |              |              |         | 2061221000 |
     Then The User Update API returns "success" with status code 200
-    Then I request log out API for the uid
-      | uid                              |
-      | 44daa4ad2573f45bedff9665c28bb453 |

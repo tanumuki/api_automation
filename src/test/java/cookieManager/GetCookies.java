@@ -29,6 +29,7 @@ public class GetCookies {
 
 		URL url = new URL(baseUrl + "/api.php?__call=user.login&username=" + userName + "&password="
 				+ password + "&api_version=4&_format=json&_marker=0");
+		System.out.println(url);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		msCookieManager = new java.net.CookieManager();
 		Map<String, List<String>> headerFields = connection.getHeaderFields();

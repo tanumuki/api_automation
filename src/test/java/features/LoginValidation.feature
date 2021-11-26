@@ -6,9 +6,7 @@ Feature: user.login
       | method | endPoint     | username              | password   |
       | GET    | UserLoginAPI | paypaltest7@saavn.com | Saavn@1234 |
     Then The Login API returns success with status code "OK"
-    Then I request log out API for the uid
-      | uid                              |
-      | 44daa4ad2573f45bedff9665c28bb453 |
+
 
   Scenario: Verify if user is able to login with invalid credentials
 
