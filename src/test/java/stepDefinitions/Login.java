@@ -71,18 +71,15 @@ public class Login extends Util {
 
 	        System.out.println("The value3 is : " + cells.get(1).get(2));
 	        System.out.println("The value4 is : " + cells.get(1).get(3));
-	        //System.out.println("The username is : " + username);
-	        //System.out.println("The password is : " + password);
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			System.out.println("tan3 " + resspec);
-
-			System.out.println("toto" + table.asList().toString());
+			System.out.println("response " + resspec);
+			System.out.println("List of data" + table.asList().toString());
 			res.queryParam("username", cells.get(1).get(2));
 			res.queryParam("password", cells.get(1).get(3));
 			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 			logResponseTime(resp);
-
+			System.out.println(resp.asString());
 		}
 	
 	}
@@ -127,4 +124,11 @@ public class Login extends Util {
 		sa.assertAll();
 	}
 
+	@Then("the user should not be able to login")
+	public void theUserShouldNotBeAbleToLoginWithTheCredAfterAttempts() throws Exception {
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		UserLogin userLogin = objectMapper.readValue(resp.asString(), UserLogin.class);
+		new UserLoginValidator().validateExhaustedAttempts(userLogin, sa);
+	}
 }

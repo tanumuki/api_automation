@@ -17,3 +17,24 @@ Feature: user.login
     Then The Login API returns an error message with status code "OK" for invalid credentials
 
 
+  Scenario: Verify that the user is not able to login more than 3 times in 30 minutes period
+    Given Add payload with login endpoint "UserLoginAPI"
+    When User calls with method with below params
+      | method | endPoint     | username              | password   |
+      | GET    | UserLoginAPI | testdemo12@saavn.com | Saavn@1234 |
+
+    Given Add payload with login endpoint "UserLoginAPI"
+    When User calls with method with below params
+      | method | endPoint     | username              | password   |
+      | GET    | UserLoginAPI | testdemo12@saavn.com | Saavn@1234 |
+
+    Given Add payload with login endpoint "UserLoginAPI"
+    When User calls with method with below params
+      | method | endPoint     | username              | password   |
+      | GET    | UserLoginAPI | testdemo12@saavn.com | Saavn@1234 |
+
+    Given Add payload with login endpoint "UserLoginAPI"
+    When User calls with method with below params
+      | method | endPoint     | username              | password   |
+      | GET    | UserLoginAPI | testdemo12@saavn.com | Saavn@1234 |
+    Then the user should not be able to login

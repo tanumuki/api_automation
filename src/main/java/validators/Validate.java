@@ -974,6 +974,7 @@ public class Validate {
         // get product type
         if (Validate.isNonEmptyString(String.valueOf(proStatus.getExpirationTimestamp()))) {
             Integer time = proStatus.getExpirationTimestamp();
+            log.info("exp time stamp is " + time);
             sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
             log.info("exp time stamp is " + time);
 
@@ -1035,6 +1036,9 @@ public class Validate {
         return str.matches("RENEW|REMOVE"); }
 
 
+    public static boolean asExhaustedAttemptErrorMsg(String str){
+        return str.matches("You have exhausted login attempts. Please try again after+ [0-9]{2}+ minutes");
+    }
 
 
 }
