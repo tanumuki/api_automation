@@ -17,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
+import static cookieManager.GetCookies.initCookies;
+
 @Slf4j
 public class Util {
 
@@ -24,7 +26,6 @@ public class Util {
     public static final TestContext testContext = new TestContext();
     public static final String ANDROID_DEVICE_ID = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
     public static final String IOS_DEVICE_ID = "ssid=did_v1_598C80A8-AF83-4D5E-AFA0-79FB1EE1CB41";
-
 
     public RequestSpecification requestSpecification(String ctx, String endPoint) throws IOException {
 
@@ -162,7 +163,7 @@ public class Util {
     }
     //User generator method
 
-    public static HashMap<String, String> generateNewUser() throws Exception {
+    public static String generateNewUser() throws Exception {
 
         HashMap<String, String> map = new HashMap<String, String>();
         StringBuffer response = null;
@@ -193,17 +194,18 @@ public class Util {
             in.close();
 
             // print result
-            System.out.println(response.toString());
+            System.out.println("response is:" + response);
 
         } else {
             System.out.println("GET request not worked");
         }
         String cookie = GetCookies.initCookies(username, password);
-
         map.put("username", username);
         map.put("password", password);
         map.put("cookie", cookie);
-        return map;
+        System.setProperty("ctx", ConfigReader.getInstance().getCtx());
+        log.info(cookie);
+        return cookie;
 
     }
 

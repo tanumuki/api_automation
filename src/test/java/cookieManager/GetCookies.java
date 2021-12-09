@@ -61,6 +61,7 @@ public class GetCookies {
 		cookieString = "";
 
 		URL url = new URL(baseUrl + "/api.php?__call=user.logout&uid=" + uid + "&api_version=4&_format=json&_marker=0");
+		System.out.println(url);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 	}
 

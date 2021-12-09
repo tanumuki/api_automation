@@ -39,8 +39,9 @@ public class GenericSteps extends Util {
     static List<Map<String, String>> params;
 
     @Given("I have the endpoint for {string}")
-    public void iHaveTheEndpointFor(String endPoint) throws FileNotFoundException {
+    public void iHaveTheEndpointFor(String endPoint) throws Exception {
         apiResource = APIResources.valueOf(endPoint).getResource();
+        System.out.println(cookie);
         if (cookie != null)
             request = given().spec(requestSpecificationWithHeaders(ConfigReader.getInstance().getCtx(), apiResource, cookie));
         else
@@ -173,5 +174,11 @@ public class GenericSteps extends Util {
     public void iRequestLogOutAPI(DataTable table) throws IOException {
         List<Map<String, String>> data = table.asMaps();
         clearCookies(data.get(0).get("uid"));
+        log.info("Logout is done");
+    }
+
+    @Given("I login with randomly generated user credentials")
+    public void iLoginWithRandomlyGeneratedUserCredentials() throws Exception {
+        cookie = generateNewUser();
     }
 }

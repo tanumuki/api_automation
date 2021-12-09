@@ -1,9 +1,7 @@
 Feature: song.getParam
 
   Background:
-    Given I have the cookie for the following user
-      | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
 
   Scenario Outline: Verify user is able to get song param values
     Given I have the endpoint for "SongGetParamsApi"

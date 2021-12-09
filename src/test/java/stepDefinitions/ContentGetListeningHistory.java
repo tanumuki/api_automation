@@ -56,9 +56,9 @@ public class ContentGetListeningHistory extends Util {
 
     @When("User calls Content Get Listening History API")
     public void user_calls_Content_Get_Listening_History_API() {
-        resSpec = new ResponseSpecBuilder().expectStatusCode(200)
-                .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
-        resp = reqSpec.given().when().get("/api.php").then().extract().response();
+//        resSpec = new ResponseSpecBuilder().expectStatusCode(200)
+//                .expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
+        resp = GenericSteps.request.given().when().get("/api.php").then().extract().response();
         logResponseTime(resp);
 
     }
@@ -73,7 +73,7 @@ public class ContentGetListeningHistory extends Util {
     @Then("User should see the Content Get Listening History response validated")
     public void user_should_see_the_Content_Get_Listening_History_response_validated() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        ListeningHistory listenHistoryObj = mapper.readValue(resp.asString(), ListeningHistory.class);
+        ListeningHistory listenHistoryObj = mapper.readValue(GenericSteps.resp.asString(), ListeningHistory.class);
         SoftAssert sa = new SoftAssert();
         new ListeningHistoryValidator().validateListeningHistory(listenHistoryObj, sa);
         sa.assertAll();

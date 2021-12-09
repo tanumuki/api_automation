@@ -1,9 +1,7 @@
 Feature: app.getLaunchDataJioPhone
 
   Background:
-    Given I have the cookie for the following user
-      | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
   Scenario: Verify Get Launch Data Api response for Jio Phone
     Given I have the endpoint for JioPhone API "AppGetLaunchDataJioPhone"
     When I make the "GET" request for JioPhone API

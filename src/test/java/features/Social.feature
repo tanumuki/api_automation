@@ -1,12 +1,13 @@
 Feature: social.follow, social.unfollow
 
 
-  Background:
-    Given I have the cookie for the following user
-      | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+#  Background:
+#    Given I have the cookie for the following user
+#      | username | password |
+#      | paypaltest7@saavn.com | Saavn@1234 |
 
   Scenario: Verify user is able to follow an artist
+    Given I login with randomly generated user credentials
     Given I have the endpoint for "SocialFollowAPI"
     When I make the "GET" request with the following query parameters
       | type   | entity_id |
@@ -21,7 +22,6 @@ Feature: social.follow, social.unfollow
       | artist | 459320    |
     Then The Social Follow API returns "error" with status code 200
     And An error message "already follows" is returned with error code 5
-
 
 
   Scenario: Verify user is able to unfollow an artist
@@ -41,7 +41,7 @@ Feature: social.follow, social.unfollow
     And An error message "does not follow" is returned with error code 4
 
 
-###########################################################################################
+############################################################################################
 
   Scenario: Verify user is able to follow a playlist
     Given I have the endpoint for "SocialFollowAPI"
