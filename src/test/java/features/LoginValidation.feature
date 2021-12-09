@@ -1,14 +1,10 @@
 Feature: user.login
 
   Scenario: Verify if user is able to login with valid credentials
-    Given Add payload with login endpoint "UserLoginAPI"
-    When User calls with method with below params
-      | method | endPoint     | username              | password   |
-      | GET    | UserLoginAPI | testdemo12@saavn.com | Saavn@1234 |
+    And I save the randomly generated credentials and login
+    And Add payload with login endpoint "UserLoginAPI"
+    When User calls "GET" method with username and password
     Then The Login API returns success with status code "OK"
-    Then I request log out API for the uid
-    |  uid |
-    | 9a411e4d5e896ab1915b1313db735aad |
 
 
   Scenario: Verify if user is able to login with invalid credentials

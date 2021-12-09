@@ -26,6 +26,8 @@ public class Util {
     public static final TestContext testContext = new TestContext();
     public static final String ANDROID_DEVICE_ID = "device_id=8yEi4ih9eJxp9H1IUk6LcVyJnienvB1gnXph5GTxFn8%3D";
     public static final String IOS_DEVICE_ID = "ssid=did_v1_598C80A8-AF83-4D5E-AFA0-79FB1EE1CB41";
+    public String username;
+    public String password;
 
     public RequestSpecification requestSpecification(String ctx, String endPoint) throws IOException {
 
@@ -163,7 +165,7 @@ public class Util {
     }
     //User generator method
 
-    public static String generateNewUser() throws Exception {
+    public String generateNewUser() throws Exception {
 
         HashMap<String, String> map = new HashMap<String, String>();
         StringBuffer response = null;
@@ -174,6 +176,8 @@ public class Util {
         String username = randoms + domain;
         String password = "Saavn@1234";
         System.out.println(username);
+        this.username = username;
+        this.password = password;
         String url = baseurl + "/api.php?__call=user.createV2&username=" + username + "&email=" + username + "&password=" + password + "&api_version=4&_format=json&_marker=0&ctx=android";
 
         URL obj = new URL(url);
@@ -282,5 +286,14 @@ public class Util {
 
         return null;
 
+    }
+
+    public Map<String, String> getUserNamePassword() throws Exception {
+        String cookie = generateNewUser();
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", this.username);
+        map.put("password", this.password);
+        System.out.println(this.username+this.password);
+        return map;
     }
 }

@@ -973,11 +973,15 @@ public class Validate {
 
         // get product type
         if (Validate.isNonEmptyString(String.valueOf(proStatus.getExpirationTimestamp()))) {
-            Integer time = proStatus.getExpirationTimestamp();
-            log.info("exp time stamp is " + time);
-            sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
-            log.info("exp time stamp is " + time);
-
+            if(proStatus.getExpirationTimestamp() != 0) {
+                Integer time = proStatus.getExpirationTimestamp();
+                log.info("exp time stamp is " + time);
+                sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
+                log.info("exp time stamp is " + time);
+            }
+            else{
+                sa.assertTrue(Validate.asNum(String.valueOf(proStatus.getExpirationTimestamp())), className + "." + "validate time failed - ");
+            }
 
         } else {
             log.info("product is NULL or empty");

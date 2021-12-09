@@ -22,8 +22,15 @@ public class LoginProStatusValidator {
             sa.assertTrue(Validate.asString(lp.getProduct()), AssertionMsg.print(className, methodName, "user_state.prostatus.product", lp.getProduct()));
 
         if (lp.getExpirationTimestamp() != null)
-            sa.assertTrue(Validate.asTimeStamp(String.valueOf(lp.getExpirationTimestamp())),
-                    AssertionMsg.print(className, methodName, "user_state.prostatus.expiration_timestamp", String.valueOf(lp.getExpirationTimestamp())));
+            if(lp.getExpirationTimestamp() != 0) {
+                sa.assertTrue(Validate.asTimeStamp(String.valueOf(lp.getExpirationTimestamp())),
+                        AssertionMsg.print(className, methodName, "user_state.prostatus.expiration_timestamp", String.valueOf(lp.getExpirationTimestamp())));
+            }
+            else{
+//                For newly signed up free user, the expiration_timestamp is showing 0
+                sa.assertTrue(Validate.asNum(String.valueOf(lp.getExpirationTimestamp())),
+                        AssertionMsg.print(className, methodName, "user_state.prostatus.expiration_timestamp", String.valueOf(lp.getExpirationTimestamp())));
+            }
 
         if (Validate.isNonEmptyString(lp.getVendor()))
             sa.assertTrue(Validate.asString(lp.getVendor()), AssertionMsg.print(className, methodName, "user_state.prostatus.vendor", lp.getVendor()));
