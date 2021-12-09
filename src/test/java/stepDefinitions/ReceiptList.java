@@ -65,7 +65,7 @@ public class ReceiptList extends Util {
     @Then("Receipt list response must be validated successfully")
     public void receipt_list_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        pojos.receiptsList.ReceiptList rl = mapper.readValue(resp.asString(), pojos.receiptsList.ReceiptList.class);
+        pojos.receiptsList.ReceiptList rl = mapper.readValue(GenericSteps.resp.asString(), pojos.receiptsList.ReceiptList.class);
         SoftAssert sa  = new SoftAssert();
         new ReceiptListValidator().validateReceiptList(rl, sa);
         sa.assertAll();

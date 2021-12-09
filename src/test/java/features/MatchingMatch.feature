@@ -1,9 +1,7 @@
 Feature: matching.match
 
   Background:
-    Given I have the cookie for the following user
-      | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
 
   Scenario Outline: Verify response of matching match API
     Given I have the endpoint for "MatchingMatchApi"

@@ -68,7 +68,7 @@ public class SongRecommendation extends Util {
         TypeFactory typeFactory = mapper.getTypeFactory();
         SoftAssert sa = new SoftAssert();
 
-        if (System.getProperty("ctx").equalsIgnoreCase("androidgo")) {
+        if (ConfigReader.getInstance().getCtx().equals("androidgo")) {
             List<Song> songs = mapper.readValue(resp.asString(), new TypeReference<List<Song>>() {
             });
             for (Song song : songs) {
