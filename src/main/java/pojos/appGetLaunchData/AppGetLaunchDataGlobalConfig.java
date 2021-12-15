@@ -208,5 +208,10 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("juspay_sandbox")
     private Boolean juspaySandbox;
 
+    @JsonProperty("ringtone_enabled")
+    private Boolean ringtoneEnabled;
+
+
+
 
 }
