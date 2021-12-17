@@ -287,7 +287,10 @@ public class UserLoginValidator {
     }
 
 
-
+    public void validateExhaustedAttempts(UserLogin login, SoftAssert sa){
+        ErrorPojo errorPojo = login.getError();
+        sa.assertTrue(Validate.asExhaustedAttemptErrorMsg(errorPojo.getMsg()), "The strings don't match");
+    }
 
 
 

@@ -64,7 +64,7 @@ public class GetUserCurrSubscription extends Util {
     @Then("get current subs api response must be validated successfully")
     public void get_current_subs_api_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        GetUserCurrSubs ps = mapper.readValue(resp.asString(), GetUserCurrSubs.class);
+        GetUserCurrSubs ps = mapper.readValue(GenericSteps.resp.asString(), GetUserCurrSubs.class);
         SoftAssert sa  = new SoftAssert();
         new GetUserCurrSubsValidator().validate(ps,sa);
         sa.assertAll();

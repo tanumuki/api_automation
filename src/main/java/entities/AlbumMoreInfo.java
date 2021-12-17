@@ -87,4 +87,12 @@ public class AlbumMoreInfo {
 	private String vcode;
 	@JsonProperty("vlink")
 	private String vlink;
+	@JsonProperty("isWeekly")
+	private Boolean isWeekly;
+	@JsonProperty("firstname")
+	private String firstname;
+	@JsonProperty("follower_count")
+	private String followerCount;
+	@JsonProperty("fan_count")
+	private String fanCount;
 }

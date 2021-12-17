@@ -13,7 +13,7 @@ public class DeeplinkValidator extends EntityValidator{
         super.validate(deeplink, sa);
 
 
-        sa.assertTrue(Validate.asDeeplink(deeplink.getDeeplink()), AssertionMsg.print(className, methodName, "deeplink.deeplink", deeplink.getDeeplink()));
+        sa.assertTrue(Validate.asString(deeplink.getDeeplink()), AssertionMsg.print(className, methodName, "deeplink.deeplink", deeplink.getDeeplink()));
 
         if(Validate.isNonEmptyString(deeplink.getColor()))
             sa.assertTrue(Validate.asHexColour(deeplink.getColor()), AssertionMsg.print(className, methodName, "deeplink.color", deeplink.getColor()));
