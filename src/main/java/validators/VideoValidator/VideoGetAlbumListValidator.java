@@ -24,7 +24,7 @@ public class VideoGetAlbumListValidator {
             }
         else{
             for(VideoData videoData :  videoList.getData()){
-                new VideoGetDetailsValidator().validate(videoData,softAssert);
+                new VideoObjectValidator().validate(videoData,softAssert);
             }
         }
 

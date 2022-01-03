@@ -83,6 +83,7 @@ public class HomePageDataV2 {
     private List<Deeplink> saavn_pro;
 
     private Map<String, List<LinkedHashMap>> topicPromos = new LinkedHashMap<>();
+
     @JsonAnySetter
     public void setTopicPromos(String key, List<LinkedHashMap> val){
         topicPromos.put(key,val);

@@ -20,4 +20,6 @@ public class Playlist extends Entity{
     private Object more_info; //can be a JSONArray or JSONObject
     @JsonProperty("mini_obj")
     private Boolean mini_obj;
+    @JsonProperty("modules")
+    private MixDetailsModules modules;
 }

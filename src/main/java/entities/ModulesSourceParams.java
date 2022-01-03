@@ -27,5 +27,7 @@ public class ModulesSourceParams {
     private String page_param;
     @JsonProperty("size_param")
     private String size_param;
+    @JsonProperty("listid")
+    private String listid;
 
 }

@@ -1,9 +1,7 @@
 Feature: content.decodeTokenAndFetchResults
 
   Background:
-    Given I have the cookie for the following user
-      | username              | password   |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
 
   Scenario Outline: Verify response of Content Decode Token and Fetch Results API
     Given I have the endpoint for "ContentDecodeTokenAndFetchResults"
@@ -11,6 +9,7 @@ Feature: content.decodeTokenAndFetchResults
       | type    | token    |
       | <types> | <tokens> |
     Then The Content Decode and Fetch Token API returns response with status code 200 for entity type "<entity_type>"
+
     Examples:
       | types    | tokens          | entity_type   |
       | channel  | 0iLyYIH5zO8_    | Shorties      |

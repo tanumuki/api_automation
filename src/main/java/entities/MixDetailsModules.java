@@ -14,4 +14,7 @@ import lombok.Setter;
 public class MixDetailsModules {
     @JsonProperty("list")
     private ModuleWithViewMoreArray list;
+    @JsonProperty("relatedPlaylist")
+    private ModuleWithViewMoreArray relatedPlaylist;
+
 }

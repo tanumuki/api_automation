@@ -199,4 +199,19 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("isVideoStreamer")
     private Boolean isVideoStreamer;
 
+    @JsonProperty("homepageExpEnabled")
+    private Boolean homepageExpEnabled;
+
+    @JsonProperty("homepageExpGraphicEnabled")
+    private int homepageExpGraphicEnabled;
+
+    @JsonProperty("juspay_sandbox")
+    private Boolean juspaySandbox;
+
+    @JsonProperty("ringtone_enabled")
+    private Boolean ringtoneEnabled;
+
+
+
+
 }

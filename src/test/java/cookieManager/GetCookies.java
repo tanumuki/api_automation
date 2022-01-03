@@ -29,6 +29,7 @@ public class GetCookies {
 
 		URL url = new URL(baseUrl + "/api.php?__call=user.login&username=" + userName + "&password="
 				+ password + "&api_version=4&_format=json&_marker=0");
+		System.out.println(url);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		msCookieManager = new java.net.CookieManager();
 		Map<String, List<String>> headerFields = connection.getHeaderFields();
@@ -51,10 +52,20 @@ public class GetCookies {
 			cookieString = cookieString + entry.getKey() + "=" + entry.getValue() + ";";
 		}
 		return cookieString;
-	}	
-	
-	
-	
+	}
+
+	public static void clearCookies(String uid) throws IOException {
+
+
+		baseUrl= resources.ConfigReader.getInstance().getBaseUrl();
+		cookieString = "";
+
+		URL url = new URL(baseUrl + "/api.php?__call=user.logout&uid=" + uid + "&api_version=4&_format=json&_marker=0");
+		System.out.println(url);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	}
+
+
 	public static String initCookies( String languageCookie, Map<String, List<String>> headerFields) throws IOException {
 		msCookieManager = new java.net.CookieManager();
 		List<String> cookiesHeader = headerFields.get(COOKIES_HEADER);

@@ -85,6 +85,24 @@ public class AlbumValidator extends EntityValidator {
 
 		if(mi.getRelease_year() != null)
 			sa.assertTrue(mi.getRelease_year() > 1900 && mi.getRelease_year() < 3100, AssertionMsg.print(className, methodName, "album.more_info.release_year", String.valueOf(mi.getRelease_year())));
+
+		if(mi.getAlbumId() != null)
+			sa.assertTrue(Validate.asString(mi.getAlbumId()), AssertionMsg.print(className, methodName, "album.more_info.album_id", String.valueOf(mi.getAlbumId())));
+
+		if(mi.getIsWeekly() != null)
+			sa.assertTrue(Validate.asBoolean(mi.getIsWeekly()), AssertionMsg.print(className, methodName, "album.more_info.isWeekly", String.valueOf(mi.getIsWeekly())));
+
+		if(mi.getFirstname() != null)
+			sa.assertTrue(Validate.asString(mi.getFirstname()), AssertionMsg.print(className, methodName, "album.more_info.firstname", String.valueOf(mi.getFirstname())));
+
+		if(mi.getFollowerCount() != null)
+			sa.assertTrue(Validate.asString(mi.getFollowerCount()), AssertionMsg.print(className, methodName, "album.more_info.follower_count", String.valueOf(mi.getFollowerCount())));
+
+
+		if(mi.getFanCount() != null)
+			sa.assertTrue(Validate.asString(mi.getFanCount()), AssertionMsg.print(className, methodName, "album.more_info.fan_count", String.valueOf(mi.getFanCount())));
+
+
 	}
 
 	public void validate(AlbumWithSongsList album, SoftAssert sa) {

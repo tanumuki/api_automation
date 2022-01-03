@@ -25,4 +25,6 @@ public class RadioStationMoreInfo {
     private String language;
     @JsonProperty("station_display_text")
     private String stationDisplayText;
+    @JsonProperty ("pro_only")
+    private String proOnly;
 }

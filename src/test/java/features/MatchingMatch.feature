@@ -1,9 +1,7 @@
 Feature: matching.match
 
   Background:
-    Given I have the cookie for the following user
-      | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
 
   Scenario Outline: Verify response of matching match API
     Given I have the endpoint for "MatchingMatchApi"
@@ -11,6 +9,7 @@ Feature: matching.match
       | url   |
       | <url> |
     Then The Matching Match API returns response with status code 200 and the entity type matches with the "<url>"
+
     Examples:
       | url                                                                                            |
       | https://www.jiosaavn.com/s/playlist/44daa4ad2573f45bedff9665c28bb453/Songs/Po6,Q5ihUrU_        |
