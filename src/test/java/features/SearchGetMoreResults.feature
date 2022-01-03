@@ -13,9 +13,9 @@ Feature: search.getMoreResults
 
     Examples:
     | query | params  |
-#    | A | albums  |
-#    | A | playlists  |
-#    | A | songs  |
-#    | A | channels  |
-    | A | podcasts  |
-#    | A | artists  |
+#    | A | {"type":"albums"}  |
+#    | A | {"type":"playlists"}  |
+#    | A | {"type":"songs"}  |
+#    | A | {"type":"channels"}  |
+    | A | {"type":"podcasts"}  |
+#    | A | {"type":"artists"}  |
