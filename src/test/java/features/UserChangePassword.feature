@@ -1,9 +1,7 @@
 Feature: user.changePassword
 
   Background:
-    Given I have the cookie for the following user
-      | username              | password   |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
 
   Scenario: Verify user is able to change account password
     Given I have the endpoint for "UserChangePasswordApi"
@@ -11,10 +9,8 @@ Feature: user.changePassword
       | oldpassword | password  |
       | Saavn@1234  | Saavn@123 |
     Then The User Change Password API returns "success" with status code 200 and response message as "Your password has been changed."
+
 #    to change password back to original password
-    And I have the cookie for the following user
-      | username              | password  |
-      | paypaltest7@saavn.com | Saavn@123 |
     And I have the endpoint for "UserChangePasswordApi"
     And I make the "GET" request with the following query parameters
       | oldpassword | password   |

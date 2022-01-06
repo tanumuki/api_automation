@@ -326,7 +326,7 @@ public class Validate {
 
 
     public static boolean asTopicPromosField(String key) {
-        return key.matches("(promo|topic|nrtplaylist| topics & promos|artist|surprise_me|jiotune_reco)[a-zA-z0-9_\\^:-]*");
+        return key.matches("(promo|topic|nrtplaylist| topics & promos|replay_year|artist|surprise_me|jiotune_reco)[a-zA-z0-9_\\^:-]*");
     }
 
     public static boolean asModulesPosition(int pos) {
@@ -428,6 +428,7 @@ public class Validate {
     public static boolean asDeeplink(String deeplink) {
         return deeplink.matches("^(jiosaavn|saavn):\\/\\/(open|view)\\S+\\S+");
     }
+    // TODO: To be fixed with new regex
 
     public static boolean asMatchingMatchDeeplink(String str) {
         boolean flag = false;
@@ -973,10 +974,15 @@ public class Validate {
 
         // get product type
         if (Validate.isNonEmptyString(String.valueOf(proStatus.getExpirationTimestamp()))) {
-            Integer time = proStatus.getExpirationTimestamp();
-            sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
-            log.info("exp time stamp is " + time);
-
+            if(proStatus.getExpirationTimestamp() != 0) {
+                Integer time = proStatus.getExpirationTimestamp();
+                log.info("exp time stamp is " + time);
+                sa.assertTrue(Validate.asTimeStamp(String.valueOf(time)), className + "." + "validate time failed - ");
+                log.info("exp time stamp is " + time);
+            }
+            else{
+                sa.assertTrue(Validate.asNum(String.valueOf(proStatus.getExpirationTimestamp())), className + "." + "validate time failed - ");
+            }
 
         } else {
             log.info("product is NULL or empty");
@@ -1035,6 +1041,9 @@ public class Validate {
         return str.matches("RENEW|REMOVE"); }
 
 
+    public static boolean asExhaustedAttemptErrorMsg(String str){
+        return str.matches("You have exhausted login attempts. Please try again after+ [0-9]{2}+ minutes");
+    }
 
 
 }

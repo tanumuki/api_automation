@@ -66,7 +66,7 @@ public class GetAuthorizedDevices extends Util {
     @Then("get authorized devices response must be validated successfully")
     public void get_authorized_devices_response_must_be_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        SubsGetAuthorizedDevices devices = mapper.readValue(resp.asString(), SubsGetAuthorizedDevices.class);
+        SubsGetAuthorizedDevices devices = mapper.readValue(GenericSteps.resp.asString(), SubsGetAuthorizedDevices.class);
         SoftAssert sa = new SoftAssert();
         new GetAuthDevicesValidator().validate(devices, sa);
         sa.assertAll();

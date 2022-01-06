@@ -61,9 +61,7 @@ Feature: library.getAll, library.add, library.delete, library.getDetails
 
   Scenario Outline: Verify the response of the library get details by passing the params
 
-    Given I have the cookie for the following user
-      | username              | password   |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
     Given I have the endpoint for "LibraryGetDetails"
     When I make the "GET" request with the following query parameters
     | entity_ids  | entity_type  | n  | p |

@@ -3,9 +3,7 @@ Feature: playlist.create, playlist.delete
 #  finally checking if the playlist is deleted using playlist.geDetails
 
   Background:
-    Given I have the cookie for the following user
-      | username              | password   |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
     
   Scenario: Verify playlist creation for a new user
      Given I have the endpoint for "PlaylistCreate"
@@ -14,6 +12,7 @@ Feature: playlist.create, playlist.delete
        | GET    | cd7s24ys | true  |
      Then User validates the status code "OK"
      And User validates the response of the newly created playlist
+
 
      Given I have the endpoint for "PlaylistDelete"
      When User calls "GET" method with param listID of the created playlist

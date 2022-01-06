@@ -7,9 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import endPoints.APIResources;
 import endPoints.Context;
 import enums.StatusCode;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.it.Ma;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -26,6 +28,7 @@ import resources.Util;
 import validators.UserLoginValidator;
 
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -40,6 +43,7 @@ public class Login extends Util {
 	public ScenarioContext scenarioContext;
 	String username;
 	String password;
+	Map<String, String> map;
 	
 
 	@Given("Add payload with login endpoint {string}")
@@ -71,18 +75,15 @@ public class Login extends Util {
 
 	        System.out.println("The value3 is : " + cells.get(1).get(2));
 	        System.out.println("The value4 is : " + cells.get(1).get(3));
-	        //System.out.println("The username is : " + username);
-	        //System.out.println("The password is : " + password);
 
 		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
-			System.out.println("tan3 " + resspec);
-
-			System.out.println("toto" + table.asList().toString());
+			System.out.println("response " + resspec);
+			System.out.println("List of data" + table.asList().toString());
 			res.queryParam("username", cells.get(1).get(2));
 			res.queryParam("password", cells.get(1).get(3));
 			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
 			logResponseTime(resp);
-
+			System.out.println(resp.asString());
 		}
 	
 	}
@@ -127,4 +128,31 @@ public class Login extends Util {
 		sa.assertAll();
 	}
 
+	@Then("the user should not be able to login")
+	public void theUserShouldNotBeAbleToLoginWithTheCredAfterAttempts() throws Exception {
+		SoftAssert sa = new SoftAssert();
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		UserLogin userLogin = objectMapper.readValue(resp.asString(), UserLogin.class);
+		new UserLoginValidator().validateExhaustedAttempts(userLogin, sa);
+	}
+
+    @And("I save the randomly generated credentials and login")
+    public void iUseTheLoginCredToLoginBack() throws Exception {
+		this.map = getUserNamePassword();
+		System.out.println(this.map.get("username"));
+    }
+
+	@When("User calls {string} method with username and password")
+	public void userCallsMethodWithUsernameAndPassword(String method) {
+		resspec = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(ContentType.fromContentType("text/html;charset=UTF-8")).build();
+
+		if (method.equalsIgnoreCase(APIConstants.ApiMethods.GET)) {
+			res.queryParam("username", this.map.get("username"));
+			res.queryParam("password", this.map.get("password"));
+			resp = res.given().log().all().when().get("/api.php").then().log().all().spec(resspec).extract().response();
+			logResponseTime(resp);
+			System.out.println(resp.asString());
+		}
+	}
 }

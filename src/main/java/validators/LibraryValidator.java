@@ -35,8 +35,7 @@ public class LibraryValidator extends EntityValidator {
 		List<Playlist> list = library.getPlaylist();
 
 		for (int i = 0; i < list.size(); i++) {
-			sa.assertTrue(Validate.asId(list.get(i).getId()), className + "." + "validate id failed - ");
-			log.info(list.get(i).getId());
+			sa.assertTrue(Validate.asNum(list.get(i).getId()), className + "." + "validate id failed - ");
 			sa.assertTrue(Validate.asTimeStamp(list.get(i).getTs()), className + "." + "validate id failed - ");
 			log.info(list.get(i).getTs());
 
@@ -152,8 +151,7 @@ public class LibraryValidator extends EntityValidator {
 		List<Playlist> list = library.getPlaylist();
 
 		for (int i = 0; i < list.size(); i++) {
-			sa.assertTrue(Validate.asId(list.get(i).getId()), className + "." + "validate id failed - ");
-			log.info(list.get(i).getId());
+			sa.assertTrue(Validate.asNum(list.get(i).getId()), className + "." + "validate id failed - ");
 			sa.assertTrue(Validate.asTimeStamp(list.get(i).getTs()), className + "." + "validate id failed - ");
 			log.info(list.get(i).getTs());
 
