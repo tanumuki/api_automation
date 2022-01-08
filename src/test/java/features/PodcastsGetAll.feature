@@ -4,7 +4,7 @@
 Feature: podcast.getAll
 
   Scenario: Podcasts get all
-    Given Payload with podcasts get all endpoint "PodcastGetAll"
-    When User calls podcasts get all api
-    Then Podcasts get all api should return with status code "OK"
+    Given I have the endpoint for "PodcastGetAll"
+    When I make the "GET" request
+    Then I validate status code with "OK"
     And Podcasts get all response must be validated successfully
