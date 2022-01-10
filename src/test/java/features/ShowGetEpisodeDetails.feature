@@ -4,11 +4,9 @@
 Feature: show.getEpisodeDetails
 
   Scenario Outline: Get Episode details of the given episode id
-    Given I have the endpoint for "ShowGetEpisodeDetails"
-    When I make the "GET" request with the following query parameters
-      |episode_id|
-      | <episode_id>    |
-    Then I validate status code with "OK"
+    Given Payload with endpoint get episode details "ShowGetEpisodeDetails"
+    When User calls the get episode details api with "<episode_id>"
+    Then Get episode details api should return response with status code "OK"
     And Get episode details api response is validated successfully
 
     Examples:

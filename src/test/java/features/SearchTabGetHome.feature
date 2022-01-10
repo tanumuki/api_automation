@@ -4,13 +4,11 @@
 Feature: search_tab.getsearchhomepage
 
   Scenario Outline: Get Search grid Home page
-    Given I have the endpoint for "SearchTabHomePage"
-    When I make the "GET" request with the following query parameters
-      |page | next_sign|
-      | <pages> | <next>|
-    Then I validate status code with "OK"
+    Given Payload with search grid home page endpoint "SearchTabHomePage"
+    When User call search grid get home page api with "<page>" and "<next_sign>"
+    Then Search grid home page api must respond with status code "OK"
     And Search grid home page api response must be validated successfully
 
     Examples:
-    | pages  | next |
+    | page  | next_sign |
     |   1   |     1     |

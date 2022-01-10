@@ -4,18 +4,16 @@
 Feature: search.getMoreResults
 
   Scenario Outline: View all results for the given query and entity type
-    Given I have the endpoint for "SearchGetMoreResults"
-    When I make the "GET" request with the following query parameters
-    | query | params |
-    | <query> | <params>|
-    Then I validate status code with "OK"
+    Given Payload with endpoint get more results "SearchGetMoreResults"
+    When User calls get more results api with "<query>" and "<type>"
+    Then get more results api should respond with status code "OK"
     And get more results api response must be validated successfully
 
     Examples:
-    | query | params  |
-#    | A | {"type":"albums"}  |
-#    | A | {"type":"playlists"}  |
-#    | A | {"type":"songs"}  |
-#    | A | {"type":"channels"}  |
-    | A | {"type":"podcasts"}  |
-#    | A | {"type":"artists"}  |
+    | query | type  |
+#    | A | albums  |
+#    | A | playlists  |
+#    | A | songs  |
+#    | A | channels  |
+    | A | podcasts  |
+#    | A | artists  |
