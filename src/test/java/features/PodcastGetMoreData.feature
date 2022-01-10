@@ -4,12 +4,9 @@
 Feature: podcast.getMoreData
 
   Scenario Outline: Podcast get more data
-    Given I have the endpoint for "PodcastGetMoreData"
-    When I make the "GET" request with the following query parameters
-    |source|
-    |<source>|
-
-    Then I validate status code with "OK"
+    Given Payload with podcasts get more data endpoint "PodcastGetMoreData"
+    When User calls podcasts get more data api with "<source>"
+    Then Podcasts get more data api should return with status code "OK"
     And Podcasts get more data response must be validated successfully
 
     Examples:

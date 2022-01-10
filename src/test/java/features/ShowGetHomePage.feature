@@ -4,14 +4,12 @@
 Feature: show.getHomePage
 
   Scenario Outline: Gets the homepage of a show with the given id
-    Given I have the endpoint for "ShowGetHomePage"
-    When I make the "GET" request with the following query parameters
-      |show_id|
-      | <id>  |
-    Then I validate status code with "OK"
+    Given Payload with endPoint shows get homepage API "ShowGetHomePage"
+    When User calls shows get homepage request with  "<show_id>"
+    Then shows get homepage API returns a status code "OK"
     And shows get homepage API response is validated
 
     Examples:
-    | id |
+    | show_id |
     | 25      |
 
