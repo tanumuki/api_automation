@@ -214,6 +214,10 @@ public class GlobalConfigValidator {
         if(gc.getHomepageExpGraphicEnabled() != 0) {
             sa.assertTrue(Validate.asNum(gc.getHomepageExpGraphicEnabled()), AssertionMsg.print(className, methodName, "global_config.homepageExpGraphicEnabled", String.valueOf(gc.getHomepageExpGraphicEnabled())));
         }
+
+        if(gc.getStripe_payment_flow() != null){
+            sa.assertTrue(Validate.asBoolean(gc.getStripe_payment_flow()), AssertionMsg.print(className, methodName, "stripe_payment_flow", String.valueOf(gc.getStripe_payment_flow())));
+        }
     }
 
 

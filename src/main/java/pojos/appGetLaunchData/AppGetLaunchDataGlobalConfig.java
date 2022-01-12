@@ -211,7 +211,8 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("ringtone_enabled")
     private Boolean ringtoneEnabled;
 
-
+    @JsonProperty("stripe_payment_flow")
+    private Boolean stripe_payment_flow;
 
 
 }
