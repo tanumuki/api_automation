@@ -1,20 +1,12 @@
 package stepDefinitions;
-import static org.testng.Assert.assertEquals;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.deeplinkContainer;
-import enums.StatusCode;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.asserts.SoftAssert;
 import pojos.content.HandleUnsupportedDeeplink;
-import pojos.content.HandleUnsupportedDeeplinkData;
 import resources.Util;
 import validators.Content.HandleUnsupportedDeeplinkValidator;
 
@@ -33,7 +25,7 @@ public class ContentHandleUnsupportedDeeplink extends Util {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         HandleUnsupportedDeeplink unsupportedDeeplink = mapper.readValue(GenericSteps.resp.asString(), HandleUnsupportedDeeplink.class);
         new HandleUnsupportedDeeplinkValidator().validateHandleUnsupportedDeeplinkData(unsupportedDeeplink, sa);
-        log.info("Validation done for unsupported deeplink is  " +  unsupportedDeeplink.getStatus() );
+        log.info("Validation done for unsupported deeplink status is  " +  unsupportedDeeplink.getStatus() );
         log.info("Validation done for unsupported deeplink data  is  " +  unsupportedDeeplink.getData());
 
 

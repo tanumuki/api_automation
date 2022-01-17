@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 
-public class deeplinkContainer extends Entity {
+public class DeeplinkContainer extends Entity {
     @JsonProperty("status")
     private String status;
     @JsonProperty("data")

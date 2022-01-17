@@ -15,5 +15,5 @@ public class HandleUnsupportedDeeplink {
     @JsonProperty("status")
     private String status;
     @JsonProperty("data")
-    private Object data;
+    private HandleUnsupportedDeeplinkData data;
 }
