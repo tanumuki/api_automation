@@ -123,7 +123,7 @@ public class PlaylistOps extends Util {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		PlaylistMakePrivatePublic playlist = mapper.readValue(resp.asString(), PlaylistMakePrivatePublic.class);
 		new PlaylistOpsValidator().validatePrivatePublicPlaylist(playlist, sa);
-		log.info("Validation done for playlist ID " + playlist.getDetails().getId() + " after making private playlist.");
+		log.info("Validation done for playlist ID " + playlist.getDetails().getId() + " after making public playlist.");
 
 
 	}

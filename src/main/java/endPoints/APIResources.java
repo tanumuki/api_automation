@@ -102,7 +102,8 @@ public enum APIResources {
 	JiotunepageGetTopJiotune("jiotunepage.getTopJioTune"),
 	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome"),
 	JiotunepageGetArtistCallerTune("jiotunepage.getArtistCallerTune"),
-	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome");
+	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome"),
+	ContentHandleUnsupportedDeeplinkAPI("content.handleUnsupportedDeeplink");
 
 	private String resource;
 
