@@ -82,7 +82,7 @@ public class GetHomePageDataV2 extends Util {
     @Then("Get homepage data api response must be validated successfully with user state as logged in")
     public void get_homepage_data_api_response_must_be_validated_successfully_with_user_state_as_logged_in() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        HomePageDataV2 home = mapper.readValue(resp.asString(), HomePageDataV2.class);
+        HomePageDataV2 home = mapper.readValue(GenericSteps.resp.asString(), HomePageDataV2.class);
         SoftAssert sa = new SoftAssert();
         new HomepageDataValidator().validate(home, sa);
         sa.assertAll();

@@ -3,9 +3,13 @@ Feature: playlist.create,playlist.makePrivate,playlist.makePublic, playlist.dele
 #  finally checking if the playlist is deleted using playlist.geDetails
 
   Background:
+
     Given I have the cookie for the following user
       | username              | password   |
       | paypaltest7@saavn.com | Saavn@1234 |
+
+    Given I login with randomly generated user credentials
+
 
   Scenario: Verify playlist creation for a new user
      Given I have the endpoint for "PlaylistCreate"

@@ -1,9 +1,7 @@
 Feature: song.getParam
 
   Background:
-    Given I have the cookie for the following user
-      | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+    Given I login with randomly generated user credentials
 
   Scenario Outline: Verify user is able to get song param values
     Given I have the endpoint for "SongGetParamsApi"
@@ -11,6 +9,7 @@ Feature: song.getParam
       | pids   | fields   |
       | <pids> | <fields> |
     Then Song Get Param API returns response with status code 200 and pid as "<pids>" and field as "<fields>"
+
     Examples:
       | pids     | fields                    |
       | S3dGvXSb | more_info.vcode           |

@@ -3,11 +3,11 @@ Feature: user.logout
   Background:
     Given I have the cookie for the following user
       | username | password |
-      | paypaltest7@saavn.com | Saavn@1234 |
+      | testdemoapi3@saavn.com | Saavn1234 |
 
   Scenario: Verify user is able to logout
     Given I have the endpoint for "UserLogoutAPI"
     When I make the "GET" request with the following query parameters
       | uid                              |
-      | 44daa4ad2573f45bedff9665c28bb453 |
+      | e9e1947cdf8b47a70433acb5ebd19eed |
     Then The User Logout API returns "success" with status code 200

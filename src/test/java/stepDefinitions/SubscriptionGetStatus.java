@@ -75,7 +75,7 @@ public class SubscriptionGetStatus extends Util {
     @Then("Subs get status api response is validated successfully")
     public void subs_get_status_api_response_is_validated_successfully() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-        pojos.SubsGetStatus.SubscriptionGetStatus ps = mapper.readValue(resp.asString(), pojos.SubsGetStatus.SubscriptionGetStatus.class);
+        pojos.SubsGetStatus.SubscriptionGetStatus ps = mapper.readValue(GenericSteps.resp.asString(), pojos.SubsGetStatus.SubscriptionGetStatus.class);
         SoftAssert sa  = new SoftAssert();
         new SubsGetStatusValidator().validate(ps, sa);
         sa.assertAll();

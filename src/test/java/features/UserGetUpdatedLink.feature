@@ -2,7 +2,7 @@ Feature: user.getUpdatedlink()
 
   Background:
     Given I have the cookie for the following user
-      | username              | password   |
+      | username | password |
       | paypaltest7@saavn.com | Saavn@1234 |
 
 # The url+userid in the example is sent for the resource and encrypted static userid
@@ -14,6 +14,11 @@ Feature: user.getUpdatedlink()
     | <url> |
     Then I validate status code with "OK"
     And I validate the response against the passed query parameter "<url>" and userId "<url_userid>"
+    Given I have the endpoint for "UserLogoutAPI"
+    When I make the "GET" request with the following query parameters
+      | uid                              |
+      | 175499cbb6cf36cbe9476f0860b1ddf4 |
+    Then The User Logout API returns "success" with status code 200
 
     Examples:
     | url                                                                 | url_userid                                               |

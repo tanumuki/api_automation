@@ -18,4 +18,6 @@ public class GoogleAssistantGet {
     public String stationid;
     @JsonProperty("success")
     public String success;
+    @JsonProperty("id")
+    public String id;
 }

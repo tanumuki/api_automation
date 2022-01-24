@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Playlist {
 
 	@JsonProperty("id")
-	public String id;
+	public int id;
 	@JsonProperty("ts")
 	public String ts;
 

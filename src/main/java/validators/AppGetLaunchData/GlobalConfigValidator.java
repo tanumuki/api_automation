@@ -208,6 +208,16 @@ public class GlobalConfigValidator {
         if(System.getProperty("ctx").equalsIgnoreCase("iphoneapp")) {
             sa.assertTrue(Validate.asBoolean(gc.getIs_homepod_enabled()), AssertionMsg.print(className, methodName, "global_config.is_homepod_enabled", String.valueOf(gc.getIs_homepod_enabled())));
         }
+        if(gc.getHomepageExpEnabled() != null) {
+            sa.assertTrue(Validate.asBoolean(gc.getHomepageExpEnabled()), AssertionMsg.print(className, methodName, "global_config.homepageExpEnabled", String.valueOf(gc.getHomepageExpEnabled())));
+        }
+        if(gc.getHomepageExpGraphicEnabled() != 0) {
+            sa.assertTrue(Validate.asNum(gc.getHomepageExpGraphicEnabled()), AssertionMsg.print(className, methodName, "global_config.homepageExpGraphicEnabled", String.valueOf(gc.getHomepageExpGraphicEnabled())));
+        }
+
+        if(gc.getStripe_payment_flow() != null){
+            sa.assertTrue(Validate.asBoolean(gc.getStripe_payment_flow()), AssertionMsg.print(className, methodName, "stripe_payment_flow", String.valueOf(gc.getStripe_payment_flow())));
+        }
     }
 
 

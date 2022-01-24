@@ -166,9 +166,9 @@ public class ConfigReader {
 			jioBaseUrl="https://api.jio.com/v3/dip/user/authtoken/verify";
 			properties.setProperty("baseUrl", baseUrl);
 			properties.setProperty("jioBaseUrl",jioBaseUrl);
-			app_version="8.2";
+			app_version="8.4";
 			properties.setProperty("app_version", app_version);
-			version="288";
+			version="292";
 			properties.setProperty("v", version);
 			ctx="android";
 			properties.setProperty("ctx", ctx);

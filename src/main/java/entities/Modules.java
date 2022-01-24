@@ -20,5 +20,7 @@ public class Modules {
     private  ModuleWithViewMoreArray videos;
     @JsonProperty("topAlbumsFromSameYear")
     private  ModuleWithViewMoreArray topAlbumsFromSameYear;
+    @JsonProperty("relatedPlaylist")
+    private ModuleWithViewMoreArray relatedPlaylist;
 
 }
