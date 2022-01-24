@@ -10,4 +10,4 @@ Feature: content.handleUnsupportedDeeplink
     Examples:
     | deeplink_Id |
     | jiosaavn://open/settings  |
-    | jiosaavn://open/webgopro |git staus
+    | jiosaavn://open/webgopro |
