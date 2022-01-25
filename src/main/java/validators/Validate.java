@@ -1046,5 +1046,15 @@ public class Validate {
     }
 
 
+    public static boolean asString(String users, SoftAssert sa) {
+        return false;
+    }
+
+    public static void asNum(Integer usersCount, SoftAssert sa) {
+    }
+
+    public static void asBoolean(Boolean isFollowed, SoftAssert sa) {
+    }
+
 }
 

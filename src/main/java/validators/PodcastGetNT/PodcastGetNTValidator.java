@@ -1,6 +1,5 @@
 package validators.PodcastGetNT;
 
-import entities.ShowDetails;
 import org.testng.asserts.SoftAssert;
 import pojos.podcastGetNT.PodcastGetNT;
 import pojos.podcastGetNT.PodcastIDClass;
@@ -41,7 +40,7 @@ public class PodcastGetNTValidator extends EntityValidator {
         validatePodcastIDClass(mi.get_id(), sa);
 
         if(Validate.isNonEmptyString(mi.getCopyrightText())){
-            sa.assertTrue(Validate.asString(mi.getCopyrightText()), AssertionMsg.print(className, methodName, "show.more_info.copyright_text", mi.getCopyrightText()));
+            sa.assertTrue(Validate.asString(mi.getCopyrightText(), sa), AssertionMsg.print(className, methodName, "show.more_info.copyright_text", mi.getCopyrightText()));
         }
 
         if(Validate.isNonEmptyString(mi.getM4a())) {
@@ -55,7 +54,7 @@ public class PodcastGetNTValidator extends EntityValidator {
     void validatePodcastIDClass(PodcastIDClass idc, SoftAssert sa) {
         final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         if(Validate.isNonEmptyString(idc.getOid())){
-            sa.assertTrue(Validate.asString(idc.getOid()), AssertionMsg.print(className, methodName, "show._id.$oid", idc.getOid()));
+            sa.assertTrue(Validate.asString(idc.getOid(), sa), AssertionMsg.print(className, methodName, "show._id.$oid", idc.getOid()));
         }
     }
 }
