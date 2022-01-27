@@ -244,7 +244,7 @@ public class Validate {
 //        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
 //            return str.matches("(Artist • [0-9]{0,10} Listeners)");
 //        else
-        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Followers)");
     }
 
     /**
