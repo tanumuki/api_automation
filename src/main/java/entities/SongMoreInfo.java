@@ -132,4 +132,6 @@ public class SongMoreInfo {
 	private String labelUrl;
 	@JsonProperty("content_category")
 	private String contentCategory;
+	@JsonProperty("webp")
+	private String webp;
 }
