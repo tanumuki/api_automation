@@ -67,4 +67,8 @@ public class PlaylistMiniMoreInfo {
     private List<String> sub_types;
     @JsonProperty("images")
     private String images;
+    @JsonProperty("username")
+    private String username;
+    @JsonProperty("is_followed")
+    private Boolean is_followed;
 }

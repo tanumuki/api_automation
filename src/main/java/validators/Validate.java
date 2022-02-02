@@ -244,7 +244,7 @@ public class Validate {
 //        if (System.getProperty("ctx").equalsIgnoreCase("androidgo"))
 //            return str.matches("(Artist • [0-9]{0,10} Listeners)");
 //        else
-        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,} Followers)");
+        return str.matches("(Artist.*[0-9]+.Fans)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Listeners)|([0-9]{1,}(.[0-9]{1,})?(K|M|B) Followers)");
     }
 
     /**
@@ -326,7 +326,7 @@ public class Validate {
 
 
     public static boolean asTopicPromosField(String key) {
-        return key.matches("(promo|topic|nrtplaylist| topics & promos|replay_year|artist|surprise_me|jiotune_reco)[a-zA-z0-9_\\^:-]*");
+        return key.matches("(promo|topic|nrtplaylist| topics & promos|replay_year|artist|emerging_artist|surprise_me|jiotune_reco)[a-zA-z0-9_\\^:-]*");
     }
 
     public static boolean asModulesPosition(int pos) {
