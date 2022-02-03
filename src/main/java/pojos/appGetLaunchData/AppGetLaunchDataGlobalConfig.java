@@ -214,5 +214,7 @@ public class AppGetLaunchDataGlobalConfig {
     @JsonProperty("stripe_payment_flow")
     private Boolean stripe_payment_flow;
 
+    @JsonProperty("vendor_order")
+    private List<String> vendorOrder;
 
 }
