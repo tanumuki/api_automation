@@ -18,8 +18,6 @@ import pojos.jioTuneLogin.SsoObjectToJson;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +63,7 @@ public class GenericSteps extends Util {
                 .all()
                 .extract()
                 .response();
+        System.out.println("Following response: " + resp.asString());
         logResponseTime(resp);
         log.info(resp.asString());
     }

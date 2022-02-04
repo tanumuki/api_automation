@@ -103,7 +103,8 @@ public enum APIResources {
 	JiotunepageGetArtistCallerTune("jiotunepage.getArtistCallerTune"),
 	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome"),
 	SocialGetFollowers("social.getFollowersDetails"),
-	SocialGetFollowing("social.getFollowingDetails");
+	SocialGetFollowing("social.getFollowingDetails"),
+	UserIsSameAPI("user.isSame");
 
 	private String resource;
 
