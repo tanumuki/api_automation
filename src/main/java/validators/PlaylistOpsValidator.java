@@ -48,18 +48,15 @@ public class PlaylistOpsValidator {
 
     }
 
-    public void validatePrivatePlaylist(PlaylistMakePrivatePublic plObj, SoftAssert sa){
+    public void validatePrivatePublicPlaylist(PlaylistMakePrivatePublic plObj, SoftAssert sa){
         PlaylistMoreInfo moreInfo = null;
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         Object temp = null;
-
         temp = plObj.getDetails().getMore_info();
         log.info("temp is: "+temp);
-
         if(temp instanceof LinkedHashMap) {
             moreInfo = mapper.convertValue(temp, PlaylistMoreInfo.class);
         }
-
         assert moreInfo != null;
         sa.assertTrue(moreInfo.getShare().equalsIgnoreCase("0"));
 

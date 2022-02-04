@@ -95,4 +95,6 @@ public class AlbumMoreInfo {
 	private String followerCount;
 	@JsonProperty("fan_count")
 	private String fanCount;
+	@JsonProperty("webp")
+	private String webp;
 }

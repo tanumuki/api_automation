@@ -89,6 +89,7 @@ public enum APIResources {
 	ArtistGetArtistDedicatedPlaylists("artist.getArtistDedicatedPlaylists"),
 	GoogleAssistantGet("google_assistant.get"),
 	MakePrivatePlaylist("playlist.makePrivate"),
+	MakePublicPlaylist("playlist.makePublic"),
 	GetAlbumVideoList("video.getAlbumVideoList"),
 	VideoGetVideoHomePage("video.getVideoHomePage"),
 	UserJioLoginAPI("user.jiologin"),
@@ -102,6 +103,7 @@ public enum APIResources {
 	JiotunepageGetArtistCallerTuneHome("jiotunepage.getArtistCallerTuneHome"),
 	JiotunepageGetArtistCallerTune("jiotunepage.getArtistCallerTune"),
 	JiotunepageGetNameCallerTuneHome("jiotunepage.getNameCallerTuneHome"),
+	ContentHandleUnsupportedDeeplinkAPI("content.handleUnsupportedDeeplink"),
 	SocialGetFollowers("social.getFollowersDetails"),
 	SocialGetFollowing("social.getFollowingDetails"),
 	UserIsSameAPI("user.isSame");
