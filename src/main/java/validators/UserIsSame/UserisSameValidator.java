@@ -3,21 +3,26 @@ package validators.UserIsSame;
 import org.testng.asserts.SoftAssert;
 import pojos.userIsSame.GetUserDetails;
 import pojos.userIsSame.UserIsSameDetails;
+import validators.AssertionMsg;
 import validators.Validate;
 import validators.genericValidators.EntityValidator;
 
 public class UserisSameValidator extends EntityValidator {
-   // final String classname = getClass().getName();
+    final String classname = getClass().getName();
     // String uid = null;
 
     public void validate(UserIsSameDetails userDetails, SoftAssert sa) {
-       // final String methodName = new Throwable().getStackTrace()[0].getMethodName();
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         super.validate(userDetails, sa);
        // uid = userDetails.getId();
         UsersValidators(userDetails.getData(), sa);
 
-        if (userDetails.getStatus() != null)
+        sa.assertTrue(Validate.asString(userDetails.getStatus()), AssertionMsg.print(classname, methodName,
+                "Status", userDetails.getStatus()));
+      /*   if (userDetails.getStatus() != null)
             Validate.asString(userDetails.getStatus(), sa);
+       */
+
     }
 
 
@@ -28,20 +33,15 @@ public class UserisSameValidator extends EntityValidator {
         // sa.assertTrue(Validate.asString(users.getUid(), uid));
 
         if (users != null) {
-
-                if (users.getIs_same()!= null)
-                    Validate.asBoolean(users.getIs_same(), sa);
-
-                if (users.getIs_popup() != null)
+            sa.assertTrue(Validate.asBoolean(users.getIs_same()));
+            /* if (users.getIs_popup() != null)
                     Validate.asBoolean(users.getIs_popup(), sa);
-
-                if (users.getMsg() != null)
-                    Validate.asString(users.getMsg(), sa);
+             */
+            sa.assertTrue(Validate.asBoolean(users.getIs_popup()));
+            sa.assertTrue(Validate.asString(users.getMsg()));
 
 
             }
-
-
     }
 
 
