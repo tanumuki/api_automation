@@ -106,7 +106,9 @@ public enum APIResources {
 	ContentHandleUnsupportedDeeplinkAPI("content.handleUnsupportedDeeplink"),
 	SocialGetFollowers("social.getFollowersDetails"),
 	SocialGetFollowing("social.getFollowingDetails"),
-	UserIsSameAPI("user.isSame");
+	UserIsSameAPI("user.isSame"),
+	SubscriptionUnsubscribeAPI("subscription.unsubscribe"),
+	SubscriptionResumeAPI("subscription.resume");
 
 	private String resource;
 
