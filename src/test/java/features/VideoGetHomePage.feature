@@ -1,4 +1,4 @@
-Feature: Validation of video getHomepage API
+Feature: video.getVideoHomePage
 
 Background:
   Given I login with randomly generated user credentials
