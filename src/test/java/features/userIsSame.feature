@@ -14,7 +14,5 @@ Given I have the endpoint for "UserIsSameAPI"
 When I make the "GET" request with the following query parameters
 | uid |
 | fd135ba8e7777a130625347e063236d5 |
- # Then Clear Downloads pop up should be shown with status "OK"
- # Then Clear Downloads pop up should be shown with status 200
  And Clear Downloads pop up should be validated
 

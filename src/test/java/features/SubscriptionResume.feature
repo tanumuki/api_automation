@@ -7,3 +7,4 @@ Feature: subscription.resume
     Given I have the endpoint for "SubscriptionResumeAPI"
     Then I make the "GET" request
     And Subscription Resume API response must be validated successfully
+

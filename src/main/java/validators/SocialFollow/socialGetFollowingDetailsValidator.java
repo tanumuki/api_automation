@@ -21,51 +21,48 @@ public class socialGetFollowingDetailsValidator extends EntityValidator {
 
         sa.assertTrue(Validate.asString(followingDetails.getStatus()), AssertionMsg.print(classname, methodName,
                 "UserStatus", followingDetails.getStatus()));
-       /* if (followingDetails.getStatus() != null)
-            Validate.asString(followingDetails.getStatus(), sa);
-
-        */
     }
 
     private void validateUsers(List<GetFollowDetails> users, SoftAssert sa) {
 
          final String methodName = new Throwable().getStackTrace()[0].getMethodName();
-
-        // sa.assertTrue(Validate.asString(users.getUid(), uid));
-
         if (users != null) {
-
             for (GetFollowDetails user : users) {
-               /* if (user.getType()!= null)
-                    Validate.asString(user.getType(), sa);
-                */
-               // sa.assertTrue(Validate.asString(user.getType()));
-                sa.assertTrue(Validate.asString(user.getType()), AssertionMsg.print(classname, methodName,
-                        "Type", user.getType()));
-                sa.assertTrue(Validate.asString(user.getDetails().getArtistid()));
-                sa.assertTrue(Validate.asString(user.getDetails().getName()));
 
-                /* if (user.getDetails().getImage() != null)
-                    Validate.asString(user.getDetails().getImage(), sa);
-                 */
-                sa.assertTrue(Validate.asString(user.getDetails().getImage()));
-                sa.assertTrue(Validate.asString(user.getDetails().getFollower_count()));
-                sa.assertTrue(Validate.asBoolean(user.getDetails().getIs_followed()));
+                sa.assertTrue(Validate.asString(user.getType()),
+                        AssertionMsg.print(classname, methodName, "Type", user.getType()));
+                sa.assertTrue(Validate.asString(user.getDetails().getArtistid()),
+                        AssertionMsg.print(classname, methodName, "ArtistID", user.getDetails().getArtistid()));
+                sa.assertTrue(Validate.asString(user.getDetails().getName()),
+                        AssertionMsg.print(classname, methodName, "Name", user.getDetails().getName()));
+                sa.assertTrue(Validate.asString(user.getDetails().getImage()),
+                        AssertionMsg.print(classname, methodName, "Image", user.getDetails().getImage()));
+                sa.assertTrue(Validate.asString(user.getDetails().getFollower_count()),
+                        AssertionMsg.print(classname, methodName, "Follower_Count", user.getDetails().getFollower_count()));
+                sa.assertTrue(Validate.asBoolean(user.getDetails().getIs_followed()),
+                        AssertionMsg.print(classname, methodName, "Is_Followed", String.valueOf(user.getDetails().getIs_followed())));
 
             }
         }
-
     }
 
     private void validateUsers(FollowingCount users, SoftAssert sa) {
+
+        final String methodName = new Throwable().getStackTrace()[0].getMethodName();
         if (users != null) {
 
-            sa.assertTrue(Validate.asNum(users.getFollowing().getUsersCount()));
-            sa.assertTrue(Validate.asNum(users.getFollowing().getArtistsCount()));
-            sa.assertTrue(Validate.asNum(users.getFollowing().getPlaylistsCount()));
-            sa.assertTrue(Validate.asNum(users.getFollowing().getUsersCount()));
+            sa.assertTrue(Validate.asNum(users.getFollowing().getUsersCount()), AssertionMsg.print(classname,
+                    methodName, "UsersCount", String.valueOf(users.getFollowing().getUsersCount())));
+            sa.assertTrue(Validate.asNum(users.getFollowing().getArtistsCount()), AssertionMsg.print(classname,
+                    methodName, "ArtistsCount", String.valueOf(users.getFollowing().getArtistsCount())));
+            sa.assertTrue(Validate.asNum(users.getFollowing().getPlaylistsCount()), AssertionMsg.print(classname,
+                    methodName, "PlaylistsCount", String.valueOf(users.getFollowing().getPlaylistsCount())));
+            sa.assertTrue(Validate.asNum(users.getFollowing().getUsersCount()), AssertionMsg.print(classname,
+                    methodName, "UserCount", String.valueOf(users.getFollowing().getUsersCount())));
             sa.assertTrue(Validate.asString(users.getStatus()));
+            sa.assertTrue(Validate.asString(users.getStatus()), AssertionMsg.print(classname,
+                    methodName, "Status", users.getStatus()));
         }
-        }
-
     }
+
+}
