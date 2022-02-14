@@ -6,7 +6,7 @@ Feature: playlist.getDetails
     Then PlaylistGetDetails api must respond with status code "OK"
     And User should see the PlaylistGetDetails response validated
 
-    Examples: 
+    Examples:
       | playlistid |
       | 81853229 |
       | 82859880 |

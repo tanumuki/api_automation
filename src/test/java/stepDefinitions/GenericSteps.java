@@ -12,14 +12,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import pojos.jioTuneLogin.DeviceInfo;
 import pojos.jioTuneLogin.SsoObjectToJson;
 import resources.APIConstants;
 import resources.ConfigReader;
 import resources.Util;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +63,7 @@ public class GenericSteps extends Util {
                 .all()
                 .extract()
                 .response();
+        System.out.println("Following response: " + resp.asString());
         logResponseTime(resp);
         log.info(resp.asString());
     }
