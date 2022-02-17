@@ -145,11 +145,12 @@ public class Validate {
      */
     public static boolean asCDNURL(String url) {
         return url.matches("^$|((https|http)://([a-z0-9]+.cdnsrv.jio.com\\/c|c|c.sop|pli|static|c-origin|shorties|s|videos)?.(saavn|saavncdn|jiosaavn).com/(s|thumbs|triller|.+)(/.+)?.(png|jpg|mp4|webp)?(/.+)?)" +
-                "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.(webp|png))" +
-                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.(webp|png))" +
-                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.(webp|png))" +
-                "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).(webp|png))" +
-                "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.(webp|png))");
+                "|(https:\\/\\/static.saavncdn.com\\/_i\\/share-image.(webp|png|jpg))" +
+                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/share-image.(webp|png|jpg))" +
+                "|(https:\\/\\/(staging|qa).jiosaavn.com\\/_i\\/3.0\\/playlist-default.(webp|png|jpg))" +
+                "|(http:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/artist-default-(music|film).(webp|png|jpg))" +
+                "|(http:\\/\\/c.saavncdn.com\\/(artists|[0-9])+\\/[a-zA-Z0-9_]+.(webp|jpg|png))"+
+                "|(https:\\/\\/(staging|www|qa|d[0-9].+).(jio)?saavn.com\\/_i\\/3.0\\/user-default.(webp|png|jpg))");
 
     }
 
@@ -1046,15 +1047,15 @@ public class Validate {
     }
 
 
-    public static boolean asString(String users, SoftAssert sa) {
-        return false;
-    }
-
-    public static void asNum(Integer usersCount, SoftAssert sa) {
-    }
-
-    public static void asBoolean(Boolean isFollowed, SoftAssert sa) {
-    }
+//    public static boolean asString(String users, SoftAssert sa) {
+//        return false;
+//    }
+//
+//    public static void asNum(Integer usersCount, SoftAssert sa) {
+//    }
+//
+//    public static void asBoolean(Boolean isFollowed, SoftAssert sa) {
+//    }
 
 }
 

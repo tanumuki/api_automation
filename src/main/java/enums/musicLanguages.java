@@ -34,6 +34,7 @@ public enum musicLanguages {
 	SWEDISH,
 	ICELANDIC,
 	AFRIKAANS,
+	SOMALI,
 	UNKNOWN;
 }
 

@@ -54,24 +54,24 @@ public class SearchResponseValidator {
 			System.out.println("methodName: " + methodName);
 			sa.assertTrue(Validate.asId(data.getId()), assertionMsg(methodName, entityType, "id", data.getId()));
 
-			sa.assertTrue(Validate.asString(data.getTitle(), sa),
+			sa.assertTrue(Validate.asString(data.getTitle()),
 					assertionMsg(methodName, entityType, "title", data.getTitle()));
 
 			if (data.getSubtitle() != null)
-				sa.assertTrue(Validate.asString(data.getSubtitle(), sa),
+				sa.assertTrue(Validate.asString(data.getSubtitle()),
 						assertionMsg(methodName, entityType, "subtitle", data.getSubtitle()));
 
-			sa.assertTrue(Validate.asString(data.getType(), sa),
+			sa.assertTrue(Validate.asString(data.getType()),
 					assertionMsg(methodName, entityType, "type", data.getType()));
 
 			sa.assertTrue(Validate.asCDNURL(data.getImage()),
 					assertionMsg(methodName, entityType, "image", data.getImage()));
 			
 			if(!entityType.equals("artist")) {
-				sa.assertTrue(Validate.asString(data.getPermaUrl(), sa),
+				sa.assertTrue(Validate.asString(data.getPermaUrl()),
 						assertionMsg(methodName, entityType, "perma_url", data.getPermaUrl()));
 				
-				sa.assertTrue(Validate.asString(data.getExplicitContent(), sa),
+				sa.assertTrue(Validate.asString(data.getExplicitContent()),
 						assertionMsg(methodName, entityType, "explicit_content", data.getExplicitContent()));
 			}
 				
@@ -79,11 +79,11 @@ public class SearchResponseValidator {
 
 			
 
-			sa.assertTrue(Validate.asString(data.getDescription(), sa),
+			sa.assertTrue(Validate.asString(data.getDescription()),
 					assertionMsg(methodName, entityType, "description", data.getDescription()));
 
 			if (data.getExtra() != null)
-				sa.assertTrue(Validate.asString(data.getExtra(), sa),
+				sa.assertTrue(Validate.asString(data.getExtra()),
 						assertionMsg(methodName, entityType, "extra", data.getExtra()));
 
 			validateMoreInfo(data.getMoreInfo(), sa, entityType);
@@ -99,43 +99,43 @@ public class SearchResponseValidator {
 		System.out.println("methodName: " + methodName);
 
 		if (entityType.equalsIgnoreCase("album")) {
-			sa.assertTrue(Validate.asString(moreInfoObj.getMusic(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getMusic()),
 					assertionMsg(methodName, entityType, "music", moreInfoObj.getMusic()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getYear(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getYear()),
 					assertionMsg(methodName, entityType, "Year", moreInfoObj.getYear()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getIs_movie(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getIs_movie()),
 					assertionMsg(methodName, entityType, "is_movie", moreInfoObj.getIs_movie()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getSong_pids(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getSong_pids()),
 					assertionMsg(methodName, entityType, "song_pids", moreInfoObj.getSong_pids()));
 		}
 
 		if (entityType.equalsIgnoreCase("song")) {
-			sa.assertTrue(Validate.asString(moreInfoObj.getAlbum(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getAlbum()),
 					assertionMsg(methodName, entityType, "album", moreInfoObj.getAlbum()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getScore(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getScore()),
 					assertionMsg(methodName, entityType, "score", moreInfoObj.getScore()));
 
 			if (moreInfoObj.getVcode() != null)
-				sa.assertTrue(Validate.asString(moreInfoObj.getVcode(), sa),
+				sa.assertTrue(Validate.asString(moreInfoObj.getVcode()),
 						assertionMsg(methodName, entityType, "vcode", moreInfoObj.getVcode()));
 
 			if (moreInfoObj.getVlink() != null)
 				sa.assertTrue(Validate.asVlinkURL(moreInfoObj.getVlink()),
 						assertionMsg(methodName, entityType, "vlink", moreInfoObj.getVlink()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getPrimaryArtists(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getPrimaryArtists()),
 					assertionMsg(methodName, entityType, "primary_artists", moreInfoObj.getPrimaryArtists()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getSingers(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getSingers()),
 					assertionMsg(methodName, entityType, "singers", moreInfoObj.getSingers()));
 		}
 
 		if (entityType.equalsIgnoreCase("radio station")) {
-			sa.assertTrue(Validate.asString(moreInfoObj.getUsername(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getUsername()),
 					assertionMsg(methodName, entityType, "username", moreInfoObj.getUsername()));
 
 			sa.assertTrue(Validate.asMusicLanguage(moreInfoObj.getLanguage()),
@@ -146,27 +146,27 @@ public class SearchResponseValidator {
 						assertionMsg(methodName, entityType, "uid", moreInfoObj.getUid()));
 
 			if (moreInfoObj.getSeed() != null)
-				sa.assertTrue(Validate.asString(moreInfoObj.getSeed(), sa),
+				sa.assertTrue(Validate.asString(moreInfoObj.getSeed()),
 						assertionMsg(methodName, entityType, "seed", moreInfoObj.getSeed()));
 
 			if (moreInfoObj.getCreationDate() != null)
 				sa.assertTrue(Validate.asTimeStamp(moreInfoObj.getCreationDate()),
 						assertionMsg(methodName, entityType, "creation_date", moreInfoObj.getCreationDate()));
 
-			sa.assertTrue(Validate.asString(moreInfoObj.getFeaturedStationType(), sa), assertionMsg(methodName, entityType,
+			sa.assertTrue(Validate.asString(moreInfoObj.getFeaturedStationType()), assertionMsg(methodName, entityType,
 					"featured_station_type", moreInfoObj.getFeaturedStationType()));
 
 		}
 
 		if (entityType.equalsIgnoreCase("playlist")) {
-			sa.assertTrue(Validate.asString(moreInfoObj.getFirstname(), sa),
+			sa.assertTrue(Validate.asString(moreInfoObj.getFirstname()),
 					assertionMsg(methodName, entityType, "firstname", moreInfoObj.getFirstname()));
 			if (moreInfoObj.getArtistName() != null) {
 				for (String name : moreInfoObj.getArtistName()) {
-					sa.assertTrue(Validate.asString(name, sa), assertionMsg(methodName, entityType, "artist_name", name));
+					sa.assertTrue(Validate.asString(name), assertionMsg(methodName, entityType, "artist_name", name));
 				}
 
-				sa.assertTrue(Validate.asString(moreInfoObj.getLastname(), sa),
+				sa.assertTrue(Validate.asString(moreInfoObj.getLastname()),
 						assertionMsg(methodName, entityType, "lastname", moreInfoObj.getLastname()));
 			}
 

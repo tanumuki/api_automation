@@ -16,4 +16,6 @@ public class JioTuneLimitPojo {
     private int left;
     @JsonProperty("total")
     private int total;
+    @JsonProperty("isPro")
+    private Boolean isPro;
 }

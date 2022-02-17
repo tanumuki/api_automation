@@ -30,5 +30,7 @@ public class Ads {
     private String pa_exp;
     @JsonProperty("adload_abtest")
     private String adload_abtest;
+    @JsonProperty("ads_experience_config")
+    private Object ads_experience_config;
 
 }
