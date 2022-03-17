@@ -63,6 +63,9 @@ public class UserStateValidator {
             {
                 sa.assertTrue(Validate.asEmail(us.getEmail()), AssertionMsg.print(className, methodName, "user_state.email", us.getEmail()));
             }
+            sa.assertTrue(Validate.asString(us.getFree_stream_limit()), AssertionMsg.print(className, methodName, "user_state.free_stream_limit", us.getFree_stream_limit()));
+            sa.assertTrue(Validate.asNum(us.getFree_stream_counter()), AssertionMsg.print(className, methodName, "user_state.free_stream_limit", String.valueOf(us.getFree_stream_counter())));
+            sa.assertTrue(Validate.asBoolean(us.getFree_downloads_enabled()), AssertionMsg.print(className, methodName, "user_state.free_stream_limit", String.valueOf(us.getFree_downloads_enabled())));
         }
 
 
