@@ -54,4 +54,10 @@ public class UserState {
     private String deviceStatus;
     @JsonProperty("email")
     private String email;
+    @JsonProperty("free_stream_limit")
+    private String free_stream_limit;
+    @JsonProperty("free_stream_counter")
+    private Integer free_stream_counter;
+    @JsonProperty("free_downloads_enabled")
+    private Boolean free_downloads_enabled;
 }

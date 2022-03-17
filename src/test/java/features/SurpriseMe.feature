@@ -11,7 +11,7 @@ Feature: playlist.getDetailsForFeaturedRandom (Surprise Me API)
     Examples:
       | listids |
       | 5424 |
-      | 2212321 |
+#      | 2212321 |
       | 3339593 |
       | 5425 |
       | 1506992 |
